@@ -1,5 +1,5 @@
 package models;
 
-public class House extends Place{
+public class House extends Object{
 
 }

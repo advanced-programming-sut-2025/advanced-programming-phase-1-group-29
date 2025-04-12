@@ -1,4 +1,4 @@
 package models;
 
-public class Lake extends Place{
+public class Lake extends Object{
 }

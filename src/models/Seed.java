@@ -1,4 +1,6 @@
 package models;
 
-public class Seed {
+import java.lang.Object;
+
+public class Seed extends Object {
 }

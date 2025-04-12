@@ -3,5 +3,8 @@ package models;
 import java.util.ArrayList;
 
 public class Map {
-    private ArrayList<Farm> farms;
+    private final ArrayList<Farm> farms = new ArrayList<>();
+    private final ArrayList<Object> map = new ArrayList<>();
+
+
 }

@@ -6,9 +6,9 @@ public class DateAndTime {
 
     private Season season;
     private int day;
-    private static int numberOfDaysInMonth = 28;
+    private static final int numberOfDaysInSeason = 28;
 
-    void nextDay() {}
+    public void nextDay() {}
 
 
 }

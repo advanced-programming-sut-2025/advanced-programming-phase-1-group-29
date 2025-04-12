@@ -2,7 +2,9 @@ package models;
 
 import models.enums.Season;
 
-public class Crop {
+import java.lang.Object;
+
+public class Crop extends Object {
     private String name;
     private Seed sourceSeed;
     private int stage = 1;

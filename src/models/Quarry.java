@@ -1,4 +1,4 @@
 package models;
 
-public class Quarry extends Place {
+public class Quarry extends Object {
 }

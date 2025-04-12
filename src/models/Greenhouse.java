@@ -1,4 +1,4 @@
 package models;
 
-public class Greenhouse extends Place {
+public class Greenhouse extends Object {
 }
