@@ -45,7 +45,13 @@ public class GameController {
 
     public Result toolsUse(int direction){}
 
+    public Result plant(String seed, String direction) {}
 
+    public Result showPlant(String x, String y) {}
+
+    public Result fertilize(String fertilizer, String direction) {}
+
+    public Result howMuchWater() {}
 
 
 }

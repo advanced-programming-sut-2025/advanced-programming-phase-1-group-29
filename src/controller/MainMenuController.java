@@ -2,7 +2,7 @@ package controller;
 
 import models.Result;
 
-public class PreMainMenuController {
+public class MainMenuController {
 
     public Result logout() {}
 
