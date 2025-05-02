@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import org.example.models.App;
+import org.example.models.RegistrationModel;
 import org.example.models.Result;
 import org.example.models.User;
 import org.example.models.enums.Gender;
@@ -30,8 +31,8 @@ public class RegisterMenuController extends Controller{
     public Result register(
             String username, String password, String passwordConfirm, String nickname, String email, String gender
     ) {
-        App.setRegisterState(RegisterState.NOT_STARTED);
-        App.setUserInRegisteringProcess(null);
+        App.getRegistrationModel().setRegisterState(RegisterState.NOT_STARTED);
+        App.getRegistrationModel().setUser(null);
         if (RegisterMenuCommands.Username.getMatcher(username) == null)
             return new Result(false, "Invalid username format");
         if (App.findUserByUsername(username) != null) {
@@ -47,13 +48,13 @@ public class RegisterMenuController extends Controller{
         if (!password.equals(passwordConfirm))
             return new Result(false, "The password confirmation is wrong.");
         User user = new User(username, password, email, nickname, Gender.getGender(gender));
-        App.setUserInRegisteringProcess(user);
-        App.setRegisterState(RegisterState.REGISTERED_INFO_VALID);
+        App.getRegistrationModel().setRegisterState(RegisterState.REGISTERED_INFO_VALID);
+        App.getRegistrationModel().setUser(user);
         return new Result(true, printSecurityQuestions());
     }
 
     public Result pickQuestion(String questionNumberInString, String answer, String answerConfirm) {
-        if (!App.getRegisterState().equals(RegisterState.REGISTERED_INFO_VALID))
+        if (!App.getRegistrationModel().getRegisterState().equals(RegisterState.REGISTERED_INFO_VALID))
             return new Result(false, "Invalid command");
         int questionNumber = Integer.parseInt(questionNumberInString);
         if (questionNumber > App.getSecurityQuestions().size())
@@ -61,14 +62,13 @@ public class RegisterMenuController extends Controller{
         if (!answer.equals(answerConfirm))
             return new Result(
                     false,
-                    "The answer confirmation is wrong. Try again." + printSecurityQuestions()
+                    "The answer confirmation is wrong. Try again.\n" + printSecurityQuestions()
             );
-        User user = App.getUserInRegisteringProcess();
+        User user = App.getRegistrationModel().getUser();
         user.setSecurityQuestion(App.getSecurityQuestions().get(questionNumber - 1));
         user.setAnswerToSecurityQuestion(answer);
         App.addUser(user);
-        App.setUserInRegisteringProcess(null);
-        App.setRegisterState(RegisterState.SECURITY_QUESTION_PICKED);
+        App.getRegistrationModel().setRegisterState(RegisterState.SECURITY_QUESTION_PICKED);
         return new Result(true, "You registered successfully.");
     }
 

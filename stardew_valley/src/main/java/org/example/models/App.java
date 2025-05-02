@@ -16,8 +16,7 @@ public class App {
             "WHAT STREET DID YOU LIVE ON WHEN YOU WERE 8 YEARS OLD?",
             "WHAT IS THE NAME OF YOUR FAVORITE CHILDHOOD FRIEND?"
     ));
-    private static User userInRegisteringProcess = null;
-    private static RegisterState registerState = RegisterState.NOT_STARTED;
+    private static final RegistrationModel registrationModel = new RegistrationModel();
 
     public static Menu getCurrentMenu() {
         return currentMenu;
@@ -50,19 +49,7 @@ public class App {
         return securityQuestions;
     }
 
-    public static User getUserInRegisteringProcess() {
-        return userInRegisteringProcess;
-    }
-
-    public static void setUserInRegisteringProcess(User userInRegisteringProcess) {
-        App.userInRegisteringProcess = userInRegisteringProcess;
-    }
-
-    public static RegisterState getRegisterState() {
-        return registerState;
-    }
-
-    public static void setRegisterState(RegisterState registerState) {
-        App.registerState = registerState;
+    public static RegistrationModel getRegistrationModel() {
+        return registrationModel;
     }
 }
