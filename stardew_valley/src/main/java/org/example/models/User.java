@@ -5,13 +5,13 @@ import org.example.models.enums.Gender;
 public class User {
     private String username;
     private String password;
-    private String email;
     private String nickname;
+    private String email;
     private Gender gender;
     private String securityQuestion;
     private String answerToSecurityQuestion;
 
-    public User(String username, String password, String email, String nickname, Gender gender) {
+    public User(String username, String password, String nickname, String email, Gender gender) {
         this.username = username;
         this.password = password;
         this.email = email;

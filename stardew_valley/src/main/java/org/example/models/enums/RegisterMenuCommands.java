@@ -14,6 +14,7 @@ public enum RegisterMenuCommands implements Command{
     ),
     Password("[a-zA-Z0-9?<>,;:'\"\\/\\\\|\\[\\]{}\\+=\\)\\(\\*&\\^%\\$#!]+"),
     StrongPassword("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?<>,;:'\"\\/\\\\|\\[\\]{}\\+=\\)\\(\\*&\\^%\\$#!]).*"),
+    YesOrNo("\\s*(Y|N)\\s*"),
     PickQuestion(
             "\\s*pick\\s+question\\s+-q\\s+(?<questionNumber>\\d+)\\s+" +
                     "-a\\s+(?<answer>.+?)\\s+-c\\s+(?<answerConfirm>.+?)\\s*"

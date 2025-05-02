@@ -3,15 +3,47 @@ package org.example.models;
 import org.example.models.enums.RegisterState;
 
 public class RegistrationModel {
-    private User user = null;
+    private String username;
+    private String password;
+    private String passwordConfirm;
+    private String nickname;
+    private String email;
+    private String gender;
     private RegisterState registerState = RegisterState.NOT_STARTED;
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setUser(
+            String username, String password, String passwordConfirm, String nickname, String email, String gender
+    ) {
+        this.username = username;
+        this.password = password;
+        this.passwordConfirm = passwordConfirm;
+        this.nickname = nickname;
+        this.email = email;
+        this.gender = gender;
     }
 
     public RegisterState getRegisterState() {

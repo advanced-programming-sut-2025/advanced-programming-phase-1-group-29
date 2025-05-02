@@ -26,6 +26,8 @@ public class RegisterMenu implements AppMenu{
                     matcher.group("email"),
                     matcher.group("gender")
             ));
+        } else if (RegisterMenuCommands.YesOrNo.getMatcher(input) != null) {
+            System.out.println(controller.selectSuggestedUsername(input));
         } else if ((matcher = RegisterMenuCommands.PickQuestion.getMatcher(input)) != null) {
             System.out.println(controller.pickQuestion(
                     matcher.group("questionNumber"),

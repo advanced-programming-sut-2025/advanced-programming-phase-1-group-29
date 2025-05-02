@@ -9,10 +9,19 @@ import org.example.models.enums.Menu;
 import org.example.models.enums.RegisterMenuCommands;
 import org.example.models.enums.RegisterState;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 public class RegisterMenuController extends Controller{
     private final RegistrationModel registrationModel = new RegistrationModel();
 
     public Result menuEnter(String menuName) {
+        registrationModel.setRegisterState(RegisterState.NOT_STARTED);
+        registrationModel.setUser(
+                null, null, null, null, null, null
+        );
         if (!menuName.equals("Login Menu")) return new Result(false, "Invalid menu");
         App.setCurrentMenu(Menu.LoginMenu);
         return new Result(true, "Now you are in Login Menu.");
@@ -30,16 +39,42 @@ public class RegisterMenuController extends Controller{
         return result.toString();
     }
 
+    private String generateUsername(String username) {
+        ArrayList<Character> characters = new ArrayList<>(List.of('-'));
+        for (int i = 0 ; i < 10; i++) {
+            characters.add((char) ('0' + i));
+        }
+        while (true) {
+            int randomNumber = (new Random()).nextInt(11);
+            char character = characters.get(randomNumber);
+            int randomIndex = (new Random()).nextInt(username.length() + 1);
+            char[] newUsernameCharArray = new char[username.length() + 1];
+            username.getChars(0, randomIndex, newUsernameCharArray, 0);
+            newUsernameCharArray[randomIndex] = character;
+            username.getChars(randomIndex, username.length(), newUsernameCharArray, randomIndex + 1);
+            username = String.valueOf(newUsernameCharArray);
+            if (App.findUserByUsername(username) == null) return username;
+        }
+    }
+
     public Result register(
             String username, String password, String passwordConfirm, String nickname, String email, String gender
     ) {
         registrationModel.setRegisterState(RegisterState.NOT_STARTED);
-        registrationModel.setUser(null);
+        registrationModel.setUser(
+                null, null, null, null, null, null
+        );
         if (RegisterMenuCommands.Username.getMatcher(username) == null)
             return new Result(false, "Invalid username format");
         if (App.findUserByUsername(username) != null) {
-            // suggest another username
-            return new Result(false, "The username is already taken.");
+            registrationModel.setRegisterState(RegisterState.USERNAME_SUGGESTED);
+            String newUsername = generateUsername(username);
+            registrationModel.setUser(newUsername, password, passwordConfirm, nickname, email, gender);
+            return new Result(
+                    false,
+                    "The username is already taken.\n" + newUsername +
+                            " is an alternative. Do you want to choose this as your username?(Y/N)"
+            );
         }
         if (RegisterMenuCommands.Email.getMatcher(email) == null)
             return new Result(false, "Invalid Email Format");
@@ -49,10 +84,26 @@ public class RegisterMenuController extends Controller{
             return new Result(false, "The password is too weak");
         if (!password.equals(passwordConfirm))
             return new Result(false, "The password confirmation is wrong.");
-        User user = new User(username, password, email, nickname, Gender.getGender(gender));
         registrationModel.setRegisterState(RegisterState.REGISTERED_INFO_VALID);
-        registrationModel.setUser(user);
+        registrationModel.setUser(username, password, passwordConfirm, nickname, email, gender);
         return new Result(true, printSecurityQuestions());
+    }
+
+    public Result selectSuggestedUsername(String input) {
+        if (!registrationModel.getRegisterState().equals(RegisterState.USERNAME_SUGGESTED))
+            return new Result(false, "Invalid command");
+        if (input.equals("N")) {
+            registrationModel.setRegisterState(RegisterState.NOT_STARTED);
+            registrationModel.setUser(
+                    null, null, null, null, null, null
+            );
+            return new Result(true, "Alright. You can register with another username.");
+        }
+        return register(
+                registrationModel.getUsername(), registrationModel.getPassword(),
+                registrationModel.getPasswordConfirm(), registrationModel.getNickname(),
+                registrationModel.getEmail(), registrationModel.getGender()
+        );
     }
 
     public Result pickQuestion(String questionNumberInString, String answer, String answerConfirm) {
@@ -66,7 +117,10 @@ public class RegisterMenuController extends Controller{
                     false,
                     "The answer confirmation is wrong. Try again.\n" + printSecurityQuestions()
             );
-        User user = registrationModel.getUser();
+        User user = new User(
+                registrationModel.getUsername(), registrationModel.getPassword(), registrationModel.getNickname(),
+                registrationModel.getEmail(), Gender.getGender(registrationModel.getGender())
+        );
         user.setSecurityQuestion(App.getSecurityQuestions().get(questionNumber - 1));
         user.setAnswerToSecurityQuestion(answer);
         App.addUser(user);
