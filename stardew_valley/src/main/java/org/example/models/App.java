@@ -16,7 +16,6 @@ public class App {
             "WHAT STREET DID YOU LIVE ON WHEN YOU WERE 8 YEARS OLD?",
             "WHAT IS THE NAME OF YOUR FAVORITE CHILDHOOD FRIEND?"
     ));
-    private static final RegistrationModel registrationModel = new RegistrationModel();
 
     public static Menu getCurrentMenu() {
         return currentMenu;
@@ -49,7 +48,4 @@ public class App {
         return securityQuestions;
     }
 
-    public static RegistrationModel getRegistrationModel() {
-        return registrationModel;
-    }
 }
