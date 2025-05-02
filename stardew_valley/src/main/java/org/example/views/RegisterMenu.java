@@ -26,6 +26,12 @@ public class RegisterMenu implements AppMenu{
                     matcher.group("email"),
                     matcher.group("gender")
             ));
+        } else if ((matcher = RegisterMenuCommands.PickQuestion.getMatcher(input)) != null) {
+            System.out.println(controller.pickQuestion(
+                    matcher.group("questionNumber"),
+                    matcher.group("answer"),
+                    matcher.group("answerConfirm")
+            ));
         } else if (RegisterMenuCommands.MenuExit.getMatcher(input) != null) {
             controller.menuExit();
         } else {

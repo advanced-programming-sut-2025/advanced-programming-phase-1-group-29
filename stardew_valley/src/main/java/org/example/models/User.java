@@ -8,6 +8,8 @@ public class User {
     private String email;
     private String nickname;
     private Gender gender;
+    private String securityQuestion;
+    private String answerToSecurityQuestion;
 
     public User(String username, String password, String email, String nickname, Gender gender) {
         this.username = username;
@@ -19,5 +21,21 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
+
+    public String getAnswerToSecurityQuestion() {
+        return answerToSecurityQuestion;
+    }
+
+    public void setAnswerToSecurityQuestion(String answerToSecurityQuestion) {
+        this.answerToSecurityQuestion = answerToSecurityQuestion;
     }
 }

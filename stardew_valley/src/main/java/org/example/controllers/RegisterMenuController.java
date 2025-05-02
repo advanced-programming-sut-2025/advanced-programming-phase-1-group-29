@@ -6,6 +6,7 @@ import org.example.models.User;
 import org.example.models.enums.Gender;
 import org.example.models.enums.Menu;
 import org.example.models.enums.RegisterMenuCommands;
+import org.example.models.enums.RegisterState;
 
 public class RegisterMenuController extends Controller{
     public Result menuEnter(String menuName) {
@@ -14,9 +15,23 @@ public class RegisterMenuController extends Controller{
         return new Result(true, "Now you are in Login Menu.");
     }
 
+    private String printSecurityQuestions() {
+        StringBuilder result = new StringBuilder("Please pick a security question.\n");
+        for (int i = 0; i < App.getSecurityQuestions().size(); i++) {
+            result.append(i+1);
+            result.append(". ");
+            result.append(App.getSecurityQuestions().get(i));
+            result.append("\n");
+        }
+        result.deleteCharAt(result.length()-1);
+        return result.toString();
+    }
+
     public Result register(
             String username, String password, String passwordConfirm, String nickname, String email, String gender
     ) {
+        App.setRegisterState(RegisterState.NOT_STARTED);
+        App.setUserInRegisteringProcess(null);
         if (RegisterMenuCommands.Username.getMatcher(username) == null)
             return new Result(false, "Invalid username format");
         if (App.findUserByUsername(username) != null) {
@@ -30,10 +45,31 @@ public class RegisterMenuController extends Controller{
         if (RegisterMenuCommands.StrongPassword.getMatcher(password) == null || password.length() < 8)
             return new Result(false, "The password is too weak");
         if (!password.equals(passwordConfirm))
-            return new Result(false, "");
+            return new Result(false, "The password confirmation is wrong.");
         User user = new User(username, password, email, nickname, Gender.getGender(gender));
+        App.setUserInRegisteringProcess(user);
+        App.setRegisterState(RegisterState.REGISTERED_INFO_VALID);
+        return new Result(true, printSecurityQuestions());
+    }
+
+    public Result pickQuestion(String questionNumberInString, String answer, String answerConfirm) {
+        if (!App.getRegisterState().equals(RegisterState.REGISTERED_INFO_VALID))
+            return new Result(false, "Invalid command");
+        int questionNumber = Integer.parseInt(questionNumberInString);
+        if (questionNumber > App.getSecurityQuestions().size())
+            return new Result(false, "Invalid Question Number.\n" + printSecurityQuestions());
+        if (!answer.equals(answerConfirm))
+            return new Result(
+                    false,
+                    "The answer confirmation is wrong. Try again." + printSecurityQuestions()
+            );
+        User user = App.getUserInRegisteringProcess();
+        user.setSecurityQuestion(App.getSecurityQuestions().get(questionNumber - 1));
+        user.setAnswerToSecurityQuestion(answer);
         App.addUser(user);
-        return new Result(true, "");
+        App.setUserInRegisteringProcess(null);
+        App.setRegisterState(RegisterState.SECURITY_QUESTION_PICKED);
+        return new Result(true, "You registered successfully.");
     }
 
     public void menuExit() {
