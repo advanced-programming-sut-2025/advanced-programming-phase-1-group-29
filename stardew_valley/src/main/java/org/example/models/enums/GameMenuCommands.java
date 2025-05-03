@@ -25,6 +25,7 @@ public enum GameMenuCommands implements Command {
     PrintMap("\\s*print\\s+map\\s+-l\\s+(?<x>\\d+)\\s*,\\s*(?<y>\\d+)\\s+-s\\s+(?<size>\\d+)\\s*"),
     HelpReadingMap("\\s*help\\s+reading\\s+map\\s*"),
     EnergyShow("\\s*energy\\s+show\\s*"),
+    //comment
     ;
 
 
