@@ -10,6 +10,9 @@ public class User {
     private Gender gender;
     private String securityQuestion;
     private String answerToSecurityQuestion;
+    int numberOfGames = 0;
+    int maxCoins = 0;
+
 
     public User(String username, String password, String nickname, String email, Gender gender) {
         this.username = username;
