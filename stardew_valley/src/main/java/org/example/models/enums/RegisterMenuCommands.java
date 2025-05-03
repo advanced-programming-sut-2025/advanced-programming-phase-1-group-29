@@ -1,7 +1,7 @@
 package org.example.models.enums;
 
 public enum RegisterMenuCommands implements Command{
-    MenuEnter("\\s*menu\\s+enter\\s+(?<menuName>.+?)\\s*"),
+    MenuEnter("\\s*menu\\s+enter\\s+Login\\s+Menu\\s*"),
     ShowCurrentMenu("\\s*show\\s+current\\s+menu\\s*"),
     Register(
             "\\s*register\\s+-u\\s+(?<username>.+?)\\s+-p\\s+(?<password>.+?)(\\s+(?<passwordConfirm>.+?))?" +

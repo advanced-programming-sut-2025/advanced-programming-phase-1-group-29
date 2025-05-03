@@ -3,7 +3,7 @@ package org.example.models.enums;
 import java.util.regex.Matcher;
 
 public enum LoginMenuCommands implements org.example.models.enums.Command {
-    MenuEnter("\\s*menu\\s+enter\\s+(?<menuName>.+?)\\s*"),
+    MenuEnter("\\s*menu\\s+enter\\s+Register\\s+Menu\\s*"),
     MenuExit("\\s*menu\\s+exit\\s*"),
     ShowCurrentMenu("\\s*show\\s+current\\s+menu\\s*"),
     Login("\\s*login\\s+-u\\s+(?<username>.+)\\s+-p\\s+(?<password>.+)\\s+(?<stayLoggedIn>.*)\\s*"),

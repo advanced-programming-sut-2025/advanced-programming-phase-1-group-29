@@ -22,7 +22,6 @@ public class RegisterMenuController extends Controller{
         registrationModel.setUser(
                 null, null, null, null, null, null
         );
-        if (!menuName.equals("Login Menu")) return new Result(false, "Invalid menu");
         App.setCurrentMenu(Menu.LoginMenu);
         return new Result(true, "Now you are in Login Menu.");
     }
