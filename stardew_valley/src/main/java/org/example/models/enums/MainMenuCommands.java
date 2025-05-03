@@ -1,7 +1,9 @@
 package org.example.models.enums;
 
 public enum MainMenuCommands implements Command{
-    MenuEnter("\\s*menu\\s+enter\\s+(?<menuName>.+?)\\s*"),
+    ProfileMenuEnter("\\s*menu\\s+enter\\s+Profile\\s+Menu\\s*"),
+    GameMenuEnter("\\s*menu\\s+enter\\s+Game\\s+Menu\\s*"),
+    AvatarMenuEnter("\\s*menu\\s+enter\\s+Avatar\\s+Menu\\s*"),
     UserLogout("\\s*user\\s+logout\\s*");
     private final String pattern;
 

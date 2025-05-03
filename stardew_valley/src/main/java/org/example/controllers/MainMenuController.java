@@ -5,20 +5,18 @@ import org.example.models.Result;
 import org.example.models.enums.Menu;
 
 public class MainMenuController extends Controller{
-    public Result menuEnter(String menuName) {
-        if (menuName.equals("Profile Menu")) {
-            App.setCurrentMenu(Menu.ProfileMenu);
-            return new Result(true, "Now you are in Profile Menu.");
-        }
-        if (menuName.equals("Game Menu")) {
-            App.setCurrentMenu(Menu.GameMenu);
-            return new Result(true, "Now you are in Game Menu.");
-        }
-        if (menuName.equals("Avatar Menu")) {
-            App.setCurrentMenu(Menu.AvatarMenu);
-            return new Result(true, "Now you are in Avatar Menu.");
-        }
-        return new Result(false, "Invalid menu");
+    public Result profileMenuEnter() {
+        App.setCurrentMenu(Menu.ProfileMenu);
+        return new Result(true, "Now you are in Profile Menu.");
+    }
+
+    public Result gameMenuEnter() {
+        App.setCurrentMenu(Menu.GameMenu);
+        return new Result(true, "Now you are in Game Menu.");
+    }
+    public Result avatarMenuEnter() {
+        App.setCurrentMenu(Menu.AvatarMenu);
+        return new Result(true, "Now you are in Avatar Menu.");
     }
 
     public Result userLogout() {
