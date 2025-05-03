@@ -37,7 +37,7 @@ public class RegisterMenu implements AppMenu{
         } else if (RegisterMenuCommands.MenuExit.getMatcher(input) != null) {
             controller.menuExit();
         } else {
-            System.out.println("Invalid command");
+            System.out.println(controller.passwordConfirmation(input));
         }
     }
 }

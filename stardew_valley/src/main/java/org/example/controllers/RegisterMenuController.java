@@ -82,8 +82,14 @@ public class RegisterMenuController extends Controller{
             return new Result(false, "Invalid Email Format");
         if (RegisterMenuCommands.StrongPassword.getMatcher(password) == null || password.length() < 8)
             return new Result(false, "The password is too weak");
-        if (!password.equals(passwordConfirm))
-            return new Result(false, "The password confirmation is wrong.");
+        if (!password.equals(passwordConfirm)) {
+            registrationModel.setRegisterState(RegisterState.PASSWORD_CONFIRMATION);
+            registrationModel.setUser(username, password, passwordConfirm, nickname, email, gender);
+            return new Result(
+                    false,
+                    "The password confirmation is wrong. Please enter your password again."
+            );
+        }
         registrationModel.setRegisterState(RegisterState.REGISTERED_INFO_VALID);
         registrationModel.setUser(username, password, passwordConfirm, nickname, email, gender);
         return new Result(true, printSecurityQuestions());
@@ -102,6 +108,16 @@ public class RegisterMenuController extends Controller{
         return register(
                 registrationModel.getUsername(), registrationModel.getPassword(),
                 registrationModel.getPasswordConfirm(), registrationModel.getNickname(),
+                registrationModel.getEmail(), registrationModel.getGender()
+        );
+    }
+
+    public Result passwordConfirmation(String password) {
+        if (!registrationModel.getRegisterState().equals(RegisterState.PASSWORD_CONFIRMATION))
+            return new Result(false, "Invalid command");
+        return register(
+                registrationModel.getUsername(), registrationModel.getPassword(),
+                password, registrationModel.getNickname(),
                 registrationModel.getEmail(), registrationModel.getGender()
         );
     }
