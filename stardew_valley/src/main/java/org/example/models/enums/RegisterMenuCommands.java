@@ -4,7 +4,7 @@ public enum RegisterMenuCommands implements Command{
     MenuEnter("\\s*menu\\s+enter\\s+(?<menuName>.+?)\\s*"),
     ShowCurrentMenu("\\s*show\\s+current\\s+menu\\s*"),
     Register(
-            "\\s*register\\s+-u\\s+(?<username>.+?)\\s+-p\\s+(?<password>.+?)\\s+(?<passwordConfirm>.+?)" +
+            "\\s*register\\s+-u\\s+(?<username>.+?)\\s+-p\\s+(?<password>.+?)(\\s+(?<passwordConfirm>.+?))?" +
                     "\\s+-n\\s+(?<nickname>.+?)\\s+-e\\s+(?<email>.+?)\\s+-g\\s+(?<gender>.+?)\\s*"
     ),
     Username("[a-zA-Z0-9-]+"),
@@ -15,6 +15,7 @@ public enum RegisterMenuCommands implements Command{
     Password("[a-zA-Z0-9?<>,;:'\"\\/\\\\|\\[\\]{}\\+=\\)\\(\\*&\\^%\\$#!]+"),
     StrongPassword("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?<>,;:'\"\\/\\\\|\\[\\]{}\\+=\\)\\(\\*&\\^%\\$#!]).*"),
     YesOrNo("\\s*(Y|N)\\s*"),
+    RandomPassword("\\s*(Yes|Again)\\s*"),
     PickQuestion(
             "\\s*pick\\s+question\\s+-q\\s+(?<questionNumber>\\d+)\\s+" +
                     "-a\\s+(?<answer>.+?)\\s+-c\\s+(?<answerConfirm>.+?)\\s*"

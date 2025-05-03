@@ -28,6 +28,8 @@ public class RegisterMenu implements AppMenu{
             ));
         } else if (RegisterMenuCommands.YesOrNo.getMatcher(input) != null) {
             System.out.println(controller.selectSuggestedUsername(input));
+        } else if (RegisterMenuCommands.RandomPassword.getMatcher(input) != null) {
+            System.out.println(controller.selectRandomPassword(input));
         } else if ((matcher = RegisterMenuCommands.PickQuestion.getMatcher(input)) != null) {
             System.out.println(controller.pickQuestion(
                     matcher.group("questionNumber"),
