@@ -8,6 +8,7 @@ public enum ProfileMenuCommands implements Command{
     ChangeEmail("\\s+change\\s+email\\s+-e\\s+(?<email>.+)\\s*"),
     ChangePassword("\\s*change\\s+password\\s+-p\\s+(?<newPassword>.+)\\s+-o\\s+(?<oldPassword>.+)\\s*"),
     UserInfo("\\s*user\\s+info\\s*"),
+    MenuExit("\\s*menu\\s+exit\\s*"),
     ;
 
 

@@ -10,6 +10,7 @@ public class App {
     private static Menu currentMenu = Menu.RegisterMenu;
     private final static ArrayList<User> users = new ArrayList<>();
     private static User loggedInUser = null;
+    private static boolean stayLoggedIn = false;
     private final static ArrayList<String> securityQuestions = new ArrayList<>(List.of(
             "WHAT IS THE GIVEN NAME OF YOUR MOTHER'S MOTHER?",
             "WHAT IS THE GIVEN NAME OF YOUR FATHER'S FATHER?",
@@ -48,4 +49,11 @@ public class App {
         return securityQuestions;
     }
 
+    public static void setStayLoggedIn(boolean stayLoggedIn) {
+        App.stayLoggedIn = stayLoggedIn;
+    }
+
+    public static boolean isStayLoggedIn() {
+        return stayLoggedIn;
+    }
 }

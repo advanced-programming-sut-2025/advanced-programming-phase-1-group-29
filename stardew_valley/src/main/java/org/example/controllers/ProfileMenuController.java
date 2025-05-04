@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import org.example.models.App;
 import org.example.models.Result;
+import org.example.models.enums.Menu;
 import org.example.models.enums.RegisterMenuCommands;
 
 import java.util.StringJoiner;
@@ -52,5 +53,9 @@ public class ProfileMenuController extends Controller{
         joiner.add("Best Score: ");
         joiner.add("Games Played: ");
         return new Result(true, joiner.toString());
+    }
+
+    public void menuExit() {
+        App.setCurrentMenu(Menu.ExitMenu);
     }
 }
