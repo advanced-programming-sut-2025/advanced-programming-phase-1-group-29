@@ -11,6 +11,7 @@ public class App {
     private final static ArrayList<User> users = new ArrayList<>();
     private static User loggedInUser = null;
     private static boolean stayLoggedIn = false;
+    private static Game currentGame;
     private final static ArrayList<String> securityQuestions = new ArrayList<>(List.of(
             "WHAT IS THE GIVEN NAME OF YOUR MOTHER'S MOTHER?",
             "WHAT IS THE GIVEN NAME OF YOUR FATHER'S FATHER?",
@@ -55,5 +56,13 @@ public class App {
 
     public static boolean isStayLoggedIn() {
         return stayLoggedIn;
+    }
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        App.currentGame = currentGame;
     }
 }
