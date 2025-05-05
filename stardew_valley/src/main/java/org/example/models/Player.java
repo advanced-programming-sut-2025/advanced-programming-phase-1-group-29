@@ -9,6 +9,7 @@ public class Player {
     private int foragingLevel;
     private int fishingLevel;
     private Inventory inventory;
+    private boolean isEnergyUnlimited = false;
 
     public int getMapNumber() {
         return mapNumber;
@@ -64,5 +65,17 @@ public class Player {
 
     public void setEnergy(int energy) {
         this.energy = energy;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public boolean isEnergyUnlimited() {
+        return isEnergyUnlimited;
+    }
+
+    public void setEnergyUnlimited(boolean energyUnlimited) {
+        isEnergyUnlimited = energyUnlimited;
     }
 }
