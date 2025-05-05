@@ -14,7 +14,10 @@ public class ProfileMenu implements AppMenu{
     public void check(Scanner scanner) {
         String input = scanner.nextLine();
         Matcher matcher;
-        if ((matcher = ProfileMenuCommands.ChangeUsername.getMatcher(input)) != null) {
+        if (ProfileMenuCommands.MenuEnter.getMatcher(input) != null) {
+            System.out.println(controller.menuEnter());
+        }
+        else if ((matcher = ProfileMenuCommands.ChangeUsername.getMatcher(input)) != null) {
             System.out.println(controller.changeUsername(matcher.group("username").trim()));
         }
         else if ((matcher = ProfileMenuCommands.ChangeNickname.getMatcher(input)) != null) {

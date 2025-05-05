@@ -9,6 +9,11 @@ import java.util.StringJoiner;
 
 public class ProfileMenuController extends Controller{
 
+    public Result menuEnter() {
+        App.setCurrentMenu(Menu.MainMenu);
+        return new Result(true, "Now you are in Main Menu.");
+    }
+
     public Result changeUsername(String username) {
         if (RegisterMenuCommands.Username.getMatcher(username) == null)
             return new Result(false, "Invalid username format");

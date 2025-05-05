@@ -17,7 +17,7 @@ import java.util.Random;
 public class RegisterMenuController extends Controller{
     private final RegistrationModel registrationModel = new RegistrationModel();
 
-    public Result menuEnter(String menuName) {
+    public Result menuEnter() {
         registrationModel.setRegisterState(RegisterState.NOT_STARTED);
         registrationModel.setUser(
                 null, null, null, null, null, null

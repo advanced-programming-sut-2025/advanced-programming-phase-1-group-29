@@ -3,6 +3,7 @@ package org.example.models.enums;
 import java.util.regex.Matcher;
 
 public enum GameMenuCommands implements Command {
+    MenuEnter("\\s*menu\\s+enter\\s+Main\\s+Menu\\s*"),
     GameNew("\\s*game\\s+new\\s+-u\\s+(?<username1>\\S+)\\s*(?<username2>\\S*)\\s*(?<username3>\\S*)\\s*"),
     GameMap("\\s*game\\s+map\\s+(?<mapNumber>\\d+)\\s*"),
     LoadGame("\\s*load\\s+game\\s*"),

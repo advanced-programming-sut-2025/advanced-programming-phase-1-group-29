@@ -14,7 +14,13 @@ public class LoginMenu implements AppMenu{
     public void check(Scanner scanner) {
         String input = scanner.nextLine();
         Matcher matcher;
-        if ((matcher = LoginMenuCommands.Login.getMatcher(input)) != null){
+        if (LoginMenuCommands.MenuEnter.getMatcher(input) != null) {
+            System.out.println(controller.menuEnter());
+        }
+        else if (LoginMenuCommands.ShowCurrentMenu.getMatcher(input) != null) {
+            System.out.println(controller.showCurrentMenu());
+        }
+        else if ((matcher = LoginMenuCommands.Login.getMatcher(input)) != null){
             System.out.println(controller.login(matcher.group("username").trim(), matcher.group("password").trim(), matcher.group("stayLoggedIn").trim()));
         }
         else if ((matcher = LoginMenuCommands.ForgetPassword.getMatcher(input)) != null){

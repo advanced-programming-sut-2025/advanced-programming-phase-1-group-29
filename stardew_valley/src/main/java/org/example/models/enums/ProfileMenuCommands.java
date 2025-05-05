@@ -3,6 +3,7 @@ package org.example.models.enums;
 import java.util.regex.Matcher;
 
 public enum ProfileMenuCommands implements Command{
+    MenuEnter("\\s*menu\\s+enter\\s+Main\\s+Menu\\s*"),
     ChangeUsername("\\s*change\\s+username\\s+-u\\s+(?<username>.+)\\s*"),
     ChangeNickname("\\s*change\\s+nickname\\s+-u\\s+(?<nickname>.+)\\s*"),
     ChangeEmail("\\s+change\\s+email\\s+-e\\s+(?<email>.+)\\s*"),

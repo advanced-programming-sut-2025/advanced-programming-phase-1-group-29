@@ -5,9 +5,16 @@ import org.example.models.Result;
 import org.example.models.User;
 import org.example.models.enums.Menu;
 import org.example.models.enums.RegisterMenuCommands;
+import org.example.models.enums.RegisterState;
 
 public class LoginMenuController extends Controller{
     private static User forgetPasswordUser = null;
+
+    public Result menuEnter() {
+        App.setCurrentMenu(Menu.RegisterMenu);
+        return new Result(true, "Now you are in Register Menu.");
+    }
+
     public Result login(String username, String password, String stayLoggedIn){
         User user = App.findUserByUsername(username);
         if (user == null){

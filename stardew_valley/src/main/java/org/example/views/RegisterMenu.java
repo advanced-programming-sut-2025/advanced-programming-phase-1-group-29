@@ -13,8 +13,8 @@ public class RegisterMenu implements AppMenu{
     public void check(Scanner scanner) {
         String input = scanner.nextLine();
         Matcher matcher;
-        if ((matcher = RegisterMenuCommands.MenuEnter.getMatcher(input)) != null) {
-            System.out.println(controller.menuEnter(matcher.group("menuName").trim()));
+        if (RegisterMenuCommands.MenuEnter.getMatcher(input) != null) {
+            System.out.println(controller.menuEnter());
         } else if (RegisterMenuCommands.ShowCurrentMenu.getMatcher(input) != null) {
             System.out.println(controller.showCurrentMenu());
         } else if ((matcher = RegisterMenuCommands.Register.getMatcher(input)) != null) {
