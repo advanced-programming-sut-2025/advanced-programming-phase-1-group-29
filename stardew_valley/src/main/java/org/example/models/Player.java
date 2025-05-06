@@ -10,6 +10,7 @@ public class Player {
     private int fishingLevel;
     private Inventory inventory;
     private boolean isEnergyUnlimited = false;
+    private Tool currentTool = null;
 
     public int getMapNumber() {
         return mapNumber;
@@ -77,5 +78,13 @@ public class Player {
 
     public void setEnergyUnlimited(boolean energyUnlimited) {
         isEnergyUnlimited = energyUnlimited;
+    }
+
+    public Tool getCurrentTool() {
+        return currentTool;
+    }
+
+    public void setCurrentTool(Tool currentTool) {
+        this.currentTool = currentTool;
     }
 }

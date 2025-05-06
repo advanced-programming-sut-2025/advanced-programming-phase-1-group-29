@@ -60,8 +60,42 @@ public class GameMenuController extends Controller{
         Inventory inventory = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getInventory();
         StringBuilder result = new StringBuilder("Your inventory includes:\n");
         for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
-            result.append(inventoryItem.toString());
+            result.append(inventoryItem.getName());
             result.append("\n");
+        }
+        return new Result(true, result.toString());
+    }
+
+    public Result toolsEquip(String name) {
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Inventory inventory = player.getInventory();
+        for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
+            if (inventoryItem instanceof Tool) {
+                if (inventoryItem.getName().equals(name)) {
+                    player.setCurrentTool((Tool) inventoryItem);
+                    return new Result(true, "Now you are equipped with " + name);
+                }
+            }
+        }
+        return new Result(false, "Invalid tool");
+    }
+
+    public Result toolsShowCurrent() {
+        Tool tool = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getCurrentTool();
+        if (tool != null)
+            return new Result(true, "The current tool in your hand is " + tool.getName());
+        return new Result(false, "There are no tools in your hand.");
+    }
+
+    public Result toolsShowAvailable() {
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Inventory inventory = player.getInventory();
+        StringBuilder result = new StringBuilder("Available tools in your backpack:\n");
+        for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
+            if (inventoryItem instanceof Tool) {
+                result.append(inventoryItem.getName());
+                result.append("\n");
+            }
         }
         return new Result(true, result.toString());
     }
