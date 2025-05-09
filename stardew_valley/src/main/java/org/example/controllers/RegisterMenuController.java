@@ -117,7 +117,7 @@ public class RegisterMenuController extends Controller{
         }
         else {
             if (RegisterMenuCommands.Password.getMatcher(password) == null)
-                return new Result(false, "Invalid Email Format");
+                return new Result(false, "Invalid password Format");
             if (RegisterMenuCommands.StrongPassword.getMatcher(password) == null || password.length() < 8)
                 return new Result(false, "The password is too weak");
             if (!password.equals(passwordConfirm)) {

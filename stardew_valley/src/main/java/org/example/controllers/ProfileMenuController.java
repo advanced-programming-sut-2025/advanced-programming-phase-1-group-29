@@ -45,6 +45,9 @@ public class ProfileMenuController extends Controller{
             return new Result(false, "The new password must be different from the current password.");
         }
         if (RegisterMenuCommands.Password.getMatcher(newPassword) == null) {
+            return new Result(false, "Invalid password Format");
+        }
+        if (RegisterMenuCommands.StrongPassword.getMatcher(newPassword) == null || newPassword.length() < 8) {
             return new Result(false, "The password is too weak");
         }
         App.getLoggedInUser().setPassword(newPassword);

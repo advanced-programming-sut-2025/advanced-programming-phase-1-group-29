@@ -6,6 +6,7 @@ import org.example.models.enums.Seasons;
 
 import java.lang.Object;
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class GameMenuController extends Controller{
 
@@ -165,12 +166,15 @@ public class GameMenuController extends Controller{
                 }
             }
         }
+        StringJoiner stringJoiner = new StringJoiner("\n");
         for (int xx = x; xx <= x + size; xx++) {
+            StringBuilder line = new StringBuilder();
             for (int yy = y; yy <= y + size; yy++) {
-                System.out.println(mapToPrint[xx][yy]);
+                line.append(mapToPrint[xx][yy]);
             }
+            stringJoiner.add(line.toString());
         }
-        return new Result(true, "");
+        return new Result(true, stringJoiner.toString());
     }
 
     private void createDefaultFarms(){
