@@ -1,4 +1,4 @@
 package org.example.models;
 
-public class Tree extends Object {
+public class Tree extends Objectt {
 }

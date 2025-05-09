@@ -6,13 +6,13 @@ public class Map {
     private static final int xRange = 120;
     private static final int yRange = 120;
     private ArrayList<Farm> farms;
-    private ArrayList<Object> objects;
+    private ArrayList<Objectt> objects;
 
     public ArrayList<Farm> getFarms() {
         return farms;
     }
 
-    public ArrayList<Object> getObjects() {
+    public ArrayList<Objectt> getObjects() {
         return objects;
     }
 
@@ -20,7 +20,7 @@ public class Map {
         this.farms = farms;
     }
 
-    public void setObjects(ArrayList<Object> objects) {
+    public void setObjects(ArrayList<Objectt> objects) {
         this.objects = objects;
     }
 
@@ -34,7 +34,7 @@ public class Map {
     public void addFarm(Farm farm){
         farms.add(farm);
     }
-    public void addObject(Object object){
+    public void addObject(Objectt object){
         objects.add(object);
     }
 

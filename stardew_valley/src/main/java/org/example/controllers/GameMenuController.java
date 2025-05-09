@@ -109,7 +109,7 @@ public class GameMenuController extends Controller{
         User user1 = App.findUserByUsername(username1);
         User user2 = App.findUserByUsername(username2);
         User user3 = App.findUserByUsername(username3);
-        if ((user1 == null && username1 != null) || (user2 == null && username2 != null) || (user3 == null && username3 != null){
+        if ((user1 == null && username1 != null) || (user2 == null && username2 != null) || (user3 == null && username3 != null)){
             return new Result(false, "Players not found");
         }
         Player player1 = new Player();
@@ -146,6 +146,7 @@ public class GameMenuController extends Controller{
         game.setMainPlayer(player1);
         game.setCurrentTime(new DateTime(Seasons.SPRING, 1, 9));
         createDefaultFarms();
+        return new Result(true, "You are now in a new game");
     }
 
     public Result printMap(String xString, String yString, String sizeString) {
@@ -158,12 +159,18 @@ public class GameMenuController extends Controller{
         Map map = App.getCurrentGame().getMap();
         char[][] mapToPrint = new char[Map.getXRange()][Map.getYRange()];
         for (Farm farm : map.getFarms()) {
-            for (Object object : farm.getObjects()) {
+            for (Objectt object : farm.getObjects()) {
                 for (Tile tile : object.getTiles()) {
-
+                    mapToPrint[tile.getX()][tile.getY()] = tile.getDisplay();
                 }
             }
         }
+        for (int xx = x; xx <= x + size; xx++) {
+            for (int yy = y; yy <= y + size; yy++) {
+                System.out.println(mapToPrint[xx][yy]);
+            }
+        }
+        return new Result(true, "");
     }
 
     private void createDefaultFarms(){
