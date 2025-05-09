@@ -1,0 +1,16 @@
+register -u parnia -p Nirvan1236! Nirvan1236! -n parnia -e parnia@gmail.com -g female
+pick question -q 1 -a zahra -c zahra
+register -u parniadabbagh -p Nirvan1236! Nirvan1236! -n parnia -e parnia@gmail.com -g female
+pick question -q 1 -a zahra -c zahra
+register -u setayesh -p Nirvan1236! Nirvan1236! -n parnia -e parnia@gmail.com -g female
+pick question -q 1 -a zahra -c zahra
+register -u sogol -p Nirvan1236! Nirvan1236! -n parnia -e parnia@gmail.com -g female
+pick question -q 1 -a zahra -c zahra
+menu enter Login Menu
+login -u parnia -p Nirvan1236!
+menu enter Game Menu
+game new -u parniadabbagh setayesh sogol
+game map 1
+game map 2
+game map 3
+game map 4

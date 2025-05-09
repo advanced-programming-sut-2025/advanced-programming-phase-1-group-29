@@ -5,7 +5,6 @@ import java.util.regex.Matcher;
 public enum GameMenuCommands implements Command {
     MenuEnter("\\s*menu\\s+enter\\s+Main\\s+Menu\\s*"),
     GameNew("\\s*game\\s+new\\s+-u\\s+(?<username1>\\S+)\\s*(?<username2>\\S*)\\s*(?<username3>\\S*)\\s*"),
-    GameMap("\\s*game\\s+map\\s+(?<mapNumber>\\d+)\\s*"),
     LoadGame("\\s*load\\s+game\\s*"),
     ExitGame("\\s*exit\\s+game\\s*"),
     ForceTerminate("\\s*force\\s+terminate\\s*"),
@@ -100,11 +99,7 @@ public enum GameMenuCommands implements Command {
     }
     @Override
     public String getPattern() {
-        return "";
+        return pattern;
     }
 
-    @Override
-    public Matcher getMatcher(String input) {
-        return Command.super.getMatcher(input);
-    }
 }

@@ -6,6 +6,7 @@ import org.example.models.enums.Seasons;
 
 import java.lang.Object;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 
 public class GameMenuController extends Controller{
@@ -160,7 +161,9 @@ public class GameMenuController extends Controller{
         }
         game.setMainPlayer(player1);
         game.setCurrentTime(new DateTime(Seasons.SPRING, 1, 9));
+        App.setCurrentGame(game);
         createDefaultFarms();
+        App.setCurrentMenu(Menu.MapSelectionMenu);
         return new Result(true, "You are now in a new game");
     }
 
@@ -192,10 +195,10 @@ public class GameMenuController extends Controller{
     }
 
     private void createDefaultFarms(){
-        Farm farm1 = new Farm();
-        Farm farm2 = new Farm();
-        Farm farm3 = new Farm();
-        Farm farm4 = new Farm();
+        Farm farm1 = new Farm(1);
+        Farm farm2 = new Farm(2);
+        Farm farm3 = new Farm(3);
+        Farm farm4 = new Farm(4);
         Cottage cottage1 = new Cottage();
         Cottage cottage2 = new Cottage();
         Cottage cottage3 = new Cottage();
@@ -311,10 +314,8 @@ public class GameMenuController extends Controller{
         farm3.addObject(quarry3);
         farm4.addObject(quarry4);
         Map map = new Map();
-        map.addFarm(farm1);
-        map.addFarm(farm2);
-        map.addFarm(farm3);
-        map.addFarm(farm4);
+        ArrayList<Farm> farms = new ArrayList<>(List.of(farm1, farm2, farm3, farm4));
+        map.setCreatedFarms(farms);
         App.getCurrentGame().setMap(map);
     }
 }

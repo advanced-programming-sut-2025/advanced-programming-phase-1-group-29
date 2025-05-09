@@ -10,6 +10,7 @@ public enum Menu {
     MainMenu("Main Menu", new MainMenu()),
     ProfileMenu("Profile Menu", new ProfileMenu()),
     GameMenu("Game Menu", new GameMenu()),
+    MapSelectionMenu("Map Selection Menu", new MapSelectionMenu()),
     AvatarMenu("Avatar Menu", new AvatarMenu()),
     ExitMenu("Exit Menu", new ExitMenu());
 

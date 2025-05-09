@@ -5,11 +5,20 @@ import java.util.ArrayList;
 public class Map {
     private static final int xRange = 120;
     private static final int yRange = 120;
-    private ArrayList<Farm> farms;
-    private ArrayList<Objectt> objects;
+    private ArrayList<Farm> farms = new ArrayList<>();
+    private ArrayList<Farm> createdFarms = new ArrayList<>();
+    private ArrayList<Objectt> objects = new ArrayList<>();
 
     public ArrayList<Farm> getFarms() {
         return farms;
+    }
+
+    public ArrayList<Farm> getCreatedFarms() {
+        return createdFarms;
+    }
+
+    public void setCreatedFarms(ArrayList<Farm> createdFarms) {
+        this.createdFarms = createdFarms;
     }
 
     public ArrayList<Objectt> getObjects() {

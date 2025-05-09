@@ -26,6 +26,7 @@ public class LoginMenuController extends Controller{
         App.setLoggedInUser(user);
         if (stayLoggedIn != null) App.setStayLoggedIn(true);
         else App.setStayLoggedIn(false);
+        App.setCurrentMenu(Menu.MainMenu);
         return new Result(true, "Login successful");
     }
     public Result forgetPassword(String username){

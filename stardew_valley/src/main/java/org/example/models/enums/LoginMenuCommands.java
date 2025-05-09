@@ -2,11 +2,11 @@ package org.example.models.enums;
 
 import java.util.regex.Matcher;
 
-public enum LoginMenuCommands implements org.example.models.enums.Command {
+public enum LoginMenuCommands implements Command {
     MenuEnter("\\s*menu\\s+enter\\s+Register\\s+Menu\\s*"),
     MenuExit("\\s*menu\\s+exit\\s*"),
     ShowCurrentMenu("\\s*show\\s+current\\s+menu\\s*"),
-    Login("\\s*login\\s+-u\\s+(?<username>.+)\\s+-p\\s+(?<password>.+)\\s+(?<stayLoggedIn>.*)\\s*"),
+    Login("\\s*login\\s+-u\\s+(?<username>.+)\\s+-p\\s+(?<password>.+)\\s*(?<stayLoggedIn>.*)\\s*"),
     ForgetPassword("\\s*forget\\s+password\\s+-u\\s+(?<username>.+)\\s*"),
     Answer("\\s*answer\\s+-a\\s+(?<answer>.+)\\s*")
     ;
@@ -18,11 +18,7 @@ public enum LoginMenuCommands implements org.example.models.enums.Command {
     }
     @Override
     public String getPattern() {
-        return "";
+        return this.pattern;
     }
 
-    @Override
-    public Matcher getMatcher(String input) {
-        return Command.super.getMatcher(input);
-    }
 }

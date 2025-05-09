@@ -4,7 +4,6 @@ import org.example.controllers.MainMenuController;
 import org.example.models.enums.MainMenuCommands;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
 
 public class MainMenu implements AppMenu{
     private final MainMenuController controller = new MainMenuController();

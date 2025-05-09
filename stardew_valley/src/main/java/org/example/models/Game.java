@@ -3,7 +3,7 @@ package org.example.models;
 import java.util.ArrayList;
 
 public class Game {
-    public ArrayList<Player> players;
+    public ArrayList<Player> players = new ArrayList<>();
     private Player mainPlayer;
     private int turn = 0;
     private DateTime currentTime;
@@ -23,6 +23,11 @@ public class Game {
 
     public void setTurn(int turn) {
         this.turn = turn;
+    }
+
+    public void nextTurn() {
+        turn++;
+        if (turn == players.size()) turn = 0;
     }
 
     public DateTime getCurrentTime() {
