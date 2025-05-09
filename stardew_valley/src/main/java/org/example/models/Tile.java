@@ -5,6 +5,12 @@ public class Tile {
     private int x;
     private int y;
 
+    public Tile(char display, int x, int y) {
+        this.display = display;
+        this.x = x;
+        this.y = y;
+    }
+
     public char getDisplay() {
         return display;
     }

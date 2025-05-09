@@ -7,6 +7,12 @@ public class DateTime {
     private int day;
     private int time;
 
+    public DateTime(Seasons season, int day, int time) {
+        this.season = season;
+        this.day = day;
+        this.time = time;
+    }
+
     public Seasons getSeason() {
         return season;
     }

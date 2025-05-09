@@ -12,6 +12,7 @@ public class App {
     private static User loggedInUser = null;
     private static boolean stayLoggedIn = false;
     private static Game currentGame;
+    private static ArrayList<Map> maps = new ArrayList<>();
     private final static ArrayList<String> securityQuestions = new ArrayList<>(List.of(
             "WHAT IS THE GIVEN NAME OF YOUR MOTHER'S MOTHER?",
             "WHAT IS THE GIVEN NAME OF YOUR FATHER'S FATHER?",

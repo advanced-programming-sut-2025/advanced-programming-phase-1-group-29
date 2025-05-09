@@ -1,24 +1,17 @@
 package org.example.models;
 
 public class Player {
-    private int mapNumber;
     private int farmNumber;
-    private int energy;
-    private int farmingLevel;
-    private int miningLevel;
-    private int foragingLevel;
-    private int fishingLevel;
-    private Inventory inventory;
+    private int energy = 100;
+    private int farmingLevel = 0;
+    private int miningLevel = 0;
+    private int foragingLevel = 0;
+    private int fishingLevel = 0;
+    private Inventory inventory = new Inventory();
     private boolean isEnergyUnlimited = false;
     private Tool currentTool = null;
+    private User user;
 
-    public int getMapNumber() {
-        return mapNumber;
-    }
-
-    public void setMapNumber(int mapNumber) {
-        this.mapNumber = mapNumber;
-    }
 
     public int getFarmNumber() {
         return farmNumber;
@@ -86,5 +79,17 @@ public class Player {
 
     public void setCurrentTool(Tool currentTool) {
         this.currentTool = currentTool;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

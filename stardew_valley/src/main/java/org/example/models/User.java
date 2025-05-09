@@ -10,8 +10,9 @@ public class User {
     private Gender gender;
     private String securityQuestion;
     private String answerToSecurityQuestion;
-    int numberOfGames = 0;
-    int maxCoins = 0;
+    private int numberOfGames = 0;
+    private int maxCoins = 0;
+    private Game currentGame = null;
 
 
     public User(String username, String password, String nickname, String email, Gender gender) {
@@ -68,5 +69,37 @@ public class User {
 
     public void setAnswerToSecurityQuestion(String answerToSecurityQuestion) {
         this.answerToSecurityQuestion = answerToSecurityQuestion;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public int getNumberOfGames() {
+        return numberOfGames;
+    }
+
+    public int getMaxCoins() {
+        return maxCoins;
+    }
+
+    public Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setNumberOfGames(int numberOfGames) {
+        this.numberOfGames = numberOfGames;
+    }
+
+    public void setMaxCoins(int maxCoins) {
+        this.maxCoins = maxCoins;
+    }
+
+    public void setCurrentGame(Game currentGame) {
+        this.currentGame = currentGame;
     }
 }
