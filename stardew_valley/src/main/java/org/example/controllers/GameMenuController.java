@@ -15,8 +15,12 @@ public class GameMenuController extends Controller{
         return new Result(true, "Now you are in Main Menu.");
     }
 
-    public void exitGame(){
+    public Result exitGame(){
+        if(!App.getCurrentGame().isMainPlayerPlaying()){
+            return new Result(false, "Sorry, you cannot exit the game.");
+        }
         App.setCurrentMenu(Menu.ExitMenu);
+        return new Result(true, "");
     }
     public Result time(){
         return new Result(true, "It's " + App.getCurrentGame().getCurrentTime().getTime() + " o'clock");
@@ -44,6 +48,16 @@ public class GameMenuController extends Controller{
         return new Result(
                 true,
                 "They current season is " + App.getCurrentGame().getCurrentTime().getSeason()
+        );
+    }
+
+
+    /// ///weather??
+
+    public Result weather() {
+        return new Result(
+                true,
+                "They current weather is " + "?"
         );
     }
 

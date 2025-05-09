@@ -40,11 +40,16 @@ public class Game {
     public Map getMap() {
         return map;
     }
+
     public void setMap(Map map) {
         this.map = map;
     }
+
     public void addPlayer(Player player) {
         players.add(player);
     }
 
+    public boolean isMainPlayerPlaying(){
+        return mainPlayer.equals(players.get(turn));
+    }
 }
