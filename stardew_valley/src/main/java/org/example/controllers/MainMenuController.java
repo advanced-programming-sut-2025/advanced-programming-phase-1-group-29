@@ -11,7 +11,7 @@ public class MainMenuController extends Controller{
     }
 
     public Result gameMenuEnter() {
-        App.setCurrentMenu(Menu.GameMenu);
+        App.setCurrentMenu(Menu.PreGameMenu);
         return new Result(true, "Now you are in Game Menu.");
     }
     public Result avatarMenuEnter() {

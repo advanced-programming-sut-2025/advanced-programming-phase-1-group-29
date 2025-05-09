@@ -9,6 +9,7 @@ public enum Menu {
     LoginMenu("Login Menu", new LoginMenu()),
     MainMenu("Main Menu", new MainMenu()),
     ProfileMenu("Profile Menu", new ProfileMenu()),
+    PreGameMenu("Game Menu", new PreGameMenu()),
     GameMenu("Game Menu", new GameMenu()),
     MapSelectionMenu("Map Selection Menu", new MapSelectionMenu()),
     AvatarMenu("Avatar Menu", new AvatarMenu()),

@@ -1,6 +1,6 @@
 package org.example.models.enums;
 
-public enum Seasons {
+public enum Season {
     SPRING,
     SUMMER,
     AUTUMN,

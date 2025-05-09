@@ -1,23 +1,42 @@
 package org.example.models;
 
-import org.example.models.enums.Seasons;
+import org.example.models.enums.Season;
 
 public class DateTime {
-    private Seasons season;
+    private Season season;
     private int day;
     private int time;
 
-    public DateTime(Seasons season, int day, int time) {
+    public DateTime(Season season, int day, int time) {
         this.season = season;
         this.day = day;
         this.time = time;
     }
 
-    public Seasons getSeason() {
+    public void incrementTime() {
+        time++;
+        if (time == 24) {
+            time = 0;
+            incrementDay();
+        }
+    }
+
+    public void incrementDay() {
+        day++;
+        if (day == 29) {
+            day = 1;
+            if (season.equals(Season.SPRING)) setSeason(Season.SUMMER);
+            else if (season.equals(Season.SUMMER)) setSeason(Season.AUTUMN);
+            else if (season.equals(Season.AUTUMN)) setSeason(Season.WINTER);
+            else setSeason(Season.SPRING);
+        }
+    }
+
+    public Season getSeason() {
         return season;
     }
 
-    public void setSeason(Seasons season) {
+    public void setSeason(Season season) {
         this.season = season;
     }
 

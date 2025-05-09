@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 
 public enum GameMenuCommands implements Command {
     MenuEnter("\\s*menu\\s+enter\\s+Main\\s+Menu\\s*"),
-    GameNew("\\s*game\\s+new\\s+-u\\s+(?<username1>\\S+)\\s*(?<username2>\\S*)\\s*(?<username3>\\S*)\\s*"),
     LoadGame("\\s*load\\s+game\\s*"),
     ExitGame("\\s*exit\\s+game\\s*"),
     ForceTerminate("\\s*force\\s+terminate\\s*"),

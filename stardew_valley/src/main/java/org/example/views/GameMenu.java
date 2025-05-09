@@ -16,12 +16,6 @@ public class GameMenu implements AppMenu{
         Matcher matcher;
         if (GameMenuCommands.MenuEnter.getMatcher(input) != null) {
             System.out.println(controller.menuEnter());
-        } else if ((matcher = GameMenuCommands.GameNew.getMatcher(input)) != null) {
-            System.out.println(controller.gameNew(
-                    matcher.group("username1"),
-                    matcher.group("username2"),
-                    matcher.group("username3")
-            ));
         }
         /// /turns
 //        else if(GameMenuCommands.LoadGame.getMatcher(input) != null) {
@@ -30,9 +24,9 @@ public class GameMenu implements AppMenu{
         else if (GameMenuCommands.ExitGame.getMatcher(input) != null) {
             System.out.println(controller.exitGame());
         }
-//        else if(GameMenuCommands.NextTurn.getMatcher(input) != null) {
-//            controller.nextTurn();
-//        }
+        else if(GameMenuCommands.NextTurn.getMatcher(input) != null) {
+            controller.nextTurn();
+        }
         else if (GameMenuCommands.Time.getMatcher(input) != null) {
             System.out.println(controller.time());
         } else if (GameMenuCommands.Date.getMatcher(input) != null) {

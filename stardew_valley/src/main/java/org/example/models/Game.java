@@ -27,7 +27,10 @@ public class Game {
 
     public void nextTurn() {
         turn++;
-        if (turn == players.size()) turn = 0;
+        if (turn == players.size()) {
+            turn = 0;
+            currentTime.incrementTime();
+        }
     }
 
     public DateTime getCurrentTime() {
