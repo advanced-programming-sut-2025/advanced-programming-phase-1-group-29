@@ -318,4 +318,8 @@ public class GameMenuController extends Controller{
         map.setCreatedFarms(farms);
         App.getCurrentGame().setMap(map);
     }
+
+    private void nextTurn() {
+        App.getCurrentGame().nextTurn();
+    }
 }
