@@ -19,15 +19,28 @@ public class GameMenuController extends Controller{
         App.setCurrentMenu(Menu.ExitMenu);
         return new Result(true, "");
     }
+
     public Result time(){
-        return new Result(true, "It's " + App.getCurrentGame().getCurrentTime().getTime() + " o'clock");
+        return new Result(
+                true,
+                "It's " + App.getCurrentGame().getCurrentTime().getTime() + " o'clock");
     }
+
     public Result date(){
-        return new Result(true, "It's day " + App.getCurrentGame().getCurrentTime().getDay() + " of " + App.getCurrentGame().getCurrentTime().getSeason());
+        return new Result(
+                true,
+                "It's day " + App.getCurrentGame().getCurrentTime().getDay() +
+                        " of " + App.getCurrentGame().getCurrentTime().getSeason());
     }
+
     public Result dateTime(){
-        return new Result(true, "It's " + App.getCurrentGame().getCurrentTime().getTime() + " o'clock on day " + App.getCurrentGame().getCurrentTime().getDay() + " of " + App.getCurrentGame().getCurrentTime().getSeason());
+        return new Result(
+                true,
+                "It's " + App.getCurrentGame().getCurrentTime().getTime() +
+                        " o'clock on day " + App.getCurrentGame().getCurrentTime().getDay() +
+                        " of " + App.getCurrentGame().getCurrentTime().getSeason());
     }
+
     public Result dayOfTheWeek(){
         int day = App.getCurrentGame().getCurrentTime().getDay();
         return switch (day % 7) {
@@ -44,17 +57,16 @@ public class GameMenuController extends Controller{
     public Result season() {
         return new Result(
                 true,
-                "They current season is " + App.getCurrentGame().getCurrentTime().getSeason()
+                "The current season is " + App.getCurrentGame().getCurrentTime().getSeason()
         );
     }
 
 
     /// ///weather??
-
     public Result weather() {
         return new Result(
                 true,
-                "They current weather is " + "?"
+                "The current weather is " + "?"
         );
     }
 

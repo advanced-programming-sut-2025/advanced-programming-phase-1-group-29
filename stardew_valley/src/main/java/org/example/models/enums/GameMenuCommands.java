@@ -93,9 +93,11 @@ public enum GameMenuCommands implements Command {
 
 
     private final String pattern;
+
     GameMenuCommands(String pattern) {
         this.pattern = pattern;
     }
+
     @Override
     public String getPattern() {
         return pattern;

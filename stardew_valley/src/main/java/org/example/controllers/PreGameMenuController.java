@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PreGameMenuController extends Controller{
+
     public Result menuEnter() {
         App.setCurrentMenu(Menu.MainMenu);
         return new Result(true, "Now you are in Main Menu.");
