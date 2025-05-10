@@ -61,12 +61,10 @@ public class GameMenuController extends Controller{
         );
     }
 
-
-    /// ///weather??
     public Result weather() {
         return new Result(
                 true,
-                "The current weather is " + "?"
+                "It is " + App.getCurrentGame().getWeather()
         );
     }
 

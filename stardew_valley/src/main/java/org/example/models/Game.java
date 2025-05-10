@@ -1,5 +1,7 @@
 package org.example.models;
 
+import org.example.models.enums.Weather;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -8,6 +10,7 @@ public class Game {
     private int turn = 0;
     private DateTime currentTime;
     private Map map;
+    private Weather weather = Weather.RAINY;
 
     public Player getMainPlayer() {
         return mainPlayer;
@@ -59,5 +62,13 @@ public class Game {
 
     public boolean isMainPlayerPlaying(){
         return mainPlayer.equals(players.get(turn));
+    }
+
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
     }
 }
