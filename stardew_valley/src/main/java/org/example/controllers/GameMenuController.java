@@ -169,4 +169,19 @@ public class GameMenuController extends Controller{
         result.append("Lake : L\n");
         return new Result(true, result.toString());
     }
+
+    public Result cheatAdvanceTime(String timeString) {
+        int h = Integer.parseInt(timeString);
+        for (int i = 0; i < h; i++){
+            nextTurn();
+        }
+        return dateTime();
+    }
+    public Result cheatAdvanceDate(String dateString) {
+        int h = Integer.parseInt(dateString);
+        for (int i = 0; i < 24 * h; i++){
+            nextTurn();
+        }
+        return dateTime();
+    }
 }
