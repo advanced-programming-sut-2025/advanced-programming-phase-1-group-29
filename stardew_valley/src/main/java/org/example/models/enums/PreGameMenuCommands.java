@@ -6,9 +6,11 @@ public enum PreGameMenuCommands implements Command {
     GameNew("\\s*game\\s+new\\s+-u\\s+(?<username1>\\S+)\\s*(?<username2>\\S*)\\s*(?<username3>\\S*)\\s*");
 
     private final String pattern;
+
     PreGameMenuCommands(String pattern) {
         this.pattern = pattern;
     }
+
     @Override
     public String getPattern() {
         return pattern;

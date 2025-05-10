@@ -63,7 +63,7 @@ public enum GameMenuCommands implements Command {
     ShowAllProducts("\\s*show\\s+all\\s+products\\s*"),
     ShowAllAvailableProducts("\\s*show\\s+all\\s+available\\s+products\\s*"),
     Purchase("\\s*purchase\\s+(?<productName>.+)\\s+-n\\s+(?<count>\\d+)\\s*"),
-    CheatAdd("\\s*cheat\\s+add\\s+(?<count>\\d+)\\s+dollars\\s*"),
+    CheatAddDollars("\\s*cheat\\s+add\\s+(?<count>\\d+)\\s+dollars\\s*"),
     Sell("\\s*sell\\s+(?<productName>.+)\\s+-n\\s+(?<count>\\d+)\\s*"),
     Friendships("\\s*friendships\\s*"),
     Talk("\\s*talk\\s+-u\\s+(?<username>.+)\\s+-m\\s+(?<message>.+)\\s*"),
@@ -93,9 +93,11 @@ public enum GameMenuCommands implements Command {
 
 
     private final String pattern;
+
     GameMenuCommands(String pattern) {
         this.pattern = pattern;
     }
+
     @Override
     public String getPattern() {
         return pattern;

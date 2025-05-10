@@ -19,15 +19,28 @@ public class GameMenuController extends Controller{
         App.setCurrentMenu(Menu.ExitMenu);
         return new Result(true, "");
     }
+
     public Result time(){
-        return new Result(true, "It's " + App.getCurrentGame().getCurrentTime().getTime() + " o'clock");
+        return new Result(
+                true,
+                "It's " + App.getCurrentGame().getCurrentTime().getTime() + " o'clock");
     }
+
     public Result date(){
-        return new Result(true, "It's day " + App.getCurrentGame().getCurrentTime().getDay() + " of " + App.getCurrentGame().getCurrentTime().getSeason());
+        return new Result(
+                true,
+                "It's day " + App.getCurrentGame().getCurrentTime().getDay() +
+                        " of " + App.getCurrentGame().getCurrentTime().getSeason());
     }
+
     public Result dateTime(){
-        return new Result(true, "It's " + App.getCurrentGame().getCurrentTime().getTime() + " o'clock on day " + App.getCurrentGame().getCurrentTime().getDay() + " of " + App.getCurrentGame().getCurrentTime().getSeason());
+        return new Result(
+                true,
+                "It's " + App.getCurrentGame().getCurrentTime().getTime() +
+                        " o'clock on day " + App.getCurrentGame().getCurrentTime().getDay() +
+                        " of " + App.getCurrentGame().getCurrentTime().getSeason());
     }
+
     public Result dayOfTheWeek(){
         int day = App.getCurrentGame().getCurrentTime().getDay();
         return switch (day % 7) {
@@ -44,17 +57,14 @@ public class GameMenuController extends Controller{
     public Result season() {
         return new Result(
                 true,
-                "They current season is " + App.getCurrentGame().getCurrentTime().getSeason()
+                "The current season is " + App.getCurrentGame().getCurrentTime().getSeason()
         );
     }
-
-
-    /// ///weather??
 
     public Result weather() {
         return new Result(
                 true,
-                "They current weather is " + "?"
+                "It is " + App.getCurrentGame().getWeather()
         );
     }
 
@@ -171,5 +181,29 @@ public class GameMenuController extends Controller{
             return new Result(true, number + " of " + name + " deleted from your inventory. " + coins + " coins returned.");
         }
         return new Result(false, "This item doesn't exist in your inventory");
+    }
+
+    public Result helpReadingMap(){
+        StringBuilder result = new StringBuilder();
+        result.append("Cottage: C\n");
+        result.append("Greenhouse: G\n");
+        result.append("Quarry : Q\n");
+        result.append("Lake : L\n");
+        return new Result(true, result.toString());
+    }
+
+    public Result cheatAdvanceTime(String timeString) {
+        int h = Integer.parseInt(timeString);
+        for (int i = 0; i < h; i++){
+            nextTurn();
+        }
+        return dateTime();
+    }
+    public Result cheatAdvanceDate(String dateString) {
+        int h = Integer.parseInt(dateString);
+        for (int i = 0; i < 24 * h; i++){
+            nextTurn();
+        }
+        return dateTime();
     }
 }
