@@ -1,7 +1,7 @@
 package org.example.controllers;
 
 import org.example.models.*;
-import org.example.models.Object;
+import org.example.models.Objectt;
 import org.example.models.enums.Menu;
 
 import java.util.ArrayList;
@@ -141,7 +141,7 @@ public class GameMenuController extends Controller{
         Map map = App.getCurrentGame().getMap();
         char[][] mapToPrint = new char[Map.getXRange()][Map.getYRange()];
         for (Farm farm : map.getFarms()) {
-            for (Object object : farm.getObjects()) {
+            for (Objectt object : farm.getObjects()) {
                 for (Tile tile : object.getTiles()) {
                     mapToPrint[tile.getX()][tile.getY()] = tile.getDisplay();
                 }

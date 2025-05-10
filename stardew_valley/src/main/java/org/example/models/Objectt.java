@@ -2,7 +2,7 @@ package org.example.models;
 
 import java.util.ArrayList;
 
-public class Object {
+public class Objectt {
     private ArrayList<Tile> tiles;
 
     public ArrayList<Tile> getTiles() {

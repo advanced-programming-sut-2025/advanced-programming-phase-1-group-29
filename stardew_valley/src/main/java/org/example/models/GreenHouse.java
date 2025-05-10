@@ -1,4 +1,4 @@
 package org.example.models;
 
-public class GreenHouse extends Object {
+public class GreenHouse extends Objectt {
 }

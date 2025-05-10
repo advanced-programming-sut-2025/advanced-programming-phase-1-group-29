@@ -25,7 +25,7 @@ public class Hoe extends Tool{
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         if (x < 0 || x >= Farm.getXRange() || y < 0 || y >= Farm.getYRange())
             return new Result(false, "The hoe can't be used in this direction");
-        for (Object object : farm.getObjects()) {
+        for (Objectt object : farm.getObjects()) {
             for (Tile tile : object.getTiles()) {
                 if (tile.getX() == x && tile.getY() == y)
                     return new Result(false, "The hoe can't be used in this direction");
