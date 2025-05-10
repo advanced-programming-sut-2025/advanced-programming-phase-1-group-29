@@ -3,11 +3,12 @@ package org.example.models;
 import java.util.ArrayList;
 
 public class Map {
-    private static final int xRange = 120;
-    private static final int yRange = 120;
+    private static final int xRange = 200;
+    private static final int yRange = 200;
     private ArrayList<Farm> farms = new ArrayList<>();
     private ArrayList<Farm> createdFarms = new ArrayList<>();
     private ArrayList<Objectt> objects = new ArrayList<>();
+    private Village village;
 
     public ArrayList<Farm> getFarms() {
         return farms;
@@ -43,9 +44,16 @@ public class Map {
     public void addFarm(Farm farm){
         farms.add(farm);
     }
+
     public void addObject(Objectt object){
         objects.add(object);
     }
 
+    public Village getVillage() {
+        return village;
+    }
 
+    public void setVillage(Village village) {
+        this.village = village;
+    }
 }

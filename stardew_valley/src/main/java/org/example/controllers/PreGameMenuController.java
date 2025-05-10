@@ -102,6 +102,10 @@ public class PreGameMenuController extends Controller{
         ArrayList<Tile> tilesQuarry2 = new ArrayList<>();
         ArrayList<Tile> tilesQuarry3 = new ArrayList<>();
         ArrayList<Tile> tilesQuarry4 = new ArrayList<>();
+        Village village = new Village();
+        village.setXStart(70);
+        village.setYStart(70);
+        App.getCurrentGame().getMap().setVillage(village);
         for (int i = 40; i <= 45; i++){
             for (int j = 5; j <= 10; j++) {
                 tilesCottage1.add(new Tile('C', i, j));
@@ -180,6 +184,14 @@ public class PreGameMenuController extends Controller{
         farm2.addObject(quarry2);
         farm3.addObject(quarry3);
         farm4.addObject(quarry4);
+        farm1.setXStart(0);
+        farm1.setYStart(0);
+        farm2.setXStart(150);
+        farm2.setYStart(0);
+        farm3.setXStart(0);
+        farm3.setYStart(150);
+        farm4.setXStart(150);
+        farm4.setYStart(150);
         Map map = new Map();
         ArrayList<Farm> farms = new ArrayList<>(List.of(farm1, farm2, farm3, farm4));
         map.setCreatedFarms(farms);

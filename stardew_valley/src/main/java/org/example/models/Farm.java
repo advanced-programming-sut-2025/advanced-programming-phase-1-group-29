@@ -5,8 +5,30 @@ import java.util.ArrayList;
 public class Farm extends Objectt {
     private static int xRange = 50;
     private static int yRange = 50;
+    private int xStart;
+    private int yStart;
     private final int number;
     private ArrayList<Objectt> objects = new ArrayList<>();
+
+    public int getXStart() {
+        return xStart;
+    }
+
+    public int getYStart() {
+        return yStart;
+    }
+
+    public void setXStart(int xStart) {
+        this.xStart = xStart;
+    }
+
+    public void setYStart(int yStart) {
+        this.yStart = yStart;
+    }
+
+    public void setObjects(ArrayList<Objectt> objects) {
+        this.objects = objects;
+    }
 
     public Farm(int number) {
         this.number = number;
