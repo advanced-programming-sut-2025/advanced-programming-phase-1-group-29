@@ -160,4 +160,13 @@ public class GameMenuController extends Controller{
     public void nextTurn() {
         App.getCurrentGame().nextTurn();
     }
+
+    public Result helpReadingMap(){
+        StringBuilder result = new StringBuilder();
+        result.append("Cottage: C\n");
+        result.append("Greenhouse: G\n");
+        result.append("Quarry : Q\n");
+        result.append("Lake : L\n");
+        return new Result(true, result.toString());
+    }
 }
