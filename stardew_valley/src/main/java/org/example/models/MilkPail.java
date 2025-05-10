@@ -1,9 +1,14 @@
 package org.example.models;
 
 public class MilkPail extends Tool{
+
+    public MilkPail() {
+        price = 1000;
+    }
+
     @Override
     public int getEnergyConsumption() {
-        return 0;
+        return 4;
     }
 
     @Override

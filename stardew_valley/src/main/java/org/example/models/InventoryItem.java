@@ -1,6 +1,6 @@
 package org.example.models;
 
-public class InventoryItem {
+public abstract class InventoryItem {
     protected String name;
     protected int price;
 

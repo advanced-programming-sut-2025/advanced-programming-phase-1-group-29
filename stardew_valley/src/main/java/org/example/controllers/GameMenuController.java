@@ -222,14 +222,11 @@ public class GameMenuController extends Controller{
             put("dr", new ArrayList<>(List.of(1, -1)));
             put("dl", new ArrayList<>(List.of(-1, -1)));
         }};
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
         if (!directions.containsKey(direction))
             return new Result(false, "Invalid direction");
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
-        if (player.getCurrentTool().getEnergyConsumption() > player.getEnergy())
-            return new Result(false, "You don't have enough energy");
         int x = player.getX() + directions.get(direction).get(0);
         int y = player.getY() + directions.get(direction).get(1);
-        player.setEnergy(player.getEnergy() - player.getCurrentTool().getEnergyConsumption());
         return player.getCurrentTool().useTool(x, y);
     }
 }

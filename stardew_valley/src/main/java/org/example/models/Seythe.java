@@ -3,7 +3,7 @@ package org.example.models;
 public class Seythe extends Tool{
     @Override
     public int getEnergyConsumption() {
-        return 0;
+        return 2;
     }
 
     @Override

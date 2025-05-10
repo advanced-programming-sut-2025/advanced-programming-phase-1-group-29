@@ -1,9 +1,14 @@
 package org.example.models;
 
 public class Shear extends Tool{
+
+    public Shear() {
+        price = 1000;
+    }
+
     @Override
     public int getEnergyConsumption() {
-        return 0;
+        return 4;
     }
 
     @Override

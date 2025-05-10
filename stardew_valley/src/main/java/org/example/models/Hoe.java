@@ -6,8 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hoe extends Tool{
+
+    private ToolType type = ToolType.PRIMARY;
+
+    public ToolType getType() {
+        return type;
+    }
+
+    public void setType(ToolType type) {
+        this.type = type;
+    }
     @Override
     public Result useTool(int x, int y) {
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        if (player.getCurrentTool().getEnergyConsumption() > player.getEnergy())
+            return new Result(false, "You don't have enough energy");
+        player.setEnergy(player.getEnergy() - player.getCurrentTool().getEnergyConsumption());
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         if (x < 0 || x >= Farm.getXRange() || y < 0 || y >= Farm.getYRange())
             return new Result(false, "The hoe can't be used in this direction");

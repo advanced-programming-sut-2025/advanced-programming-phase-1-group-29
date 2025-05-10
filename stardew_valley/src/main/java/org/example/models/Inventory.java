@@ -7,6 +7,10 @@ public class Inventory {
 
     public Inventory() {
         inventoryItems.put(new Hoe(), 1);
+        inventoryItems.put(new WateringCan(), 1);
+        inventoryItems.put(new Pickaxe(), 1);
+        inventoryItems.put(new Axe(), 1);
+        inventoryItems.put(new Seythe(), 1);
     }
 
     public HashMap<InventoryItem, Integer> getInventoryItems() {

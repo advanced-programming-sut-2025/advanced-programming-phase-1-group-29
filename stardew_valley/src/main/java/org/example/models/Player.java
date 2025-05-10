@@ -6,9 +6,13 @@ public class Player {
     private int farmNumber;
     private int energy = 100;
     private int farmingLevel = 0;
+    private int farmingUnit = 0;
     private int miningLevel = 0;
+    private int miningUnit = 0;
     private int foragingLevel = 0;
+    private int foragingUnit = 0;
     private int fishingLevel = 0;
+    private int fishingUnit = 0;
     int coins = 0;
     private Inventory inventory = new Inventory();
     private boolean isEnergyUnlimited = false;
@@ -31,32 +35,40 @@ public class Player {
         return farmingLevel;
     }
 
-    public void setFarmingLevel(int farmingLevel) {
-        this.farmingLevel = farmingLevel;
+    public void addFarmingUnit(int amount) {
+        farmingUnit += amount;
+        if (farmingUnit >= 100 * farmingLevel + 150)
+            farmingLevel++;
     }
 
     public int getMiningLevel() {
         return miningLevel;
     }
 
-    public void setMiningLevel(int miningLevel) {
-        this.miningLevel = miningLevel;
+    public void addMiningUnit(int amount) {
+        miningUnit += amount;
+        if (miningUnit >= 100 * miningLevel + 150)
+            miningLevel++;
     }
 
     public int getForagingLevel() {
         return foragingLevel;
     }
 
-    public void setForagingLevel(int foragingLevel) {
-        this.foragingLevel = foragingLevel;
+    public void addForagingUnit(int amount) {
+        foragingUnit += amount;
+        if (foragingUnit >= 100 * foragingLevel + 150)
+            foragingLevel++;
     }
 
     public int getFishingLevel() {
         return fishingLevel;
     }
 
-    public void setFishingLevel(int fishingLevel) {
-        this.fishingLevel = fishingLevel;
+    public void addFishingUnit(int amount) {
+        fishingUnit += amount;
+        if (fishingUnit >= 100 * fishingLevel + 150)
+            fishingLevel++;
     }
 
     public int getEnergy() {
