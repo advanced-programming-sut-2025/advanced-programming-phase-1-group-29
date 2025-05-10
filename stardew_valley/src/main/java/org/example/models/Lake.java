@@ -1,4 +1,4 @@
 package org.example.models;
 
-public class Lake extends Objectt {
+public class Lake extends Object {
 }

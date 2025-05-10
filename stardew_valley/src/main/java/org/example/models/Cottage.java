@@ -1,4 +1,4 @@
 package org.example.models;
 
-public class Cottage extends Objectt {
+public class Cottage extends Object {
 }

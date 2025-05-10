@@ -14,7 +14,9 @@ public class Player {
     private boolean isEnergyUnlimited = false;
     private Tool currentTool = null;
     private User user;
-    TrashCan trashCan = TrashCan.PRIMARY;
+    private TrashCan trashCan = TrashCan.PRIMARY;
+    private int x;
+    private int y;
 
 
     public int getFarmNumber() {
@@ -115,5 +117,21 @@ public class Player {
 
     public void setTrashCan(TrashCan trashCan) {
         this.trashCan = trashCan;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

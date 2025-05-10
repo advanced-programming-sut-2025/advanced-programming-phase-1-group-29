@@ -1,8 +1,12 @@
 package org.example.controllers;
 
 import org.example.models.*;
+import org.example.models.Object;
 import org.example.models.enums.Menu;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.StringJoiner;
 
 public class GameMenuController extends Controller{
@@ -137,7 +141,7 @@ public class GameMenuController extends Controller{
         Map map = App.getCurrentGame().getMap();
         char[][] mapToPrint = new char[Map.getXRange()][Map.getYRange()];
         for (Farm farm : map.getFarms()) {
-            for (Objectt object : farm.getObjects()) {
+            for (Object object : farm.getObjects()) {
                 for (Tile tile : object.getTiles()) {
                     mapToPrint[tile.getX()][tile.getY()] = tile.getDisplay();
                 }
@@ -205,5 +209,27 @@ public class GameMenuController extends Controller{
             nextTurn();
         }
         return dateTime();
+    }
+
+    public Result toolsUse(String direction) {
+        HashMap<String, ArrayList<Integer>> directions = new HashMap<>() {{
+            put("u", new ArrayList<>(List.of(0, 1)));
+            put("d", new ArrayList<>(List.of(0, -1)));
+            put("r", new ArrayList<>(List.of(1, 0)));
+            put("l", new ArrayList<>(List.of(-1, 0)));
+            put("ur", new ArrayList<>(List.of(1, 1)));
+            put("ul", new ArrayList<>(List.of(-1, 1)));
+            put("dr", new ArrayList<>(List.of(1, -1)));
+            put("dl", new ArrayList<>(List.of(-1, -1)));
+        }};
+        if (!directions.containsKey(direction))
+            return new Result(false, "Invalid direction");
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        if (player.getCurrentTool().getEnergyConsumption() > player.getEnergy())
+            return new Result(false, "You don't have enough energy");
+        int x = player.getX() + directions.get(direction).get(0);
+        int y = player.getY() + directions.get(direction).get(1);
+        player.setEnergy(player.getEnergy() - player.getCurrentTool().getEnergyConsumption());
+        return player.getCurrentTool().useTool(x, y);
     }
 }

@@ -1,9 +1,11 @@
 package org.example.models;
 
-public class Tool extends InventoryItem{
+import org.example.models.enums.ToolType;
 
-    private int level;
-    private int energyConsumption;
+public abstract class Tool extends InventoryItem{
+
+    protected int level;
+    protected ToolType type = ToolType.PRIMARY;
 
     public int getLevel() {
         return level;
@@ -13,11 +15,15 @@ public class Tool extends InventoryItem{
         this.level = level;
     }
 
-    public int getEnergyConsumption() {
-        return energyConsumption;
+    public abstract int getEnergyConsumption();
+
+    public ToolType getType() {
+        return type;
     }
 
-    public void setEnergyConsumption(int energyConsumption) {
-        this.energyConsumption = energyConsumption;
+    public void setType(ToolType type) {
+        this.type = type;
     }
+
+    public abstract Result useTool(int x, int y);
 }

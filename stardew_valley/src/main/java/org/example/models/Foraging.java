@@ -1,4 +1,4 @@
 package org.example.models;
 
-public class Foraging extends Objectt {
+public class Foraging extends Object {
 }
