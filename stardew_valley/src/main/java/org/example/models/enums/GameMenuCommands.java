@@ -28,7 +28,7 @@ public enum GameMenuCommands implements Command {
     EnergySet("\\s*energy\\s+set\\s+-v\\s+(?<value>\\d+)\\s*"),
     EnergyUnlimited("\\s*energy\\s+unlimited\\s*"),
     InventoryShow("\\s*inventory\\s+show\\s*"),
-    InventoryTrash("\\s*inventory\\s+trash\\s+-i\\s+(?<itemsName>.+)\\s+-n\\s+(?<number>\\d+)\\s*"),
+    InventoryTrash("\\s*inventory\\s+trash\\s+-i\\s+(?<itemsName>.+)(\\s+-n\\s+(?<number>\\d+))?\\s*"),
     ToolsEquip("\\s*tools\\s+equip\\s+(?<toolName>.+)\\s*"),
     ToolsShowCurrent("\\s*tools\\s+show\\s+current\\s*"),
     ToolsShowAvailable("\\s*tools\\s+show\\s+available\\s*"),

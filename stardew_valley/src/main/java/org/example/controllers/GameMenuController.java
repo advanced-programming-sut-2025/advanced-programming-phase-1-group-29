@@ -148,4 +148,28 @@ public class GameMenuController extends Controller{
     public void nextTurn() {
         App.getCurrentGame().nextTurn();
     }
+
+    public Result inventoryTrash(String name, String amount) {
+        Player player = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getTurn());
+        Inventory inventory = player.getInventory();
+        InventoryItem item = null;
+        int number = 0;
+        for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
+            if (name.equals(inventoryItem.getName())) {
+                if (amount.isEmpty()) number = inventory.getInventoryItems().get(inventoryItem);
+                else number = Integer.parseInt(amount);
+                if (number > inventory.getInventoryItems().get(inventoryItem))
+                    return new Result(false, "You don't have this amount of " + name);
+                item = inventoryItem;
+                break;
+            }
+        }
+        if (item != null) {
+            inventory.getInventoryItems().put(item, inventory.getInventoryItems().get(item) - number);
+            int coins = player.getTrashCan().getReturnValuePercentage() * item.getPrice() / 100;
+            player.addCoins(coins);
+            return new Result(true, number + " of " + name + " deleted from your inventory. " + coins + " coins returned.");
+        }
+        return new Result(false, "This item doesn't exist in your inventory");
+    }
 }
