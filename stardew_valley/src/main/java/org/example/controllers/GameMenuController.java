@@ -203,6 +203,7 @@ public class GameMenuController extends Controller{
         }
         return dateTime();
     }
+
     public Result cheatAdvanceDate(String dateString) {
         int h = Integer.parseInt(dateString);
         for (int i = 0; i < 24 * h; i++){

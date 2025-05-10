@@ -85,9 +85,9 @@ public class GameMenu implements AppMenu{
         else if (GameMenuCommands.InventoryShow.getMatcher(input) != null) {
             System.out.println(controller.inventoryShow());
         }
-//        else if ((matcher = GameMenuCommands.InventoryTrash.getMatcher(input)) != null) {
-//            System.out.println(controller.inventoryTrash(matcher.group("itemsName"), matcher.group("number")));
-//        }
+        else if ((matcher = GameMenuCommands.InventoryTrash.getMatcher(input)) != null) {
+            System.out.println(controller.inventoryTrash(matcher.group("itemsName"), matcher.group("number")));
+        }
         else if ((matcher = GameMenuCommands.ToolsEquip.getMatcher(input)) != null) {
             System.out.println(controller.toolsEquip(matcher.group("toolName")));
         }
@@ -100,9 +100,9 @@ public class GameMenu implements AppMenu{
 //        else if ((matcher = GameMenuCommands.ToolsUpgrade.getMatcher(input)) != null) {
 //            System.out.println(controller.toolsUpgrade(matcher.group("toolName")));
 //        }
-//        else if ((matcher = GameMenuCommands.ToolsUse.getMatcher(input)) != null) {
-//            System.out.println(controller.toolsUse(matcher.group("direction")));
-//        }
+        else if ((matcher = GameMenuCommands.ToolsUse.getMatcher(input)) != null) {
+            System.out.println(controller.toolsUse(matcher.group("direction")));
+        }
 //        else if ((matcher = GameMenuCommands.CraftInfo.getMatcher(input)) != null) {
 //            System.out.println(controller.craftInfo(matcher.group("craftName")));
 //        }
