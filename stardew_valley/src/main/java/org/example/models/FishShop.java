@@ -21,4 +21,18 @@ public class FishShop extends Store{
         super.addProduct(new InventoryItem("FiberglassRod", 1800), 1);
         super.addProduct(new InventoryItem("IridiumRod", 7500), 1);
     }
+    @Override
+    public Result purchase(String productName, int quantity) {
+        if (productName.equalsIgnoreCase("FiberglassRod")){
+            if (App.getCurrentGame().getCurrentPlayer().getFishingLevel() < 2){
+                return new Result(false, "your fishing skill must be at least 2");
+            }
+        }
+        if (productName.equalsIgnoreCase("IridiumRod")){
+            if (App.getCurrentGame().getCurrentPlayer().getFishingLevel() < 4){
+                return new Result(false, "your fishing skill must be at least 4");
+            }
+        }
+        return super.purchase(productName, quantity);
+    }
 }
