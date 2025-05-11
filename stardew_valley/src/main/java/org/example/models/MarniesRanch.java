@@ -5,4 +5,26 @@ public class MarniesRanch extends Store{
     public Result welcomeMessage() {
         return new Result(true, "Welcome to Marnies Ranch!");
     }
+    public MarniesRanch(){
+        addProducts();
+    }
+    public void resetCapacity(){
+        super.resetProducts();
+        addProducts();
+    }
+    private void addProducts(){
+        super.addProduct(new InventoryItem("Hay", 50), 100000000);
+        super.addProduct(new InventoryItem("MilkPail", 1000), 1);
+        super.addProduct(new InventoryItem("Shears", 1000), 1);
+        super.addProduct(new InventoryItem("Chicken", 800), 2);
+        super.addProduct(new InventoryItem("Cow", 1500), 2);
+        super.addProduct(new InventoryItem("Goat", 4000), 2);
+        super.addProduct(new InventoryItem("Duck", 1200), 2);
+        super.addProduct(new InventoryItem("Sheep", 8000), 2);
+        super.addProduct(new InventoryItem("Rabbit", 8000), 2);
+        super.addProduct(new InventoryItem("Dinosaur", 14000), 2);
+        super.addProduct(new InventoryItem("Pig", 16000), 2);
+        //TODO
+        //check barns
+    }
 }
