@@ -12,7 +12,6 @@ public class Store {
     public Result welcomeMessage(){
         return new Result(true, "Welcome");
     }
-    public Result
     public void addProduct(InventoryItem product, int quantity) {
         if (!productNumbers.containsKey(product)) {
             products.add(product);
@@ -50,18 +49,28 @@ public class Store {
         }
         return new Result(true, result.toString());
     }
-    public Result purchase(InventoryItem product, int quantity) {
-        if (productNumbers.containsKey(product)) {
-            int currentQuantity = productNumbers.get(product);
-            int newQuantity = currentQuantity - quantity;
-            if (newQuantity < 0) {
-                return new Result(false, "not enough products in store");
+    public Result purchase(String productName, int quantity) {
+        for (InventoryItem item : products) {
+            if (item.getName().equalsIgnoreCase(productName)) {
+                int available = productNumbers.getOrDefault(item, 0);
+                if (available >= quantity) {
+                    int totalPrice = item.getPrice() * quantity;
+                    if (App.getCurrentGame().getCurrentPlayer().getCoins() < totalPrice) {
+                        return new Result(false, "You don't have enough money to purchase.");
+                    }
+                    if (App.getCurrentGame().getCurrentPlayer().getInventory().getCapacity() < quantity){
+                        return new Result(false, "You don't have enough capacity for this product.");
+                    }
+                    App.getCurrentGame().getCurrentPlayer().addCoins(-totalPrice);
+                    productNumbers.put(item, available - quantity);
+                    App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(productName, quantity, item.getPrice());
+                    return new Result(true, "Successfully purchased.");
+                }
+                else {
+                    return new Result(false, "Not enough stock");
+                }
             }
-            productNumbers.put(product, newQuantity);
-            App.getCurrentGame().getCurrentPlayer().getInventory().
         }
-        else{
-            return new Result(false, "Product not in store");
-        }
+        return new Result(false, "Product not found.");
     }
 }
