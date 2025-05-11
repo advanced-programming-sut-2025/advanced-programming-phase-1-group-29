@@ -8,6 +8,7 @@ public class JojaMartStore extends Store{
         return new Result(true, "Welcome to Joja Mart!");
     }
     public JojaMartStore() {
+        super();
         addProducts();
     }
     public void resetCapacity(){

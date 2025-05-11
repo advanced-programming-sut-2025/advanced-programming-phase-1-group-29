@@ -6,6 +6,7 @@ public class MarniesRanch extends Store{
         return new Result(true, "Welcome to Marnies Ranch!");
     }
     public MarniesRanch(){
+        super();
         addProducts();
     }
     public void resetCapacity(){

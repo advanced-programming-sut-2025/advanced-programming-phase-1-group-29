@@ -6,6 +6,7 @@ public class TheStardropSaloon extends Store{
         return new Result(true, "Welcome to The Stardrop Shop!");
     }
     public TheStardropSaloon() {
+        super();
         addProducts();
     }
     public void resetCapacity(){
