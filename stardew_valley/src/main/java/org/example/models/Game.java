@@ -71,4 +71,8 @@ public class Game {
     public void setWeather(Weather weather) {
         this.weather = weather;
     }
+
+    public Player getCurrentPlayer() {
+        return players.get(turn);
+    }
 }
