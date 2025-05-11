@@ -25,50 +25,50 @@ public class JojaMartStore extends Store{
         super.addProduct(new InventoryItem("Rice", 250), 100000000);
 
         if (App.getCurrentGame().getCurrentTime().getSeason().equals(Season.Spring)) {
-            super.addProduct(new InventoryItem("Parsnip Seeds", 25), 5);
-            super.addProduct(new InventoryItem("Bean Starter", 75), 5);
-            super.addProduct(new InventoryItem("Cauliflower Seeds", 100), 5);
-            super.addProduct(new InventoryItem("Potato Seeds", 62), 5);
-            super.addProduct(new InventoryItem("Strawberry Seeds", 100), 5);
-            super.addProduct(new InventoryItem("Tulip Bulb", 25), 5);
-            super.addProduct(new InventoryItem("Kale Seeds", 87), 5);
-            super.addProduct(new InventoryItem("Coffee Beans", 200), 5);
+            super.addProduct(new InventoryItem("ParsnipSeeds", 25), 5);
+            super.addProduct(new InventoryItem("BeanStarter", 75), 5);
+            super.addProduct(new InventoryItem("CauliflowerSeeds", 100), 5);
+            super.addProduct(new InventoryItem("PotatoSeeds", 62), 5);
+            super.addProduct(new InventoryItem("StrawberrySeeds", 100), 5);
+            super.addProduct(new InventoryItem("TulipBulb", 25), 5);
+            super.addProduct(new InventoryItem("KaleSeeds", 87), 5);
+            super.addProduct(new InventoryItem("CoffeeBeans", 200), 5);
         }
 
         if (App.getCurrentGame().getCurrentTime().getSeason().equals(Season.Summer)) {
-            super.addProduct(new InventoryItem("Tomato Seeds", 62), 5);
-            super.addProduct(new InventoryItem("Pepper Seeds", 50), 5);
-            super.addProduct(new InventoryItem("Wheat Seeds", 12), 10);
-            super.addProduct(new InventoryItem("Summer Squash Seeds", 10), 10);
-            super.addProduct(new InventoryItem("Radish Seeds", 50), 5);
-            super.addProduct(new InventoryItem("Melon Seeds", 100), 5);
-            super.addProduct(new InventoryItem("Hops Starter", 75), 5);
-            super.addProduct(new InventoryItem("Poppy Seeds", 125), 5);
-            super.addProduct(new InventoryItem("Spangle Seeds", 62), 5);
-            super.addProduct(new InventoryItem("Starfruit Seeds", 400), 5);
-            super.addProduct(new InventoryItem("Coffee Beans", 200), 1);
-            super.addProduct(new InventoryItem("Sunflower Seeds", 125), 5);
+            super.addProduct(new InventoryItem("TomatoSeeds", 62), 5);
+            super.addProduct(new InventoryItem("PepperSeeds", 50), 5);
+            super.addProduct(new InventoryItem("WheatSeeds", 12), 10);
+            super.addProduct(new InventoryItem("SummerSquashSeeds", 10), 10);
+            super.addProduct(new InventoryItem("RadishSeeds", 50), 5);
+            super.addProduct(new InventoryItem("MelonSeeds", 100), 5);
+            super.addProduct(new InventoryItem("HopsStarter", 75), 5);
+            super.addProduct(new InventoryItem("PoppySeeds", 125), 5);
+            super.addProduct(new InventoryItem("SpangleSeeds", 62), 5);
+            super.addProduct(new InventoryItem("StarfruitSeeds", 400), 5);
+            super.addProduct(new InventoryItem("CoffeeBeans", 200), 1);
+            super.addProduct(new InventoryItem("SunflowerSeeds", 125), 5);
         }
 
         if (App.getCurrentGame().getCurrentTime().getSeason().equals(Season.Fall)) {
-            super.addProduct(new InventoryItem("Corn Seeds", 187), 5);
-            super.addProduct(new InventoryItem("Eggplant Seeds", 25), 5);
-            super.addProduct(new InventoryItem("Pumpkin Seeds", 125), 5);
-            super.addProduct(new InventoryItem("Broccoli Seeds", 15), 5);
-            super.addProduct(new InventoryItem("Amaranth Seeds", 87), 5);
-            super.addProduct(new InventoryItem("Grape Starter", 75), 5);
-            super.addProduct(new InventoryItem("Beet Seeds", 20), 5);
-            super.addProduct(new InventoryItem("Yam Seeds", 75), 5);
-            super.addProduct(new InventoryItem("Bok Choy Seeds", 62), 5);
-            super.addProduct(new InventoryItem("Cranberry Seeds", 300), 5);
-            super.addProduct(new InventoryItem("Sunflower Seeds", 125), 5);
-            super.addProduct(new InventoryItem("Fairy Seeds", 250), 5);
-            super.addProduct(new InventoryItem("Rare Seed", 1000), 1);
-            super.addProduct(new InventoryItem("Wheat Seeds", 12), 5);
+            super.addProduct(new InventoryItem("CornSeeds", 187), 5);
+            super.addProduct(new InventoryItem("EggplantSeeds", 25), 5);
+            super.addProduct(new InventoryItem("PumpkinSeeds", 125), 5);
+            super.addProduct(new InventoryItem("BroccoliSeeds", 15), 5);
+            super.addProduct(new InventoryItem("AmaranthSeeds", 87), 5);
+            super.addProduct(new InventoryItem("GrapeStarter", 75), 5);
+            super.addProduct(new InventoryItem("BeetSeeds", 20), 5);
+            super.addProduct(new InventoryItem("YamSeeds", 75), 5);
+            super.addProduct(new InventoryItem("BokChoySeeds", 62), 5);
+            super.addProduct(new InventoryItem("CranberrySeeds", 300), 5);
+            super.addProduct(new InventoryItem("SunflowerSeeds", 125), 5);
+            super.addProduct(new InventoryItem("FairySeeds", 250), 5);
+            super.addProduct(new InventoryItem("RareSeed", 1000), 1);
+            super.addProduct(new InventoryItem("WheatSeeds", 12), 5);
         }
 
         if (App.getCurrentGame().getCurrentTime().getSeason().equals(Season.Winter)) {
-            super.addProduct(new InventoryItem("Powdermelon Seeds", 20), 10);
+            super.addProduct(new InventoryItem("PowdermelonSeeds", 20), 10);
         }
     }
 }

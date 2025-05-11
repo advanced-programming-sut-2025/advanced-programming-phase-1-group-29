@@ -20,14 +20,14 @@ public class TheStardropSaloon extends Store{
         super.addProduct(new InventoryItem("Spaghetti", 240), 100000000);
         super.addProduct(new InventoryItem("Pizza", 600), 100000000);
         super.addProduct(new InventoryItem("Coffee", 300), 100000000);
-        super.addProduct(new InventoryItem("Hashbrowns Recipe", 50), 1);
-        super.addProduct(new InventoryItem("Omelet Recipe", 100), 1);
-        super.addProduct(new InventoryItem("Pancakes Recipe", 100), 1);
-        super.addProduct(new InventoryItem("Bread Recipe", 100), 1);
-        super.addProduct(new InventoryItem("Tortilla Recipe", 100), 1);
-        super.addProduct(new InventoryItem("Pizza Recipe", 150), 1);
-        super.addProduct(new InventoryItem("Maki Roll Recipe", 300), 1);
-        super.addProduct(new InventoryItem("Triple Shot Espresso Recipe", 5000), 1);
-        super.addProduct(new InventoryItem("Cookie Recipe", 300), 1);
+        super.addProduct(new InventoryItem("HashbrownsRecipe", 50), 1);
+        super.addProduct(new InventoryItem("OmeletRecipe", 100), 1);
+        super.addProduct(new InventoryItem("PancakesRecipe", 100), 1);
+        super.addProduct(new InventoryItem("BreadRecipe", 100), 1);
+        super.addProduct(new InventoryItem("TortillaRecipe", 100), 1);
+        super.addProduct(new InventoryItem("PizzaRecipe", 150), 1);
+        super.addProduct(new InventoryItem("MakiRollRecipe", 300), 1);
+        super.addProduct(new InventoryItem("TripleShotEspressoRecipe", 5000), 1);
+        super.addProduct(new InventoryItem("CookieRecipe", 300), 1);
     }
 }

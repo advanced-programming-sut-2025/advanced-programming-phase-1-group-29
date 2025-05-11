@@ -11,6 +11,7 @@ public class CarpentersShop extends Store{
     }
     public void resetCapacity(){
         super.resetProducts();
+        addProducts();
     }
     private void addProducts(){
         super.addProduct(new InventoryItem("Wood", 10), 100000000);
