@@ -2,8 +2,8 @@ package org.example.models;
 
 public class Shear extends Tool{
 
-    public Shear() {
-        price = 1000;
+    public Shear(String name) {
+        super(name, 1000);
     }
 
     @Override

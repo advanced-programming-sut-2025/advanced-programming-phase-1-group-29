@@ -2,8 +2,8 @@ package org.example.models;
 
 public class MilkPail extends Tool{
 
-    public MilkPail() {
-        price = 1000;
+    public MilkPail(String name) {
+        super(name, 1000);
     }
 
     @Override

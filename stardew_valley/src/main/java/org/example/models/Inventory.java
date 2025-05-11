@@ -9,11 +9,11 @@ public class Inventory {
     private final HashMap<InventoryItem, Integer> inventoryItems = new HashMap<>();
 
     public Inventory() {
-        inventoryItems.put(new Hoe(), 1);
-        inventoryItems.put(new WateringCan(), 1);
-        inventoryItems.put(new Pickaxe(), 1);
-        inventoryItems.put(new Axe(), 1);
-        inventoryItems.put(new Seythe(), 1);
+        inventoryItems.put(new Hoe("Hoe", 0), 1);
+        inventoryItems.put(new WateringCan("Watering Can", 0), 1);
+        inventoryItems.put(new Pickaxe("Pickaxe", 0), 1);
+        inventoryItems.put(new Axe("Axe", 0), 1);
+        inventoryItems.put(new Seythe("Seythe", 0), 1);
     }
 
     public InventoryType getType() {

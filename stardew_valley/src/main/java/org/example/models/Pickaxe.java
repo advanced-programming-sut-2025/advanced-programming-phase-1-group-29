@@ -5,6 +5,10 @@ import org.example.models.enums.ToolType;
 public class Pickaxe extends Tool{
     private ToolType type = ToolType.PRIMARY;
 
+    public Pickaxe(String name, int price) {
+        super(name, price);
+    }
+
     public ToolType getType() {
         return type;
     }

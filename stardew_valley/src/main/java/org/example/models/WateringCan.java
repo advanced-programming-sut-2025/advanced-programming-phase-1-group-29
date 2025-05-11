@@ -5,6 +5,10 @@ import org.example.models.enums.ToolType;
 public class WateringCan extends Tool {
     private ToolType type = ToolType.PRIMARY;
 
+    public WateringCan(String name, int price) {
+        super(name, price);
+    }
+
     public ToolType getType() {
         return type;
     }

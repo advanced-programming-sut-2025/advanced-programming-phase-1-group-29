@@ -6,7 +6,8 @@ import org.example.models.enums.FishingPoleType;
 public class FishingPole extends Tool{
     private FishingPoleType type;
 
-    public FishingPole(FishingPoleType type) {
+    public FishingPole(String name, int price, FishingPoleType type) {
+        super(name, price);
         this.type = type;
         price = type.getPrice();
     }
