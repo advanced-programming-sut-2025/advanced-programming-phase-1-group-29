@@ -240,4 +240,37 @@ public class GameMenuController extends Controller{
             return new Result(false, "Invalid crop name");
         }
     }
+
+    public Result cookingRefrigerator(String action, String item){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Inventory inventory = player.getInventory();
+//        if(!food){
+//            return new Result(false, "Not eatable!");
+//        }
+//        if(!atHome){
+//            return new Result(false, "You are not at the home");
+//        }
+        Game game = App.getCurrentGame();
+        Farm farm = game.getMap().getFarms().get(game.getTurn());
+        Cottage cottage = farm.getCottage();
+        Refrigerator refrigerator = cottage.getRefrigerator();
+        if(action.equals("put")){
+            InventoryItem inventoryItem = inventory.findInventoryItem(item);
+            if(inventoryItem == null){
+                return new Result(false, "You don't have this item in your inventory");
+            }
+            refrigerator.addItem(inventoryItem, inventory.getInventoryItems().get(inventoryItem));
+            inventory.getInventoryItems().remove(inventoryItem);
+        }
+        if(action.equals("pick")){
+            if(refrigerator.getQuantity(item) == 0){
+                return new Result(false, "You don't have this item in your refrigerator");
+            }
+            InventoryItem inventoryItem = refrigerator.findItem(item);
+            inventory.addInventoryItem(item, inventoryItem.getPrice(), refrigerator.getQuantity(item));
+            refrigerator.removeItem(item, refrigerator.getQuantity(item));
+        }
+        return new Result(true, "moved successfully");
+
+    }
 }
