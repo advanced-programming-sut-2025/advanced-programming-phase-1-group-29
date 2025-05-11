@@ -1,34 +1,34 @@
 package org.example.models.enums;
 
 public enum Fish {
-    Salmon (75, Season.Fall),
-    Sardine (40, Season.Fall),
-    Shad (60, Season.Fall),
-    BlueDiscus (120, Season.Fall),
-    MidnightCarp (150, Season.Winter),
-    Squid (80, Season.Winter),
-    Tuna (100, Season.Winter),
-    Perch (55, Season.Winter),
-    Flounder (100, Season.Spring),
-    Lionfish (100, Season.Spring),
-    Herring (30, Season.Spring),
-    Ghostfish (45, Season.Spring),
-    Tilapia (75, Season.Summer),
-    Dorado (100, Season.Summer),
-    Sunfish (30, Season.Summer),
-    RainbowTrout (65, Season.Summer),
-    Legend (5000, Season.Spring),
-    Glacierfish (1000, Season.Winter),
-    Angler (900, Season.Fall),
-    Crimsonfish (1500, Season.Summer),
-
-
+    Salmon ("Salmon", 75, Season.Fall),
+    Sardine ("Sardine", 40, Season.Fall),
+    Shad ("Shad", 60, Season.Fall),
+    BlueDiscus ("Blue Discus", 120, Season.Fall),
+    MidnightCarp ("Midnight Carp", 150, Season.Winter),
+    Squid ("Squid", 80, Season.Winter),
+    Tuna ("Tuna", 100, Season.Winter),
+    Perch ("Perch", 55, Season.Winter),
+    Flounder ("Flounder", 100, Season.Spring),
+    Lionfish ("Lionfish", 100, Season.Spring),
+    Herring ("Herring", 30, Season.Spring),
+    Ghostfish ("Ghostfish", 45, Season.Spring),
+    Tilapia ("Tilapia", 75, Season.Summer),
+    Dorado ("Dorado", 100, Season.Summer),
+    Sunfish ("Sunfish", 30, Season.Summer),
+    RainbowTrout ("Rainbow Trout", 65, Season.Summer),
+    Legend ("Legend", 5000, Season.Spring),
+    Glacierfish ("Glacierfish", 1000, Season.Winter),
+    Angler ("Angler", 900, Season.Fall),
+    Crimsonfish ("Crimsonfish", 1500, Season.Summer),
     ;
 
+    private final String name;
     private final int price;
     private final Season season;
 
-    private Fish(int price, Season season) {
+    private Fish(String name, int price, Season season) {
+        this.name = name;
         this.price = price;
         this.season = season;
     }
