@@ -29,7 +29,11 @@ public class Inventory {
     }
 
     public int getCapacity() {
-        return type.getCapacity();
+        int items = 0;
+        for (InventoryItem inventoryItem : inventoryItems.keySet()) {
+            items += inventoryItems.get(inventoryItem);
+        }
+        return type.getCapacity() - items;
     }
 
     public InventoryItem findInventoryItem(String name) {
