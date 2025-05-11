@@ -48,7 +48,7 @@ public class Inventory {
         return 0;
     }
 
-    public void addInventoryItem(String name, int amount) {
+    public void addInventoryItem(String name, int amount, int price) {
         int oldAmount = 0;
         InventoryItem item = null;
         for (InventoryItem inventoryItem : inventoryItems.keySet()) {
@@ -58,8 +58,7 @@ public class Inventory {
             }
         }
         if (item == null) {
-            item = new InventoryItem();
-            item.setName(name);
+            item = new InventoryItem(name, price);
         }
         inventoryItems.put(item, oldAmount + amount);
         if (oldAmount + amount == 0) inventoryItems.remove(item);
