@@ -25,10 +25,10 @@ public class DateTime {
         day++;
         if (day == 29) {
             day = 1;
-            if (season.equals(Season.SPRING)) setSeason(Season.SUMMER);
-            else if (season.equals(Season.SUMMER)) setSeason(Season.AUTUMN);
-            else if (season.equals(Season.AUTUMN)) setSeason(Season.WINTER);
-            else setSeason(Season.SPRING);
+            if (season.equals(Season.Spring)) setSeason(Season.Summer);
+            else if (season.equals(Season.Summer)) setSeason(Season.Fall);
+            else if (season.equals(Season.Fall)) setSeason(Season.Winter);
+            else setSeason(Season.Spring);
         }
     }
 

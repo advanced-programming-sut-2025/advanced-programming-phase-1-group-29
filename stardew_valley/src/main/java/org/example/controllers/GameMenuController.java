@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import org.example.models.*;
 import org.example.models.Objectt;
+import org.example.models.enums.CropEnum;
 import org.example.models.enums.Menu;
 
 import java.util.ArrayList;
@@ -229,5 +230,14 @@ public class GameMenuController extends Controller{
         int x = player.getX() + directions.get(direction).get(0);
         int y = player.getY() + directions.get(direction).get(1);
         return player.getCurrentTool().useTool(x, y);
+    }
+
+    public Result craftInfo(String name) {
+        name = name.replaceAll("\\s+", "_").toUpperCase();
+        try {
+            return new Result(true, CropEnum.valueOf(name).toString());
+        } catch (IllegalArgumentException e) {
+            return new Result(false, "Invalid crop name");
+        }
     }
 }

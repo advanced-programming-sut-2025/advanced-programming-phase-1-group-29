@@ -54,7 +54,7 @@ public class PreGameMenuController extends Controller{
             user3.setCurrentGame(game);
         }
         game.setMainPlayer(player1);
-        game.setCurrentTime(new DateTime(Season.SPRING, 1, 9));
+        game.setCurrentTime(new DateTime(Season.Spring, 1, 9));
         App.setCurrentGame(game);
         createDefaultFarms();
         App.setCurrentMenu(Menu.MapSelectionMenu);
