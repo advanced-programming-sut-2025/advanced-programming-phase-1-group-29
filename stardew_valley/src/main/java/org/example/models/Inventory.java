@@ -27,4 +27,6 @@ public class Inventory {
     public HashMap<InventoryItem, Integer> getInventoryItems() {
         return inventoryItems;
     }
+
+
 }
