@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Store implements Objectt{
+public class Store extends Objectt{
     private ArrayList<InventoryItem> products = new ArrayList<>();
     private final HashMap<InventoryItem, Integer> productNumbers = new HashMap<>();
 

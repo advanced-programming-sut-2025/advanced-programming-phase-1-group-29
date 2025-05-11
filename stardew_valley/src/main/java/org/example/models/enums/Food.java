@@ -145,6 +145,10 @@ public enum Food {
         return sellPrice;
     }
 
+    public HashMap<String, Integer> getIngredients() {
+        return ingredients;
+    }
+
     public static Food getByName(String foodName) {
         for (Food food : Food.values()) {
             if(food.getName().equals(foodName)){

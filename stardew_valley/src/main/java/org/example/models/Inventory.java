@@ -36,6 +36,10 @@ public class Inventory {
         return type.getCapacity() - items;
     }
 
+    public boolean isFull(){
+        return getCapacity() >= type.getCapacity();
+    }
+
     public InventoryItem findInventoryItem(String name) {
         for (InventoryItem inventoryItem : inventoryItems.keySet()) {
             if (inventoryItem.getName().equalsIgnoreCase(name)) return inventoryItem;
@@ -71,6 +75,10 @@ public class Inventory {
     public void removeInventoryItem(String name, int amount) {
         InventoryItem item = findInventoryItem(name);
         if (item == null) return;
+        if(inventoryItems.get(item) == amount){
+            inventoryItems.remove(item);
+            return;
+        }
         inventoryItems.compute(item, (k, oldAmount) -> oldAmount - amount);
     }
 }
