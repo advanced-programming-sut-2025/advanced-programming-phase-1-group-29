@@ -33,4 +33,24 @@ public enum Fish {
         this.season = season;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public static Fish getByName(String fishName) {
+        for (Fish fish : Fish.values()) {
+            if(fish.getName().equals(fishName)){
+                return fish;
+            }
+        }
+        return null;
+    }
 }

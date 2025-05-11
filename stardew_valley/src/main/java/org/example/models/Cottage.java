@@ -3,7 +3,8 @@ package org.example.models;
 import java.util.HashMap;
 
 public class Cottage extends Objectt {
-    private Refrigerator refrigerator;
+
+    private final Refrigerator refrigerator;
 
     {
         refrigerator = new Refrigerator();

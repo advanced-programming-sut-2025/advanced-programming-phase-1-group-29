@@ -112,7 +112,7 @@ public enum Food {
                     "Flounder", 1,
                     "MidnightCarp", 1
             ))),
-    minersTreat ("miner's treat", 125, 200,
+    MinersTreat ("miner's treat", 125, 200,
             new HashMap<>(Map.of(
                     "Carrot", 2,
                     "Sugar", 1,
@@ -131,5 +131,26 @@ public enum Food {
         this.energy = energy;
         this.sellPrice = sellPrice;
         this.ingredients = ingredients;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    public static Food getByName(String foodName) {
+        for (Food food : Food.values()) {
+            if(food.getName().equals(foodName)){
+                return food;
+            }
+        }
+        return null;
     }
 }

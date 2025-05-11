@@ -3,6 +3,7 @@ package org.example.controllers;
 import org.example.models.*;
 import org.example.models.Objectt;
 import org.example.models.enums.CropEnum;
+import org.example.models.enums.Food;
 import org.example.models.enums.Menu;
 
 import java.util.ArrayList;
@@ -271,6 +272,23 @@ public class GameMenuController extends Controller{
             refrigerator.removeItem(item, refrigerator.getQuantity(item));
         }
         return new Result(true, "moved successfully");
+    }
 
+    public Result eat(String foodName) {
+        Food food = Food.getByName(foodName);
+        if(food == null){
+            return new Result(false, "You can't eat this food");
+        }
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Inventory inventory = player.getInventory();
+        InventoryItem foodItem = inventory.findInventoryItem(food.getName());
+        if(foodItem == null){
+            return new Result(false, "You don't have this food in your inventory");
+        }
+        player.addEnergy(food.getEnergy());
+        inventory.removeInventoryItem(food.getName(), 1);
+        /// /// buff??
+        inventory.getInventoryItems().remove(foodItem);
+        return new Result(true, "yum yum yum yum");
     }
 }

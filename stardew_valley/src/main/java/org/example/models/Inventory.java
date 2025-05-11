@@ -67,4 +67,10 @@ public class Inventory {
         inventoryItems.put(item, oldAmount + amount);
         if (oldAmount + amount == 0) inventoryItems.remove(item);
     }
+
+    public void removeInventoryItem(String name, int amount) {
+        InventoryItem item = findInventoryItem(name);
+        if (item == null) return;
+        inventoryItems.compute(item, (k, oldAmount) -> oldAmount - amount);
+    }
 }
