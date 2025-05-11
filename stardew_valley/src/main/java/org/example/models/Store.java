@@ -8,6 +8,10 @@ public class Store {
     private ArrayList<InventoryItem> products = new ArrayList<>();
     private final HashMap<InventoryItem, Integer> productNumbers = new HashMap<>();
 
+    public void resetProducts() {
+        products.clear();
+        productNumbers.clear();
+    }
 
     public Result welcomeMessage(){
         return new Result(true, "Welcome");
