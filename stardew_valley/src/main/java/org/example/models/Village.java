@@ -3,8 +3,8 @@ package org.example.models;
 import java.util.ArrayList;
 
 public class Village{
-    private static int xRange = 60;
-    private static int yRange = 60;
+    private final static int xRange = 60;
+    private final static int yRange = 60;
     private int xStart;
     private int yStart;
     private ArrayList<Objectt> objects = new ArrayList<>();
@@ -23,14 +23,6 @@ public class Village{
 
     public int getYStart() {
         return yStart;
-    }
-
-    public static void setXRange(int xRange) {
-        Village.xRange = xRange;
-    }
-
-    public static void setYRange(int yRange) {
-        Village.yRange = yRange;
     }
 
     public void setXStart(int xStart) {

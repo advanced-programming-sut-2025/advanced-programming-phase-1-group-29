@@ -54,6 +54,16 @@ public class Store {
         return new Result(true, result.toString());
     }
     public Result purchase(String productName, int quantity) {
+        if (productName.equalsIgnoreCase("FiberglassRod")){
+            if (App.getCurrentGame().getCurrentPlayer().getFishingLevel() < 2){
+                return new Result(false, "your fishing skill must be at least 2");
+            }
+        }
+        if (productName.equalsIgnoreCase("IridiumRod")){
+            if (App.getCurrentGame().getCurrentPlayer().getFishingLevel() < 4){
+                return new Result(false, "your fishing skill must be at least 4");
+            }
+        }
         for (InventoryItem item : products) {
             if (item.getName().equalsIgnoreCase(productName)) {
                 int available = productNumbers.getOrDefault(item, 0);
