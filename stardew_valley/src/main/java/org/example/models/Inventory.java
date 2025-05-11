@@ -28,5 +28,40 @@ public class Inventory {
         return inventoryItems;
     }
 
+    public int getCapacity() {
+        return type.getCapacity();
+    }
 
+    public InventoryItem findInventoryItem(String name) {
+        for (InventoryItem inventoryItem : inventoryItems.keySet()) {
+            if (inventoryItem.getName().equalsIgnoreCase(name)) return inventoryItem;
+        }
+        return null;
+    }
+
+    public int getNumberOfInventoryItem(String name) {
+        for (InventoryItem inventoryItem : inventoryItems.keySet()) {
+            if (inventoryItem.getName().equalsIgnoreCase(name)) {
+                return inventoryItems.get(inventoryItem);
+            }
+        }
+        return 0;
+    }
+
+    public void addInventoryItem(String name, int amount) {
+        int oldAmount = 0;
+        InventoryItem item = null;
+        for (InventoryItem inventoryItem : inventoryItems.keySet()) {
+            if (inventoryItem.getName().equalsIgnoreCase(name)) {
+                oldAmount = inventoryItems.get(inventoryItem);
+                item = inventoryItem;
+            }
+        }
+        if (item == null) {
+            item = new InventoryItem();
+            item.setName(name);
+        }
+        inventoryItems.put(item, oldAmount + amount);
+        if (oldAmount + amount == 0) inventoryItems.remove(item);
+    }
 }
