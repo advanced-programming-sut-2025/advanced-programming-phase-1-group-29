@@ -5,9 +5,11 @@ import org.example.models.InventoryItem;
 import org.example.models.Result;
 
 public class TheStardropSaloon extends Store {
+
     private final static int startWorkingHours = 12;
     private final static int endWorkingHours = 24;
     private boolean open = false;
+
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to The Stardrop Shop!");
@@ -16,11 +18,13 @@ public class TheStardropSaloon extends Store {
         super();
         addProducts();
     }
+
     @Override
     public void resetCapacity(){
         super.resetProducts();
         addProducts();
     }
+
     private void addProducts(){
         super.addProduct(new InventoryItem("Beer", 400), 100000000);
         super.addProduct(new InventoryItem("Salad", 220), 100000000);
@@ -38,10 +42,12 @@ public class TheStardropSaloon extends Store {
         super.addProduct(new InventoryItem("TripleShotEspressoRecipe", 5000), 1);
         super.addProduct(new InventoryItem("CookieRecipe", 300), 1);
     }
+
     @Override
     public boolean isOpen() {
         return open;
     }
+
     @Override
     public void openStore() {
         open = App.getCurrentGame().getCurrentTime().getTime() >= startWorkingHours && App.getCurrentGame().getCurrentTime().getTime() <= endWorkingHours;

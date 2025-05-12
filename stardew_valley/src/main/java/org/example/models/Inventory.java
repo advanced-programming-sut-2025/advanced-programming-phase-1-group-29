@@ -39,10 +39,6 @@ public class Inventory {
         return type.getCapacity() - items;
     }
 
-    public boolean isFull(){
-        return getCapacity() >= type.getCapacity();
-    }
-
     public InventoryItem findInventoryItem(String name) {
         for (InventoryItem inventoryItem : inventoryItems.keySet()) {
             if (inventoryItem.getName().equalsIgnoreCase(name)) return inventoryItem;

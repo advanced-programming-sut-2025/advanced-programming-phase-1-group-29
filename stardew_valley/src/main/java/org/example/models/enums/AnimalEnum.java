@@ -1,6 +1,6 @@
 package org.example.models.enums;
 
-public enum Animals {
+public enum AnimalEnum {
     Chicken (800),
     Duck (1200),
     Rabbit (8000),
@@ -13,7 +13,7 @@ public enum Animals {
 
     private final int price;
 
-    private Animals(int price) {
+    private AnimalEnum(int price) {
         this.price = price;
     }
 

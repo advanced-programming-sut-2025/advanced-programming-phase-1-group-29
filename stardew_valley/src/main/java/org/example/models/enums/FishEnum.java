@@ -1,6 +1,6 @@
 package org.example.models.enums;
 
-public enum Fish {
+public enum FishEnum {
     Salmon ("Salmon", 75, Season.Fall),
     Sardine ("Sardine", 40, Season.Fall),
     Shad ("Shad", 60, Season.Fall),
@@ -23,11 +23,13 @@ public enum Fish {
     Crimsonfish ("Crimsonfish", 1500, Season.Summer),
     ;
 
+    private final static int normalNumber = 16;
+    private final static int legendaryNumber = 4;
     private final String name;
     private final int price;
     private final Season season;
 
-    private Fish(String name, int price, Season season) {
+    private FishEnum(String name, int price, Season season) {
         this.name = name;
         this.price = price;
         this.season = season;
@@ -45,10 +47,10 @@ public enum Fish {
         return season;
     }
 
-    public static Fish getByName(String fishName) {
-        for (Fish fish : Fish.values()) {
-            if(fish.getName().equals(fishName)){
-                return fish;
+    public static FishEnum getByName(String fishName) {
+        for (FishEnum fishEnum : FishEnum.values()) {
+            if(fishEnum.getName().equals(fishName)){
+                return fishEnum;
             }
         }
         return null;

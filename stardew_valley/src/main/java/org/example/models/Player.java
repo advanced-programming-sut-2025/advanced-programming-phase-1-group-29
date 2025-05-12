@@ -1,6 +1,9 @@
 package org.example.models;
 
+import org.example.models.enums.FoodRecipe;
 import org.example.models.enums.TrashCan;
+
+import java.util.ArrayList;
 
 public class Player {
     private int farmNumber;
@@ -15,6 +18,7 @@ public class Player {
     private int fishingUnit = 0;
     int coins = 0;
     private Inventory inventory = new Inventory();
+    private final ArrayList<FoodRecipe> foodRecipeList = new ArrayList<>();
     private boolean isEnergyUnlimited = false;
     private Tool currentTool = null;
     private User user;
@@ -89,6 +93,10 @@ public class Player {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public ArrayList<FoodRecipe> getFoodRecipeList() {
+        return foodRecipeList;
     }
 
     public boolean isEnergyUnlimited() {

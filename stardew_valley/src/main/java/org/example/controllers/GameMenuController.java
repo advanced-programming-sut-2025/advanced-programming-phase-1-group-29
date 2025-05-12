@@ -247,6 +247,7 @@ public class GameMenuController extends Controller{
     public Result cookingRefrigerator(String action, String item){
         Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
+        //TODO
 //        if(!atHome){
 //            return new Result(false, "You are not at the home");
 //        }
@@ -281,9 +282,9 @@ public class GameMenuController extends Controller{
         Player player = App.getCurrentGame().getCurrentPlayer();
         StringJoiner joiner = new StringJoiner("\n");
         joiner.add("Your cooking recipes are: ");
-//        for (FoodRecipe recipe : "?") {
-//            joiner.add(recipe.getFood().getName());
-//        }
+        for (FoodRecipe recipe : player.getFoodRecipeList()) {
+            joiner.add(recipe.getFood().getName());
+        }
         return new Result(true, joiner.toString());
     }
 
@@ -292,7 +293,7 @@ public class GameMenuController extends Controller{
         Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = game.getMap().getFarms().get(game.getTurn());
         Cottage cottage = farm.getCottage();
-
+        //TODO
 //        if(!atHome){
 //            return new Result(false, "You are not at the home");
 //        }
@@ -305,48 +306,50 @@ public class GameMenuController extends Controller{
         if(recipe == null){
             return new Result(false, "This recipe doesn't exist");
         }
-//        if(balad nabood){
-//            return new Result(false, "You don't have this recipe");
-//        }
-        Food food = recipe.getFood();
-        for (String itemName : food.getIngredients().keySet()) {
+        if(!player.getFoodRecipeList().contains(recipe)){
+            return new Result(false, "You don't have this recipe");
+        }
+        FoodEnum foodEnum = recipe.getFood();
+        for (String itemName : foodEnum.getIngredients().keySet()) {
             int count = inventory.getNumberOfInventoryItem(itemName) + refrigerator.getQuantity(itemName);
-            if(count < food.getIngredients().get(itemName)) {
+            if(count < foodEnum.getIngredients().get(itemName)) {
                 return new Result(false, "You don't have enough ingredients");
             }
         }
-        if(inventory.isFull()){
+        if(inventory.getCapacity() == 0){
             return new Result(false, "Your inventory is full");
         }
-        for (String itemName : food.getIngredients().keySet()) {
-            int amount = food.getIngredients().get(itemName);
+        for (String itemName : foodEnum.getIngredients().keySet()) {
+            int amount = foodEnum.getIngredients().get(itemName);
             int inventoryStock = inventory.getNumberOfInventoryItem(itemName);
-            inventory.removeInventoryItem(food.getName(), Integer.min(inventoryStock, amount));
+            inventory.removeInventoryItem(foodEnum.getName(), Integer.min(inventoryStock, amount));
             if(amount > inventoryStock) {
                 refrigerator.removeItem(itemName, amount - inventoryStock);
             }
         }
-        inventory.addInventoryItem(food.getName(), 1, food.getSellPrice());
+        inventory.addInventoryItem(foodEnum.getName(), 1, foodEnum.getSellPrice());
         player.reduceEnergy(3);
-        return new Result(true, food.getName() + " is prepared");
+        return new Result(true, foodEnum.getName() + " is prepared");
     }
 
     public Result eat(String foodName) {
         Player player = App.getCurrentGame().getCurrentPlayer();
+        //TODO
 //        if(!atHome){
 //            return new Result(false, "You are not at the home");
 //        }
-        Food food = Food.getByName(foodName);
-        if(food == null){
+        FoodEnum foodEnum = FoodEnum.getByName(foodName);
+        if(foodEnum == null){
             return new Result(false, "You can't eat this food");
         }
         Inventory inventory = player.getInventory();
-        InventoryItem foodItem = inventory.findInventoryItem(food.getName());
+        InventoryItem foodItem = inventory.findInventoryItem(foodEnum.getName());
         if(foodItem == null){
             return new Result(false, "You don't have this food in your inventory");
         }
-        player.addEnergy(food.getEnergy());
-        inventory.removeInventoryItem(food.getName(), 1);
+        player.addEnergy(foodEnum.getEnergy());
+        inventory.removeInventoryItem(foodEnum.getName(), 1);
+        //TODO
         /// /// buff??
         inventory.getInventoryItems().remove(foodItem);
         return new Result(true, "Yum yum yum yum");
@@ -356,6 +359,7 @@ public class GameMenuController extends Controller{
         Game game = App.getCurrentGame();
         Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
+        //TODO
 //       if(!atLake){
 //            return new Result(false, "You are not near the beach");
 //        }
@@ -373,7 +377,11 @@ public class GameMenuController extends Controller{
             return new Result(false, "You don't have this fishing pole");
         }
         Random rand = new Random();
-        //int amount = Double.rand.nextInt(2) * game.getWeather().getFishingRate() * (player.getFishingLevel() + 2);
+        int amount = Math.min((int) Math.ceil(rand.nextInt(2) * game.getWeather().getFishingRate() * (player.getFishingLevel() + 2)), 6);
+        amount = Math.min(amount, inventory.getCapacity());
+        for (int i = 0; i < amount; i++) {
+            int fishIndex = rand.nextInt();
+        }
         return new Result(true, "");
     }
 }
