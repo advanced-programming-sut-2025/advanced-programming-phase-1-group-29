@@ -49,8 +49,6 @@ public class FishShop extends Store {
     }
     @Override
     public void openStore() {
-        if (App.getCurrentGame().getCurrentTime().getTime() >= startWorkingHours && App.getCurrentGame().getCurrentTime().getTime() <= endWorkingHours) {
-            open = true;
-        }
+        open = App.getCurrentGame().getCurrentTime().getTime() >= startWorkingHours && App.getCurrentGame().getCurrentTime().getTime() <= endWorkingHours;
     }
 }
