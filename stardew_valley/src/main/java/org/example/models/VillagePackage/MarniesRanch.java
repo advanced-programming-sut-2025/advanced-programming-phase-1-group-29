@@ -1,6 +1,9 @@
-package org.example.models;
+package org.example.models.VillagePackage;
 
-public class MarniesRanch extends Store{
+import org.example.models.InventoryItem;
+import org.example.models.Result;
+
+public class MarniesRanch extends Store {
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to Marnies Ranch!");

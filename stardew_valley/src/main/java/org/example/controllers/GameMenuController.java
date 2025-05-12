@@ -22,6 +22,11 @@ public class GameMenuController extends Controller{
         return new Result(true, "");
     }
 
+    public Result walk(){
+        //TODO
+
+    }
+
     public Result time(){
         return new Result(
                 true,

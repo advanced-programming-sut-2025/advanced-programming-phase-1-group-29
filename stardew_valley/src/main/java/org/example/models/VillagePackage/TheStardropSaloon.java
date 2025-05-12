@@ -1,6 +1,9 @@
-package org.example.models;
+package org.example.models.VillagePackage;
 
-public class TheStardropSaloon extends Store{
+import org.example.models.InventoryItem;
+import org.example.models.Result;
+
+public class TheStardropSaloon extends Store {
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to The Stardrop Shop!");

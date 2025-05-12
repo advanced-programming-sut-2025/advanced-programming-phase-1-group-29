@@ -1,6 +1,10 @@
-package org.example.models;
+package org.example.models.VillagePackage;
 
-public class FishShop extends Store{
+import org.example.models.App;
+import org.example.models.InventoryItem;
+import org.example.models.Result;
+
+public class FishShop extends Store {
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to Fish Shop!");
