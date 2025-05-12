@@ -62,9 +62,9 @@ public class GameMenu implements AppMenu{
 //        else if (GameMenuCommands.GreenHouseBuild.getMatcher(input) != null) {
 //            System.out.println(controller.greenhouseBuild());
 //        }
-//        else if ((matcher = GameMenuCommands.Walk.getMatcher(input)) != null) {
-//            System.out.println(controller.walk(matcher.group("x"), matcher.group("y")));
-//        }
+        else if ((matcher = GameMenuCommands.Walk.getMatcher(input)) != null) {
+            System.out.println(controller.walk(matcher.group("x"), matcher.group("y")));
+        }
         else if ((matcher = GameMenuCommands.PrintMap.getMatcher(input)) != null) {
             System.out.println(controller.printMap(
                     matcher.group("x"),

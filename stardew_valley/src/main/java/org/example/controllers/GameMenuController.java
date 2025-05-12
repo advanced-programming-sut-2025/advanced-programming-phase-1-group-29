@@ -89,15 +89,15 @@ public class GameMenuController extends Controller{
 
     public void energySet(String amount) {
         int value = Integer.parseInt(amount);
-        App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).setEnergy(value);
+        App.getCurrentGame().getCurrentPlayer().setEnergy(value);
     }
 
     public void energyUnlimited() {
-        App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).setEnergyUnlimited(true);
+        App.getCurrentGame().getCurrentPlayer().setEnergyUnlimited(true);
     }
 
     public Result inventoryShow() {
-        Inventory inventory = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getInventory();
+        Inventory inventory = App.getCurrentGame().getCurrentPlayer().getInventory();
         StringBuilder result = new StringBuilder("Your inventory includes:\n");
         for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
             result.append(inventoryItem.getName());
@@ -107,7 +107,7 @@ public class GameMenuController extends Controller{
     }
 
     public Result toolsEquip(String name) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
         for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
             if (inventoryItem instanceof Tool) {
@@ -121,14 +121,14 @@ public class GameMenuController extends Controller{
     }
 
     public Result toolsShowCurrent() {
-        Tool tool = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getCurrentTool();
+        Tool tool = App.getCurrentGame().getCurrentPlayer().getCurrentTool();
         if (tool != null)
             return new Result(true, "The current tool in your hand is " + tool.getName());
         return new Result(false, "There are no tools in your hand.");
     }
 
     public Result toolsShowAvailable() {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
         StringBuilder result = new StringBuilder("Available tools in your backpack:\n");
         for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
@@ -138,6 +138,45 @@ public class GameMenuController extends Controller{
             }
         }
         return new Result(true, result.toString());
+    }
+
+
+    public Result walk(String xString, String yString) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int x2 = Integer.parseInt(xString);
+        int y2 = Integer.parseInt(yString);
+        int x1 = player.getX();
+        int y1 = player.getY();
+        int[] dx = {0, 0, 1, -1};
+        int[] dy = {1, -1, 0, 0};
+        boolean[][] walkable = new boolean[Map.getXRange()][Map.getYRange()];
+        boolean[][] seen = new boolean[Map.getXRange()][Map.getYRange()];
+        int[][] distance = new int[Map.getXRange()][Map.getYRange()];
+        for (int i = 0; i < Map.getXRange(); i++) {
+            for (int j = 0; j < Map.getYRange(); j++) {
+                walkable[i][j] = true;
+                seen[i][j] = false;
+                distance[i][j] = -1;
+            }
+        }
+        seen[x1][y1] = true;
+        distance[x1][y1] = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(x1 * Map.getYRange() + y1);
+        while(!queue.isEmpty()) {
+            int top = queue.poll();
+            int x = top / Map.getYRange();
+            int y = top % Map.getYRange();
+            for (int i = 0; i < 4; i ++){
+                int xx = x + dx[i];
+                int yy = y + dy[i];
+                if(walkable[xx][yy] && (distance[xx][yy] == -1 || distance[xx][yy] < distance[x][y] + 1)) {
+                    distance[xx][yy] = distance[x][y] + 1;
+                    queue.add(xx * Map.getYRange() + yy);
+                }
+            }
+        }
+        return new Result(true, "You are at " + x2 + ", " + y2 + ".");
     }
 
 
@@ -174,7 +213,7 @@ public class GameMenuController extends Controller{
     }
 
     public Result inventoryTrash(String name, String amount) {
-        Player player = App.getCurrentGame().getPlayers().get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
         InventoryItem item = null;
         int number = 0;
