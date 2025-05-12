@@ -8,7 +8,8 @@ import java.util.regex.Matcher;
 
 public class GameMenu implements AppMenu{
     private final GameMenuController controller = new GameMenuController();
-
+    //TODO
+    //remove all the spaces from the inputs
     @Override
     public void check(Scanner scanner) {
         String input = scanner.nextLine();

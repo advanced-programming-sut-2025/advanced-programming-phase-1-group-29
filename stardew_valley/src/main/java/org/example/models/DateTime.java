@@ -1,5 +1,6 @@
 package org.example.models;
 
+import org.example.models.VillagePackage.Store;
 import org.example.models.enums.Season;
 
 public class DateTime {
@@ -29,6 +30,11 @@ public class DateTime {
             else if (season.equals(Season.Summer)) setSeason(Season.Fall);
             else if (season.equals(Season.Fall)) setSeason(Season.Winter);
             else setSeason(Season.Spring);
+        }
+        for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
+            if (objectt instanceof Store){
+                ((Store) objectt).resetProducts();
+            }
         }
     }
 
