@@ -383,11 +383,15 @@ public class GameMenuController extends Controller{
             return new Result(false, "You don't have this fishing pole");
         }
         Random rand = new Random();
-        int amount = Math.min((int) Math.ceil(rand.nextInt(2) * game.getWeather().getFishingRate() * (player.getFishingLevel() + 2)), 6);
+        int amount = Math.min((int) (Math.ceil(rand.nextDouble(2) * game.getWeather().getFishingRate() * (player.getFishingLevel() + 2))), 6);
         amount = Math.min(amount, inventory.getCapacity());
         for (int i = 0; i < amount; i++) {
             FishEnum fishEnum = FishEnum.getRandomFish(game.getCurrentTime().getSeason(), player.getFishingLevel() == 4);
+            double quantity = rand.nextDouble(2) * (player.getFishingLevel() + 2) * fishingPoleType.getQuantityRate() / (7 - amount);
+            Product fish = new Product(fishEnum.getName(), 0, quantity);
+            //Todo
+            //inventory.addInventoryItem(fish);
         }
-        return new Result(true, "");
+        return new Result(true, "You caught " + amount);
     }
 }
