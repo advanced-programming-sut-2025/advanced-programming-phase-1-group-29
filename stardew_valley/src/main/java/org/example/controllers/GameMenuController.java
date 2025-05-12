@@ -1,14 +1,11 @@
 package org.example.controllers;
 
 import org.example.models.*;
+import org.example.models.Map;
 import org.example.models.Objectt;
-import org.example.models.enums.CropEnum;
-import org.example.models.enums.Menu;
+import org.example.models.enums.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class GameMenuController extends Controller{
 
@@ -23,6 +20,11 @@ public class GameMenuController extends Controller{
         }
         App.setCurrentMenu(Menu.ExitMenu);
         return new Result(true, "");
+    }
+
+    public Result walk(){
+        //TODO
+
     }
 
     public Result time(){
@@ -239,5 +241,138 @@ public class GameMenuController extends Controller{
         } catch (IllegalArgumentException e) {
             return new Result(false, "Invalid crop name");
         }
+    }
+
+    public Result cookingRefrigerator(String action, String item){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Inventory inventory = player.getInventory();
+//        if(!atHome){
+//            return new Result(false, "You are not at the home");
+//        }
+//        if(!food){
+//            return new Result(false, "Not eatable!");
+//        }
+
+        Game game = App.getCurrentGame();
+        Farm farm = game.getMap().getFarms().get(game.getTurn());
+        Cottage cottage = farm.getCottage();
+        Refrigerator refrigerator = cottage.getRefrigerator();
+        if(action.equals("put")){
+            InventoryItem inventoryItem = inventory.findInventoryItem(item);
+            if(inventoryItem == null){
+                return new Result(false, "You don't have this item in your inventory");
+            }
+            refrigerator.addItem(inventoryItem, inventory.getInventoryItems().get(inventoryItem));
+            inventory.getInventoryItems().remove(inventoryItem);
+        }
+        if(action.equals("pick")){
+            if(refrigerator.getQuantity(item) == 0){
+                return new Result(false, "You don't have this item in your refrigerator");
+            }
+            InventoryItem inventoryItem = refrigerator.findItem(item);
+            inventory.addInventoryItem(item, refrigerator.getQuantity(item), inventoryItem.getPrice());
+            refrigerator.removeItem(item, refrigerator.getQuantity(item));
+        }
+        return new Result(true, "moved successfully");
+    }
+
+    public Result cookingShowRecipes(){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        StringJoiner joiner = new StringJoiner("\n");
+        joiner.add("Your cooking recipes are: ");
+//        for (FoodRecipe recipe : "?") {
+//            joiner.add(recipe.getFood().getName());
+//        }
+        return new Result(true, joiner.toString());
+    }
+
+    public Result cookingPrepare(String recipeName){
+        Game game = App.getCurrentGame();
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Farm farm = game.getMap().getFarms().get(game.getTurn());
+        Cottage cottage = farm.getCottage();
+
+//        if(!atHome){
+//            return new Result(false, "You are not at the home");
+//        }
+
+        Refrigerator refrigerator = cottage.getRefrigerator();
+        Inventory inventory = player.getInventory();
+
+        FoodRecipe recipe = FoodRecipe.getRecipeByName(recipeName);
+
+        if(recipe == null){
+            return new Result(false, "This recipe doesn't exist");
+        }
+//        if(balad nabood){
+//            return new Result(false, "You don't have this recipe");
+//        }
+        Food food = recipe.getFood();
+        for (String itemName : food.getIngredients().keySet()) {
+            int count = inventory.getNumberOfInventoryItem(itemName) + refrigerator.getQuantity(itemName);
+            if(count < food.getIngredients().get(itemName)) {
+                return new Result(false, "You don't have enough ingredients");
+            }
+        }
+        if(inventory.isFull()){
+            return new Result(false, "Your inventory is full");
+        }
+        for (String itemName : food.getIngredients().keySet()) {
+            int amount = food.getIngredients().get(itemName);
+            int inventoryStock = inventory.getNumberOfInventoryItem(itemName);
+            inventory.removeInventoryItem(food.getName(), Integer.min(inventoryStock, amount));
+            if(amount > inventoryStock) {
+                refrigerator.removeItem(itemName, amount - inventoryStock);
+            }
+        }
+        inventory.addInventoryItem(food.getName(), 1, food.getSellPrice());
+        player.reduceEnergy(3);
+        return new Result(true, food.getName() + " is prepared");
+    }
+
+    public Result eat(String foodName) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+//        if(!atHome){
+//            return new Result(false, "You are not at the home");
+//        }
+        Food food = Food.getByName(foodName);
+        if(food == null){
+            return new Result(false, "You can't eat this food");
+        }
+        Inventory inventory = player.getInventory();
+        InventoryItem foodItem = inventory.findInventoryItem(food.getName());
+        if(foodItem == null){
+            return new Result(false, "You don't have this food in your inventory");
+        }
+        player.addEnergy(food.getEnergy());
+        inventory.removeInventoryItem(food.getName(), 1);
+        /// /// buff??
+        inventory.getInventoryItems().remove(foodItem);
+        return new Result(true, "Yum yum yum yum");
+    }
+
+    public Result fishing(String fishingPoleName) {
+        Game game = App.getCurrentGame();
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Inventory inventory = player.getInventory();
+//       if(!atLake){
+//            return new Result(false, "You are not near the beach");
+//        }
+        FishingPoleType fishingPoleType = FishingPoleType.getFishingPoleByName(fishingPoleName);
+        if(fishingPoleType == null){
+            return new Result(false, "This fishing pole doesn't exist");
+        }
+        FishingPole fishingPole = null;
+        for(InventoryItem inventoryItem : inventory.getInventoryItems().keySet()){
+            if(inventoryItem.getName().equals(fishingPoleType.getName())){
+                fishingPole = (FishingPole) inventoryItem;
+            }
+        }
+        if(fishingPole == null){
+            return new Result(false, "You don't have this fishing pole");
+        }
+        Random rand = new Random();
+        //int amount = Double.rand.nextInt(2) * game.getWeather().getFishingRate() * (player.getFishingLevel() + 2);
+        return new Result(true, "");
     }
 }

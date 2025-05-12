@@ -1,10 +1,15 @@
-package org.example.models;
+package org.example.models.VillagePackage;
+
+import org.example.models.App;
+import org.example.models.InventoryItem;
+import org.example.models.Objectt;
+import org.example.models.Result;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Store {
+public class Store extends Objectt {
     private ArrayList<InventoryItem> products = new ArrayList<>();
     private final HashMap<InventoryItem, Integer> productNumbers = new HashMap<>();
 

@@ -53,4 +53,14 @@ public class Farm extends Objectt {
     public void addObject(Objectt object){
         objects.add(object);
     }
+
+    public Cottage getCottage() {
+        for (Objectt object : objects) {
+            if (object instanceof Cottage) {
+                return (Cottage) object;
+            }
+        }
+        return null;
+    }
+
 }

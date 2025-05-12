@@ -79,6 +79,14 @@ public class Player {
         this.energy = energy;
     }
 
+    public void addEnergy(int amount) {
+        energy += amount;
+    }
+
+    public void reduceEnergy(int amount) {
+        energy -= amount;
+    }
+
     public Inventory getInventory() {
         return inventory;
     }

@@ -8,7 +8,8 @@ import java.util.regex.Matcher;
 
 public class GameMenu implements AppMenu{
     private final GameMenuController controller = new GameMenuController();
-
+    //TODO
+    //remove all the spaces from the inputs
     @Override
     public void check(Scanner scanner) {
         String input = scanner.nextLine();
@@ -130,18 +131,18 @@ public class GameMenu implements AppMenu{
 //        else if ((matcher = GameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
 //            System.out.println(controller.cheatAddItem(matcher.group("itemName"), matcher.group("count")));
 //        }
-//        else if ((matcher = GameMenuCommands.CookingRefrigerator.getMatcher(input)) != null) {
-//            System.out.println(controller.cookingRefrigerator(matcher.group("action"), matcher.group("item")));
-//        }
-//        else if (GameMenuCommands.CookingShowRecipes.getMatcher(input) != null) {
-//            System.out.println(controller.cookingShowRecipes());
-//        }
-//        else if ((matcher = GameMenuCommands.CookingPrepare.getMatcher(input)) != null) {
-//            System.out.println(controller.cookingPrepare(matcher.group("recipeName")));
-//        }
-//        else if ((matcher = GameMenuCommands.Eat.getMatcher(input)) != null) {
-//            System.out.println(controller.eat(matcher.group("foodName")));
-//        }
+        else if ((matcher = GameMenuCommands.CookingRefrigerator.getMatcher(input)) != null) {
+            System.out.println(controller.cookingRefrigerator(matcher.group("action"), matcher.group("item")));
+        }
+        else if (GameMenuCommands.CookingShowRecipes.getMatcher(input) != null) {
+            System.out.println(controller.cookingShowRecipes());
+        }
+        else if ((matcher = GameMenuCommands.CookingPrepare.getMatcher(input)) != null) {
+            System.out.println(controller.cookingPrepare(matcher.group("recipeName")));
+        }
+        else if ((matcher = GameMenuCommands.Eat.getMatcher(input)) != null) {
+            System.out.println(controller.eat(matcher.group("foodName")));
+        }
 //        else if ((matcher = GameMenuCommands.Build.getMatcher(input)) != null) {
 //            System.out.println(controller.build(
 //            matcher.group("buildingName"),
@@ -180,9 +181,9 @@ public class GameMenu implements AppMenu{
 //        else if ((matcher = GameMenuCommands.SellAnimal.getMatcher(input)) != null) {
 //            System.out.println(controller.sellAnimal(matcher.group("name")));
 //        }
-//        else if ((matcher = GameMenuCommands.Fishing.getMatcher(input)) != null) {
-//            System.out.println(controller.fishing(matcher.group("fishingPole")));
-//        }
+        else if ((matcher = GameMenuCommands.Fishing.getMatcher(input)) != null) {
+            System.out.println(controller.fishing(matcher.group("fishingPole")));
+        }
 //        else if ((matcher = GameMenuCommands.ArtisanUse.getMatcher(input)) != null) {
 //            System.out.println(controller.ArtisanUse(matcher.group("artisanName"), matcher.group("item1Name")));
 //        }
