@@ -70,11 +70,11 @@ public class Inventory {
         }
         if (item == null) {
             try {
-                SeedEnum.valueOf(name.replaceAll("\\s+", "_").toUpperCase());
+                SeedEnum.valueOf(name.toUpperCase());
                 item = new Seed(name, price);
             } catch (IllegalArgumentException _) {
                 try {
-                    TreeSeedEnum.valueOf(name.replaceAll("\\s+", "_").toUpperCase());
+                    TreeSeedEnum.valueOf(name.toUpperCase());
                     item = new TreeSeed(name, price);
                 } catch (IllegalArgumentException _) {
                     item = new InventoryItem(name, price);
