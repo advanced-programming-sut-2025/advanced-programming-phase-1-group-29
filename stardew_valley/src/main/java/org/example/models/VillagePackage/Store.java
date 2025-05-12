@@ -58,6 +58,25 @@ public abstract class Store extends Objectt {
         }
         return new Result(true, result.toString());
     }
+    public Result showAllAvailableProducts() {
+        if (productNumbers.isEmpty()) {
+            return new Result(false, "Store is empty.");
+        }
+        StringBuilder result = new StringBuilder("Products in store:\n");
+        for (Map.Entry<InventoryItem, Integer> entry : productNumbers.entrySet()) {
+            if (entry.getValue() == 0) {
+                continue;
+            }
+            result.append("- ")
+                    .append(entry.getKey().getName())
+                    .append(" | Quantity: ")
+                    .append(entry.getValue())
+                    .append(" | Price: ")
+                    .append(entry.getKey().getPrice())
+                    .append("\n");
+        }
+        return new Result(true, result.toString());
+    }
     public Result purchase(String productName, int quantity) {
         for (InventoryItem item : products) {
             if (item.getName().equalsIgnoreCase(productName)) {
