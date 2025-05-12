@@ -4,60 +4,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum TreeEnum {
-    APRICOT_TREE(
-            "Apricot Tree", TreeSeedEnum.APRICOT_SAPLING, FruitEnum.APRICOT,
+    APRICOTTREE(
+            "Apricot Tree", TreeSeedEnum.APRICOTSAPLING, FruitEnum.APRICOT,
             1, new ArrayList<>(List.of("Spring"))
     ),
-    CHERRY_TREE(
-            "Cherry Tree", TreeSeedEnum.CHERRY_SAPLING, FruitEnum.CHERRY,
+    CHERRYTREE(
+            "Cherry Tree", TreeSeedEnum.CHERRYSAPLING, FruitEnum.CHERRY,
             1, new ArrayList<>(List.of("Spring"))
     ),
-    BANANA_TREE(
-            "Banana Tree", TreeSeedEnum.BANANA_SAPLING, FruitEnum.BANANA,
+    BANANATREE(
+            "Banana Tree", TreeSeedEnum.BANANASAPLING, FruitEnum.BANANA,
             1, new ArrayList<>(List.of("Summer"))
     ),
-    MANGO_TREE(
-            "Mango Tree", TreeSeedEnum.MANGO_SAPLING, FruitEnum.MANGO,
+    MANGOTREE(
+            "Mango Tree", TreeSeedEnum.MANGOSAPLING, FruitEnum.MANGO,
             1, new ArrayList<>(List.of("Summer"))
     ),
-    ORANGE_TREE(
-            "Orange Tree", TreeSeedEnum.ORANGE_SAPLING, FruitEnum.ORANGE,
+    ORANGETREE(
+            "Orange Tree", TreeSeedEnum.ORANGESAPLING, FruitEnum.ORANGE,
             1, new ArrayList<>(List.of("Summer"))
     ),
-    PEACH_TREE(
-            "Peach Tree", TreeSeedEnum.PEACH_SAPLING, FruitEnum.PEACH,
+    PEACHTREE(
+            "Peach Tree", TreeSeedEnum.PEACHSAPLING, FruitEnum.PEACH,
             1, new ArrayList<>(List.of("Summer"))
     ),
-    APPLE_TREE(
-            "Apple Tree", TreeSeedEnum.APPLE_SAPLING, FruitEnum.APPLE,
+    APPLETREE(
+            "Apple Tree", TreeSeedEnum.APPLESAPLING, FruitEnum.APPLE,
             1, new ArrayList<>(List.of("Fall"))
     ),
-    POMEGRANATE_TREE(
-            "Pomegranate Tree", TreeSeedEnum.POMEGRANATE_SAPLING, FruitEnum.POMEGRANATE,
+    POMEGRANATETREE(
+            "Pomegranate Tree", TreeSeedEnum.POMEGRANATESAPLING, FruitEnum.POMEGRANATE,
             1, new ArrayList<>(List.of("Fall"))
     ),
-    OAK_TREE(
-            "Oak Tree", TreeSeedEnum.ACORN, FruitEnum.OAK_RESIN,
+    OAKTREE(
+            "Oak Tree", TreeSeedEnum.ACORN, FruitEnum.OAKRESIN,
             7, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
-    MAPLE_TREE(
-            "Maple Tree", TreeSeedEnum.MAPLE_SEED, FruitEnum.MAPLE_SYRUP,
+    MAPLETREE(
+            "Maple Tree", TreeSeedEnum.MAPLESEED, FruitEnum.MAPLESYRUP,
             9, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
-    PINE_TREE(
-            "Pine Tree", TreeSeedEnum.PINE_CONE, FruitEnum.PINE_TAR,
+    PINETREE(
+            "Pine Tree", TreeSeedEnum.PINECONE, FruitEnum.PINETAR,
             5, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
-    MAHOGANY_TREE(
-            "Mahogany Tree", TreeSeedEnum.MAHOGANY_SEED, FruitEnum.SAP,
+    MAHOGANYTREE(
+            "Mahogany Tree", TreeSeedEnum.MAHOGANYSEED, FruitEnum.SAP,
             1, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
-    MUSHROOM_TREE(
-            "Mushroom Tree", TreeSeedEnum.MUSHROOM_TREE_SEED, FruitEnum.COMMON_MUSHROOM,
+    MUSHROOMTREE(
+            "Mushroom Tree", TreeSeedEnum.MUSHROOMTREESEED, FruitEnum.COMMONMUSHROOM,
             1, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
-    MYSTIC_TREE(
-            "Mystic Tree", TreeSeedEnum.MYSTIC_TREE_SEED, FruitEnum.MYSTIC_SYRUP,
+    MYSTICTREE(
+            "Mystic Tree", TreeSeedEnum.MYSTICTREESEED, FruitEnum.MYSTICSYRUP,
             7, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     );
     private final String name;

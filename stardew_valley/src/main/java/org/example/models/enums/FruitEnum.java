@@ -9,12 +9,12 @@ public enum FruitEnum {
     PEACH("Peach", 140, true, 38),
     APPLE("Apple", 100, true, 38),
     POMEGRANATE("Pomegranate", 140, true, 38),
-    OAK_RESIN("Oak Resin", 150, false, null),
-    MAPLE_SYRUP("Maple Syrup", 200, false, null),
-    PINE_TAR("Pine Tar", 100, false, null),
+    OAKRESIN("Oak Resin", 150, false, null),
+    MAPLESYRUP("Maple Syrup", 200, false, null),
+    PINETAR("Pine Tar", 100, false, null),
     SAP("Sap", 2, true, -2),
-    COMMON_MUSHROOM("Common Mushroom", 40, true, 38),
-    MYSTIC_SYRUP("Mystic Syrup", 1000, true, 500);
+    COMMONMUSHROOM("Common Mushroom", 40, true, 38),
+    MYSTICSYRUP("Mystic Syrup", 1000, true, 500);
     private final String name;
     private final int baseSellPrice;
     private final boolean isEdible;

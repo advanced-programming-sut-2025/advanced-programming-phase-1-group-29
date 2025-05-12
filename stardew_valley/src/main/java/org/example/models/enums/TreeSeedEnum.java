@@ -3,19 +3,19 @@ package org.example.models.enums;
 
 public enum TreeSeedEnum {
     ACORN("Acorns", true),
-    MAPLE_SEED("Maple Seeds", true),
-    PINE_CONE("Pine Cones", true),
-    MAHOGANY_SEED("Mahogany Seeds", true),
-    MUSHROOM_TREE_SEED("Mushroom Tree Seeds", true),
-    APRICOT_SAPLING("Apricot Sapling", false),
-    CHERRY_SAPLING("Cherry Sapling", false),
-    BANANA_SAPLING("Banana Sapling", false),
-    MANGO_SAPLING("Mango Sapling", false),
-    ORANGE_SAPLING("Orange Sapling", false),
-    PEACH_SAPLING("Peach Sapling", false),
-    APPLE_SAPLING("Apple Sapling", false),
-    POMEGRANATE_SAPLING("Pomegranate Sapling", false),
-    MYSTIC_TREE_SEED("Mystic Tree Seeds", false);
+    MAPLESEED("Maple Seeds", true),
+    PINECONE("Pine Cones", true),
+    MAHOGANYSEED("Mahogany Seeds", true),
+    MUSHROOMTREESEED("Mushroom Tree Seeds", true),
+    APRICOTSAPLING("Apricot Sapling", false),
+    CHERRYSAPLING("Cherry Sapling", false),
+    BANANASAPLING("Banana Sapling", false),
+    MANGOSAPLING("Mango Sapling", false),
+    ORANGESAPLING("Orange Sapling", false),
+    PEACHSAPLING("Peach Sapling", false),
+    APPLESAPLING("Apple Sapling", false),
+    POMEGRANATESAPLING("Pomegranate Sapling", false),
+    MYSTICTREESEED("Mystic Tree Seeds", false);
 
 
     private final String name;

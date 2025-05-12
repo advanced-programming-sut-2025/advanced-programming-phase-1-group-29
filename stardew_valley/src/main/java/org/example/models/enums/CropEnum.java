@@ -4,208 +4,208 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum CropEnum {
-    BLUE_JAZZ(
-            "Blue Jazz", SeedEnum.JAZZ_SEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
+    BLUEJAZZ(
+            "Blue Jazz", SeedEnum.JAZZSEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
             true, null, 50, true,
             45, new ArrayList<>(List.of("Spring")), false
     ),
     CARROT(
-            "Carrot", SeedEnum.CARROT_SEED, new ArrayList<>(List.of(1, 1, 1)), 3,
+            "Carrot", SeedEnum.CARROTSEED, new ArrayList<>(List.of(1, 1, 1)), 3,
             true, null, 35, true,
             75, new ArrayList<>(List.of("Spring")), false
     ),
     CAULIFLOWER(
-            "Cauliflower", SeedEnum.CAULIFLOWER_SEED, new ArrayList<>(List.of(1, 2, 4, 4, 1)), 12,
+            "Cauliflower", SeedEnum.CAULIFLOWERSEED, new ArrayList<>(List.of(1, 2, 4, 4, 1)), 12,
             true, null, 175, true,
             75, new ArrayList<>(List.of("Spring")), true
     ),
-    COFFEE_BEAN(
-            "Coffee Bean", SeedEnum.COFFEE_BEAN, new ArrayList<>(List.of(1, 2, 2, 3, 2)), 10,
+    COFFEEBEAN(
+            "Coffee Bean", SeedEnum.COFFEEBEAN, new ArrayList<>(List.of(1, 2, 2, 3, 2)), 10,
             false, 2, 15, false,
             null, new ArrayList<>(List.of("Spring", "Summer")), false
     ),
     GARLIC(
-            "Garlic", SeedEnum.GARLIC_SEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Garlic", SeedEnum.GARLICSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             true, null, 60, true,
             20, new ArrayList<>(List.of("Spring")), false
     ),
-    GREEN_BEAN(
-            "Green Bean", SeedEnum.BEAN_STARTER, new ArrayList<>(List.of(1, 1, 1, 3, 4)), 10,
+    GREENBEAN(
+            "Green Bean", SeedEnum.BEANSTARTER, new ArrayList<>(List.of(1, 1, 1, 3, 4)), 10,
             false, 3, 40, true,
             25, new ArrayList<>(List.of("Spring")), false
     ),
     KALE(
-            "Kale", SeedEnum.KALE_SEED, new ArrayList<>(List.of(1, 2, 2, 1)), 6,
+            "Kale", SeedEnum.KALESEED, new ArrayList<>(List.of(1, 2, 2, 1)), 6,
             true, null, 110, true,
             50, new ArrayList<>(List.of("Spring")), false
     ),
     PARSNIP(
-            "Parsnip", SeedEnum.PARSNIP_SEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Parsnip", SeedEnum.PARSNIPSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             true, null, 35, true,
             25, new ArrayList<>(List.of("Spring")), false
     ),
     POTATO(
-            "Potato", SeedEnum.POTATO_SEED, new ArrayList<>(List.of(1, 1, 1, 2, 1)), 6,
+            "Potato", SeedEnum.POTATOSEED, new ArrayList<>(List.of(1, 1, 1, 2, 1)), 6,
             true, null, 80, true,
             25, new ArrayList<>(List.of("Spring")), false
     ),
     RHUBARB(
-            "Rhubarb", SeedEnum.RHUBARB_SEED, new ArrayList<>(List.of(2, 2, 2, 3, 4)), 13,
+            "Rhubarb", SeedEnum.RHUBARBSEED, new ArrayList<>(List.of(2, 2, 2, 3, 4)), 13,
             true, null, 220, false,
             null, new ArrayList<>(List.of("Spring")), false
     ),
     STRAWBERRY(
-            "Strawberry", SeedEnum.STRAWBERRY_SEED, new ArrayList<>(List.of(1, 1, 2, 2, 2)), 8,
+            "Strawberry", SeedEnum.STRAWBERRYSEED, new ArrayList<>(List.of(1, 1, 2, 2, 2)), 8,
             false, 4, 120, true,
             50, new ArrayList<>(List.of("Spring")), false
     ),
     TULIP(
-            "Tulip", SeedEnum.TULIP_BULB, new ArrayList<>(List.of(1, 1, 2, 2)), 6,
+            "Tulip", SeedEnum.TULIPBULB, new ArrayList<>(List.of(1, 1, 2, 2)), 6,
             true, null, 30, true,
             45, new ArrayList<>(List.of("Spring")), false
     ),
-    UNMILLED_RICE(
-            "Unmilled Rice", SeedEnum.RICE_SHOOT, new ArrayList<>(List.of(1, 2, 2, 3)), 8,
+    UNMILLEDRICE(
+            "Unmilled Rice", SeedEnum.RICESHOOT, new ArrayList<>(List.of(1, 2, 2, 3)), 8,
             true, null, 30, true,
             3, new ArrayList<>(List.of("Spring")), false
     ),
     BLUEBERRY(
-            "Blueberry", SeedEnum.BLUEBERRY_SEED, new ArrayList<>(List.of(1, 3, 3, 4, 2)), 13,
+            "Blueberry", SeedEnum.BLUEBERRYSEED, new ArrayList<>(List.of(1, 3, 3, 4, 2)), 13,
             false, 4, 50, true,
             25, new ArrayList<>(List.of("Summer")), false
     ),
     CORN(
-            "Corn", SeedEnum.CORN_SEED, new ArrayList<>(List.of(2, 3, 3, 3, 3)), 14,
+            "Corn", SeedEnum.CORNSEED, new ArrayList<>(List.of(2, 3, 3, 3, 3)), 14,
             false, 4, 50, true,
             25, new ArrayList<>(List.of("Summer", "Fall")), false
     ),
     HOPS(
-            "Hops", SeedEnum.HOPS_STARTER, new ArrayList<>(List.of(1, 1, 2, 3, 4)), 11,
+            "Hops", SeedEnum.HOPSSTARTER, new ArrayList<>(List.of(1, 1, 2, 3, 4)), 11,
             false, 1, 25, true,
             45, new ArrayList<>(List.of("Summer")), false
     ),
-    HOT_PEPPER(
-            "Hot Pepper", SeedEnum.PEPPER_SEED, new ArrayList<>(List.of(1, 1, 1, 1, 1)), 5,
+    HOTPEPPER(
+            "Hot Pepper", SeedEnum.PEPPERSEED, new ArrayList<>(List.of(1, 1, 1, 1, 1)), 5,
             false, 3, 40, true,
             13, new ArrayList<>(List.of("Summer")), false
     ),
     MELON(
-            "Melon", SeedEnum.MELON_SEED, new ArrayList<>(List.of(1, 2, 3, 3, 3)), 12,
+            "Melon", SeedEnum.MELONSEED, new ArrayList<>(List.of(1, 2, 3, 3, 3)), 12,
             true, null, 250, true,
             113, new ArrayList<>(List.of("Summer")), true
     ),
     POPPY(
-            "Poppy", SeedEnum.POPPY_SEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
+            "Poppy", SeedEnum.POPPYSEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
             true, null, 140, true,
             45, new ArrayList<>(List.of("Summer")), false
     ),
     RADISH(
-            "Radish", SeedEnum.RADISH_SEED, new ArrayList<>(List.of(2, 1, 2, 1)), 6,
+            "Radish", SeedEnum.RADISHSEED, new ArrayList<>(List.of(2, 1, 2, 1)), 6,
             true, null, 90, true,
             45, new ArrayList<>(List.of("Summer")), false
     ),
-    RED_CABBAGE(
-            "Red Cabbage", SeedEnum.RED_CABBAGE_SEED, new ArrayList<>(List.of(2, 1, 2, 2, 2)), 9,
+    REDCABBAGE(
+            "Red Cabbage", SeedEnum.REDCABBAGESEED, new ArrayList<>(List.of(2, 1, 2, 2, 2)), 9,
             true, null, 260, true,
             75, new ArrayList<>(List.of("Summer")), false
     ),
     STARFRUIT(
-            "Starfruit", SeedEnum.STARFRUIT_SEED, new ArrayList<>(List.of(2, 3, 2, 3, 3)), 13,
+            "Starfruit", SeedEnum.STARFRUITSEED, new ArrayList<>(List.of(2, 3, 2, 3, 3)), 13,
             true, null, 750, true,
             125, new ArrayList<>(List.of("Summer")), false
     ),
-    SUMMER_SPANGLE(
-            "Summer Spangle", SeedEnum.SPANGLE_SEED, new ArrayList<>(List.of(1, 2, 3, 1)), 7,
+    SUMMERSPANGLE(
+            "Summer Spangle", SeedEnum.SPANGLESEED, new ArrayList<>(List.of(1, 2, 3, 1)), 7,
             true, null, 90, true,
             45, new ArrayList<>(List.of("Summer")), false
     ),
-    SUMMER_SQUASH(
-            "Summer Squash", SeedEnum.SUMMER_SQUASH_SEED, new ArrayList<>(List.of(1, 1, 1, 2, 1)), 6,
+    SUMMERSQUASH(
+            "Summer Squash", SeedEnum.SUMMERSQUASHSEED, new ArrayList<>(List.of(1, 1, 1, 2, 1)), 6,
             false, 3, 45, true,
             63, new ArrayList<>(List.of("Summer")), false
     ),
     SUNFLOWER(
-            "Sunflower", SeedEnum.SUNFLOWER_SEED, new ArrayList<>(List.of(1, 2, 3, 2)), 8,
+            "Sunflower", SeedEnum.SUNFLOWERSEED, new ArrayList<>(List.of(1, 2, 3, 2)), 8,
             true, null, 80, true,
             45, new ArrayList<>(List.of("Summer", "Fall")), false
     ),
     TOMATO(
-            "Tomato", SeedEnum.TOMATO_SEED, new ArrayList<>(List.of(2, 2, 2, 2, 3)), 11,
+            "Tomato", SeedEnum.TOMATOSEED, new ArrayList<>(List.of(2, 2, 2, 2, 3)), 11,
             false, 4, 60, true,
             20, new ArrayList<>(List.of("Summer")), false
     ),
     WHEAT(
-            "Wheat", SeedEnum.WHEAT_SEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Wheat", SeedEnum.WHEATSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             true, null, 25, false,
             null, new ArrayList<>(List.of("Summer", "Fall")), false
     ),
     AMARANTH(
-            "Amaranth", SeedEnum.AMARANTH_SEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
+            "Amaranth", SeedEnum.AMARANTHSEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
             true, null, 150, true,
             50, new ArrayList<>(List.of("Fall")), false
     ),
     ARTICHOKE(
-            "Artichoke", SeedEnum.ARTICHOKE_SEED, new ArrayList<>(List.of(2, 2, 1, 2, 1)), 8,
+            "Artichoke", SeedEnum.ARTICHOKESEED, new ArrayList<>(List.of(2, 2, 1, 2, 1)), 8,
             true, null, 160, true,
             30, new ArrayList<>(List.of("Fall")), false
     ),
     BEET(
-            "Beet", SeedEnum.BEET_SEED, new ArrayList<>(List.of(1, 1, 2, 2)), 6,
+            "Beet", SeedEnum.BEETSEED, new ArrayList<>(List.of(1, 1, 2, 2)), 6,
             true, null, 100, true,
             30, new ArrayList<>(List.of("Fall")), false
     ),
-    BOK_CHOY(
-            "Bok Choy", SeedEnum.BOK_CHOY_SEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+    BOKCHOY(
+            "Bok Choy", SeedEnum.BOKCHOYSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             true, null, 80, true,
             25, new ArrayList<>(List.of("Fall")), false
     ),
     BROCCOLI(
-            "Broccoli", SeedEnum.BROCCOLI_SEED, new ArrayList<>(List.of(2, 2, 2, 2)), 8,
+            "Broccoli", SeedEnum.BROCCOLISEED, new ArrayList<>(List.of(2, 2, 2, 2)), 8,
             false, 4, 70, true,
             63, new ArrayList<>(List.of("Fall")), false
     ),
    CRANBERRY(
-            "Cranberry", SeedEnum.CRANBERRY_SEED, new ArrayList<>(List.of(1, 2, 1, 1, 2)), 7,
+            "Cranberry", SeedEnum.CRANBERRYSEED, new ArrayList<>(List.of(1, 2, 1, 1, 2)), 7,
             false, 5, 75, true,
             38, new ArrayList<>(List.of("Fall")), false
     ),
     EGGPLANT(
-            "Eggplant", SeedEnum.EGGPLANT_SEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Eggplant", SeedEnum.EGGPLANTSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             false, 5, 60, true,
             20, new ArrayList<>(List.of("Fall")), false
     ),
-    FAIRY_ROSE(
-            "Fairy Rose", SeedEnum.FAIRY_SEED, new ArrayList<>(List.of(1, 4, 4, 3)), 12,
+    FAIRYROSE(
+            "Fairy Rose", SeedEnum.FAIRYSEED, new ArrayList<>(List.of(1, 4, 4, 3)), 12,
             true, null, 290, true,
             45, new ArrayList<>(List.of("Fall")), false
     ),
     GRAPE(
-            "Grape", SeedEnum.GRAPE_STARTER, new ArrayList<>(List.of(1, 1, 2, 3, 3)), 10,
+            "Grape", SeedEnum.GRAPESTARTER, new ArrayList<>(List.of(1, 1, 2, 3, 3)), 10,
             false, 3, 80, true,
             38, new ArrayList<>(List.of("Fall")), false
     ),
     PUMPKIN(
-            "Pumpkin", SeedEnum.PUMPKIN_SEED, new ArrayList<>(List.of(1, 2, 3, 4, 3)), 13,
+            "Pumpkin", SeedEnum.PUMPKINSEED, new ArrayList<>(List.of(1, 2, 3, 4, 3)), 13,
             true, null, 320, false,
             null, new ArrayList<>(List.of("Fall")), true
     ),
     YAM(
-            "Yam", SeedEnum.YAM_SEED, new ArrayList<>(List.of(1, 3, 3, 3)), 10,
+            "Yam", SeedEnum.YAMSEED, new ArrayList<>(List.of(1, 3, 3, 3)), 10,
             true, null, 160, true,
             45, new ArrayList<>(List.of("Fall")), false
     ),
-    SWEET_GEM_BERRY(
-            "Sweet Gem Berry", SeedEnum.RARE_SEED, new ArrayList<>(List.of(2, 4, 6, 6, 6)), 24,
+    SWEETGEMBERRY(
+            "Sweet Gem Berry", SeedEnum.RARESEED, new ArrayList<>(List.of(2, 4, 6, 6, 6)), 24,
             true, null, 3000, false,
             null, new ArrayList<>(List.of("Fall")), false
     ),
-    POWDER_MELON(
-            "Powder Melon", SeedEnum.POWDER_MELON_SEED, new ArrayList<>(List.of(1, 2, 1, 2, 1)), 7,
+    POWDERMELON(
+            "Powder Melon", SeedEnum.POWDERMELONSEED, new ArrayList<>(List.of(1, 2, 1, 2, 1)), 7,
             true, null, 60, true,
             63, new ArrayList<>(List.of("Winter")), true
     ),
-    ANCIENT_FRUIT(
-            "Ancient Fruit", SeedEnum.ANCIENT_SEED, new ArrayList<>(List.of(2, 7, 7, 7, 5)), 28,
+    ANCIENTFRUIT(
+            "Ancient Fruit", SeedEnum.ANCIENTSEED, new ArrayList<>(List.of(2, 7, 7, 7, 5)), 28,
             false, 7, 550, false,
             null, new ArrayList<>(List.of("Spring", "Summer", "Fall")), false
     );
