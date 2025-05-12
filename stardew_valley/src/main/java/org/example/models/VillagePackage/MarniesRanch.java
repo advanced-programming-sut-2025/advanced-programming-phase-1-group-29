@@ -1,9 +1,13 @@
 package org.example.models.VillagePackage;
 
+import org.example.models.App;
 import org.example.models.InventoryItem;
 import org.example.models.Result;
 
 public class MarniesRanch extends Store {
+    private final static int startWorkingHours = 9;
+    private final static int endWorkingHours = 16;
+    private boolean open = false;
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to Marnies Ranch!");
@@ -31,5 +35,15 @@ public class MarniesRanch extends Store {
         super.addProduct(new InventoryItem("Pig", 16000), 2);
         //TODO
         //check barns
+    }
+    @Override
+    public boolean isOpen() {
+        return open;
+    }
+    @Override
+    public void openStore() {
+        if (App.getCurrentGame().getCurrentTime().getTime() >= startWorkingHours && App.getCurrentGame().getCurrentTime().getTime() <= endWorkingHours) {
+            open = true;
+        }
     }
 }

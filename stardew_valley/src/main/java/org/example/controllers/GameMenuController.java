@@ -24,7 +24,7 @@ public class GameMenuController extends Controller{
 
     public Result walk(){
         //TODO
-        // check if the store is open before entering it
+        // check if the store is open before entering it (each instance of Store has a isOpen() function that returns a boolean
         return new Result(true, "");
     }
 

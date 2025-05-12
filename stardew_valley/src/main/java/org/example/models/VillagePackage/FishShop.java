@@ -5,6 +5,9 @@ import org.example.models.InventoryItem;
 import org.example.models.Result;
 
 public class FishShop extends Store {
+    private final static int startWorkingHours = 9;
+    private final static int endWorkingHours = 17;
+    private boolean open = false;
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to Fish Shop!");
@@ -39,5 +42,15 @@ public class FishShop extends Store {
             }
         }
         return super.purchase(productName, quantity);
+    }
+    @Override
+    public boolean isOpen() {
+        return open;
+    }
+    @Override
+    public void openStore() {
+        if (App.getCurrentGame().getCurrentTime().getTime() >= startWorkingHours && App.getCurrentGame().getCurrentTime().getTime() <= endWorkingHours) {
+            open = true;
+        }
     }
 }

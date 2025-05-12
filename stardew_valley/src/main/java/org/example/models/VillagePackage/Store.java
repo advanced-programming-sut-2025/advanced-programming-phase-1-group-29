@@ -13,13 +13,13 @@ public abstract class Store extends Objectt {
     private ArrayList<InventoryItem> products = new ArrayList<>();
     private final HashMap<InventoryItem, Integer> productNumbers = new HashMap<>();
 
+    public abstract void resetCapacity();
+    public abstract Result welcomeMessage();
+    public abstract void openStore();
+    public abstract boolean isOpen();
     public void resetProducts() {
         products.clear();
         productNumbers.clear();
-    }
-    public abstract void resetCapacity();
-    public Result welcomeMessage(){
-        return new Result(true, "Welcome");
     }
     public void addProduct(InventoryItem product, int quantity) {
         if (!productNumbers.containsKey(product)) {

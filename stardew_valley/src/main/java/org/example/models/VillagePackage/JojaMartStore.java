@@ -6,6 +6,9 @@ import org.example.models.Result;
 import org.example.models.enums.Season;
 
 public class JojaMartStore extends Store {
+    private final static int startWorkingHours = 9;
+    private final static int endWorkingHours = 23;
+    private boolean open = false;
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to Joja Mart!");
@@ -73,6 +76,16 @@ public class JojaMartStore extends Store {
 
         if (App.getCurrentGame().getCurrentTime().getSeason().equals(Season.Winter)) {
             super.addProduct(new InventoryItem("PowdermelonSeeds", 20), 10);
+        }
+    }
+    @Override
+    public boolean isOpen() {
+        return open;
+    }
+    @Override
+    public void openStore() {
+        if (App.getCurrentGame().getCurrentTime().getTime() >= startWorkingHours && App.getCurrentGame().getCurrentTime().getTime() <= endWorkingHours) {
+            open = true;
         }
     }
 }
