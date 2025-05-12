@@ -13,6 +13,7 @@ public class FishShop extends Store {
         super();
         addProducts();
     }
+    @Override
     public void resetCapacity(){
         super.resetProducts();
         addProducts();

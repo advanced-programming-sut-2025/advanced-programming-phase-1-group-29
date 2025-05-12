@@ -14,6 +14,7 @@ public class PierresGeneralStore extends Store {
         super();
         addProducts();
     }
+    @Override
     public void resetCapacity(){
         super.resetProducts();
         addProducts();
