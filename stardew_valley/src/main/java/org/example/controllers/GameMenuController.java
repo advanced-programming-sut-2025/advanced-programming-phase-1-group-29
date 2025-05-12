@@ -49,6 +49,12 @@ public class GameMenuController extends Controller{
                         " of " + App.getCurrentGame().getCurrentTime().getSeason());
     }
 
+    public Result cheatAddDollars(String amountString){
+        int amount = Integer.parseInt(amountString);
+        App.getCurrentGame().getCurrentPlayer().addCoins(amount);
+        return new Result(true, "you now have " + App.getCurrentGame().getCurrentPlayer().getCoins() + " dollars.");
+    }
+
     public Result dayOfTheWeek(){
         int day = App.getCurrentGame().getCurrentTime().getDay();
         return switch (day % 7) {
