@@ -3,7 +3,7 @@ package org.example.models.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Food {
+public enum FoodEnum {
     FriedEgg ("Fried egg", 50, 35,
             new HashMap<>(Map.of("egg", 1))),
     BakedFish ("Baked Fish", 75, 100,
@@ -126,7 +126,7 @@ public enum Food {
     private final HashMap<String, Integer> ingredients;
 
 
-    Food(String  name, int energy, int sellPrice, HashMap<String, Integer> ingredients) {
+    FoodEnum(String  name, int energy, int sellPrice, HashMap<String, Integer> ingredients) {
         this.name = name;
         this.energy = energy;
         this.sellPrice = sellPrice;
@@ -149,10 +149,10 @@ public enum Food {
         return ingredients;
     }
 
-    public static Food getByName(String foodName) {
-        for (Food food : Food.values()) {
-            if(food.getName().equals(foodName)){
-                return food;
+    public static FoodEnum getByName(String foodName) {
+        for (FoodEnum foodEnum : FoodEnum.values()) {
+            if(foodEnum.getName().equals(foodName)){
+                return foodEnum;
             }
         }
         return null;

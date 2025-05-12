@@ -20,6 +20,11 @@ public class DateTime {
             time = 0;
             incrementDay();
         }
+        for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
+            if (objectt instanceof Store){
+                ((Store) objectt).openStore();
+            }
+        }
     }
 
     public void incrementDay() {

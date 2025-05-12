@@ -13,13 +13,13 @@ public abstract class Store extends Objectt {
     private ArrayList<InventoryItem> products = new ArrayList<>();
     private final HashMap<InventoryItem, Integer> productNumbers = new HashMap<>();
 
+    public abstract void resetCapacity();
+    public abstract Result welcomeMessage();
+    public abstract void openStore();
+    public abstract boolean isOpen();
     public void resetProducts() {
         products.clear();
         productNumbers.clear();
-    }
-    public abstract void resetCapacity();
-    public Result welcomeMessage(){
-        return new Result(true, "Welcome");
     }
     public void addProduct(InventoryItem product, int quantity) {
         if (!productNumbers.containsKey(product)) {
@@ -48,6 +48,25 @@ public abstract class Store extends Objectt {
         }
         StringBuilder result = new StringBuilder("Products in store:\n");
         for (Map.Entry<InventoryItem, Integer> entry : productNumbers.entrySet()) {
+            result.append("- ")
+                    .append(entry.getKey().getName())
+                    .append(" | Quantity: ")
+                    .append(entry.getValue())
+                    .append(" | Price: ")
+                    .append(entry.getKey().getPrice())
+                    .append("\n");
+        }
+        return new Result(true, result.toString());
+    }
+    public Result showAllAvailableProducts() {
+        if (productNumbers.isEmpty()) {
+            return new Result(false, "Store is empty.");
+        }
+        StringBuilder result = new StringBuilder("Products in store:\n");
+        for (Map.Entry<InventoryItem, Integer> entry : productNumbers.entrySet()) {
+            if (entry.getValue() == 0) {
+                continue;
+            }
             result.append("- ")
                     .append(entry.getKey().getName())
                     .append(" | Quantity: ")

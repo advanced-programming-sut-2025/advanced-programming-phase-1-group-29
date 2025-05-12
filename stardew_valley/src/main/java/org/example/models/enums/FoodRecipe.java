@@ -2,31 +2,31 @@ package org.example.models.enums;
 
 public enum FoodRecipe {
 
-    HashbrownsRecipe ("Hashbrowns Recipe", Food.HashBrowns),
-    OmeletRecipe ("Omelet Recipe", Food.Omelet),
-    PancakesRecipe ("Pancakes Recipe", Food.Pancakes),
-    BreadRecipe ("Bread Recipe", Food.Bread),
-    TortillaRecipe ("Tortilla Recipe", Food.Tortilla),
-    PizzaRecipe ("Pizza Recipe", Food.Pizza),
-    MakiRollRecipe ("Maki Roll Recipe", Food.MakiRoll),
-    TripleShotEspressoRecipe ("Triple Shot Espresso Recipe", Food.TripleShotEspresso),
-    CookieRecipe ("Cookie Recipe", Food.Cookie),
-    FishSmokerRecipe ("Fish Smoker Recipe", Food.BakedFish),//?
+    HashbrownsRecipe ("Hashbrowns Recipe", FoodEnum.HashBrowns),
+    OmeletRecipe ("Omelet Recipe", FoodEnum.Omelet),
+    PancakesRecipe ("Pancakes Recipe", FoodEnum.Pancakes),
+    BreadRecipe ("Bread Recipe", FoodEnum.Bread),
+    TortillaRecipe ("Tortilla Recipe", FoodEnum.Tortilla),
+    PizzaRecipe ("Pizza Recipe", FoodEnum.Pizza),
+    MakiRollRecipe ("Maki Roll Recipe", FoodEnum.MakiRoll),
+    TripleShotEspressoRecipe ("Triple Shot Espresso Recipe", FoodEnum.TripleShotEspresso),
+    CookieRecipe ("Cookie Recipe", FoodEnum.Cookie),
+    FishSmokerRecipe ("Fish Smoker Recipe", FoodEnum.BakedFish),//?
     ;
 
     private final String name;
-    private final Food food;
+    private final FoodEnum food;
 
-    private FoodRecipe(String name, Food food) {
+    private FoodRecipe(String name, FoodEnum foodEnum) {
         this.name = name;
-        this.food = food;
+        this.food = foodEnum;
     }
 
     public String getName() {
         return name;
     }
 
-    public Food getFood() {
+    public FoodEnum getFood() {
         return food;
     }
 
