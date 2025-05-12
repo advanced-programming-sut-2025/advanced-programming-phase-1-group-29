@@ -1,6 +1,9 @@
 package org.example.models;
 
+import org.example.models.enums.CropEnum;
 import org.example.models.enums.InventoryType;
+import org.example.models.enums.SeedEnum;
+import org.example.models.enums.TreeSeedEnum;
 
 import java.util.HashMap;
 
@@ -62,7 +65,17 @@ public class Inventory {
             }
         }
         if (item == null) {
-            item = new InventoryItem(name, price);
+            try {
+                SeedEnum.valueOf(name.replaceAll("\\s+", "_").toUpperCase());
+                item = new Seed(name, price);
+            } catch (IllegalArgumentException _) {
+                try {
+                    TreeSeedEnum.valueOf(name.replaceAll("\\s+", "_").toUpperCase());
+                    item = new TreeSeed(name, price);
+                } catch (IllegalArgumentException _) {
+                    item = new InventoryItem(name, price);
+                }
+            }
         }
         inventoryItems.put(item, oldAmount + amount);
         if (oldAmount + amount == 0) inventoryItems.remove(item);
