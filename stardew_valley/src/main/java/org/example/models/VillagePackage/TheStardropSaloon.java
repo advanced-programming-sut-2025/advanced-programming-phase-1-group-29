@@ -12,6 +12,7 @@ public class TheStardropSaloon extends Store {
         super();
         addProducts();
     }
+    @Override
     public void resetCapacity(){
         super.resetProducts();
         addProducts();

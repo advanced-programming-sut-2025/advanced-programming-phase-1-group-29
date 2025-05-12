@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Store extends Objectt {
+public abstract class Store extends Objectt {
     private ArrayList<InventoryItem> products = new ArrayList<>();
     private final HashMap<InventoryItem, Integer> productNumbers = new HashMap<>();
 
@@ -17,7 +17,7 @@ public class Store extends Objectt {
         products.clear();
         productNumbers.clear();
     }
-
+    public abstract void resetCapacity();
     public Result welcomeMessage(){
         return new Result(true, "Welcome");
     }

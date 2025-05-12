@@ -33,7 +33,7 @@ public class DateTime {
         }
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof Store){
-                ((Store) objectt).resetProducts();
+                ((Store) objectt).resetCapacity();
             }
         }
     }

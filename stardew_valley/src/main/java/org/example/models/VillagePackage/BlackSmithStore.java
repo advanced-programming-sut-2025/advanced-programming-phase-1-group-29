@@ -11,6 +11,7 @@ public class BlackSmithStore extends Store {
         super.addProduct(new InventoryItem("Coal", 150), 100000000);
         super.addProduct(new InventoryItem("GoldOre", 400), 100000000);
     }
+    @Override
     public void resetCapacity(){}
     @Override
     public Result welcomeMessage() {
