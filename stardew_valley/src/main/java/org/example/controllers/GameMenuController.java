@@ -386,7 +386,7 @@ public class GameMenuController extends Controller{
         int amount = Math.min((int) Math.ceil(rand.nextInt(2) * game.getWeather().getFishingRate() * (player.getFishingLevel() + 2)), 6);
         amount = Math.min(amount, inventory.getCapacity());
         for (int i = 0; i < amount; i++) {
-            int fishIndex = rand.nextInt();
+            FishEnum fishEnum = FishEnum.getRandomFish(game.getCurrentTime().getSeason(), player.getFishingLevel() == 4);
         }
         return new Result(true, "");
     }
