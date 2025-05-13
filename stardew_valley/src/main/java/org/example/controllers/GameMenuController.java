@@ -175,6 +175,7 @@ public class GameMenuController extends Controller{
         // check if the store is open before entering it (each instance of Store has a isOpen() function that returns a boolean
         StringBuilder result = new StringBuilder();
         result.append("You are at " + x2 + ", " + y2 + ".");
+        // in tike check mikone age vase avalin bar varede ye store shode bashe mige welcome
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof Store){
                 boolean check = false;
