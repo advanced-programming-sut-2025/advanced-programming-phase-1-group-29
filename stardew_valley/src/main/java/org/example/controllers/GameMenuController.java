@@ -471,8 +471,8 @@ public class GameMenuController extends Controller{
         for (int i = 0; i < amount; i++) {
             FishEnum fishEnum = FishEnum.getRandomFish(game.getCurrentTime().getSeason(), player.getFishingLevel() == 4);
             double quantity = rand.nextDouble(2) * (player.getFishingLevel() + 2) * fishingPoleType.getQuantityRate() / (7 - amount);
-            Product fish = new Product(fishEnum.getName(), 0, quantity);
-            //Todo
+            InventoryItem fish = new InventoryItem(fishEnum.getName(), 0);
+            fish.setQuantity(quantity);
             //inventory.addInventoryItem(fish);
         }
         return new Result(true, "You caught " + amount);

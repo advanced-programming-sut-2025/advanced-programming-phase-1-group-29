@@ -3,6 +3,7 @@ package org.example.models;
 public class InventoryItem {
     protected String name;
     protected int price;
+    protected double quantity;
 
     public InventoryItem(String name, int price) {
         this.name = name;
@@ -23,5 +24,13 @@ public class InventoryItem {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 }
