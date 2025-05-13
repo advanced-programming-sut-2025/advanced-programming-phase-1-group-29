@@ -10,6 +10,8 @@ public abstract class NPCHouse extends Objectt {
     private int NPCPlaceY = 0;
     private boolean meetNPCToday = false;
 
+    public abstract String getName();
+
     public abstract Result meetNPC();
 
     public void setMeetNPCToday(boolean meetNPCToday) {

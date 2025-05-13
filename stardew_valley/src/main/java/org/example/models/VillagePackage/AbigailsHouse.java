@@ -10,6 +10,10 @@ import static java.lang.Math.abs;
 
 public class AbigailsHouse extends NPCHouse{
     @Override
+    public String getName() {
+        return "Abigail";
+    }
+    @Override
     public Result meetNPC() {
         Player player = App.getCurrentGame().getCurrentPlayer();
 

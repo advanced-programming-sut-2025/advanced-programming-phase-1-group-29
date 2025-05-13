@@ -10,6 +10,10 @@ import static java.lang.Math.abs;
 
 public class SebastiansHouse extends NPCHouse{
     @Override
+    public String getName() {
+        return "Sebastian";
+    }
+    @Override
     public Result meetNPC() {
         Player player = App.getCurrentGame().getCurrentPlayer();
         if (abs(super.getNPCPlaceX() - player.getX()) > 1 || abs(super.getNPCPlaceY() - player.getY()) > 1) {
