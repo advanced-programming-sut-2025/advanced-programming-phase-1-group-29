@@ -86,6 +86,8 @@ public class Village{
             }
         }
         sebastiansHouse.setTiles(sebastiansHouseTiles);
+        sebastiansHouse.setNPCPlaceX(6);
+        sebastiansHouse.setNPCPlaceY(16);
         objects.add(sebastiansHouse);
         AbigailsHouse abigailsHouse = new AbigailsHouse();
         ArrayList<Tile> abigailsHouseTiles = new ArrayList<>();
@@ -95,6 +97,8 @@ public class Village{
             }
         }
         abigailsHouse.setTiles(abigailsHouseTiles);
+        abigailsHouse.setNPCPlaceX(36);
+        abigailsHouse.setNPCPlaceY(26);
         objects.add(abigailsHouse);
         HarveysHouse harveysHouse = new HarveysHouse();
         ArrayList<Tile> harveysHouseTiles = new ArrayList<>();
@@ -104,6 +108,8 @@ public class Village{
             }
         }
         harveysHouse.setTiles(harveysHouseTiles);
+        harveysHouse.setNPCPlaceX(26);
+        harveysHouse.setNPCPlaceY(11);
         objects.add(harveysHouse);
         LiasHouse liasHouse = new LiasHouse();
         ArrayList<Tile> liasHouseTiles = new ArrayList<>();
@@ -113,6 +119,8 @@ public class Village{
             }
         }
         liasHouse.setTiles(liasHouseTiles);
+        liasHouse.setNPCPlaceX(16);
+        liasHouse.setNPCPlaceY(36);
         objects.add(liasHouse);
         RobinsHouse robinsHouse = new RobinsHouse();
         ArrayList<Tile> robinsHouseTiles = new ArrayList<>();
@@ -122,6 +130,8 @@ public class Village{
             }
         }
         robinsHouse.setTiles(robinsHouseTiles);
+        robinsHouse.setNPCPlaceX(41);
+        robinsHouse.setNPCPlaceY(51);
         objects.add(robinsHouse);
     }
 

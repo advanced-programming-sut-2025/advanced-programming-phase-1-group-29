@@ -198,6 +198,8 @@ public class GameMenuController extends Controller{
 
 
     public Result printMap(String xString, String yString, String sizeString) {
+        //TODO
+        //print NPCs
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
         int size = Integer.parseInt(sizeString);
