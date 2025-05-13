@@ -599,8 +599,11 @@ public class GameMenuController extends Controller{
         }
         int price = (int)(animal.getAnimalType().getPrice() * (((double) animal.getFriendshipPoint() / 1000) + 0.3));
         player.addCoins(price);
+        //TODO
+        // removeAnimal
         return new Result(true, animal.getName() + "is sold.");
     }
+    
     public Result friendshipNPCList() {
         StringBuilder result = new StringBuilder();
         Player player = App.getCurrentGame().getCurrentPlayer();
