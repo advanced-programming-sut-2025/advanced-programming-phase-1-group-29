@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Player {
     private int farmNumber;
-    private int energy = 100;
+    private int energy = 200;
     private int farmingLevel = 0;
     private int farmingUnit = 0;
     private int miningLevel = 0;

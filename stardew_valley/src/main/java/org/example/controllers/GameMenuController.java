@@ -138,6 +138,9 @@ public class GameMenuController extends Controller{
 
     public Result walk(String xString, String yString) {
         Player player = App.getCurrentGame().getCurrentPlayer();
+        if(player.getEnergy() == 0) {
+            return new Result(false, "You are unconscious");
+        }
         int x2 = Integer.parseInt(xString);
         int y2 = Integer.parseInt(yString);
         int x1 = player.getX();
@@ -145,16 +148,15 @@ public class GameMenuController extends Controller{
         int[] dx = {0, 0, 1, -1};
         int[] dy = {1, -1, 0, 0};
         boolean[][] walkable = new boolean[Map.getXRange()][Map.getYRange()];
-        boolean[][] seen = new boolean[Map.getXRange()][Map.getYRange()];
+        //TODO
+        // fill walkable
         int[][] distance = new int[Map.getXRange()][Map.getYRange()];
         for (int i = 0; i < Map.getXRange(); i++) {
             for (int j = 0; j < Map.getYRange(); j++) {
                 walkable[i][j] = true;
-                seen[i][j] = false;
                 distance[i][j] = -1;
             }
         }
-        seen[x1][y1] = true;
         distance[x1][y1] = 0;
         Queue<Integer> queue = new LinkedList<>();
         queue.add(x1 * Map.getYRange() + y1);
@@ -165,12 +167,28 @@ public class GameMenuController extends Controller{
             for (int i = 0; i < 4; i ++){
                 int xx = x + dx[i];
                 int yy = y + dy[i];
+                if(xx < 0 || xx >= Map.getXRange() || yy < 0 || yy >= Map.getYRange()) {
+                    continue;
+                }
                 if(walkable[xx][yy] && (distance[xx][yy] == -1 || distance[xx][yy] < distance[x][y] + 1)) {
                     distance[xx][yy] = distance[x][y] + 1;
                     queue.add(xx * Map.getYRange() + yy);
                 }
             }
         }
+        if(distance[x2][y2] == -1) {
+            return new Result(true, "there is no way to walk");
+        }
+        int energyNeeded = distance[x2][y2] / 20;
+        //TODO
+        // ask user
+        if(energyNeeded > player.getEnergy()) {
+            player.setEnergy(0);
+            return new Result(true, "You are unconscious!");
+        }
+        player.reduceEnergy(energyNeeded);
+        player.setX(x2);
+        player.setY(y2);
         //TODO
         // check if the store is open before entering it (each instance of Store has a isOpen() function that returns a boolean
         // check not to be in the same place an npc is
