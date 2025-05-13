@@ -46,12 +46,13 @@ public class Inventory {
     }
 
     public int getNumberOfInventoryItem(String name) {
+        int items = 0;
         for (InventoryItem inventoryItem : inventoryItems.keySet()) {
             if (inventoryItem.getName().equalsIgnoreCase(name)) {
-                return inventoryItems.get(inventoryItem);
+                items += inventoryItems.get(inventoryItem);
             }
         }
-        return 0;
+        return items;
     }
 
     public void addInventoryItem(String name, int amount, int price) {
@@ -78,6 +79,10 @@ public class Inventory {
         }
         inventoryItems.put(item, oldAmount + amount);
         if (oldAmount + amount == 0) inventoryItems.remove(item);
+    }
+
+    public void addInventoryItem(InventoryItem item, int amount) {
+        inventoryItems.put(item, amount);
     }
 
     public void removeInventoryItem(String name, int amount) {
