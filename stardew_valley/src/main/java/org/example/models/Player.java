@@ -25,6 +25,11 @@ public class Player {
     private TrashCan trashCan = TrashCan.PRIMARY;
     private int x;
     private int y;
+    private int sebastianFriendship = 0;
+    private int abigailFriendship = 0;
+    private int harveyFriendship = 0;
+    private int liaFriendship = 0;
+    private int robinFriendship = 0;
 
 
     public int getFarmNumber() {
@@ -161,5 +166,41 @@ public class Player {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getSebastianFriendship() {
+        return sebastianFriendship;
+    }
+
+    public int getAbigailFriendship() {
+        return abigailFriendship;
+    }
+
+    public int getHarveyFriendship() {
+        return harveyFriendship;
+    }
+
+    public int getLiaFriendship() {
+        return liaFriendship;
+    }
+
+    public int getRobinFriendship() {
+        return robinFriendship;
+    }
+
+    public void addSebastianFriendship(int amount) {
+        sebastianFriendship += amount;
+    }
+    public void addAbigailFriendship(int amount) {
+        abigailFriendship += amount;
+    }
+    public void addHarveyFriendship(int amount) {
+        harveyFriendship += amount;
+    }
+    public void addLiaFriendship(int amount) {
+        liaFriendship += amount;
+    }
+    public void addRobinFriendship(int amount) {
+        robinFriendship += amount;
     }
 }

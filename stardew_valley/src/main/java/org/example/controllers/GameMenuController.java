@@ -173,6 +173,7 @@ public class GameMenuController extends Controller{
         }
         //TODO
         // check if the store is open before entering it (each instance of Store has a isOpen() function that returns a boolean
+        // check not to be in the same place an npc is
         StringBuilder result = new StringBuilder();
         result.append("You are at " + x2 + ", " + y2 + ".");
         // in tike check mikone age vase avalin bar varede ye store shode bashe mige welcome
