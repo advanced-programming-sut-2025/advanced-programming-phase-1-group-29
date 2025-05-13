@@ -22,12 +22,6 @@ public class GameMenuController extends Controller{
         return new Result(true, "");
     }
 
-    public Result walk(){
-        //TODO
-        // check if the store is open before entering it (each instance of Store has a isOpen() function that returns a boolean
-        return new Result(true, "");
-    }
-
     public Result time(){
         return new Result(
                 true,
@@ -176,6 +170,8 @@ public class GameMenuController extends Controller{
                 }
             }
         }
+        //TODO
+        // check if the store is open before entering it (each instance of Store has a isOpen() function that returns a boolean
         return new Result(true, "You are at " + x2 + ", " + y2 + ".");
     }
 
