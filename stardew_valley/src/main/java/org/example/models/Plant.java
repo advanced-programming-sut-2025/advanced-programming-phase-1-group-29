@@ -6,7 +6,9 @@ public abstract class Plant extends Objectt{
     protected int stage;
     protected int remainingTime;
     protected boolean isWateredToday = false;
+    protected boolean isWateredYesterday = true;
     protected boolean isFertilized = false;
+    protected boolean isReadyForHarvest = false;
 
     public Plant(Seed seed) {
         this.seed = seed;
@@ -25,16 +27,17 @@ public abstract class Plant extends Objectt{
         return stage;
     }
 
-    public void setStage(int stage) {
-        this.stage = stage;
+    public void incrementStage() {
+        stage++;
     }
 
     public int getRemainingTime() {
         return remainingTime;
     }
 
-    public void setRemainingTime(int remainingTime) {
-        this.remainingTime = remainingTime;
+    public void decrementRemainingTime() {
+        remainingTime--;
+        if (remainingTime == 0) isReadyForHarvest = true;
     }
 
     public boolean isWateredToday() {
@@ -51,6 +54,18 @@ public abstract class Plant extends Objectt{
 
     public void setFertilized(boolean fertilized) {
         isFertilized = fertilized;
+    }
+
+    public boolean isWateredYesterday() {
+        return isWateredYesterday;
+    }
+
+    public void setWateredYesterday(boolean wateredYesterday) {
+        isWateredYesterday = wateredYesterday;
+    }
+
+    public boolean isReadyForHarvest() {
+        return isReadyForHarvest;
     }
 
     @Override

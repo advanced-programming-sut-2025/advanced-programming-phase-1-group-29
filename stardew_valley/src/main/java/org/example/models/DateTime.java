@@ -2,7 +2,11 @@ package org.example.models;
 
 import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
+import org.example.models.enums.CropEnum;
 import org.example.models.enums.Season;
+import org.example.models.enums.TreeEnum;
+
+import java.util.ArrayList;
 
 public class DateTime {
     private Season season;
@@ -28,6 +32,28 @@ public class DateTime {
         }
     }
 
+    private void growCrop(Crop crop) {
+        crop.decrementRemainingTime();
+        CropEnum cropEnum = crop.getCrop();
+        int sum = 0;
+        for (int i = 0; i < cropEnum.getStages().size() - 1; i++) {
+            sum += cropEnum.getStages().get(i);
+            if (sum == cropEnum.getTotalHarvestTime() - crop.getRemainingTime())
+                crop.incrementStage();
+        }
+    }
+
+    private void growTree(FruitTree tree) {
+        tree.decrementRemainingTime();
+        TreeEnum treeEnum = tree.getTree();
+        int sum = 0;
+        for (int i = 0; i < treeEnum.getStages().size() - 1; i++) {
+            sum += treeEnum.getStages().get(i);
+            if (sum == treeEnum.getTotalHarvestTime() - tree.getRemainingTime())
+                tree.incrementStage();
+        }
+    }
+
     public void incrementDay() {
         day++;
         if (day == 29) {
@@ -43,6 +69,31 @@ public class DateTime {
             }
             else if (objectt instanceof NPCHouse){
                 ((NPCHouse) objectt).setMeetNPCToday(false);
+            }
+        }
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            ArrayList<Objectt> toBeRemoved = new ArrayList<>();
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof Plant plant) {
+                    if ((!plant.isWateredToday()) && (!plant.isWateredYesterday())) {
+                        toBeRemoved.add(object);
+                    }
+                    else {
+                        plant.setWateredYesterday(plant.isWateredToday());
+                        plant.setWateredToday(false);
+                        if (!plant.isReadyForHarvest()) {
+                            if (plant instanceof Crop) {
+                                growCrop((Crop) plant);
+                            }
+                            else {
+                                growTree((FruitTree) plant);
+                            }
+                        }
+                    }
+                }
+            }
+            for (Objectt object : toBeRemoved) {
+                farm.getObjects().remove(object);
             }
         }
     }
