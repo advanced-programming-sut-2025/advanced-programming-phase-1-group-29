@@ -27,7 +27,10 @@ public class Hoe extends Tool{
             return new Result(false, "You don't have enough energy");
         player.setEnergy(player.getEnergy() - player.getCurrentTool().getEnergyConsumption());
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
-        if (x < 0 || x >= Farm.getXRange() || y < 0 || y >= Farm.getYRange())
+        if (
+                x < farm.getXStart() || x >= farm.getXStart() + Farm.getXRange() ||
+                y < farm.getYStart() || y >= farm.getYStart() + Farm.getYRange()
+        )
             return new Result(false, "The hoe can't be used in this direction");
         for (Objectt object : farm.getObjects()) {
             for (Tile tile : object.getTiles()) {

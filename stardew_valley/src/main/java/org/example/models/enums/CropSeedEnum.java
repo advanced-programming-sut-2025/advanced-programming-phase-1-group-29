@@ -3,7 +3,7 @@ package org.example.models.enums;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum SeedEnum {
+public enum CropSeedEnum {
     JAZZSEED("Jazz Seeds", new ArrayList<>(List.of("Spring"))),
     CARROTSEED("Carrot Seeds", new ArrayList<>(List.of("Spring"))),
     CAULIFLOWERSEED("Cauliflower Seeds", new ArrayList<>(List.of("Spring"))),
@@ -50,7 +50,7 @@ public enum SeedEnum {
     private final String name;
     private final ArrayList<String> seasons;
 
-    SeedEnum(String name, ArrayList<String> seasons) {
+    CropSeedEnum(String name, ArrayList<String> seasons) {
         this.name = name;
         this.seasons = seasons;
     }

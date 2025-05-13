@@ -107,18 +107,18 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.CraftInfo.getMatcher(input)) != null) {
             System.out.println(controller.craftInfo(matcher.group("craftName").trim()));
         }
-//        else if ((matcher = GameMenuCommands.Plant.getMatcher(input)) != null) {
-//            System.out.println(controller.plant(matcher.group("seed"), matcher.group("direction")));
-//        }
-//        else if ((matcher = GameMenuCommands.ShowPlant.getMatcher(input)) != null) {
-//            System.out.println(controller.showPlant(matcher.group("x"), matcher.group("y")));
-//        }
+        else if ((matcher = GameMenuCommands.Plant.getMatcher(input)) != null) {
+            System.out.println(controller.plant(matcher.group("seed"), matcher.group("direction")));
+        }
+        else if ((matcher = GameMenuCommands.ShowPlant.getMatcher(input)) != null) {
+            System.out.println(controller.showPlant(matcher.group("x"), matcher.group("y")));
+        }
 //        else if ((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
 //            System.out.println(controller.fertilize(matcher.group("fertilizer"), matcher.group("direction")));
 //        }
-//        else if (GameMenuCommands.HowMuchWater.getMatcher(input) != null) {
-//            System.out.println(controller.howMuchWater());
-//        }
+        else if (GameMenuCommands.HowMuchWater.getMatcher(input) != null) {
+            System.out.println(controller.howMuchWater());
+        }
 //        else if (GameMenuCommands.CraftingShowRecipes.getMatcher(input) != null) {
 //            System.out.println(controller.craftingShowRecipes());
 //        }

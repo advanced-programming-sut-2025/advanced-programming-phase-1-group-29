@@ -281,7 +281,7 @@ public class GameMenuController extends Controller{
         return dateTime();
     }
 
-    public Result toolsUse(String direction) {
+    private ArrayList<Integer> getDirection(String direction) {
         HashMap<String, ArrayList<Integer>> directions = new HashMap<>() {{
             put("u", new ArrayList<>(List.of(0, 1)));
             put("d", new ArrayList<>(List.of(0, -1)));
@@ -292,11 +292,17 @@ public class GameMenuController extends Controller{
             put("dr", new ArrayList<>(List.of(1, -1)));
             put("dl", new ArrayList<>(List.of(-1, -1)));
         }};
+        if (!directions.containsKey(direction)) return null;
+        return directions.get(direction);
+    }
+
+    public Result toolsUse(String direction) {
+        ArrayList<Integer> directionConst = getDirection(direction);
         Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
-        if (!directions.containsKey(direction))
+        if (directionConst == null)
             return new Result(false, "Invalid direction");
-        int x = player.getX() + directions.get(direction).get(0);
-        int y = player.getY() + directions.get(direction).get(1);
+        int x = player.getX() + directionConst.get(0);
+        int y = player.getY() + directionConst.get(1);
         return player.getCurrentTool().useTool(x, y);
     }
 
@@ -452,5 +458,79 @@ public class GameMenuController extends Controller{
             //inventory.addInventoryItem(fish);
         }
         return new Result(true, "You caught " + amount);
+    }
+
+    public Result plant(String seed, String direction) {
+        ArrayList<Integer> directionConst = getDirection(direction);
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        if (directionConst == null)
+            return new Result(false, "Invalid direction");
+        int x = player.getX() + directionConst.get(0);
+        int y = player.getY() + directionConst.get(1);
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        Objectt furrow = null;
+        for (Objectt object : farm.getObjects()) {
+            for (Tile tile : object.getTiles()) {
+                if (tile.getX() == x && tile.getY() == y) {
+                    if (object instanceof Furrow) {
+                        furrow = object;
+                        break;
+                    }
+                }
+            }
+        }
+        if (furrow == null)
+            return new Result(false, "You can't plant seed in this direction.");
+        Seed item = null;
+        for (InventoryItem inventoryItem : player.getInventory().getInventoryItems().keySet()) {
+            if (inventoryItem instanceof Seed) {
+                if (inventoryItem.getName().equalsIgnoreCase(seed)) {
+                    item = (Seed) inventoryItem;
+                    break;
+                }
+            }
+        }
+        if (item == null) return new Result(false, "Invalid seed.");
+        farm.getObjects().remove(furrow);
+        Plant plant;
+        if (item instanceof CropSeed) {
+            plant = new Crop(item);
+        }
+        else {
+            plant = new FruitTree(item);
+        }
+        plant.setTiles(new ArrayList<Tile>(List.of(new Tile('p', x, y))));
+        farm.getObjects().add(plant);
+        player.getInventory().removeInventoryItem(seed, 1);
+        return new Result(true, "Done!");
+    }
+
+    public Result showPlant(String xString, String yString) {
+        int x = Integer.parseInt(xString);
+        int y = Integer.parseInt(yString);
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        Objectt plant = null;
+        for (Objectt object : farm.getObjects()) {
+            for (Tile tile : object.getTiles()) {
+                if (tile.getX() == x && tile.getY() == y) {
+                    if (object instanceof Plant) {
+                        plant = object;
+                        break;
+                    }
+                }
+            }
+        }
+        if (plant == null) return new Result(false, "No plant in this place");
+        return new Result(true, plant.toString());
+    }
+
+    public Result howMuchWater() {
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        for (InventoryItem inventoryItem : player.getInventory().getInventoryItems().keySet()) {
+            if (inventoryItem instanceof WateringCan) {
+                return new Result(true, String.valueOf(((WateringCan) inventoryItem).getWater()));
+            }
+        }
+        return new Result(false, "You have no watering cans.");
     }
 }

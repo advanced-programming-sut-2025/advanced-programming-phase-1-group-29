@@ -1,14 +1,13 @@
 package org.example.models;
 
-import org.example.models.enums.SeedEnum;
 import org.example.models.enums.TreeSeedEnum;
 
-public class TreeSeed extends InventoryItem{
+public class TreeSeed extends Seed{
     private final TreeSeedEnum treeSeedEnum;
 
     public TreeSeed(String name, int price) {
         super(name, price);
-        name = name.replaceAll("\\s+", "_").toUpperCase();
+        name = name.toUpperCase();
         treeSeedEnum = TreeSeedEnum.valueOf(name);
     }
 

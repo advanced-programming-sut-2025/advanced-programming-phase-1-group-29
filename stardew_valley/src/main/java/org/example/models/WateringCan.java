@@ -4,6 +4,7 @@ import org.example.models.enums.ToolType;
 
 public class WateringCan extends Tool {
     private ToolType type = ToolType.PRIMARY;
+    private int water = 0;
 
     public WateringCan(String name, int price) {
         super(name, price);
@@ -36,5 +37,13 @@ public class WateringCan extends Tool {
     @Override
     public Result useTool(int x, int y) {
         return null;
+    }
+
+    public int getWater() {
+        return water;
+    }
+
+    public void setWater(int water) {
+        this.water = water;
     }
 }
