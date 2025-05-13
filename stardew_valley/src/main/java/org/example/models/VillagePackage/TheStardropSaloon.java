@@ -9,7 +9,7 @@ public class TheStardropSaloon extends Store {
     private final static int startWorkingHours = 12;
     private final static int endWorkingHours = 24;
     private boolean open = false;
-
+    private boolean welcome = false;
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to The Stardrop Shop!");
@@ -18,13 +18,19 @@ public class TheStardropSaloon extends Store {
         super();
         addProducts();
     }
-
+    @Override
+    public boolean isWelcome() {
+        return welcome;
+    }
+    @Override
+    public void setWelcome(boolean welcome) {
+        this.welcome = welcome;
+    }
     @Override
     public void resetCapacity(){
         super.resetProducts();
         addProducts();
     }
-
     private void addProducts(){
         super.addProduct(new InventoryItem("Beer", 400), 100000000);
         super.addProduct(new InventoryItem("Salad", 220), 100000000);

@@ -3,6 +3,7 @@ package org.example.controllers;
 import org.example.models.*;
 import org.example.models.Map;
 import org.example.models.Objectt;
+import org.example.models.VillagePackage.Store;
 import org.example.models.enums.*;
 
 import java.util.*;
@@ -172,7 +173,26 @@ public class GameMenuController extends Controller{
         }
         //TODO
         // check if the store is open before entering it (each instance of Store has a isOpen() function that returns a boolean
-        return new Result(true, "You are at " + x2 + ", " + y2 + ".");
+        StringBuilder result = new StringBuilder();
+        result.append("You are at " + x2 + ", " + y2 + ".");
+        for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
+            if (objectt instanceof Store){
+                boolean check = false;
+                for (Tile tile : ((Store) objectt).getTiles()) {
+                    if (tile.getX() == x2 && tile.getY() == y2) {
+                        check = true;
+                    }
+                }
+                if (check) {
+                    if (!((Store) objectt).isWelcome()){
+                        result.append("\n");
+                        result.append(((Store) objectt).welcomeMessage());
+                    }
+                    ((Store) objectt).setWelcome(true);
+                }
+            }
+        }
+        return new Result(true, result.toString());
     }
 
 

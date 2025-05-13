@@ -8,6 +8,7 @@ public class CarpentersShop extends Store {
     private final static int startWorkingHours = 9;
     private final static int endWorkingHours = 20;
     private boolean open = false;
+    private boolean welcome = false;
     public CarpentersShop() {
         super();
         addProducts();
@@ -24,6 +25,14 @@ public class CarpentersShop extends Store {
     private void addProducts(){
         super.addProduct(new InventoryItem("Wood", 10), 100000000);
         super.addProduct(new InventoryItem("Stone", 20), 100000000);
+    }
+    @Override
+    public boolean isWelcome() {
+        return welcome;
+    }
+    @Override
+    public void setWelcome(boolean welcome) {
+        this.welcome = welcome;
     }
     @Override
     public boolean isOpen() {

@@ -9,6 +9,7 @@ public class PierresGeneralStore extends Store {
     private final static int startWorkingHours = 9;
     private final static int endWorkingHours = 17;
     private boolean open = false;
+    private boolean welcome = false;
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to Pierre's General!");
@@ -16,6 +17,14 @@ public class PierresGeneralStore extends Store {
     public PierresGeneralStore() {
         super();
         addProducts();
+    }
+    @Override
+    public boolean isWelcome() {
+        return welcome;
+    }
+    @Override
+    public void setWelcome(boolean welcome) {
+        this.welcome = welcome;
     }
     @Override
     public void resetCapacity(){

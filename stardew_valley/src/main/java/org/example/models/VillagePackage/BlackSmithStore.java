@@ -8,6 +8,7 @@ public class BlackSmithStore extends Store {
     private final static int startWorkingHours = 9;
     private final static int endWorkingHours = 16;
     private boolean open = false;
+    private boolean welcome = false;
 
     public BlackSmithStore() {
         super();
@@ -15,6 +16,14 @@ public class BlackSmithStore extends Store {
         super.addProduct(new InventoryItem("IronOre", 150), 100000000);
         super.addProduct(new InventoryItem("Coal", 150), 100000000);
         super.addProduct(new InventoryItem("GoldOre", 400), 100000000);
+    }
+    @Override
+    public boolean isWelcome() {
+        return welcome;
+    }
+    @Override
+    public void setWelcome(boolean welcome) {
+        this.welcome = welcome;
     }
     @Override
     public Result welcomeMessage(){
