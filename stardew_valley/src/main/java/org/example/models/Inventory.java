@@ -86,12 +86,16 @@ public class Inventory {
     }
 
     public void removeInventoryItem(String name, int amount) {
-        InventoryItem item = findInventoryItem(name);
-        if (item == null) return;
-        if(inventoryItems.get(item) == amount){
-            inventoryItems.remove(item);
-            return;
+        while(amount > 0) {
+            InventoryItem item = findInventoryItem(name);
+            if (item == null) return;
+            if (inventoryItems.get(item) <= amount) {
+                amount -= inventoryItems.get(item);
+                inventoryItems.remove(item);
+            }
+            else {
+                inventoryItems.put(item, inventoryItems.get(item) - amount);
+            }
         }
-        inventoryItems.compute(item, (k, oldAmount) -> oldAmount - amount);
     }
 }
