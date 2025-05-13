@@ -551,4 +551,53 @@ public class GameMenuController extends Controller{
         }
         return new Result(false, "You have no watering cans.");
     }
+
+    public Result pet (String name){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        //TODO
+        Animal animal = null;
+        if(animal == null){
+            return new Result(false, "You don't have this animal.");
+        }
+        //TODO
+//        if(!close){
+//            return new Result(false, "You can't pet this animal.");
+//        }
+        animal.addFriendshipPoint(15);
+        animal.setIsPetted(true);
+        return new Result(true, "");
+    }
+
+    public Result animals (){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        //TODO
+//        for (Animal animal){
+//            stringJoiner.add(animal.getName() + " " + animal.getFriendshipPoint())
+//        }
+        return new Result(true, stringJoiner.toString());
+    }
+
+    public Result feedHay (String animalName){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        //TODO
+        Animal animal = null;
+        if(animal == null){
+            return new Result(false, "You don't have this animal.");
+        }
+        animal.setIsFed(true);
+        return new Result(true, "");
+    }
+
+    public Result sellAnimal(String animalName){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        //TODO
+        Animal animal = null;
+        if(animal == null){
+            return new Result(false, "You don't have this animal.");
+        }
+        int price = (int)(animal.getAnimalType().getPrice() * (((double) animal.getFriendshipPoint() / 1000) + 0.3));
+        player.addCoins(price);
+        return new Result(true, animal.getName() + "is sold.");
+    }
 }
