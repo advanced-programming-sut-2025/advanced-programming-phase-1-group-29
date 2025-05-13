@@ -22,6 +22,7 @@ public class Village{
                 blackSmithTiles.add(new Tile('B', i, j));
             }
         }
+        blackSmithStore.setTiles(blackSmithTiles);
         objects.add(blackSmithStore);
         CarpentersShop carpentersShop = new CarpentersShop();
         ArrayList<Tile> carpentersTiles = new ArrayList<>();
@@ -30,6 +31,7 @@ public class Village{
                 carpentersTiles.add(new Tile('c', i, j));
             }
         }
+        carpentersShop.setTiles(carpentersTiles);
         objects.add(carpentersShop);
         FishShop fishShop = new FishShop();
         ArrayList<Tile> fishTiles = new ArrayList<>();
@@ -38,6 +40,7 @@ public class Village{
                 fishTiles.add(new Tile('f', i, j));
             }
         }
+        fishShop.setTiles(fishTiles);
         objects.add(fishShop);
         JojaMartStore jojaMartStore = new JojaMartStore();
         ArrayList<Tile> jojaMartTiles = new ArrayList<>();
@@ -46,6 +49,7 @@ public class Village{
                 jojaMartTiles.add(new Tile('J', i, j));
             }
         }
+        jojaMartStore.setTiles(jojaMartTiles);
         objects.add(jojaMartStore);
         MarniesRanch marniesRanch = new MarniesRanch();
         ArrayList<Tile> marniesRanchTiles = new ArrayList<>();
@@ -54,6 +58,7 @@ public class Village{
                 marniesRanchTiles.add(new Tile('M', i, j));
             }
         }
+        marniesRanch.setTiles(marniesRanchTiles);
         objects.add(marniesRanch);
         PierresGeneralStore pierresGeneralStore = new PierresGeneralStore();
         ArrayList<Tile> pierresGeneralTiles = new ArrayList<>();
@@ -62,6 +67,7 @@ public class Village{
                 pierresGeneralTiles.add(new Tile('P', i, j));
             }
         }
+        pierresGeneralStore.setTiles(pierresGeneralTiles);
         objects.add(pierresGeneralStore);
         TheStardropSaloon stardropSaloon = new TheStardropSaloon();
         ArrayList<Tile> stardropSaloonTiles = new ArrayList<>();
@@ -70,7 +76,53 @@ public class Village{
                 stardropSaloonTiles.add(new Tile('S', i, j));
             }
         }
+        stardropSaloon.setTiles(stardropSaloonTiles);
         objects.add(stardropSaloon);
+        SebastiansHouse sebastiansHouse = new SebastiansHouse();
+        ArrayList<Tile> sebastiansHouseTiles = new ArrayList<>();
+        for (int i = 5; i < 10; i++){
+            for (int j = 15; j < 20; j++){
+                sebastiansHouseTiles.add(new Tile('s', i, j));
+            }
+        }
+        sebastiansHouse.setTiles(sebastiansHouseTiles);
+        objects.add(sebastiansHouse);
+        AbigailsHouse abigailsHouse = new AbigailsHouse();
+        ArrayList<Tile> abigailsHouseTiles = new ArrayList<>();
+        for (int i = 35; i < 40; i++){
+            for (int j = 25; j < 30; i++){
+                abigailsHouseTiles.add(new Tile('a', i, j));
+            }
+        }
+        abigailsHouse.setTiles(abigailsHouseTiles);
+        objects.add(abigailsHouse);
+        HarveysHouse harveysHouse = new HarveysHouse();
+        ArrayList<Tile> harveysHouseTiles = new ArrayList<>();
+        for (int i = 25; i < 30; i++){
+            for (int j = 10; j < 15; j++){
+                harveysHouseTiles.add(new Tile('h', i, j));
+            }
+        }
+        harveysHouse.setTiles(harveysHouseTiles);
+        objects.add(harveysHouse);
+        LiasHouse liasHouse = new LiasHouse();
+        ArrayList<Tile> liasHouseTiles = new ArrayList<>();
+        for (int i = 15; i < 25; i++){
+            for (int j = 35; j < 40; j++){
+                liasHouseTiles.add(new Tile('l', i, j));
+            }
+        }
+        liasHouse.setTiles(liasHouseTiles);
+        objects.add(liasHouse);
+        RobinsHouse robinsHouse = new RobinsHouse();
+        ArrayList<Tile> robinsHouseTiles = new ArrayList<>();
+        for (int i = 40; i < 50; i++){
+            for (int j = 50; j < 55; j++){
+                robinsHouseTiles.add(new Tile('r', i, j));
+            }
+        }
+        robinsHouse.setTiles(robinsHouseTiles);
+        objects.add(robinsHouse);
     }
 
     public static int getXRange() {
