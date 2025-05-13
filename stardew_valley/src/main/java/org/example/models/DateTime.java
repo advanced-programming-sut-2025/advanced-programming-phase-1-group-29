@@ -1,5 +1,6 @@
 package org.example.models;
 
+import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
 import org.example.models.enums.Season;
 
@@ -39,6 +40,9 @@ public class DateTime {
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof Store){
                 ((Store) objectt).resetCapacity();
+            }
+            else if (objectt instanceof NPCHouse){
+                ((NPCHouse) objectt).setMeetNPCToday(false);
             }
         }
     }

@@ -8,8 +8,16 @@ import java.util.ArrayList;
 public abstract class NPCHouse extends Objectt {
     private int NPCPlaceX = 0;
     private int NPCPlaceY = 0;
+    private boolean meetNPCToday = false;
 
     public abstract Result meetNPC();
+
+    public void setMeetNPCToday(boolean meetNPCToday) {
+        this.meetNPCToday = meetNPCToday;
+    }
+    public boolean getMeetNPCToday() {
+        return meetNPCToday;
+    }
 
     public int getNPCPlaceX() {
         return NPCPlaceX;
