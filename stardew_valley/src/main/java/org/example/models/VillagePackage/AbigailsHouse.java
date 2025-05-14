@@ -10,6 +10,41 @@ import static java.lang.Math.abs;
 
 public class AbigailsHouse extends NPCHouse{
     @Override
+    public Result questFinish(int ind) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (ind == 1 && !super.quest1){
+            if (player.getInventory().getNumberOfInventoryItem("goldBar") < 1){
+                return new Result(false, "You don't have enough gold bars in your inventory.");
+            }
+            else {
+                super.quest1 = true;
+                player.addAbigailFriendship(200);
+                return new Result(true, "quest completed. you received 1 friendship level.");
+            }
+        }
+        else if (ind == 2 && !super.quest2 && App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() >= 200){
+            if (player.getInventory().getNumberOfInventoryItem("pumpkin") < 1){
+                return new Result(false, "You don't have enough pumpkin in your inventory.");
+            }
+            else {
+                super.quest2 = true;
+                player.addCoins(500);
+                return new Result(true, "quest completed. you received 500 coins.");
+            }
+        }
+        else if (ind == 3 && !super.quest3 && (App.getCurrentGame().getCurrentTime().getYear() > 0 || (App.getCurrentGame().getCurrentTime().getSeason() != Season.Spring && App.getCurrentGame().getCurrentTime().getSeason() != Season.Summer))){
+            if (player.getInventory().getNumberOfInventoryItem("wheat") < 50){
+                return new Result(false, "You don't have wheat in your inventory.");
+            }
+            else{
+                super.quest3 = true;
+                player.getInventory().addInventoryItem("quartz", 50, 0);//TODO??
+                return new Result(true, "quest completed. you received 50 quartz.");//TODO
+            }
+        }
+        else return new Result(false, "invalid index");
+    }
+    @Override
     public Result questsList() {
         StringBuilder result = new StringBuilder();
         result.append("Quest 1 : 1 Gold bar  Reward: +1 frienship level");

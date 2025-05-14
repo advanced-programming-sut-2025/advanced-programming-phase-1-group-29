@@ -40,10 +40,37 @@ public class SebastiansHouse extends NPCHouse{
     @Override
     public Result questFinish(int ind) {
         Player player = App.getCurrentGame().getCurrentPlayer();
-        if (ind == 1){
-            Result res = new GameMenuController().inventoryTrash("ironBar", "50");
-
+        if (ind == 1 && !super.quest1){
+            if (player.getInventory().getNumberOfInventoryItem("ironBar") < 50){
+                return new Result(false, "You don't have enough iron bars in your inventory.");
+            }
+            else {
+                super.quest1 = true;
+                player.getInventory().addInventoryItem("Diamond", 2, 0);
+                return new Result(true, "quest completed. you received 2 diamonds.");
+            }
         }
+        else if (ind == 2 && !super.quest2 && App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() >= 200){
+            if (player.getInventory().getNumberOfInventoryItem("pumpkinPie") < 1){
+                return new Result(false, "You don't have enough pumpkin pie in your inventory.");
+            }
+            else {
+                super.quest2 = true;
+                player.addCoins(5000);
+                return new Result(true, "quest completed. you received 5000 coins.");
+            }
+        }
+        else if (ind == 3 && !super.quest3 && (App.getCurrentGame().getCurrentTime().getYear() > 0 || App.getCurrentGame().getCurrentTime().getSeason() != Season.Spring)){
+            if (player.getInventory().getNumberOfInventoryItem("stone") < 150){
+                return new Result(false, "You don't have enough stones in your inventory.");
+            }
+            else{
+                super.quest3 = true;
+                player.getInventory().addInventoryItem("quartz", 50, 0);
+                return new Result(true, "quest completed. you received 50 quartz.");
+            }
+        }
+        else return new Result(false, "invalid index");
     }
     @Override
     public Result gift(String itemName) {
