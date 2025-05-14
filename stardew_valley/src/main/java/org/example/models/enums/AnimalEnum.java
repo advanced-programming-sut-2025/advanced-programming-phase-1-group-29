@@ -33,4 +33,8 @@ public enum AnimalEnum {
     public int getPrice() {
         return price;
     }
+
+    public ArrayList<AnimalProductEnum> getProducts() {
+        return products;
+    }
 }

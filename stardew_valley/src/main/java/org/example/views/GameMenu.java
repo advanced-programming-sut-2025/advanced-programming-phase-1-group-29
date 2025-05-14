@@ -182,7 +182,7 @@ public class GameMenu implements AppMenu{
             matcher.group("animalName").trim(),
             matcher.group("x").trim(),
             matcher.group("y").trim()));
-//        }
+        }
         else if ((matcher = GameMenuCommands.FeedHay.getMatcher(input)) != null) {
             System.out.println(controller.feedHay(matcher.group("animalName").trim()));
         }

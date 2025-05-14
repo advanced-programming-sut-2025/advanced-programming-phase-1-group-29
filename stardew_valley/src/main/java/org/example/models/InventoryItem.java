@@ -3,7 +3,7 @@ package org.example.models;
 public class InventoryItem {
     protected String name;
     protected int price;
-    protected double quantity;
+    protected double quality;
     protected boolean isForaging;
 
     public InventoryItem(String name, int price) {
@@ -27,12 +27,12 @@ public class InventoryItem {
         this.price = price;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public double getQuality() {
+        return quality;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setQuality(double quality) {
+        this.quality = quality;
     }
 
     public boolean isForaging() {
