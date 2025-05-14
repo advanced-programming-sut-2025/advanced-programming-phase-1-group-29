@@ -654,8 +654,10 @@ public class GameMenuController extends Controller{
         return new Result(true, result.toString());
     }
     public Result giftNPC(String NPCName, String itemName){
-        Result res = inventoryTrash(itemName, "1");
-        if (!res.isSuccessful()) return res;
+        if (App.getCurrentGame().getCurrentPlayer().getInventory().getNumberOfInventoryItem(itemName) < 1) {
+            return new Result(false, "You don't have this item.");
+        }
+        App.getCurrentGame().getCurrentPlayer().getInventory().removeInventoryItem(itemName, 1);
         Player player = App.getCurrentGame().getCurrentPlayer();
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof NPCHouse){

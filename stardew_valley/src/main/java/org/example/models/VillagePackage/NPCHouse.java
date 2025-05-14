@@ -23,6 +23,8 @@ public abstract class NPCHouse extends Objectt {
 
     public abstract Result questsList();
 
+    public abstract Result questFinish(int ind);
+
     public void setMeetNPCToday(boolean meetNPCToday) {
         this.meetNPCToday = meetNPCToday;
     }

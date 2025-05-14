@@ -1,5 +1,7 @@
 package org.example.models.VillagePackage;
 
+import org.example.controllers.GameMenuController;
+import org.example.controllers.PreGameMenuController;
 import org.example.models.App;
 import org.example.models.Player;
 import org.example.models.Result;
@@ -16,7 +18,7 @@ public class SebastiansHouse extends NPCHouse{
     @Override
     public Result questsList() {
         StringBuilder result = new StringBuilder();
-        result.append("Quest 1 : 50 Irons  Reward: 2 Diamonds");
+        result.append("Quest 1 : 50 Iron bars  Reward: 2 Diamonds");
         if (super.quest1) result.append(" (done)\n");
         else result.append(" (undone)\n");
         result.append("Quest 2 : 1 pumpkin pie  Reward: 5000 golds");
@@ -34,6 +36,14 @@ public class SebastiansHouse extends NPCHouse{
             result.append(" this quest unlocks after Spring\n");
         }
         return new Result(true, result.toString());
+    }
+    @Override
+    public Result questFinish(int ind) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (ind == 1){
+            Result res = new GameMenuController().inventoryTrash("ironBar", "50");
+
+        }
     }
     @Override
     public Result gift(String itemName) {
