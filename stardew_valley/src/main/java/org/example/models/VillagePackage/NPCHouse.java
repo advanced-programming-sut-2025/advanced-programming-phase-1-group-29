@@ -9,16 +9,28 @@ public abstract class NPCHouse extends Objectt {
     private int NPCPlaceX = 0;
     private int NPCPlaceY = 0;
     private boolean meetNPCToday = false;
+    private boolean giftNPCToday = false;
 
     public abstract String getName();
+
+    public abstract Result gift(String itemName);
 
     public abstract Result meetNPC();
 
     public void setMeetNPCToday(boolean meetNPCToday) {
         this.meetNPCToday = meetNPCToday;
     }
+
     public boolean getMeetNPCToday() {
         return meetNPCToday;
+    }
+
+    public boolean getGiftNPCToday() {
+        return giftNPCToday;
+    }
+
+    public void setGiftNPCToday(boolean giftNPCToday) {
+        this.giftNPCToday = giftNPCToday;
     }
 
     public int getNPCPlaceX() {

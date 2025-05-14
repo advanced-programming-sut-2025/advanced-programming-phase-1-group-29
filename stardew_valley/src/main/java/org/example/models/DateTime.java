@@ -69,6 +69,7 @@ public class DateTime {
             }
             else if (objectt instanceof NPCHouse){
                 ((NPCHouse) objectt).setMeetNPCToday(false);
+                ((NPCHouse) objectt).setGiftNPCToday(false);
             }
         }
         for (Farm farm : App.getCurrentGame().getMap().getFarms()) {

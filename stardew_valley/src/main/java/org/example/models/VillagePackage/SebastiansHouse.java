@@ -14,6 +14,10 @@ public class SebastiansHouse extends NPCHouse{
         return "Sebastian";
     }
     @Override
+    public Result gift(String itemName) {
+
+    }
+    @Override
     public Result meetNPC() {
         Player player = App.getCurrentGame().getCurrentPlayer();
         if (abs(super.getNPCPlaceX() - player.getX()) > 1 || abs(super.getNPCPlaceY() - player.getY()) > 1) {
