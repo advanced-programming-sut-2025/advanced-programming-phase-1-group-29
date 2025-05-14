@@ -15,9 +15,12 @@ public class SebastiansHouse extends NPCHouse{
     }
     @Override
     public Result gift(String itemName) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
         if (!super.getGiftNPCToday()){
-            Player player = App.getCurrentGame().getCurrentPlayer();
             player.addSebastianFriendship(50);
+        }
+        if (itemName.equalsIgnoreCase("pizza")) {
+            player.addSebastianFriendship(200);
         }
     }
     @Override

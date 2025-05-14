@@ -10,6 +10,13 @@ import static java.lang.Math.abs;
 
 public class AbigailsHouse extends NPCHouse{
     @Override
+    public Result gift(String itemName) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (!super.getGiftNPCToday()) {
+            player.addAbigailFriendship(50);
+        }
+    }
+    @Override
     public String getName() {
         return "Abigail";
     }

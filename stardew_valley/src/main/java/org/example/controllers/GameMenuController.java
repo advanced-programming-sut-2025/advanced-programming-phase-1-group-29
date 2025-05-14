@@ -618,7 +618,7 @@ public class GameMenuController extends Controller{
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof NPCHouse){
                 if (((NPCHouse) objectt).getName().equalsIgnoreCase(NPCName)) {
-                    return objectt.gift(itemName);
+                    return ((NPCHouse) objectt).gift(itemName);
                 }
             }
         }
