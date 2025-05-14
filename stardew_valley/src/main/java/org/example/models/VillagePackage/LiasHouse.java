@@ -10,6 +10,28 @@ import static java.lang.Math.abs;
 
 public class LiasHouse extends NPCHouse {
     @Override
+    public Result questsList() {
+        StringBuilder result = new StringBuilder();
+        result.append("Quest 1 : 10 woods  Reward: 500 golds");
+        if (super.quest1) result.append(" (done)\n");
+        else result.append(" (undone)\n");
+        result.append("Quest 2 : 1 salmon Reward: dinner Salmon recipe");
+        if (super.quest2) result.append(" (done)\n");
+        else if (App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() < 200){
+            result.append(" you need to have 200 friendship points with Lia to unlock this quest\n");
+        }
+        else result.append(" undone\n");
+        result.append("Quest 3 : 200 woods Reward: 3 deluxe scarecrows");
+        if (super.quest3) result.append(" (done)\n");
+        else if (App.getCurrentGame().getCurrentTime().getYear() > 0 || (App.getCurrentGame().getCurrentTime().getSeason() == Season.Winter)){
+            result.append(" (undone)\n");
+        }
+        else {
+            result.append(" this quest unlocks after Fall\n");
+        }
+        return new Result(true, result.toString());
+    }
+    @Override
     public Result gift(String itemName) {
         Player player = App.getCurrentGame().getCurrentPlayer();
         if (!super.getGiftNPCToday()) {
@@ -24,7 +46,7 @@ public class LiasHouse extends NPCHouse {
         if (itemName.equalsIgnoreCase("grape")) {
             player.addLiaFriendship(200);
         }
-        return new Result("Lia: Gifts like this make my heart feel warm. You're wonderful.");
+        return new Result(true, "Lia: Gifts like this make my heart feel warm. You're wonderful.");
     }
     @Override
     public String getName() {

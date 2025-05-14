@@ -125,4 +125,8 @@ public class DateTime {
     public void setTime(int time) {
         this.time = time;
     }
+
+    public int getYear() {
+        return year;
+    }
 }

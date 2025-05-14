@@ -10,6 +10,28 @@ import static java.lang.Math.abs;
 
 public class HarveysHouse extends NPCHouse {
     @Override
+    public Result questsList() {
+        StringBuilder result = new StringBuilder();
+        result.append("Quest 1 : 12 plants of choice  Reward: 750 golds");
+        if (super.quest1) result.append(" (done)\n");
+        else result.append(" (undone)\n");
+        result.append("Quest 2 : 1 Salmon Reward: +1 friendship level");
+        if (super.quest2) result.append(" (done)\n");
+        else if (App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() < 200){
+            result.append(" you need to have 200 friendship points with Harvey to unlock this quest\n");
+        }
+        else result.append(" undone\n");
+        result.append("Quest 3 : 1 Wine  Reward: 5 salads ");
+        if (super.quest3) result.append(" (done)\n");
+        else if (App.getCurrentGame().getCurrentTime().getYear() > 0 || (App.getCurrentGame().getCurrentTime().getSeason() != Season.Spring && App.getCurrentGame().getCurrentTime().getSeason() != Season.Summer)){
+            result.append(" (undone)\n");
+        }
+        else {
+            result.append(" this quest unlocks after Summer\n");
+        }
+        return new Result(true, result.toString());
+    }
+    @Override
     public Result gift(String itemName) {
         Player player = App.getCurrentGame().getCurrentPlayer();
         if (!super.getGiftNPCToday()) {

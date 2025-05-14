@@ -10,6 +10,28 @@ import static java.lang.Math.abs;
 
 public class RobinsHouse extends NPCHouse {
     @Override
+    public Result questsList() {
+        StringBuilder result = new StringBuilder();
+        result.append("Quest 1 : 80 woods  Reward: 1000 golds");
+        if (super.quest1) result.append(" (done)\n");
+        else result.append(" (undone)\n");
+        result.append("Quest 2 : 10 iron bar Reward: 3 queen bee hives");
+        if (super.quest2) result.append(" (done)\n");
+        else if (App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() < 200){
+            result.append(" you need to have 200 friendship points with Robin to unlock this quest\n");
+        }
+        else result.append(" undone\n");
+        result.append("Quest 3 : 1000 woods Reward: 25000 golds");
+        if (super.quest3) result.append(" (done)\n");
+        else if (App.getCurrentGame().getCurrentTime().getYear() > 1){
+            result.append(" (undone)\n");
+        }
+        else {
+            result.append(" this quest unlocks after a year\n");
+        }
+        return new Result(true, result.toString());
+    }
+    @Override
     public Result gift(String itemName) {
         Player player = App.getCurrentGame().getCurrentPlayer();
         if (!super.getGiftNPCToday()) {

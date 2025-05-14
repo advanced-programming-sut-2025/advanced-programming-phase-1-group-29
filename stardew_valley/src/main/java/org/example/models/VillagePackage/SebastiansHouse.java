@@ -27,7 +27,13 @@ public class SebastiansHouse extends NPCHouse{
         else result.append(" undone\n");
         result.append("Quest 3 : 150 stones  Reward: 50 quartz");
         if (super.quest3) result.append(" (done)\n");
-        else if (App.getCurrentGame().getCurrentTime().getSeason() )
+        else if (App.getCurrentGame().getCurrentTime().getYear() > 0 || App.getCurrentGame().getCurrentTime().getSeason() != Season.Spring){
+            result.append(" (undone)\n");
+        }
+        else {
+            result.append(" this quest unlocks after Spring\n");
+        }
+        return new Result(true, result.toString());
     }
     @Override
     public Result gift(String itemName) {
