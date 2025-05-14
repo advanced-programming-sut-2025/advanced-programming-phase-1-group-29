@@ -600,5 +600,14 @@ public class GameMenuController extends Controller{
         player.addCoins(price);
         return new Result(true, animal.getName() + "is sold.");
     }
-    //hi
+    public Result friendshipNPCList() {
+        StringBuilder result = new StringBuilder();
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        result.append("Sebastian: " + player.getSebastianFriendship() + " level " + player.getSebastianFriendship() / 200 + "\n");
+        result.append("Abigail: " + player.getAbigailFriendship() + " level " + player.getAbigailFriendship() / 200 + "\n");
+        result.append("Harvey: " + player.getHarveyFriendship() + " level " + player.getHarveyFriendship() / 200 + "\n");
+        result.append("Lia: " + player.getLiaFriendship() + " level " + player.getLiaFriendship() / 200 + "\n");
+        result.append("Robin: " + player.getRobinFriendship() + " level " + player.getRobinFriendship() / 200);
+        return new Result(true, result.toString());
+    }
 }
