@@ -33,6 +33,10 @@ public class Animal {
         return friendshipPoint;
     }
 
+    public void setFriendshipPoint(int friendshipPoint) {
+        this.friendshipPoint = friendshipPoint;
+    }
+
     public void addFriendshipPoint(int point) {
         this.friendshipPoint += point;
     }

@@ -169,19 +169,19 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.Pet.getMatcher(input)) != null) {
             System.out.println(controller.pet(matcher.group("name").trim()));
         }
-//        else if ((matcher = GameMenuCommands.CheatSetFriendship.getMatcher(input)) != null) {
-//            System.out.println(controller.cheatSetFriendship(
-//                    matcher.group("animalName").trim(),
-//                    matcher.group("amount").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.CheatSetFriendship.getMatcher(input)) != null) {
+            System.out.println(controller.cheatSetFriendship(
+                    matcher.group("animalName").trim(),
+                    matcher.group("amount").trim()));
+        }
         else if (GameMenuCommands.Animals.getMatcher(input) != null) {
             System.out.println(controller.animals());
         }
-//        else if ((matcher = GameMenuCommands.ShepherdAnimals.getMatcher(input)) != null) {
-//            System.out.println(controller.ShepherdAnimals(
-//            matcher.group("animalName").trim(),
-//            matcher.group("x").trim(),
-//            matcher.group("y").trim()));
+        else if ((matcher = GameMenuCommands.ShepherdAnimals.getMatcher(input)) != null) {
+            System.out.println(controller.shepherdAnimals(
+            matcher.group("animalName").trim(),
+            matcher.group("x").trim(),
+            matcher.group("y").trim()));
 //        }
         else if ((matcher = GameMenuCommands.FeedHay.getMatcher(input)) != null) {
             System.out.println(controller.feedHay(matcher.group("animalName").trim()));

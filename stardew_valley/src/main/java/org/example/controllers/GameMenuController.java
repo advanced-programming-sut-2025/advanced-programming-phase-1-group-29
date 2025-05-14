@@ -569,14 +569,53 @@ public class GameMenuController extends Controller{
         return new Result(true, "");
     }
 
+    public Result cheatSetFriendship(String animalName, String amountString) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int amount = Integer.parseInt(amountString);
+        //TODO
+        Animal animal = null;
+        if(animal == null){
+            return new Result(false, "You don't have this animal.");
+        }
+        animal.setFriendshipPoint(amount);
+        return new Result(true, "");
+    }
+
     public Result animals (){
         Player player = App.getCurrentGame().getCurrentPlayer();
         StringJoiner stringJoiner = new StringJoiner("\n");
         //TODO
 //        for (Animal animal){
-//            stringJoiner.add(animal.getName() + " " + animal.getFriendshipPoint())
+//            stringJoiner.add("Animal: " + animal.getName());
+//            stringJoiner.add("   FriendshipPoint: " + animal.getFriendshipPoint());
+//            stringJoiner.add("   IsFed? " + (animal.isFed() ? "Yes" : "No"));
+//            stringJoiner.add("   IsPetted? " + (animal.isPetted() ? "Yes" : "No");
 //        }
+
         return new Result(true, stringJoiner.toString());
+    }
+
+    public Result shepherdAnimals(String animalName, String xString, String yString) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Game game = App.getCurrentGame();
+        //TODO
+        Animal animal = null;
+        if(animal == null){
+            return new Result(false, "You don't have this animal.");
+        }
+        int x = Integer.parseInt(xString);
+        int y = Integer.parseInt(yString);
+        //TODO
+//        if(invalid destination){
+//            return new Result(false, "Invalid destination");
+//        }
+        //TODO
+//        if(movingOut && (game.getWeather() == Weather.SNOWY || game.getWeather() == Weather.RAINY || game.getWeather() == Weather.STORMY)){
+//            return new Result(false, "You can't take the animals out in this weather.");
+//        }
+        //TODO
+        // change animal's location
+        return new Result(true, "");
     }
 
     public Result feedHay (String animalName){
