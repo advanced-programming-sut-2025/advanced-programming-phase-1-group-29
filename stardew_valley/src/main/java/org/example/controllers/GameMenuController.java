@@ -600,4 +600,5 @@ public class GameMenuController extends Controller{
         player.addCoins(price);
         return new Result(true, animal.getName() + "is sold.");
     }
+    //hi
 }
