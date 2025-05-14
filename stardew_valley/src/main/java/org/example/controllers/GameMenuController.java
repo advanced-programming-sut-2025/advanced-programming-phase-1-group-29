@@ -615,8 +615,8 @@ public class GameMenuController extends Controller{
         return new Result(true, result.toString());
     }
     public Result giftNPC(String NPCName, String itemName){
-        //TODO
-        //remove the item from player's inventory
+        Result res = inventoryTrash(itemName, "1");
+        if (!res.isSuccessful()) return res;
         Player player = App.getCurrentGame().getCurrentPlayer();
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof NPCHouse){
