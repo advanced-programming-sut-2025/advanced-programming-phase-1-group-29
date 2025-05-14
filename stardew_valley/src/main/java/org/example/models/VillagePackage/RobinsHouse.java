@@ -15,6 +15,16 @@ public class RobinsHouse extends NPCHouse {
         if (!super.getGiftNPCToday()) {
             player.addRobinFriendship(50);
         }
+        if (itemName.equalsIgnoreCase("Spaghetti")) {
+            player.addRobinFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("wood")) {
+            player.addRobinFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("ironBar")) {
+            player.addRobinFriendship(200);
+        }
+        return new Result(true, "Robin: Hmph. Well... at least it’s useful. Thanks." );
     }
     @Override
     public String getName() {

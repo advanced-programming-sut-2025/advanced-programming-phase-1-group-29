@@ -1,5 +1,6 @@
 package org.example.models;
 
+import org.example.models.VillagePackage.NPCMissionList;
 import org.example.models.enums.FoodRecipe;
 import org.example.models.enums.TrashCan;
 
@@ -30,7 +31,12 @@ public class Player {
     private int harveyFriendship = 0;
     private int liaFriendship = 0;
     private int robinFriendship = 0;
+    private NPCMissionList npcMissionList = new NPCMissionList();
 
+
+    public NPCMissionList getNPCMissionList() {
+        return npcMissionList;
+    }
 
     public int getFarmNumber() {
         return farmNumber;
@@ -187,6 +193,7 @@ public class Player {
     public int getRobinFriendship() {
         return robinFriendship;
     }
+
 
     public void addSebastianFriendship(int amount) {
         sebastianFriendship += amount;

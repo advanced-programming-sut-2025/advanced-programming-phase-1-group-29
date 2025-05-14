@@ -15,6 +15,16 @@ public class LiasHouse extends NPCHouse {
         if (!super.getGiftNPCToday()) {
             player.addLiaFriendship(50);
         }
+        if (itemName.equalsIgnoreCase("Salad")) {
+            player.addLiaFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("Wine")) {
+            player.addLiaFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("grape")) {
+            player.addLiaFriendship(200);
+        }
+        return new Result("Lia: Gifts like this make my heart feel warm. You're wonderful.");
     }
     @Override
     public String getName() {

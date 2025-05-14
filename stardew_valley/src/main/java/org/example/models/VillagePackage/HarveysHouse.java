@@ -15,6 +15,16 @@ public class HarveysHouse extends NPCHouse {
         if (!super.getGiftNPCToday()) {
             player.addHarveyFriendship(50);
         }
+        if (itemName.equalsIgnoreCase("coffee")) {
+            player.addHarveyFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("pickle")) {
+            player.addHarveyFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("wine")) {
+            player.addHarveyFriendship(200);
+        }
+        return new Result(true, "Harvey: You didn’t have to... but I’m grateful you did.");
     }
     @Override
     public String getName() {

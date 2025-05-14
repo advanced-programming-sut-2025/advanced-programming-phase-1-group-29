@@ -22,6 +22,13 @@ public class SebastiansHouse extends NPCHouse{
         if (itemName.equalsIgnoreCase("pizza")) {
             player.addSebastianFriendship(200);
         }
+        if (itemName.equalsIgnoreCase("wool")) {
+            player.addSebastianFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("pumpkinPie")) {
+            player.addSebastianFriendship(200);
+        }
+        return new Result(true, "Sebastian: Huh. I didn’t expect this from you. I mean that in a good way.");
     }
     @Override
     public Result meetNPC() {

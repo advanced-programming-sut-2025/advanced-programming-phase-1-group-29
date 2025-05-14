@@ -15,6 +15,16 @@ public class AbigailsHouse extends NPCHouse{
         if (!super.getGiftNPCToday()) {
             player.addAbigailFriendship(50);
         }
+        if (itemName.equalsIgnoreCase("stone")) {
+            player.addAbigailFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("IronOre")) {
+            player.addAbigailFriendship(200);
+        }
+        if (itemName.equalsIgnoreCase("coffee")) {
+            player.addAbigailFriendship(200);
+        }
+        return new Result(true, "Abigail: You got this for me? Aww, you’re the best!" );
     }
     @Override
     public String getName() {
