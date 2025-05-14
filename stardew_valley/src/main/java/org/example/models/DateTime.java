@@ -12,11 +12,13 @@ public class DateTime {
     private Season season;
     private int day;
     private int time;
+    private int year;
 
-    public DateTime(Season season, int day, int time) {
+    public DateTime(Season season, int day, int time, int year) {
         this.season = season;
         this.day = day;
         this.time = time;
+        this.year = year;
     }
 
     public void incrementTime() {

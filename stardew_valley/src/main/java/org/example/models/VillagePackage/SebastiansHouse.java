@@ -14,6 +14,22 @@ public class SebastiansHouse extends NPCHouse{
         return "Sebastian";
     }
     @Override
+    public Result questsList() {
+        StringBuilder result = new StringBuilder();
+        result.append("Quest 1 : 50 Irons  Reward: 2 Diamonds");
+        if (super.quest1) result.append(" (done)\n");
+        else result.append(" (undone)\n");
+        result.append("Quest 2 : 1 pumpkin pie  Reward: 5000 golds");
+        if (super.quest2) result.append(" (done)\n");
+        else if (App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() < 200){
+            result.append(" you need to have 200 friendship points with Sebastian to unlock this quest\n");
+        }
+        else result.append(" undone\n");
+        result.append("Quest 3 : 150 stones  Reward: 50 quartz");
+        if (super.quest3) result.append(" (done)\n");
+        else if (App.getCurrentGame().getCurrentTime().getSeason() )
+    }
+    @Override
     public Result gift(String itemName) {
         Player player = App.getCurrentGame().getCurrentPlayer();
         if (!super.getGiftNPCToday()){
