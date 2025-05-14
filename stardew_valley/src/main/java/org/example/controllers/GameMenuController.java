@@ -3,6 +3,7 @@ package org.example.controllers;
 import org.example.models.*;
 import org.example.models.Map;
 import org.example.models.Objectt;
+import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
 import org.example.models.enums.*;
 
@@ -609,5 +610,15 @@ public class GameMenuController extends Controller{
         result.append("Lia: " + player.getLiaFriendship() + " level " + player.getLiaFriendship() / 200 + "\n");
         result.append("Robin: " + player.getRobinFriendship() + " level " + player.getRobinFriendship() / 200);
         return new Result(true, result.toString());
+    }
+    public Result giftNPC(String NPCName, String itemName){
+        for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
+            if (objectt instanceof NPCHouse){
+                if (((NPCHouse) objectt).getName().equalsIgnoreCase(NPCName)) {
+                    return objectt.gift(itemName);
+                }
+            }
+        }
+        return new Result(false, "Wrong NPC name");
     }
 }
