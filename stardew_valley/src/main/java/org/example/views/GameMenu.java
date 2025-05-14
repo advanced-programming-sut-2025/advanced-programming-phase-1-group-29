@@ -186,12 +186,12 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.FeedHay.getMatcher(input)) != null) {
             System.out.println(controller.feedHay(matcher.group("animalName").trim()));
         }
-//        else if (GameMenuCommands.Produces.getMatcher(input) != null) {
-//            System.out.println(controller.produces());
-//        }
-//        else if ((matcher = GameMenuCommands.CollectProduce.getMatcher(input)) != null) {
-//            System.out.println(controller.collectProduce(matcher.group("name").trim()));
-//        }
+        else if (GameMenuCommands.Produces.getMatcher(input) != null) {
+            System.out.println(controller.produces());
+        }
+        else if ((matcher = GameMenuCommands.CollectProduce.getMatcher(input)) != null) {
+            System.out.println(controller.collectProduce(matcher.group("name").trim()));
+        }
         else if ((matcher = GameMenuCommands.SellAnimal.getMatcher(input)) != null) {
             System.out.println(controller.sellAnimal(matcher.group("name").trim()));
         }

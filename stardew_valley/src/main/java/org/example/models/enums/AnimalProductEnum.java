@@ -1,18 +1,18 @@
 package org.example.models.enums;
 
 public enum AnimalProductEnum {
-    Egg ("", 50),
-    BigEgg ("", 95),
-    DuckEgg ("", 95),
-    DuckFeather ("", 250),
-    Wool ("", 340),
-    RabbitPie ("", 565),
-    DinosaurEgg ("", 350),
-    Milk ("", 125),
-    BigMilk ("", 190),
-    GoatMilk ("", 225),
-    BigGoatMilk ("", 345),
-    Truffle ("", 625),
+    Egg ("Egg", 50),
+    BigEgg ("Egg", 95),
+    DuckEgg ("Duck egg", 95),
+    DuckFeather ("Duck feather", 250),
+    Wool ("Wool", 340),
+    RabbitPie ("Rabbit pie", 565),
+    DinosaurEgg ("Dinosaur egg", 350),
+    Milk ("Milk", 125),
+    BigMilk ("Milk", 190),
+    GoatMilk ("Goat milk", 225),
+    BigGoatMilk ("Goat milk", 345),
+    Truffle ("Truffle", 625),
     ;
 
     private final String name;

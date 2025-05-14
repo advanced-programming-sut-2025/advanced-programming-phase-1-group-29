@@ -14,7 +14,7 @@ public class Animal {
     private int friendshipPoint = 0;
     private boolean isPetted = false;
     private boolean isFed = false;
-    private ArrayList<InventoryItem> products = new ArrayList<>();
+    private final ArrayList<InventoryItem> products = new ArrayList<>();
 
     public Animal(AnimalEnum animalType, String name, int price) {
         this.name = name;
@@ -60,6 +60,10 @@ public class Animal {
 
     public void setIsFed(boolean isFed) {
         this.isFed = isFed;
+    }
+
+    public ArrayList<InventoryItem> getProducts() {
+        return products;
     }
 
     public void addProduct(){

@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import com.sun.source.tree.ReturnTree;
 import org.example.models.*;
 import org.example.models.Map;
 import org.example.models.Objectt;
@@ -626,6 +627,36 @@ public class GameMenuController extends Controller{
             return new Result(false, "You don't have this animal.");
         }
         animal.setIsFed(true);
+        return new Result(true, "");
+    }
+
+    public Result produces(){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        //TODO
+//        for (Animal animal){
+//            if(animal.getProducts().isEmpty()) continue;
+//            stringJoiner.add(animal.getName() + ":");
+//            for (InventoryItem product : animal.getProducts()) {
+//                stringJoiner.add("    " + product.getName() + " " + product.getQuality());
+//            }
+//        }
+        return new Result(true, stringJoiner.toString());
+    }
+
+    public Result collectProduce(String animalName){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        //TODO
+        Animal animal = null;
+        if(animal == null){
+            return new Result(false, "You don't have this animal.");
+        }
+        //TODO
+        // proper tools?
+        for (InventoryItem product : animal.getProducts()) {
+            player.getInventory().addInventoryItem(product, 1);
+        }
+        animal.getProducts().clear();
         return new Result(true, "");
     }
 
