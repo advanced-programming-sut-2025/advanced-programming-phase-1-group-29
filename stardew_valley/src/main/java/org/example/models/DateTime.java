@@ -64,6 +64,7 @@ public class DateTime {
             else if (season.equals(Season.Summer)) setSeason(Season.Fall);
             else if (season.equals(Season.Fall)) setSeason(Season.Winter);
             else setSeason(Season.Spring);
+            if (season.equals(Season.Spring)) year++;
         }
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof Store){
