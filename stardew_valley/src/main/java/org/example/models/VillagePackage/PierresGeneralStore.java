@@ -3,6 +3,7 @@ package org.example.models.VillagePackage;
 import org.example.models.App;
 import org.example.models.InventoryItem;
 import org.example.models.Result;
+import org.example.models.enums.InventoryType;
 import org.example.models.enums.Season;
 
 public class PierresGeneralStore extends Store {
