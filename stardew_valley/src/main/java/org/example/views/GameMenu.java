@@ -66,9 +66,9 @@ public class GameMenu implements AppMenu{
         else if(GameMenuCommands.WeatherForecast.getMatcher(input) != null) {
             System.out.println(controller.weatherForecast());
         }
-//        else if ((matcher = GameMenuCommands.CheatWeatherSet.getMatcher(input)) != null) {
-//            System.out.println(controller.cheatWeatherSet(matcher.group("type").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.CheatWeatherSet.getMatcher(input)) != null) {
+            System.out.println(controller.cheatWeatherSet(matcher.group("type").trim()));
+        }
 //        else if (GameMenuCommands.GreenHouseBuild.getMatcher(input) != null) {
 //            System.out.println(controller.greenhouseBuild());
 //        }

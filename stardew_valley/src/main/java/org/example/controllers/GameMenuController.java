@@ -96,6 +96,9 @@ public class GameMenuController extends Controller{
     }
 
     public Result weatherForecast() {
+        if (App.getCurrentGame().getCheatWeather() != null) {
+            return new Result(true, "Tomorrow, The weather will be " + App.getCurrentGame().getCheatWeather() + ".");
+        }
         Season season = App.getCurrentGame().getCurrentTime().getSeason();
         if (App.getCurrentGame().getCurrentTime().getDay() == 28) {
             if (season.equals(Season.Spring)) season = Season.Summer;
@@ -105,6 +108,16 @@ public class GameMenuController extends Controller{
         }
         int random = (new Random()).nextInt(season.getWeathers().size());
         return new Result(true, "Tomorrow, The weather will probably be " + season.getWeathers().get(random) + ".");
+    }
+
+    public Result cheatWeatherSet(String name) {
+        try {
+            Weather.valueOf(name.toUpperCase());
+            App.getCurrentGame().setCheatWeather(Weather.valueOf(name.toUpperCase()));
+            return new Result(true, "Tomorrow the weather will be " + name.toLowerCase());
+        } catch (IllegalArgumentException _) {
+            return new Result(false, "Invalid weather type.");
+        }
     }
 
     public Result energyShow() {

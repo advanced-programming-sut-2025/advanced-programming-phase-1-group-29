@@ -95,7 +95,13 @@ public class DateTime {
             else setSeason(Season.Spring);
             if (season.equals(Season.Spring)) year++;
         }
-        changeWeather();
+        if (App.getCurrentGame().getCheatWeather() != null) {
+            App.getCurrentGame().setWeather(App.getCurrentGame().getCheatWeather());
+            App.getCurrentGame().setCheatWeather(null);
+        }
+        else {
+            changeWeather();
+        }
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof Store){
                 ((Store) objectt).resetCapacity();
