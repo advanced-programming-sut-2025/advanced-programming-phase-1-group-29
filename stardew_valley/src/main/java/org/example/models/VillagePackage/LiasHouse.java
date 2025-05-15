@@ -38,8 +38,8 @@ public class LiasHouse extends NPCHouse {
             }
             else{
                 super.quest3 = true;
-                player.getInventory().addInventoryItem("deluxeScareCrow", 3, 0);//TODO??
-                return new Result(true, "quest completed. you received 3 deluxe scarecrows.");//TODO
+                player.getInventory().addInventoryItem("deluxeScareCrow", 3, 0);
+                return new Result(true, "quest completed. you received 3 deluxe scarecrows.");
             }
         }
         else return new Result(false, "invalid index");
