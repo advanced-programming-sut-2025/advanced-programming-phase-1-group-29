@@ -248,15 +248,15 @@ public class GameMenu implements AppMenu{
             matcher.group("item").trim(),
             matcher.group("amount").trim()));
         }
-//        else if (GameMenuCommands.GiftList.getMatcher(input) != null) {
-//            System.out.println(controller.giftList());
-//        }
+        else if (GameMenuCommands.GiftList.getMatcher(input) != null) {
+            System.out.println(controller.giftList());
+        }
         else if ((matcher = GameMenuCommands.GiftRate.getMatcher(input)) != null) {
             System.out.println(controller.rateGift(matcher.group("giftNumber").trim(), matcher.group("rate").trim()));
         }
-//        else if ((matcher = GameMenuCommands.GiftHistory.getMatcher(input)) != null) {
-//            System.out.println(controller.giftHistory(matcher.group("username").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.GiftHistory.getMatcher(input)) != null) {
+            System.out.println(controller.giftHistory(matcher.group("username").trim()));
+        }
 //        else if ((matcher = GameMenuCommands.Hug.getMatcher(input)) != null) {
 //            System.out.println(controller.hug(matcher.group("username").trim()));
 //        }

@@ -833,6 +833,51 @@ public class GameMenuController extends Controller{
         player2.addFriendship(App.getCurrentGame().getTurn(), (rate - 3) * 30 + 15);
         return new Result(true, "your rate has been received");
     }
+    public Result giftList(){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        ArrayList<String> items = player.getGiftItems();
+        ArrayList<Integer> giftNumbers = player.getGiftNumbers();
+        ArrayList<Integer> giftPlayersIndex = player.getGiftPlayersIndex();
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < items.size(); i++) {
+            result.append(giftNumbers.get(i) + " " + items.get(i) + " from " + App.getCurrentGame().getPlayers().get(giftPlayersIndex.get(i)) + "\n");
+        }
+        return new Result(true, result.toString());
+    }
+    public Result giftHistory(String username){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Player player2 = null;
+        int ind = -1;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
+                ind = i;
+                player2 = App.getCurrentGame().getPlayers().get(i);
+            }
+        }
+        if (ind == -1) {
+            return new Result(false, "Incorrect username");
+        }
+        StringBuilder result = new StringBuilder();
+        result.append("recieved gifts: \n");
+        ArrayList<String> items = player.getGiftItems();
+        ArrayList<Integer> giftNumbers = player.getGiftNumbers();
+        ArrayList<Integer> giftPlayersIndex = player.getGiftPlayersIndex();
+        for (int i = 0; i < items.size(); i++) {
+            if (giftPlayersIndex.get(i) == ind) {
+                result.append(giftNumbers.get(i) + " " + items.get(i) + "\n");
+            }
+        }
+        result.append("sent gifts: \n");
+        ArrayList<String> items2 = player2.getGiftItems();
+        ArrayList<Integer> giftNumbers2 = player2.getGiftNumbers();
+        ArrayList<Integer> giftPlayersIndex2 = player2.getGiftPlayersIndex();
+        for (int i = 0; i < items2.size(); i++) {
+            if (giftPlayersIndex2.get(i) == App.getCurrentGame().getTurn()) {
+                result.append(giftNumbers2.get(i) + " " + items2.get(i) + "\n");
+            }
+        }
+        return new Result(true, result.toString());
+    }
 
     private int getFriendshipLevel(int points){
         int level = 0;
