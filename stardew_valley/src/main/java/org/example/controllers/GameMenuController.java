@@ -95,6 +95,31 @@ public class GameMenuController extends Controller{
         );
     }
 
+    public Result weatherForecast() {
+        if (App.getCurrentGame().getCheatWeather() != null) {
+            return new Result(true, "Tomorrow, The weather will be " + App.getCurrentGame().getCheatWeather() + ".");
+        }
+        Season season = App.getCurrentGame().getCurrentTime().getSeason();
+        if (App.getCurrentGame().getCurrentTime().getDay() == 28) {
+            if (season.equals(Season.Spring)) season = Season.Summer;
+            else if (season.equals(Season.Summer)) season = Season.Fall;
+            else if (season.equals(Season.Fall)) season = Season.Winter;
+            else season = Season.Spring;
+        }
+        int random = (new Random()).nextInt(season.getWeathers().size());
+        return new Result(true, "Tomorrow, The weather will probably be " + season.getWeathers().get(random) + ".");
+    }
+
+    public Result cheatWeatherSet(String name) {
+        try {
+            Weather.valueOf(name.toUpperCase());
+            App.getCurrentGame().setCheatWeather(Weather.valueOf(name.toUpperCase()));
+            return new Result(true, "Tomorrow the weather will be " + name.toLowerCase());
+        } catch (IllegalArgumentException _) {
+            return new Result(false, "Invalid weather type.");
+        }
+    }
+
     public Result energyShow() {
         Game game = App.getCurrentGame();
         return new Result(true, "Energy: " + game.players.get(game.getTurn()).getEnergy());
@@ -449,15 +474,28 @@ public class GameMenuController extends Controller{
         return false;
     }
 
+    public Boolean isEdible(String itemName) {
+        if(FoodEnum.getByName(itemName) != null){
+            return true;
+        }
+        if(FishEnum.getByName(itemName) == null){
+            return true;
+        }
+        if(FruitEnum.getByName(itemName) == null){
+            return true;
+        }
+        return false;
+    }
+
     public Result cookingRefrigerator(String action, String item){
         Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
         if(!inCottage()){
             return new Result(false, "You are not in your cottage");
         }
-//        if(!food){
-//            return new Result(false, "Not eatable!");
-//        }
+        if(!isEdible(item)){
+            return new Result(false, "Not eatable!");
+        }
         Game game = App.getCurrentGame();
         Farm farm = game.getCurrentFarm();
         Cottage cottage = farm.getCottage();

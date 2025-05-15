@@ -11,6 +11,7 @@ public class Game {
     private DateTime currentTime;
     private Map map;
     private Weather weather = Weather.RAINY;
+    private Weather cheatWeather = null;
 
     public Player getMainPlayer() {
         return mainPlayer;
@@ -78,5 +79,13 @@ public class Game {
 
     public Farm getCurrentFarm() {
         return this.map.getFarms().get(turn);
+    }
+
+    public Weather getCheatWeather() {
+        return cheatWeather;
+    }
+
+    public void setCheatWeather(Weather cheatWeather) {
+        this.cheatWeather = cheatWeather;
     }
 }

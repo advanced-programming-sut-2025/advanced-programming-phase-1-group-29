@@ -95,6 +95,13 @@ public class DateTime {
             else setSeason(Season.Spring);
             if (season.equals(Season.Spring)) year++;
         }
+        if (App.getCurrentGame().getCheatWeather() != null) {
+            App.getCurrentGame().setWeather(App.getCurrentGame().getCheatWeather());
+            App.getCurrentGame().setCheatWeather(null);
+        }
+        else {
+            changeWeather();
+        }
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof Store){
                 ((Store) objectt).resetCapacity();
@@ -113,6 +120,11 @@ public class DateTime {
         putForaging();
         putForagingMineral();
         setEnergy();
+    }
+
+    private void changeWeather() {
+        int random = (new Random()).nextInt(season.getWeathers().size());
+        App.getCurrentGame().setWeather(season.getWeathers().get(random));
     }
 
     private void thunder() {
