@@ -10,6 +10,41 @@ import static java.lang.Math.abs;
 
 public class LiasHouse extends NPCHouse {
     @Override
+    public Result questFinish(int ind) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (ind == 1 && !super.quest1){
+            if (player.getInventory().getNumberOfInventoryItem("wood") < 10){
+                return new Result(false, "You don't have enough wood in your inventory.");
+            }
+            else {
+                super.quest1 = true;
+                player.addCoins(500);
+                return new Result(true, "quest completed. you received 500 coins.");
+            }
+        }
+        else if (ind == 2 && !super.quest2 && App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() >= 200){
+            if (player.getInventory().getNumberOfInventoryItem("salmon") < 1){
+                return new Result(false, "You don't have enough salmon in your inventory.");
+            }
+            else {
+                super.quest2 = true;
+                player.getInventory().addInventoryItem("dinnerSalmonRecipe", 1, 0);
+                return new Result(true, "quest completed. you received dinner salmon recipe.");
+            }
+        }
+        else if (ind == 3 && !super.quest3 && (App.getCurrentGame().getCurrentTime().getYear() > 0 || (App.getCurrentGame().getCurrentTime().getSeason() == Season.Winter))){
+            if (player.getInventory().getNumberOfInventoryItem("wood") < 200){
+                return new Result(false, "You don't have enough wood in your inventory.");
+            }
+            else{
+                super.quest3 = true;
+                player.getInventory().addInventoryItem("deluxeScareCrow", 3, 0);//TODO??
+                return new Result(true, "quest completed. you received 3 deluxe scarecrows.");//TODO
+            }
+        }
+        else return new Result(false, "invalid index");
+    }
+    @Override
     public Result questsList() {
         StringBuilder result = new StringBuilder();
         result.append("Quest 1 : 10 woods  Reward: 500 golds");

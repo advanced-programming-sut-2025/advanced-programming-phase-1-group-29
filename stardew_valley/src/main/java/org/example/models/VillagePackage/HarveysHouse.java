@@ -10,6 +10,41 @@ import static java.lang.Math.abs;
 
 public class HarveysHouse extends NPCHouse {
     @Override
+    public Result questFinish(int ind) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (ind == 1 && !super.quest1){
+            if (player.getInventory().getNumberOfInventoryItem("plant") < 1){ // TODO
+                return new Result(false, "You don't have enough plants in your inventory.");
+            }
+            else {
+                super.quest1 = true;
+                player.addCoins(750);
+                return new Result(true, "quest completed. you received 750 coins");
+            }
+        }
+        else if (ind == 2 && !super.quest2 && App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() >= 200){
+            if (player.getInventory().getNumberOfInventoryItem("salmon") < 1){
+                return new Result(false, "You don't have enough salmon in your inventory.");
+            }
+            else {
+                super.quest2 = true;
+                player.addHarveyFriendship(1);
+                return new Result(true, "quest completed. your friendship with Harvey increased 1");
+            }
+        }
+        else if (ind == 3 && !super.quest3 && (App.getCurrentGame().getCurrentTime().getYear() > 0 || (App.getCurrentGame().getCurrentTime().getSeason() != Season.Spring && App.getCurrentGame().getCurrentTime().getSeason() != Season.Summer))){
+            if (player.getInventory().getNumberOfInventoryItem("wine") < 1){
+                return new Result(false, "You don't have wine in your inventory.");
+            }
+            else{
+                super.quest3 = true;
+                player.getInventory().addInventoryItem("salad", 5, 0);//TODO??
+                return new Result(true, "quest completed. you received 5 salads.");
+            }
+        }
+        else return new Result(false, "invalid index");
+    }
+    @Override
     public Result questsList() {
         StringBuilder result = new StringBuilder();
         result.append("Quest 1 : 12 plants of choice  Reward: 750 golds");

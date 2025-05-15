@@ -10,6 +10,41 @@ import static java.lang.Math.abs;
 
 public class RobinsHouse extends NPCHouse {
     @Override
+    public Result questFinish(int ind) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (ind == 1 && !super.quest1){
+            if (player.getInventory().getNumberOfInventoryItem("wood") < 80){
+                return new Result(false, "You don't have enough wood in your inventory.");
+            }
+            else {
+                super.quest1 = true;
+                player.addCoins(1000);
+                return new Result(true, "quest completed. you received 1000 coins.");
+            }
+        }
+        else if (ind == 2 && !super.quest2 && App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() >= 200){
+            if (player.getInventory().getNumberOfInventoryItem("ironBar") < 10){
+                return new Result(false, "You don't have enough iron bar in your inventory.");
+            }
+            else {
+                super.quest2 = true;
+                player.getInventory().addInventoryItem("queenBeeHive", 3, 0);
+                return new Result(true, "quest completed. you received 3 Queen Bee Hives.");
+            }
+        }
+        else if (ind == 3 && !super.quest3 && (App.getCurrentGame().getCurrentTime().getYear() > 0 || (App.getCurrentGame().getCurrentTime().getSeason() == Season.Winter))){
+            if (player.getInventory().getNumberOfInventoryItem("wood") < 1000){
+                return new Result(false, "You don't have enough wood in your inventory.");
+            }
+            else{
+                super.quest3 = true;
+                player.addCoins(25000);
+                return new Result(true, "quest completed. you received 25000 coins.");//TODO
+            }
+        }
+        else return new Result(false, "invalid index");
+    }
+    @Override
     public Result questsList() {
         StringBuilder result = new StringBuilder();
         result.append("Quest 1 : 80 woods  Reward: 1000 golds");
