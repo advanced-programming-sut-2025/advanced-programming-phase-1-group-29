@@ -817,6 +817,9 @@ public class GameMenuController extends Controller{
         if (ind == -1) {
             return new Result(false, "Incorrect username");
         }
+        if (getFriendshipLevel(player.getFriendship()[ind]) < 1) {
+            return new Result(false, "You don't have enough friendship to gift.");
+        }
         player2.getInventory().addInventoryItem(itemName, amount, 0);
         player2.addGift(itemName, amount, App.getCurrentGame().getTurn());
         return new Result(true, player2.getUser().getUsername() + " recieved " + amount + " of " + itemName + "\n");
@@ -886,6 +889,59 @@ public class GameMenuController extends Controller{
             level++;
         }
         return level;
+    }
+
+    public Result hug(String username){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int ind = -1;
+        Player player2 = null;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
+                ind = i;
+                player2 = App.getCurrentGame().getPlayers().get(i);
+            }
+        }
+        if (ind == -1) {
+            return new Result(false, "Incorrect username");
+        }
+        if (abs(player.getX() - player2.getX()) + abs(player.getY() - player2.getY()) > 1) {
+            return new Result(false, "You are too far away");
+        }
+        if (getFriendshipLevel(player.getFriendship()[ind]) < 2) {
+            return new Result(false, "You are not friends enough to hug");
+        }
+        player.addFriendship(ind, 60);
+        player2.addFriendship(App.getCurrentGame().getTurn(), 60);
+        return new Result(true, "you received 60 friendship xp from hugging");
+    }
+
+    public Result flower(String username){
+        int ind = -1;
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Player player2 = null;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
+                ind = i;
+                player2 = App.getCurrentGame().getPlayers().get(i);
+            }
+        }
+        if (ind == -1) {
+            return new Result(false, "Incorrect username");
+        }
+        if (abs(player.getX() - player2.getX()) + abs(player.getY() - player2.getY()) > 1) {
+            return new Result(false, "You are too far away");
+        }
+        if (player.getFriendship()[ind] < 600) {
+            return new Result(false, "You are not friends enough to send flower (you need to have 600 friendship xp)");
+        }
+        if (player.getInventory().getNumberOfInventoryItem("fairyRose") < 1) {
+            return new Result(false, "You don't have any fairy rose to gift");
+        }
+        player.getInventory().removeInventoryItem("fairyRose", 1);
+        player2.getInventory().addInventoryItem("fairyRose", 1, 0);
+        player.setFlower(ind);
+        player2.setFlower(App.getCurrentGame().getTurn());
+        return new Result(true, "sent successfully");
     }
 
     public Result fertilize(String fertilizer, String direction) {

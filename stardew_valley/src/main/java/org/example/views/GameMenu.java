@@ -233,9 +233,9 @@ public class GameMenu implements AppMenu{
 //        else if ((matcher = GameMenuCommands.Sell.getMatcher(input)) != null) {
 //            System.out.println(controller.sell(matcher.group("productName").trim(), matcher.group("count").trim()));
 //        }
-//        else if (GameMenuCommands.Friendships.getMatcher(input) != null) {
-//            System.out.println(controller.friendships());
-//        }
+        else if (GameMenuCommands.Friendships.getMatcher(input) != null) {
+            System.out.println(controller.friendships());
+        }
         else if ((matcher = GameMenuCommands.Talk.getMatcher(input)) != null) {
             System.out.println(controller.talk(matcher.group("username").trim(), matcher.group("message").trim()));
         }
@@ -257,12 +257,12 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.GiftHistory.getMatcher(input)) != null) {
             System.out.println(controller.giftHistory(matcher.group("username").trim()));
         }
-//        else if ((matcher = GameMenuCommands.Hug.getMatcher(input)) != null) {
-//            System.out.println(controller.hug(matcher.group("username").trim()));
-//        }
-//        else if ((matcher = GameMenuCommands.Flower.getMatcher(input)) != null) {
-//            System.out.println(controller.flower(matcher.group("username").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.Hug.getMatcher(input)) != null) {
+            System.out.println(controller.hug(matcher.group("username").trim()));
+        }
+        else if ((matcher = GameMenuCommands.Flower.getMatcher(input)) != null) {
+            System.out.println(controller.flower(matcher.group("username").trim()));
+        }
 //        else if ((matcher = GameMenuCommands.AskMarriage.getMatcher(input)) != null) {
 //            System.out.println(controller.askMarriage(
 //                    matcher.group("username").trim(),

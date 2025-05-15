@@ -38,10 +38,21 @@ public class Player {
     private ArrayList<String> giftItems = new ArrayList<>();
     private ArrayList<Integer> giftNumbers = new ArrayList<>();
     private ArrayList<Integer> giftPlayersIndex = new ArrayList<>();
+    private boolean[] flower = new boolean[5];
+
+
+    public void setFlower(int index) {
+        flower[index] = true;
+    }
+
+    public boolean getFlower(int index) {
+        return flower[index];
+    }
 
     public Player() {
         for (int i = 0; i < 5; i++) {
             talkHistory.add(new ArrayList<>());
+            flower[i] = false;
         }
     }
     public void addTalk(String message, int index){
