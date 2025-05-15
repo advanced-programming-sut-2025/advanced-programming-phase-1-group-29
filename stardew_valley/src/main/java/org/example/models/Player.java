@@ -120,7 +120,7 @@ public class Player {
 
     public void setEnergy(int energy) {
         this.energy = Math.max(200,energy);
-        if (energy == 0 && !isEnergyUnlimited) isCollapsed = true;
+        if (energy <= 0 && !isEnergyUnlimited) isCollapsed = true;
     }
 
     public void addEnergy(int amount) {

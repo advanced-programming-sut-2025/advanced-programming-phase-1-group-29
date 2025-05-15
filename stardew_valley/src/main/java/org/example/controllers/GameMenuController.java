@@ -339,6 +339,14 @@ public class GameMenuController extends Controller{
             return new Result(false, "Invalid direction");
         int x = player.getX() + directionConst.get(0);
         int y = player.getY() + directionConst.get(1);
+        if ((!player.isEnergyUnlimited()) && player.getCurrentTool().applyWeatherOnEnergyConsumption(player.getCurrentTool().getEnergyConsumption()) > player.getEnergy())
+            return new Result(false, "You don't have enough energy");
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        if (
+                x < farm.getXStart() || x >= farm.getXStart() + Farm.getXRange() ||
+                y < farm.getYStart() || y >= farm.getYStart() + Farm.getYRange()
+        )
+            return new Result(false, "The tool can't be used in this direction");
         return player.getCurrentTool().useTool(x, y);
     }
 
