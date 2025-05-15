@@ -48,6 +48,19 @@ public class Pickaxe extends Tool{
         return new Result(true, "The stone is destroyed.");
     }
 
+    private Result destroyBurnedTree(BurnedTree tree) {
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        farm.getObjects().remove(tree);
+        player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
+        player.addMiningUnit(10);
+        if (player.getInventory().getCapacity() > 0)
+            player.getInventory().addInventoryItem("Coal", 1, 0);
+        if (player.getInventory().getCapacity() > 0 && player.getMiningLevel() >= 2)
+            player.getInventory().addInventoryItem("Coal", 1, 0);
+        return new Result(true, "The burned tree is destroyed.");
+    }
+
     private Result destroyMineral(Quarry quarry, Foraging mineral) {
         ForagingMineral foraging = mineral.getMineral();
         Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
@@ -103,6 +116,11 @@ public class Pickaxe extends Tool{
                     if (mineral.getTiles().getFirst().getX() == x && mineral.getTiles().getFirst().getY() == y) {
                         return destroyMineral(quarry, mineral);
                     }
+                }
+            }
+            else if (object instanceof BurnedTree) {
+                if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
+                    return destroyBurnedTree(((BurnedTree) object));
                 }
             }
             else if (object instanceof Furrow) {

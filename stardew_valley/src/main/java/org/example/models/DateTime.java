@@ -5,6 +5,7 @@ import org.example.models.VillagePackage.Store;
 import org.example.models.enums.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
@@ -103,11 +104,35 @@ public class DateTime {
                 ((NPCHouse) objectt).setGiftNPCToday(false);
             }
         }
+        thunder();
         removePlantsOutOfSeason();
         plantGrowth();
         putForaging();
         putForagingMineral();
         setEnergy();
+    }
+
+    private void thunder() {
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            ArrayList<Plant> plants = new ArrayList<>();
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof Plant) plants.add((Plant) object);
+            }
+            int random = (new Random()).nextInt(3);
+            HashSet<Plant> thundered = new HashSet<>();
+            for (int i = 0; i < random; i++) {
+                int index = (new Random()).nextInt(plants.size());
+                thundered.add(plants.get(index));
+            }
+            for (Plant plant : thundered) {
+                farm.getObjects().remove(plant);
+                BurnedTree burnedTree = new BurnedTree();
+                burnedTree.setTiles(plant.getTiles());
+                burnedTree.getTiles().getFirst().setDisplay('b');
+                if (plant instanceof FruitTree) farm.getObjects().add(new BurnedTree());
+            }
+        }
+
     }
 
     private void setEnergy() {
@@ -161,11 +186,14 @@ public class DateTime {
                         toBeRemoved.add(object);
                     }
                     else {
-                        plant.setWateredYesterday(plant.isWateredToday());
-                        plant.setWateredToday(false);
                         if (!plant.isReadyForHarvest() && (plant.isWateredToday() || plant.isWateredEveryDay())) {
                             if (!plant.isInHarvestCycle()) plant.grow();
                             else plant.growInCycle();
+                        }
+                        plant.setWateredYesterday(plant.isWateredToday());
+                        plant.setWateredToday(false);
+                        if (App.getCurrentGame().getWeather().equals(Weather.RAINY) || App.getCurrentGame().getWeather().equals(Weather.STORMY)) {
+                            plant.setWateredToday(true);
                         }
                     }
                 }
