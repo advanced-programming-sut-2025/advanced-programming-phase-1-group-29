@@ -449,15 +449,28 @@ public class GameMenuController extends Controller{
         return false;
     }
 
+    public Boolean isEdible(String itemName) {
+        if(FoodEnum.getByName(itemName) != null){
+            return true;
+        }
+        if(FishEnum.getByName(itemName) == null){
+            return true;
+        }
+        if(FruitEnum.getByName(itemName) == null){
+            return true;
+        }
+        return false;
+    }
+
     public Result cookingRefrigerator(String action, String item){
         Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
         if(!inCottage()){
             return new Result(false, "You are not in your cottage");
         }
-//        if(!food){
-//            return new Result(false, "Not eatable!");
-//        }
+        if(!isEdible(item)){
+            return new Result(false, "Not eatable!");
+        }
         Game game = App.getCurrentGame();
         Farm farm = game.getCurrentFarm();
         Cottage cottage = farm.getCottage();

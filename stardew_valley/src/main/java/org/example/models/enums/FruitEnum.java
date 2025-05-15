@@ -42,4 +42,13 @@ public enum FruitEnum {
     public Integer getEnergy() {
         return energy;
     }
+
+    public static FruitEnum getByName(String fruitName) {
+        for (FruitEnum fruitEnum : FruitEnum.values()) {
+            if(fruitEnum.getName().equals(fruitName)){
+                return fruitEnum;
+            }
+        }
+        return null;
+    }
 }
