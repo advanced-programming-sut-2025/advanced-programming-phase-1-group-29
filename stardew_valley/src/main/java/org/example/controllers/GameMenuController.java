@@ -10,6 +10,8 @@ import org.example.models.enums.*;
 
 import java.util.*;
 
+import static java.lang.Math.abs;
+
 public class GameMenuController extends Controller{
 
     public Result menuEnter() {
@@ -218,14 +220,15 @@ public class GameMenuController extends Controller{
     }
 
 
-    public Result printMap(String xString, String yString, String sizeString) {
+    public void printMap(String xString, String yString, String sizeString) {
         //TODO
         //print NPCs
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
         int size = Integer.parseInt(sizeString);
         if (x < 0 || y < 0 || x + size >= Map.getXRange() || y + size >= Map.getYRange()) {
-            return new Result(false, "Invalid size");
+            System.out.println("Invalid Size");
+            return;
         }
         Map map = App.getCurrentGame().getMap();
         char[][] mapToPrint = new char[Map.getXRange()][Map.getYRange()];
@@ -244,7 +247,7 @@ public class GameMenuController extends Controller{
             }
             stringJoiner.add(line.toString());
         }
-        return new Result(true, stringJoiner.toString());
+        return;
     }
 
 
@@ -698,5 +701,65 @@ public class GameMenuController extends Controller{
             }
         }
         return new Result(false, "Wrong NPC name");
+    }
+    public Result friendships(){
+        StringBuilder result = new StringBuilder();
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            result.append(App.getCurrentGame().getPlayers().get(i).getUser().getUsername());
+            result.append(": ");
+            result.append("xp " +  player.getFriendship()[i]);
+            result.append("level " + getFriendshipLevel(player.getFriendship()[i]));
+            result.append("\n");
+        }
+        return new Result(true, result.toString());
+    }
+    public Result talk(String username, String message){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int ind = -1;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
+                Player player2 = App.getCurrentGame().getPlayers().get(i);
+                if (abs(player.getX() - player2.getX()) + abs(player.getY() - player2.getY()) > 1) {
+                    return new Result(false, "You are not next to " + username);
+                }
+                player.addFriendship(ind, 20);
+                player2.addFriendship(App.getCurrentGame().getTurn(), 20);
+                player.addTalk(message, ind);
+                player2.addTalk(message, App.getCurrentGame().getTurn());
+                ind = i;
+                break;
+            }
+        }
+        if (ind == -1) {
+            return new Result(false, "Incorrect username");
+        }
+        return new Result(true, "added 20 xp to your friendship with " + username);
+    }
+    public Result talkHistory(String username){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int ind = -1;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
+                ind = i;
+            }
+        }
+        if (ind == -1) {
+            return new Result(false, "Incorrect username");
+        }
+        StringBuilder result = new StringBuilder();
+        ArrayList<String> talks = player.getTalkHistory(ind);
+        for (int i = 0; i < talks.size(); i++) {
+            result.append(talks.get(i) + "\n");
+        }
+        return new Result(true, result.toString());
+    }
+    private int getFriendshipLevel(int points){
+        int level = 0;
+        while(points > 100 * (level + 1)){
+            points -= 100 * (level + 1);
+            level++;
+        }
+        return level;
     }
 }

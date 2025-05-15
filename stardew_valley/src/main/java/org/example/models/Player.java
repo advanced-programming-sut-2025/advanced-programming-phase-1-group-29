@@ -32,7 +32,22 @@ public class Player {
     private int liaFriendship = 0;
     private int robinFriendship = 0;
     private NPCMissionList npcMissionList = new NPCMissionList();
+    private int[] friendship = new int[5];
+    private ArrayList<String>[] talkHistory = new ArrayList[5];
 
+
+    public void addTalk(String message, int index){
+        talkHistory[index].add(message);
+    }
+    public ArrayList<String> getTalkHistory(int ind){
+        return talkHistory[ind];
+    }
+    public int[] getFriendship() {
+        return friendship;
+    }
+    public void addFriendship(int ind, int value) {
+        friendship[ind] += value;
+    }
 
     public NPCMissionList getNPCMissionList() {
         return npcMissionList;

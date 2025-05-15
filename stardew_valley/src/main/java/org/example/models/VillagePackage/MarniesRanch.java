@@ -53,4 +53,9 @@ public class MarniesRanch extends Store {
     public void openStore() {
         open = App.getCurrentGame().getCurrentTime().getTime() >= startWorkingHours && App.getCurrentGame().getCurrentTime().getTime() <= endWorkingHours;
     }
+
+//    @Override
+//    public Result purchase(String productName, int quantity) {
+//
+//    }
 }

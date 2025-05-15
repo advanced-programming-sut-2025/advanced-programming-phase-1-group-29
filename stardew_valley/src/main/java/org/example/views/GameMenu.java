@@ -1,6 +1,8 @@
 package org.example.views;
 
 import org.example.controllers.GameMenuController;
+import org.example.controllers.NPCHouseMenuController;
+import org.example.controllers.StoreMenuController;
 import org.example.models.enums.GameMenuCommands;
 
 import java.util.Scanner;
@@ -8,6 +10,8 @@ import java.util.regex.Matcher;
 
 public class GameMenu implements AppMenu{
     private final GameMenuController controller = new GameMenuController();
+    private final StoreMenuController storeController = new StoreMenuController();
+    private final NPCHouseMenuController npcController = new NPCHouseMenuController();
     //TODO
     //remove all the spaces from the inputs
     @Override
@@ -66,10 +70,10 @@ public class GameMenu implements AppMenu{
             System.out.println(controller.walk(matcher.group("x").trim(), matcher.group("y").trim()));
         }
         else if ((matcher = GameMenuCommands.PrintMap.getMatcher(input)) != null) {
-            System.out.println(controller.printMap(
+            controller.printMap(
                     matcher.group("x").trim(),
                     matcher.group("y").trim(),
-                    matcher.group("size").trim()));
+                    matcher.group("size").trim());
         }
         else if (GameMenuCommands.HelpReadingMap.getMatcher(input) != null) {
             System.out.println(controller.helpReadingMap());
@@ -206,17 +210,17 @@ public class GameMenu implements AppMenu{
 //        else if ((matcher = GameMenuCommands.ArtisanGet.getMatcher(input)) != null) {
 //            System.out.println(controller.artisanGet(matcher.group("artisanName").trim()));
 //        }
-//        else if (GameMenuCommands.ShowAllProducts.getMatcher(input) != null) {
-//            System.out.println(controller.showAllProducts());
-//        }
-//        else if (GameMenuCommands.ShowAllAvailableProducts.getMatcher(input) != null) {
-//            System.out.println(controller.showAllAvailableProducts());
-//        }
-//        else if ((matcher = GameMenuCommands.Purchase.getMatcher(input)) != null) {
-//            System.out.println(controller.purchase(
-//                    matcher.group("productName").trim(),
-//                    matcher.group("count").trim()));
-//        }
+        else if (GameMenuCommands.ShowAllProducts.getMatcher(input) != null) {
+            System.out.println(storeController.showAllProducts());
+        }
+        else if (GameMenuCommands.ShowAllAvailableProducts.getMatcher(input) != null) {
+            System.out.println(storeController.showAllAvailableProducts());
+        }
+        else if ((matcher = GameMenuCommands.Purchase.getMatcher(input)) != null) {
+            System.out.println(storeController.purchase(
+                    matcher.group("productName").trim(),
+                    matcher.group("count").trim()));
+        }
         else if ((matcher = GameMenuCommands.CheatAddDollars.getMatcher(input)) != null) {
             System.out.println(controller.cheatAddDollars(matcher.group("count").trim()));
         }
@@ -284,20 +288,20 @@ public class GameMenu implements AppMenu{
 //        else if (GameMenuCommands.TradeHistory.getMatcher(input) != null) {
 //            System.out.println(controller.tradeHistory());
 //        }
-//        else if ((matcher = GameMenuCommands.MeetNPC.getMatcher(input)) != null) {
-//            System.out.println(controller.meetNPC(matcher.group("npcName").trim()));
-//        }
-//        else if ((matcher = GameMenuCommands.GiftNPC.getMatcher(input)) != null) {
-//            System.out.println(controller.giftNPC(matcher.group("npcName").trim(), matcher.group("item").trim()));
-//        }
-//        else if (GameMenuCommands.FriendshipNPCList.getMatcher(input) != null) {
-//            System.out.println(controller.friendshipNPCList());
-//        }
-//        else if (GameMenuCommands.QuestsList.getMatcher(input) != null) {
-//            System.out.println(controller.questsList());
-//        }
-//        else if ((matcher = GameMenuCommands.QuestsFinish.getMatcher(input)) != null) {
-//            System.out.println(controller.questsFinish(matcher.group("index").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.MeetNPC.getMatcher(input)) != null) {
+            System.out.println(npcController.meetNPC(matcher.group("npcName").trim()));
+        }
+        else if ((matcher = GameMenuCommands.GiftNPC.getMatcher(input)) != null) {
+            System.out.println(controller.giftNPC(matcher.group("npcName").trim(), matcher.group("item").trim()));
+        }
+        else if (GameMenuCommands.FriendshipNPCList.getMatcher(input) != null) {
+            System.out.println(controller.friendshipNPCList());
+        }
+        else if (GameMenuCommands.QuestsList.getMatcher(input) != null) {
+            System.out.println(npcController.questsList());
+        }
+        else if ((matcher = GameMenuCommands.QuestsFinish.getMatcher(input)) != null) {
+            System.out.println(npcController.questFinish(matcher.group("index").trim()));
+        }
     }
 }
