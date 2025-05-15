@@ -525,6 +525,9 @@ public class GameMenuController extends Controller{
         plant.setTiles(new ArrayList<Tile>(List.of(new Tile('p', x, y))));
         farm.getObjects().add(plant);
         player.getInventory().removeInventoryItem(seed, 1);
+        for (String fertilizer : ((Furrow) furrow).getFertilizers()) {
+            plant.fertilize(fertilizer);
+        }
         return new Result(true, "Done!");
     }
 
@@ -790,7 +793,25 @@ public class GameMenuController extends Controller{
             return new Result(false, "Invalid direction");
         int x = player.getX() + directionConst.get(0);
         int y = player.getY() + directionConst.get(1);
+        if (player.getInventory().findInventoryItem(fertilizer) == null)
+            return new Result(false, "You don't have this fertilizer in your inventory.");
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        Objectt furrow = null;
+        for (Objectt object : farm.getObjects()) {
+            for (Tile tile : object.getTiles()) {
+                if (tile.getX() == x && tile.getY() == y) {
+                    if (object instanceof Furrow) {
+                        furrow = object;
+                        break;
+                    }
+                }
+            }
+        }
+        if (furrow != null) {
+            player.getInventory().removeInventoryItem(fertilizer, 1);
+            ((Furrow) furrow).addFertilizer(fertilizer);
+            return new Result(true, "The furrow is fertilized");
+        }
         Plant plant= null;
         for (Objectt object : farm.getObjects()) {
             for (Tile tile : object.getTiles()) {
@@ -804,9 +825,6 @@ public class GameMenuController extends Controller{
         }
         if (plant == null || plant.isForaging() || (plant.getRemainingTime() != plant.getTotalHarvestTime()))
             return new Result(false, "You can't use fertilizer in this direction.");
-        if (player.getInventory().findInventoryItem(fertilizer) == null)
-            return new Result(false, "You don't have this fertilizer in your inventory.");
-        player.getInventory().removeInventoryItem(fertilizer, 1);
         plant.fertilize(fertilizer);
         return new Result(true, "The plant is fertilized");
     }
