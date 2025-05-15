@@ -754,6 +754,26 @@ public class GameMenuController extends Controller{
         }
         return new Result(true, result.toString());
     }
+    public Result gift(String username, String itemName, String amountString){
+        int amount = Integer.parseInt(amountString);
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (player.getInventory().getNumberOfInventoryItem(itemName) < amount) {
+            return new Result(false, "You don't have enough items to gift.");
+        }
+        Player player2 = null;
+        int ind = -1;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
+                ind = i;
+                player2 = App.getCurrentGame().getPlayers().get(i);
+            }
+        }
+        if (ind == -1) {
+            return new Result(false, "Incorrect username");
+        }
+
+    }
+
     private int getFriendshipLevel(int points){
         int level = 0;
         while(points > 100 * (level + 1)){
