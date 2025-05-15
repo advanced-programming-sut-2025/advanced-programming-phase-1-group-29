@@ -9,6 +9,7 @@ public class Farm extends Objectt {
     private int yStart;
     private final int number;
     private ArrayList<Objectt> objects = new ArrayList<>();
+    int numOfForaging = 0;
 
     public int getXStart() {
         return xStart;
@@ -63,4 +64,14 @@ public class Farm extends Objectt {
         return null;
     }
 
+    public int getNumOfForaging() {
+        return numOfForaging;
+    }
+
+    public void incrementNumOfForaging() {
+        numOfForaging++;
+    }
+    public void decrementNumOfForaging() {
+        numOfForaging--;
+    }
 }

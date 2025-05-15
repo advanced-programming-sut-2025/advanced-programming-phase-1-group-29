@@ -2,11 +2,11 @@ package org.example.models;
 
 import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
-import org.example.models.enums.CropEnum;
-import org.example.models.enums.Season;
-import org.example.models.enums.TreeEnum;
+import org.example.models.enums.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class DateTime {
     private Season season;
@@ -56,6 +56,54 @@ public class DateTime {
         }
     }
 
+    private void putForagingSeed(Farm farm, int i, int j) {
+        Object remove = null;
+        for (Objectt object : farm.getObjects()) {
+            if (object instanceof Furrow) {
+                if (
+                        object.getTiles().getFirst().getX() == i &&
+                                object.getTiles().getFirst().getY() == j
+                ) {
+                    int seedNumber = (new Random()).nextInt(CropSeedEnum.values().length);
+                    CropSeedEnum seedEnum = CropSeedEnum.values()[seedNumber];
+                    if (seedEnum.getSeasons().contains(season.toString())) {
+                        remove = object;
+                        if (seedEnum.equals(CropSeedEnum.MIXEDSEED)) {
+                            seedNumber = (new Random()).nextInt(
+                                    season.getMixedSeedPossibleCrops().size()
+                            );
+                            seedEnum = season.getMixedSeedPossibleCrops().get(seedNumber).getSource();
+                        }
+                        Seed seed = new Seed(seedEnum.getName(), 0);
+                        Crop crop = new Crop(seed);
+                        crop.setTiles(new ArrayList<Tile>(List.of(new Tile('p', i, j))));
+                        farm.getObjects().add(crop);
+                        crop.setForaging(true);
+                    }
+                }
+            }
+        }
+        if (remove != null) farm.getObjects().remove(remove);
+    }
+
+    private void putForagingCrop(Farm farm, int i, int j) {
+        for (Objectt farmObject : farm.getObjects()) {
+            for (Tile tile : farmObject.getTiles()) {
+                if (tile.getX() == i && tile.getY() == j) {
+                    return;
+                }
+            }
+        }
+        int cropNumber = (new Random()).nextInt(ForagingCrop.values().length);
+        ForagingCrop foragingCrop = ForagingCrop.values()[cropNumber];
+        if (foragingCrop.getSeasons().contains(season.toString())) {
+            Crop crop = new Crop(ForagingCrop.values()[cropNumber]);
+            crop.setTiles(new ArrayList<Tile>(List.of(new Tile('p', i, j))));
+            farm.getObjects().add(crop);
+            crop.setForaging(true);
+        }
+    }
+
     public void incrementDay() {
         day++;
         if (day == 29) {
@@ -75,6 +123,17 @@ public class DateTime {
                 ((NPCHouse) objectt).setGiftNPCToday(false);
             }
         }
+        removePlantsOutOfSeason();
+        plantGrowth();
+        putForaging();
+        putForagingMineral();
+    }
+
+    private void putForagingMineral() {
+
+    }
+
+    private void plantGrowth() {
         for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
             ArrayList<Objectt> toBeRemoved = new ArrayList<>();
             for (Objectt object : farm.getObjects()) {
@@ -94,6 +153,53 @@ public class DateTime {
                             }
                         }
                     }
+                }
+            }
+            for (Objectt object : toBeRemoved) {
+                farm.getObjects().remove(object);
+            }
+        }
+    }
+
+    private void putForaging() {
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            for (int i = farm.getXStart(); i < farm.getXStart() + Farm.getXRange(); i++) {
+                for (int j = farm.getYStart(); j < farm.getYStart() + Farm.getYRange(); j++) {
+                    int randomNumber = (new Random()).nextInt(100);
+                    if (randomNumber == 0) {
+                        if (farm.getNumOfForaging() < 5) {
+                            int model = (new Random()).nextInt(2);
+                            if (model == 0) { //foraging seed
+                                putForagingSeed(farm, i, j);
+                            }
+                            else { //foraging crop
+                                putForagingCrop(farm, i, j);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void removePlantsOutOfSeason() {
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            ArrayList<Objectt> toBeRemoved = new ArrayList<>();
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof Crop crop) {
+                    if (crop.isForaging()) {
+                        if (!crop.getForagingCrop().getSeasons().contains(season.toString())) {
+                            toBeRemoved.add(crop);
+                        }
+                    }
+                    else {
+                        if (!crop.getCrop().getSeasons().contains(season.toString())) {
+                            toBeRemoved.add(crop);
+                        }
+                    }
+                }
+                else if (object instanceof FruitTree) {
+                    //TODO
                 }
             }
             for (Objectt object : toBeRemoved) {

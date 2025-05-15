@@ -4,7 +4,6 @@ public class InventoryItem {
     protected String name;
     protected int price;
     protected double quality;
-    protected boolean isForaging;
 
     public InventoryItem(String name, int price) {
         this.name = name;
@@ -33,13 +32,5 @@ public class InventoryItem {
 
     public void setQuality(double quality) {
         this.quality = quality;
-    }
-
-    public boolean isForaging() {
-        return isForaging;
-    }
-
-    public void setForaging(boolean foraging) {
-        isForaging = foraging;
     }
 }
