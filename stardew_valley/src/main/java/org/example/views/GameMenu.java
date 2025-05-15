@@ -269,23 +269,22 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.Respond.getMatcher(input)) != null) {
             System.out.println(controller.respond(matcher.group("result").trim(), matcher.group("username").trim()));
         }
-//        else if (GameMenuCommands.StartTrade.getMatcher(input) != null) {
-//            System.out.println(controller.startTrade());
-//        }
-//        else if ((matcher = GameMenuCommands.Trade.getMatcher(input)) != null) {
-//            System.out.println(controller.trade(
-//            matcher.group("username").trim(),
-//            matcher.group("type").trim(),
-//            matcher.group("item").trim(),
-//            matcher.group("amount").trim(),
-//            matcher.group("price").trim(),
-//            matcher.group("targetItem").trim(),
-//            matcher.group("type").trim(),
-//            matcher.group("targetAmount").trim()));
-//        }
-//        else if (GameMenuCommands.TradeList.getMatcher(input) != null) {
-//            System.out.println(controller.tradeList());
-//        }
+        else if (GameMenuCommands.StartTrade.getMatcher(input) != null) {
+            System.out.println(tradeController.startTrade());
+        }
+        else if ((matcher = GameMenuCommands.Trade.getMatcher(input)) != null) {
+            System.out.println(tradeController.trade(
+            matcher.group("username").trim(),
+            matcher.group("type").trim(),
+            matcher.group("item").trim(),
+            matcher.group("amount").trim(),
+            matcher.group("price").trim(),
+            matcher.group("targetItem").trim(),
+            matcher.group("targetAmount").trim()));
+        }
+        else if (GameMenuCommands.TradeList.getMatcher(input) != null) {
+            System.out.println(tradeController.tradeList());
+        }
 //        else if ((matcher = GameMenuCommands.TradeResponse.getMatcher(input)) != null) {
 //            System.out.println(controller.TradeResponse(matcher.group("result").trim(), matcher.group("id").trim()));
 //        }
