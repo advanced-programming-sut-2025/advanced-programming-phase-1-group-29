@@ -636,6 +636,7 @@ public class GameMenuController extends Controller{
             InventoryItem fish = new InventoryItem(fishEnum.getName(), 0);
             fish.setQuality(quality);
             inventory.addInventoryItem(fish, 1);
+            //TODO energy consumption
         }
         return new Result(true, "You caught " + amount);
     }
