@@ -95,6 +95,18 @@ public class GameMenuController extends Controller{
         );
     }
 
+    public Result weatherForecast() {
+        Season season = App.getCurrentGame().getCurrentTime().getSeason();
+        if (App.getCurrentGame().getCurrentTime().getDay() == 28) {
+            if (season.equals(Season.Spring)) season = Season.Summer;
+            else if (season.equals(Season.Summer)) season = Season.Fall;
+            else if (season.equals(Season.Fall)) season = Season.Winter;
+            else season = Season.Spring;
+        }
+        int random = (new Random()).nextInt(season.getWeathers().size());
+        return new Result(true, "Tomorrow, The weather will probably be " + season.getWeathers().get(random) + ".");
+    }
+
     public Result energyShow() {
         Game game = App.getCurrentGame();
         return new Result(true, "Energy: " + game.players.get(game.getTurn()).getEnergy());
