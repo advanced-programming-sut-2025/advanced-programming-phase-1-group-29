@@ -126,10 +126,12 @@ public class DateTime {
             }
             for (Plant plant : thundered) {
                 farm.getObjects().remove(plant);
-                BurnedTree burnedTree = new BurnedTree();
-                burnedTree.setTiles(plant.getTiles());
-                burnedTree.getTiles().getFirst().setDisplay('b');
-                if (plant instanceof FruitTree) farm.getObjects().add(new BurnedTree());
+                if (plant instanceof FruitTree) {
+                    BurnedTree burnedTree = new BurnedTree();
+                    burnedTree.setTiles(plant.getTiles());
+                    burnedTree.getTiles().getFirst().setDisplay('b');
+                    farm.getObjects().add(new BurnedTree());
+                }
             }
         }
 

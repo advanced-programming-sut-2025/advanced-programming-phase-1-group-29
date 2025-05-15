@@ -57,9 +57,9 @@ public class GameMenu implements AppMenu{
         else if (GameMenuCommands.Season.getMatcher(input) != null) {
             System.out.println(controller.season());
         }
-//        else if((matcher = GameMenuCommands.CheatThor.getMatcher(input)) != null) {
-//            System.out.println(controller.cheatThor(matcher.group("x").trim(), matcher.group("y").trim()));
-//        }
+        else if((matcher = GameMenuCommands.CheatThor.getMatcher(input)) != null) {
+            System.out.println(controller.cheatThor(matcher.group("x").trim(), matcher.group("y").trim()));
+        }
         else if (GameMenuCommands.Weather.getMatcher(input) != null) {
             System.out.println(controller.weather());
         }
