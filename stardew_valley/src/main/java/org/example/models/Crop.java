@@ -14,6 +14,7 @@ public class Crop extends Plant{
                 crop = value;
             }
         }
+        totalHarvestTime = crop.getTotalHarvestTime();
         name = crop.getName();
         stage = 0;
         remainingTime = crop.getTotalHarvestTime();
@@ -28,6 +29,17 @@ public class Crop extends Plant{
         isWateredToday = true;
         isReadyForHarvest = true;
         isForaging = true;
+    }
+
+    @Override
+    public void grow() {
+        this.decrementRemainingTime();
+        int sum = 0;
+        for (int i = 0; i < crop.getStages().size() - 1; i++) {
+            sum += crop.getStages().get(i);
+            if (sum == crop.getTotalHarvestTime() - this.getRemainingTime())
+                this.incrementStage();
+        }
     }
 
     public CropEnum getCrop() {
