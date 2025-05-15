@@ -32,7 +32,15 @@ public class Player {
     private int liaFriendship = 0;
     private int robinFriendship = 0;
     private NPCMissionList npcMissionList = new NPCMissionList();
+    private int[] friendship = new int[3];
 
+
+    public int[] getFriendship() {
+        return friendship;
+    }
+    public void setFriendship(int ind, int value) {
+        friendship[ind] = value;
+    }
 
     public NPCMissionList getNPCMissionList() {
         return npcMissionList;

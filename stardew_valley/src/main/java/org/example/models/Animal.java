@@ -6,7 +6,7 @@ import org.example.models.enums.AnimalProductEnum;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Animal {
+public class Animal extends Objectt{
 
     private final AnimalEnum animalType;
     private final String name;

@@ -218,14 +218,15 @@ public class GameMenuController extends Controller{
     }
 
 
-    public Result printMap(String xString, String yString, String sizeString) {
+    public void printMap(String xString, String yString, String sizeString) {
         //TODO
         //print NPCs
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
         int size = Integer.parseInt(sizeString);
         if (x < 0 || y < 0 || x + size >= Map.getXRange() || y + size >= Map.getYRange()) {
-            return new Result(false, "Invalid size");
+            System.out.println("Invalid Size");
+            return;
         }
         Map map = App.getCurrentGame().getMap();
         char[][] mapToPrint = new char[Map.getXRange()][Map.getYRange()];
@@ -244,7 +245,7 @@ public class GameMenuController extends Controller{
             }
             stringJoiner.add(line.toString());
         }
-        return new Result(true, stringJoiner.toString());
+        return;
     }
 
 

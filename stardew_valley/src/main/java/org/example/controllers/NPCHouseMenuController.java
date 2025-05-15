@@ -34,4 +34,16 @@ public class NPCHouseMenuController extends Controller {
         }
         return new Result(false, "you are not close to any of the NPCs");
     }
+    public Result questFinish(String indString){
+        int ind = Integer.parseInt(indString);
+        Player currentPlayer = App.getCurrentGame().getCurrentPlayer();
+        for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
+            if (objectt instanceof NPCHouse){
+                if (abs(((NPCHouse) objectt).getNPCPlaceX() - currentPlayer.getX()) <= 1 || abs(((NPCHouse) objectt).getNPCPlaceY() - currentPlayer.getY()) <= 1){
+                    return ((NPCHouse) objectt).questFinish(ind);
+                }
+            }
+        }
+        return new Result(false, "you are not close to any of the NPCs");
+    }
 }
