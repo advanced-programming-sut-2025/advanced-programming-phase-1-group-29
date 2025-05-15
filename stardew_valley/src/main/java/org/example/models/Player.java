@@ -147,6 +147,7 @@ public class Player {
 
     public void reduceEnergy(int amount) {
         energy -= amount;
+        if(energy < 0) energy = 0;
     }
 
     public Inventory getInventory() {

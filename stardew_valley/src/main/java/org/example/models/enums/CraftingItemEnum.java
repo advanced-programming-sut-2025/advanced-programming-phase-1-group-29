@@ -118,4 +118,13 @@ public enum CraftingItemEnum {
     public HashMap<String, Integer> getIngredients() {
         return ingredients;
     }
+
+    public static CraftingItemEnum getCraftingItemByName(String name) {
+        for (CraftingItemEnum item : CraftingItemEnum.values()) {
+            if (item.getName().equals(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
 }
