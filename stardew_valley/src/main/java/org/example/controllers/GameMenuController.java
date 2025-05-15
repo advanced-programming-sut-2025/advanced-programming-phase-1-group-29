@@ -379,7 +379,6 @@ public class GameMenuController extends Controller{
 //        if(!food){
 //            return new Result(false, "Not eatable!");
 //        }
-
         Game game = App.getCurrentGame();
         Farm farm = game.getCurrentFarm();
         Cottage cottage = farm.getCottage();
@@ -438,7 +437,7 @@ public class GameMenuController extends Controller{
                 return new Result(false, "You don't have enough ingredients");
             }
         }
-        if(inventory.getCapacity() == 0){
+        if(inventory.getCapacity() - 1 + foodEnum.getIngredients().size() < 0) {
             return new Result(false, "Your inventory is full");
         }
         for (String itemName : foodEnum.getIngredients().keySet()) {
@@ -531,7 +530,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "Invalid direction");
         int x = player.getX() + directionConst.get(0);
         int y = player.getY() + directionConst.get(1);
-        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         Objectt furrow = null;
         for (Objectt object : farm.getObjects()) {
             for (Tile tile : object.getTiles()) {
@@ -575,7 +574,7 @@ public class GameMenuController extends Controller{
     public Result showPlant(String xString, String yString) {
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
-        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         Objectt plant = null;
         for (Objectt object : farm.getObjects()) {
             for (Tile tile : object.getTiles()) {
@@ -592,7 +591,7 @@ public class GameMenuController extends Controller{
     }
 
     public Result howMuchWater() {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         for (InventoryItem inventoryItem : player.getInventory().getInventoryItems().keySet()) {
             if (inventoryItem instanceof WateringCan) {
                 return new Result(true, String.valueOf(((WateringCan) inventoryItem).getWater()));
