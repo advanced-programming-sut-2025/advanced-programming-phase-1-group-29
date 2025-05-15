@@ -20,7 +20,11 @@ public class GameMenu implements AppMenu{
     public void check(Scanner scanner) {
         String input = scanner.nextLine();
         Matcher matcher;
-        if (GameMenuCommands.MenuEnter.getMatcher(input) != null) {
+        Result collapse = controller.isCollapsed(input);
+        if (!collapse.isSuccessful()) {
+            System.out.print(collapse);
+        }
+        else if (GameMenuCommands.MenuEnter.getMatcher(input) != null) {
             System.out.println(controller.menuEnter());
         }
 //        else if(GameMenuCommands.LoadGame.getMatcher(input) != null) {
@@ -125,11 +129,11 @@ public class GameMenu implements AppMenu{
                     matcher.group("x").trim(),
                     matcher.group("y").trim()));
         }
-//        else if ((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
-//            System.out.println(controller.fertilize(
-//                    matcher.group("fertilizer").trim(),
-//                    matcher.group("direction").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
+            System.out.println(controller.fertilize(
+                    matcher.group("fertilizer").trim(),
+                    matcher.group("direction").trim()));
+        }
         else if (GameMenuCommands.HowMuchWater.getMatcher(input) != null) {
             System.out.println(controller.howMuchWater());
         }

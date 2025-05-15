@@ -23,15 +23,8 @@ public class Hoe extends Tool{
     @Override
     public Result useTool(int x, int y) {
         Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
-        if ((!player.isEnergyUnlimited()) && player.getCurrentTool().getEnergyConsumption() > player.getEnergy())
-            return new Result(false, "You don't have enough energy");
-        player.setEnergy(player.getEnergy() - player.getCurrentTool().getEnergyConsumption());
+        player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
-        if (
-                x < farm.getXStart() || x >= farm.getXStart() + Farm.getXRange() ||
-                y < farm.getYStart() || y >= farm.getYStart() + Farm.getYRange()
-        )
-            return new Result(false, "The hoe can't be used in this direction");
         for (Objectt object : farm.getObjects()) {
             for (Tile tile : object.getTiles()) {
                 if (tile.getX() == x && tile.getY() == y)

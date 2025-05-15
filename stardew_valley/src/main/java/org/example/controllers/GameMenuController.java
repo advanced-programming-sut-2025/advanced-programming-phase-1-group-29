@@ -14,6 +14,19 @@ import static java.lang.Math.abs;
 
 public class GameMenuController extends Controller{
 
+    public Result isCollapsed(String input) {
+        if (App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).isCollapsed()) {
+            if (GameMenuCommands.NextTurn.getMatcher(input) != null) {
+                this.nextTurn();
+                return new Result(false, "");
+            }
+            else {
+                return new Result(false, "YOU ARE COLLAPSED!\n");
+            }
+        }
+        return new Result(true, "");
+    }
+
     public Result menuEnter() {
         App.setCurrentMenu(Menu.MainMenu);
         return new Result(true, "Now you are in Main Menu.");
@@ -326,6 +339,14 @@ public class GameMenuController extends Controller{
             return new Result(false, "Invalid direction");
         int x = player.getX() + directionConst.get(0);
         int y = player.getY() + directionConst.get(1);
+        if ((!player.isEnergyUnlimited()) && player.getCurrentTool().applyWeatherOnEnergyConsumption(player.getCurrentTool().getEnergyConsumption()) > player.getEnergy())
+            return new Result(false, "You don't have enough energy");
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        if (
+                x < farm.getXStart() || x >= farm.getXStart() + Farm.getXRange() ||
+                y < farm.getYStart() || y >= farm.getYStart() + Farm.getYRange()
+        )
+            return new Result(false, "The tool can't be used in this direction");
         return player.getCurrentTool().useTool(x, y);
     }
 
@@ -338,19 +359,28 @@ public class GameMenuController extends Controller{
         }
     }
 
+    private boolean inCottage() {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Cottage cottage = App.getCurrentGame().getCurrentFarm().getCottage();
+        int x = player.getX();
+        int y = player.getY();
+        for (Tile tile : cottage.getTiles()) {
+            if (tile.getX() == x && tile.getY() == y) return true;
+        }
+        return false;
+    }
+
     public Result cookingRefrigerator(String action, String item){
         Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
-        //TODO
-//        if(!atHome){
-//            return new Result(false, "You are not at the home");
-//        }
+        if(!inCottage()){
+            return new Result(false, "You are not in your cottage");
+        }
 //        if(!food){
 //            return new Result(false, "Not eatable!");
 //        }
-
         Game game = App.getCurrentGame();
-        Farm farm = game.getMap().getFarms().get(game.getTurn());
+        Farm farm = game.getCurrentFarm();
         Cottage cottage = farm.getCottage();
         Refrigerator refrigerator = cottage.getRefrigerator();
         if(action.equals("put")){
@@ -385,13 +415,10 @@ public class GameMenuController extends Controller{
     public Result cookingPrepare(String recipeName){
         Game game = App.getCurrentGame();
         Player player = App.getCurrentGame().getCurrentPlayer();
-        Farm farm = game.getMap().getFarms().get(game.getTurn());
-        Cottage cottage = farm.getCottage();
-        //TODO
-//        if(!atHome){
-//            return new Result(false, "You are not at the home");
-//        }
-
+        Cottage cottage = game.getCurrentFarm().getCottage();
+        if(!inCottage()){
+            return new Result(false, "You are not in your cottage");
+        }
         Refrigerator refrigerator = cottage.getRefrigerator();
         Inventory inventory = player.getInventory();
 
@@ -410,7 +437,7 @@ public class GameMenuController extends Controller{
                 return new Result(false, "You don't have enough ingredients");
             }
         }
-        if(inventory.getCapacity() == 0){
+        if(inventory.getCapacity() - 1 + foodEnum.getIngredients().size() < 0) {
             return new Result(false, "Your inventory is full");
         }
         for (String itemName : foodEnum.getIngredients().keySet()) {
@@ -428,10 +455,9 @@ public class GameMenuController extends Controller{
 
     public Result eat(String foodName) {
         Player player = App.getCurrentGame().getCurrentPlayer();
-        //TODO
-//        if(!atHome){
-//            return new Result(false, "You are not at the home");
-//        }
+        if(!inCottage()){
+            return new Result(false, "You are not in your cottage");
+        }
         FoodEnum foodEnum = FoodEnum.getByName(foodName);
         if(foodEnum == null){
             return new Result(false, "You can't eat this food");
@@ -449,14 +475,28 @@ public class GameMenuController extends Controller{
         return new Result(true, "Yum yum yum yum");
     }
 
+    private boolean nearTheLake() {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Farm farm = App.getCurrentGame().getCurrentFarm();
+        for (Objectt objectt : farm.getObjects()) {
+            if(objectt instanceof Lake lake) {
+                int x = player.getX();
+                int y = player.getY();
+                for (Tile tile : lake.getTiles()) {
+                    if (Math.abs(tile.getX() - x) <= 1 && Math.abs(tile.getY() - y) <= 1) return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public Result fishing(String fishingPoleName) {
         Game game = App.getCurrentGame();
         Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
-        //TODO
-//       if(!atLake){
-//            return new Result(false, "You are not near the beach");
-//        }
+        if(!nearTheLake()){
+            return new Result(false, "You are not near the lake");
+        }
         FishingPoleType fishingPoleType = FishingPoleType.getFishingPoleByName(fishingPoleName);
         if(fishingPoleType == null){
             return new Result(false, "This fishing pole doesn't exist");
@@ -490,7 +530,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "Invalid direction");
         int x = player.getX() + directionConst.get(0);
         int y = player.getY() + directionConst.get(1);
-        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         Objectt furrow = null;
         for (Objectt object : farm.getObjects()) {
             for (Tile tile : object.getTiles()) {
@@ -534,7 +574,7 @@ public class GameMenuController extends Controller{
     public Result showPlant(String xString, String yString) {
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
-        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         Objectt plant = null;
         for (Objectt object : farm.getObjects()) {
             for (Tile tile : object.getTiles()) {
@@ -551,7 +591,7 @@ public class GameMenuController extends Controller{
     }
 
     public Result howMuchWater() {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         for (InventoryItem inventoryItem : player.getInventory().getInventoryItems().keySet()) {
             if (inventoryItem instanceof WateringCan) {
                 return new Result(true, String.valueOf(((WateringCan) inventoryItem).getWater()));

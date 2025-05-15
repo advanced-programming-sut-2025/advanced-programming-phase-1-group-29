@@ -75,4 +75,8 @@ public class Game {
     public Player getCurrentPlayer() {
         return players.get(turn);
     }
+
+    public Farm getCurrentFarm() {
+        return this.map.getFarms().get(turn);
+    }
 }

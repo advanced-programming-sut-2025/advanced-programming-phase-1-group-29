@@ -7,4 +7,7 @@ public abstract class Tool extends InventoryItem{
 
     public abstract Result useTool(int x, int y);
     public abstract int getEnergyConsumption();
+    public int applyWeatherOnEnergyConsumption(int energy) {
+        return (int)(energy * App.getCurrentGame().getWeather().getEnergyConsumption());
+    }
 }
