@@ -389,11 +389,31 @@ public class GameMenuController extends Controller{
                 return new Result(false, "You don't have this crafting Item's ingredients");
             }
         }
+        if(player.getInventory().getCapacity() == 0){
+            return new Result(false, "Your inventory is full");
+        }
         for (String ingredient: craftingItem.getIngredients().keySet()){
             player.getInventory().removeInventoryItem(ingredient, craftingItem.getIngredients().get(ingredient));
         }
         App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), 1, 0);
         player.reduceEnergy(2);
+        return new Result(true, "");
+    }
+
+    public Result cheatAddItem(String itemName, String countString) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int count = Integer.parseInt(countString);
+        if(!inCottage()){
+            return new Result(false, "You are not in your cottage");
+        }
+        CraftingItemEnum craftingItem = CraftingItemEnum.getCraftingItemByName(itemName);
+        if(craftingItem == null){
+            return new Result(false, "Invalid crafting item name");
+        }
+        if(player.getInventory().getCapacity() == 0){
+            return new Result(false, "Your inventory is full");
+        }
+        App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), count, 0);
         return new Result(true, "");
     }
 

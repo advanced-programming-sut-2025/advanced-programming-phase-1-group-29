@@ -148,11 +148,11 @@ public class GameMenu implements AppMenu{
 //                    matcher.group("itemName").trim(),
 //                    matcher.group("direction").trim()));
 //        }
-//        else if ((matcher = GameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
-//            System.out.println(controller.cheatAddItem(
-//                    matcher.group("itemName").trim(),
-//                    matcher.group("count").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
+            System.out.println(controller.cheatAddItem(
+                    matcher.group("itemName").trim(),
+                    matcher.group("count").trim()));
+        }
         else if ((matcher = GameMenuCommands.CookingRefrigerator.getMatcher(input)) != null) {
             System.out.println(controller.cookingRefrigerator(
                     matcher.group("action").trim(),
