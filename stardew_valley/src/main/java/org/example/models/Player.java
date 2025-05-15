@@ -41,7 +41,24 @@ public class Player {
     private ArrayList<Integer> giftNumbers = new ArrayList<>();
     private ArrayList<Integer> giftPlayersIndex = new ArrayList<>();
     private boolean[] flower = new boolean[5];
+    private boolean[] askMarriage = new boolean[5];
+    private boolean[] married = new boolean[5];
+    private ArrayList<String> ring = new ArrayList<>();
 
+
+
+    public void setAskMarriage(int index) {
+        askMarriage[index] = true;
+    }
+    public boolean getAskMarriage(int index) {
+        return askMarriage[index];
+    }
+    public void setMarried(int index) {
+        married[index] = true;
+    }
+    public boolean getMarried(int index) {
+        return married[index];
+    }
 
     public void setFlower(int index) {
         flower[index] = true;
@@ -56,6 +73,9 @@ public class Player {
             talkHistory.add(new ArrayList<>());
             flower[i] = false;
         }
+        for (int i = 0; i < 5; i++) {
+            ring.add(null);
+        }
     }
     public void addTalk(String message, int index){
         talkHistory.get(index).add(message);
@@ -67,6 +87,14 @@ public class Player {
         giftItems.add(name);
         giftNumbers.add(amount);
         giftPlayersIndex.add(index);
+    }
+
+    public ArrayList<String> getRing() {
+        return ring;
+    }
+
+    public void setRing(int index, String name) {
+        ring.set(index, name);
     }
 
     public ArrayList<String> getGiftItems() {
@@ -191,7 +219,14 @@ public class Player {
     }
 
     public int getCoins() {
-        return coins;
+        int ind = -1;
+        for (int i = 0; i < 5; i++) {
+            if (married[i]) {
+                ind = i;
+            }
+        }
+        if (ind == -1) return coins;
+        else return coins + App.getCurrentGame().getPlayers().get(ind).getCoins();
     }
 
     public void setCoins(int coins) {

@@ -1002,6 +1002,63 @@ public class GameMenuController extends Controller{
         return new Result(true, "sent successfully");
     }
 
+    public Result askMarriage(String username, String ring){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (player.getUser().getGender().equals(Gender.FEMALE)) {
+            return new Result(false, "A woman can't propose!!");
+        }
+        int ind = -1;
+        Player player2 = null;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
+                ind = i;
+                player2 = App.getCurrentGame().getPlayers().get(i);
+            }
+        }
+        if (ind == -1) {
+            return new Result(false, "Incorrect username");
+        }
+        if (player.getInventory().getNumberOfInventoryItem(ring) < 1) {
+            return new Result(false, "You don't have a ring to propose");
+        }
+        if (player2.getUser().getGender().equals(Gender.MALE)) {
+            return new Result(false, "Are you gay?!!!");
+        }
+        if (abs(player.getX() - player2.getX()) + abs(player.getY() - player2.getY()) > 1) {
+            return new Result(false, "You are too far away");
+        }
+        if (!player.getFlower(ind)) {
+            return new Result(false, "You are not friends enough to gift");
+        }
+        player2.setAskMarriage(App.getCurrentGame().getTurn());
+        player2.setRing(App.getCurrentGame().getTurn(), ring);
+        return new Result(true, player.getUser().getUsername() + " proposed to " + username);
+    }
+    public Result respond(String respond, String username){
+        if (respond.equalsIgnoreCase("reject") || respond.equalsIgnoreCase("-reject")) {
+            return new Result(true, "You have rejected the proposal");
+        }
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int ind = -1;
+        Player player2 = null;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
+                ind = i;
+                player2 = App.getCurrentGame().getPlayers().get(i);
+            }
+        }
+        if (ind == -1) {
+            return new Result(false, "Incorrect username");
+        }
+        if (!player.getAskMarriage(ind)){
+            return new Result(false, username + " has not proposed!");
+        }
+        player.setMarried(ind);
+        player2.setMarried(App.getCurrentGame().getTurn());
+        player2.getInventory().removeInventoryItem(player2.getRing().get(App.getCurrentGame().getTurn()), 1);
+        return new Result(true, "congratulations!");
+    }
+
     public Result fertilize(String fertilizer, String direction) {
         ArrayList<Integer> directionConst = getDirection(direction);
         Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
