@@ -65,6 +65,15 @@ public class Farm extends Objectt {
         return null;
     }
 
+    public Lake getLake() {
+        for (Objectt object : objects) {
+            if (object instanceof Lake) {
+                return (Lake) object;
+            }
+        }
+        return null;
+    }
+
     public int getNumOfForaging() {
         return numOfForaging;
     }
