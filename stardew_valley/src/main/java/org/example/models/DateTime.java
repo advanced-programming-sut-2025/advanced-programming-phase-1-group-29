@@ -145,6 +145,9 @@ public class DateTime {
             player.setEnergy(200);
             if (player.isCollapsed()) {
                 player.setEnergy(150);
+                if (player.getRejected()) {
+                    player.setEnergy(player.getEnergy()/2);
+                }
                 player.setCollapsed(false);
             }
         }
