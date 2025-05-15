@@ -1,6 +1,7 @@
 package org.example.models;
 
 import org.example.models.VillagePackage.NPCMissionList;
+import org.example.models.enums.CraftingItemEnum;
 import org.example.models.enums.FoodRecipe;
 import org.example.models.enums.TrashCan;
 
@@ -20,6 +21,7 @@ public class Player {
     private int coins = 0;
     private Inventory inventory = new Inventory();
     private final ArrayList<FoodRecipe> foodRecipeList = new ArrayList<>();
+    private final ArrayList<CraftingItemEnum> craftingRecipeList = new ArrayList<>();
     private boolean isEnergyUnlimited = false;
     private Tool currentTool = null;
     private User user;
@@ -153,6 +155,10 @@ public class Player {
 
     public ArrayList<FoodRecipe> getFoodRecipeList() {
         return foodRecipeList;
+    }
+
+    public ArrayList<CraftingItemEnum> getCraftingRecipeList() {
+        return craftingRecipeList;
     }
 
     public boolean isEnergyUnlimited() {
