@@ -12,7 +12,12 @@ public enum ForagingMineral {
     TOPAZ("Topaz", 80),
     JADE("Jade", 200),
     DIAMOND("Diamond", 750),
-    PRISMATICSHARD("Prismatic Shard", 2000);
+    PRISMATICSHARD("Prismatic Shard", 2000),
+    COPPER("Copper", 5),
+    IRON("Iron", 10),
+    GOLD("Gold", 25),
+    IRIDIUM("Iridium", 100),
+    COAL("Coal", 15);
 
     private final String name;
     private final int sellPrice;

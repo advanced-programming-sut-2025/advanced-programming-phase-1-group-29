@@ -10,6 +10,7 @@ public class Farm extends Objectt {
     private final int number;
     private ArrayList<Objectt> objects = new ArrayList<>();
     int numOfForaging = 0;
+    int numOfForagingMineral = 0;
 
     public int getXStart() {
         return xStart;
@@ -73,5 +74,16 @@ public class Farm extends Objectt {
     }
     public void decrementNumOfForaging() {
         numOfForaging--;
+    }
+
+    public int getNumOfForagingMineral() {
+        return numOfForagingMineral;
+    }
+
+    public void incrementNumOfForagingMineral() {
+        numOfForagingMineral++;
+    }
+    public void decrementNumOfForagingMineral() {
+        numOfForagingMineral--;
     }
 }

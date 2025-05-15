@@ -56,6 +56,7 @@ public class DateTime {
                         Crop crop = new Crop(seed);
                         crop.setTiles(new ArrayList<Tile>(List.of(new Tile('p', i, j))));
                         farm.getObjects().add(crop);
+                        farm.incrementNumOfForaging();
                         crop.setForaging(true);
                     }
                 }
@@ -78,6 +79,7 @@ public class DateTime {
             Crop crop = new Crop(ForagingCrop.values()[cropNumber]);
             crop.setTiles(new ArrayList<Tile>(List.of(new Tile('p', i, j))));
             farm.getObjects().add(crop);
+            farm.incrementNumOfForaging();
             crop.setForaging(true);
         }
     }
@@ -119,7 +121,35 @@ public class DateTime {
     }
 
     private void putForagingMineral() {
-
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            Quarry quarry = null;
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof Quarry) {
+                    quarry = (Quarry) object;
+                    break;
+                }
+            }
+            if (quarry != null) {
+                for (Tile tile : quarry.getTiles()) {
+                    int random = (new Random()).nextInt(50);
+                    if (random == 0 && farm.getNumOfForagingMineral() < 2) {
+                        boolean flag = true;
+                        for (Foraging mineral : quarry.getMinerals()) {
+                            if (mineral.getTiles().getFirst().getX() == tile.getX() && mineral.getTiles().getFirst().getY() == tile.getY()) {
+                                flag = false;
+                            }
+                        }
+                        if (flag) {
+                            int randomMineral = (new Random()).nextInt(ForagingMineral.values().length);
+                            Foraging mineral = new Foraging(ForagingMineral.values()[randomMineral]);
+                            mineral.setTiles(new ArrayList<>(List.of(new Tile('m',tile.getX(), tile.getY()))));
+                            quarry.addMineral(mineral);
+                            farm.incrementNumOfForagingMineral();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void plantGrowth() {
