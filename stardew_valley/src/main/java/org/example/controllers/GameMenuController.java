@@ -478,11 +478,15 @@ public class GameMenuController extends Controller{
 
     private boolean nearTheLake() {
         Player player = App.getCurrentGame().getCurrentPlayer();
-        Lake lake = App.getCurrentGame().getCurrentFarm().getLake();
-        int x = player.getX();
-        int y = player.getY();
-        for (Tile tile : lake.getTiles()) {
-            if (Math.abs(tile.getX() - x) <= 1 && Math.abs(tile.getY() - y) <= 1) return true;
+        Farm farm = App.getCurrentGame().getCurrentFarm();
+        for (Objectt objectt : farm.getObjects()) {
+            if(objectt instanceof Lake lake) {
+                int x = player.getX();
+                int y = player.getY();
+                for (Tile tile : lake.getTiles()) {
+                    if (Math.abs(tile.getX() - x) <= 1 && Math.abs(tile.getY() - y) <= 1) return true;
+                }
+            }
         }
         return false;
     }
