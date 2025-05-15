@@ -7,7 +7,6 @@ import org.example.models.enums.TrashCan;
 import java.util.ArrayList;
 
 public class Player {
-    private int farmNumber;
     private int energy = 200;
     private int farmingLevel = 0;
     private int farmingUnit = 0;
@@ -51,14 +50,6 @@ public class Player {
 
     public NPCMissionList getNPCMissionList() {
         return npcMissionList;
-    }
-
-    public int getFarmNumber() {
-        return farmNumber;
-    }
-
-    public void setFarmNumber(int farmNumber) {
-        this.farmNumber = farmNumber;
     }
 
     public int getFarmingLevel() {
