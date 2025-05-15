@@ -14,6 +14,19 @@ import static java.lang.Math.abs;
 
 public class GameMenuController extends Controller{
 
+    public Result isCollapsed(String input) {
+        if (App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).isCollapsed()) {
+            if (GameMenuCommands.NextTurn.getMatcher(input) != null) {
+                this.nextTurn();
+                return new Result(false, "");
+            }
+            else {
+                return new Result(false, "YOU ARE COLLAPSED!\n");
+            }
+        }
+        return new Result(true, "");
+    }
+
     public Result menuEnter() {
         App.setCurrentMenu(Menu.MainMenu);
         return new Result(true, "Now you are in Main Menu.");
