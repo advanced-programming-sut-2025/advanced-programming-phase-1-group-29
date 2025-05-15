@@ -110,4 +110,12 @@ public enum CraftingItemEnum {
         this.name = name;
         this.ingredients = ingredients;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public HashMap<String, Integer> getIngredients() {
+        return ingredients;
+    }
 }

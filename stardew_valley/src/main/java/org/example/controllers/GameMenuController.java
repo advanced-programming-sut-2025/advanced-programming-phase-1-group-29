@@ -359,6 +359,16 @@ public class GameMenuController extends Controller{
         }
     }
 
+    public Result craftingShowRecipes(){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        StringJoiner joiner = new StringJoiner("\n");
+        joiner.add("Your crafting recipes are: ");
+        for (CraftingItemEnum item : player.getCraftingRecipeList()) {
+            joiner.add(item.getName());
+        }
+        return new Result(true, joiner.toString());
+    }
+
     private boolean inCottage() {
         Player player = App.getCurrentGame().getCurrentPlayer();
         Cottage cottage = App.getCurrentGame().getCurrentFarm().getCottage();
