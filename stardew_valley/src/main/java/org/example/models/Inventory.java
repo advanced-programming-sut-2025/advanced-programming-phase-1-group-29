@@ -82,7 +82,11 @@ public class Inventory {
     }
 
     public void addInventoryItem(InventoryItem item, int amount) {
-        inventoryItems.put(item, amount);
+        int oldAmount = 0;
+        if (this.inventoryItems.containsKey(item)) {
+            oldAmount = this.inventoryItems.get(item);
+        }
+        inventoryItems.put(item, amount + oldAmount);
     }
 
     public void removeInventoryItem(String name, int amount) {

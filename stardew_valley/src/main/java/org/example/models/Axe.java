@@ -33,13 +33,12 @@ public class Axe extends Tool{
     }
 
     private void addSeed(Objectt object) {
-        if (object instanceof FruitTree) {
-            FruitTree tree = (FruitTree) object;
+        if (object instanceof FruitTree tree) {
             if (tree.getTree().getSource().isForaging()) {
                 Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
                 player.addForagingUnit(10);
                 if (player.getInventory().getCapacity() > 0)
-                    player.getInventory().addInventoryItem(tree.getTree().getSource().getName().replaceAll("\\s+", ""), 1, 0);
+                    player.getInventory().addInventoryItem(new TreeSeed(tree.getTree().getSource().getName().replaceAll("\\s+", ""),0), 1);
             }
         }
     }
