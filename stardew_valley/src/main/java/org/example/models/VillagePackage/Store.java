@@ -4,6 +4,7 @@ import org.example.models.App;
 import org.example.models.InventoryItem;
 import org.example.models.Objectt;
 import org.example.models.Result;
+import org.example.models.enums.InventoryType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,7 +94,13 @@ public abstract class Store extends Objectt {
                     }
                     App.getCurrentGame().getCurrentPlayer().addCoins(-totalPrice);
                     productNumbers.put(item, available - quantity);
-                    App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(productName, quantity, item.getPrice());
+                    if (productName.equalsIgnoreCase("LargePack")) {
+                        App.getCurrentGame().getCurrentPlayer().getInventory().setType(InventoryType.BIG);
+                    }
+                    else if (productName.equalsIgnoreCase("DeluxePack")) {
+                        App.getCurrentGame().getCurrentPlayer().getInventory().setType(InventoryType.DELUXE);
+                    }
+                    else App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(productName, quantity, item.getPrice());
                     return new Result(true, "Successfully purchased.");
                 }
                 else {
