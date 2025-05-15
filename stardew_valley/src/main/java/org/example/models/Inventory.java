@@ -59,7 +59,7 @@ public class Inventory {
         int oldAmount = 0;
         InventoryItem item = null;
         for (InventoryItem inventoryItem : inventoryItems.keySet()) {
-            if (inventoryItem.getName().equalsIgnoreCase(name)) {
+            if (inventoryItem.getName().equalsIgnoreCase(name) && inventoryItem.getPrice() == price) {
                 oldAmount = inventoryItems.get(inventoryItem);
                 item = inventoryItem;
             }

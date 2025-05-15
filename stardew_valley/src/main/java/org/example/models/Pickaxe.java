@@ -3,6 +3,8 @@ package org.example.models;
 import org.example.models.enums.ForagingMineral;
 import org.example.models.enums.ToolType;
 
+import java.util.ArrayList;
+
 public class Pickaxe extends Tool{
     private ToolType type = ToolType.PRIMARY;
 
@@ -38,6 +40,11 @@ public class Pickaxe extends Tool{
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         farm.getObjects().remove(stone);
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
+        player.addMiningUnit(10);
+        if (player.getInventory().getCapacity() > 0)
+            player.getInventory().addInventoryItem("Stone", 1, 0);
+        if (player.getInventory().getCapacity() > 0 && player.getMiningLevel() >= 2)
+            player.getInventory().addInventoryItem("Stone", 1, 0);
         return new Result(true, "The stone is destroyed.");
     }
 
@@ -61,6 +68,11 @@ public class Pickaxe extends Tool{
             Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
             farm.decrementNumOfForagingMineral();
             quarry.getMinerals().remove(mineral);
+            player.addMiningUnit(10);
+            if (player.getInventory().getCapacity() > 0)
+                player.getInventory().addInventoryItem(foraging.getName().replaceAll("\\s+", ""), 1, 0);
+            if (player.getInventory().getCapacity() > 0 && player.getMiningLevel() >= 2)
+                player.getInventory().addInventoryItem(foraging.getName().replaceAll("\\s+", ""), 1, 0);
             player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
             return new Result(true, "The mineral is destroyed.");
         }

@@ -36,7 +36,48 @@ public class WateringCan extends Tool {
 
     @Override
     public Result useTool(int x, int y) {
-        return null;
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        for (Objectt object : farm.getObjects()) {
+            if (object instanceof Plant plant) {
+                if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
+                    if (this.water > 0) {
+                        plant.setWateredToday(true);
+                        player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
+                        return new Result(true, "The plant is watered.");
+                    }
+                    else {
+                        return new Result(false, "You must fill in your watering can.");
+                    }
+                }
+            }
+            else if (object instanceof Lake) {
+                for (Tile tile : object.getTiles()) {
+                    if (tile.getX() == x && tile.getY() == y) {
+                        if (type.equals(ToolType.PRIMARY)) {
+                            water = 40;
+                        }
+                        else if (type.equals(ToolType.COPPER)) {
+                            water = 55;
+                        }
+                        else if (type.equals(ToolType.IRON)) {
+                            water = 70;
+                        }
+                        else if (type.equals(ToolType.GOLD)) {
+                            water = 85;
+                        }
+                        else {
+                            water = 100;
+                        }
+                        player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
+                        return new Result(true, "Your watering can is filled in successfully.");
+                    }
+                }
+            }
+            //TODO green house
+        }
+        player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(Math.max(0, this.getEnergyConsumption()-1)));
+        return new Result(false, "The watering can can't be used in this direction.");
     }
 
     public int getWater() {
