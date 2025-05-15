@@ -129,11 +129,11 @@ public class GameMenu implements AppMenu{
                     matcher.group("x").trim(),
                     matcher.group("y").trim()));
         }
-//        else if ((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
-//            System.out.println(controller.fertilize(
-//                    matcher.group("fertilizer").trim(),
-//                    matcher.group("direction").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
+            System.out.println(controller.fertilize(
+                    matcher.group("fertilizer").trim(),
+                    matcher.group("direction").trim()));
+        }
         else if (GameMenuCommands.HowMuchWater.getMatcher(input) != null) {
             System.out.println(controller.howMuchWater());
         }
