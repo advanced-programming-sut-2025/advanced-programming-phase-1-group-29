@@ -1,8 +1,10 @@
 package org.example.views;
 
+import org.example.controllers.Controller;
 import org.example.controllers.GameMenuController;
 import org.example.controllers.NPCHouseMenuController;
 import org.example.controllers.StoreMenuController;
+import org.example.models.Result;
 import org.example.models.enums.GameMenuCommands;
 
 import java.util.Scanner;
@@ -236,18 +238,18 @@ public class GameMenu implements AppMenu{
 //        else if ((matcher = GameMenuCommands.TalkHistory.getMatcher(input)) != null) {
 //            System.out.println(controller.talkHistory(matcher.group("username").trim()));
 //        }
-//        else if ((matcher = GameMenuCommands.Gift.getMatcher(input)) != null) {
-//            System.out.println(controller.gift(
-//            matcher.group("username").trim(),
-//            matcher.group("item").trim(),
-//            matcher.group("amount").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.Gift.getMatcher(input)) != null) {
+            System.out.println(controller.gift(
+            matcher.group("username").trim(),
+            matcher.group("item").trim(),
+            matcher.group("amount").trim()));
+        }
 //        else if (GameMenuCommands.GiftList.getMatcher(input) != null) {
 //            System.out.println(controller.giftList());
 //        }
-//        else if ((matcher = GameMenuCommands.GiftRate.getMatcher(input)) != null) {
-//            System.out.println(controller.giftRate(matcher.group("giftNumber").trim(), matcher.group("rate").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.GiftRate.getMatcher(input)) != null) {
+            System.out.println(controller.rateGift(matcher.group("giftNumber").trim(), matcher.group("rate").trim()));
+        }
 //        else if ((matcher = GameMenuCommands.GiftHistory.getMatcher(input)) != null) {
 //            System.out.println(controller.giftHistory(matcher.group("username").trim()));
 //        }
