@@ -39,7 +39,7 @@ public class RobinsHouse extends NPCHouse {
             else{
                 super.quest3 = true;
                 player.addCoins(25000);
-                return new Result(true, "quest completed. you received 25000 coins.");//TODO
+                return new Result(true, "quest completed. you received 25000 coins.");
             }
         }
         else return new Result(false, "invalid index");

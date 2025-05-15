@@ -38,8 +38,9 @@ public class AbigailsHouse extends NPCHouse{
             }
             else{
                 super.quest3 = true;
-                player.getInventory().addInventoryItem("quartz", 50, 0);//TODO??
-                return new Result(true, "quest completed. you received 50 quartz.");//TODO
+                player.getInventory().addInventoryItem("quartz", 50, 0);
+                return new Result(true, "quest completed. you received 50 quartz.");
+                //TODO
             }
         }
         else return new Result(false, "invalid index");
@@ -56,7 +57,7 @@ public class AbigailsHouse extends NPCHouse{
             result.append(" you need to have 200 friendship points with Abigail to unlock this quest\n");
         }
         else result.append(" undone\n");
-        result.append("Quest 3 : 50 wheat  Reward: 50 ");//TODO
+        result.append("Quest 3 : 50 wheat  Reward: Iridium watering can");
         if (super.quest3) result.append(" (done)\n");
         else if (App.getCurrentGame().getCurrentTime().getYear() > 0 || (App.getCurrentGame().getCurrentTime().getSeason() != Season.Spring && App.getCurrentGame().getCurrentTime().getSeason() != Season.Summer)){
             result.append(" (undone)\n");

@@ -13,8 +13,8 @@ public class HarveysHouse extends NPCHouse {
     public Result questFinish(int ind) {
         Player player = App.getCurrentGame().getCurrentPlayer();
         if (ind == 1 && !super.quest1){
-            if (player.getInventory().getNumberOfInventoryItem("plant") < 1){ // TODO
-                return new Result(false, "You don't have enough plants in your inventory.");
+            if (player.getInventory().getNumberOfInventoryItem("carrot") < 1){
+                return new Result(false, "You don't have enough carrot in your inventory.");
             }
             else {
                 super.quest1 = true;
@@ -38,7 +38,7 @@ public class HarveysHouse extends NPCHouse {
             }
             else{
                 super.quest3 = true;
-                player.getInventory().addInventoryItem("salad", 5, 0);//TODO??
+                player.getInventory().addInventoryItem("salad", 5, 0);
                 return new Result(true, "quest completed. you received 5 salads.");
             }
         }
@@ -47,7 +47,7 @@ public class HarveysHouse extends NPCHouse {
     @Override
     public Result questsList() {
         StringBuilder result = new StringBuilder();
-        result.append("Quest 1 : 12 plants of choice  Reward: 750 golds");
+        result.append("Quest 1 : 12 carrots  Reward: 750 golds");
         if (super.quest1) result.append(" (done)\n");
         else result.append(" (undone)\n");
         result.append("Quest 2 : 1 Salmon Reward: +1 friendship level");
