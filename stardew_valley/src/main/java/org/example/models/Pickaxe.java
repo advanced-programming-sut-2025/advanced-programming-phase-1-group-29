@@ -5,20 +5,12 @@ import org.example.models.enums.ToolType;
 
 import java.util.ArrayList;
 
-public class Pickaxe extends Tool{
-    private ToolType type = ToolType.PRIMARY;
+public class Pickaxe extends UpgradableTool{
 
     public Pickaxe(String name, int price) {
         super(name, price);
     }
 
-    public ToolType getType() {
-        return type;
-    }
-
-    public void setType(ToolType type) {
-        this.type = type;
-    }
     @Override
     public int getEnergyConsumption() {
         int ability = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getMiningLevel();

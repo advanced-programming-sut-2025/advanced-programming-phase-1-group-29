@@ -5,21 +5,12 @@ import org.example.models.enums.ToolType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hoe extends Tool{
-
-    private ToolType type = ToolType.PRIMARY;
+public class Hoe extends UpgradableTool{
 
     public Hoe(String name, int price) {
         super(name, price);
     }
 
-    public ToolType getType() {
-        return type;
-    }
-
-    public void setType(ToolType type) {
-        this.type = type;
-    }
     @Override
     public Result useTool(int x, int y) {
         Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());

@@ -1,16 +1,22 @@
 package org.example.models.enums;
 
 public enum TrashCan {
-    PRIMARY(0),
-    COPPER(15),
-    IRON(30),
-    GOLD(45),
-    IRIDIUM(60);
+    PRIMARY(0, 0, 5, null),
+    COPPER(15, 1000, 5, "CopperBar"),
+    IRON(30, 2500, 5, "IronBar"),
+    GOLD(45, 5000, 5, "GoldBar"),
+    IRIDIUM(60, 12500, 5, "IridiumBar");
 
-    private int returnValuePercentage;
+    private final int returnValuePercentage;
+    private final int coinForUpgrade;
+    private final int barForUpgrade;
+    private final String bar;
 
-    TrashCan(int returnValuePercentage) {
+    TrashCan(int returnValuePercentage, int coinForUpgrade, int barForUpgrade, String bar) {
         this.returnValuePercentage = returnValuePercentage;
+        this.coinForUpgrade = coinForUpgrade;
+        this.barForUpgrade = barForUpgrade;
+        this.bar = bar;
     }
 
     public int getReturnValuePercentage() {
@@ -21,7 +27,18 @@ public enum TrashCan {
         if (this.equals(TrashCan.PRIMARY)) return TrashCan.COPPER;
         if (this.equals(TrashCan.COPPER)) return TrashCan.IRON;
         if (this.equals(TrashCan.IRON)) return TrashCan.GOLD;
-        if (this.equals(TrashCan.GOLD)) return TrashCan.IRIDIUM;
-        return null;
+        return TrashCan.IRIDIUM;
+    }
+
+    public int getCoinForUpgrade() {
+        return coinForUpgrade;
+    }
+
+    public int getBarForUpgrade() {
+        return barForUpgrade;
+    }
+
+    public String getBar() {
+        return bar;
     }
 }

@@ -4,6 +4,7 @@ import com.sun.source.tree.ReturnTree;
 import org.example.models.*;
 import org.example.models.Map;
 import org.example.models.Objectt;
+import org.example.models.VillagePackage.BlackSmithStore;
 import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
 import org.example.models.enums.*;
@@ -123,7 +124,7 @@ public class GameMenuController extends Controller{
         Inventory inventory = player.getInventory();
         for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
             if (inventoryItem instanceof Tool) {
-                if (inventoryItem.getName().equals(name)) {
+                if (inventoryItem.getName().equalsIgnoreCase(name.replaceAll("\\s+",""))) {
                     player.setCurrentTool((Tool) inventoryItem);
                     return new Result(true, "Now you are equipped with " + name);
                 }
@@ -271,25 +272,45 @@ public class GameMenuController extends Controller{
     public Result inventoryTrash(String name, String amount) {
         Player player = App.getCurrentGame().getCurrentPlayer();
         Inventory inventory = player.getInventory();
-        InventoryItem item = null;
         int number = 0;
+        int sum = 0;
         for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
-            if (name.equals(inventoryItem.getName())) {
-                if (amount.isEmpty()) number = inventory.getInventoryItems().get(inventoryItem);
-                else number = Integer.parseInt(amount);
-                if (number > inventory.getInventoryItems().get(inventoryItem))
-                    return new Result(false, "You don't have this amount of " + name);
-                item = inventoryItem;
-                break;
+            if (inventoryItem.getName().equalsIgnoreCase(name.replaceAll("\\s+", ""))) {
+                sum += inventory.getInventoryItems().get(inventoryItem);
             }
+        }
+        if (sum == 0)
+            return new Result(false, "This item doesn't exist in your inventory");
+        if (amount.isEmpty()) number = sum;
+        else number = Integer.parseInt(amount);
+        if (number > sum)
+            return new Result(false, "You don't have this amount of " + name);
+        ArrayList<InventoryItem> toBeRemoved = new ArrayList<>();
+        InventoryItem item = null;
+        for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
+            if (inventoryItem.getName().equalsIgnoreCase(name.replaceAll("\\s+", ""))) {
+                if (number >= inventory.getInventoryItems().get(inventoryItem)) {
+                    toBeRemoved.add(inventoryItem);
+                    int coins = player.getTrashCan().getReturnValuePercentage() * inventoryItem.getPrice() / 100;
+                    player.addCoins(coins);
+                    number -= inventory.getInventoryItems().get(inventoryItem);
+                }
+                else {
+                    item = inventoryItem;
+                }
+                if (number == 0 || item != null) break;
+
+            }
+        }
+        for (InventoryItem inventoryItem : toBeRemoved) {
+            inventory.getInventoryItems().remove(inventoryItem);
         }
         if (item != null) {
             inventory.getInventoryItems().put(item, inventory.getInventoryItems().get(item) - number);
             int coins = player.getTrashCan().getReturnValuePercentage() * item.getPrice() / 100;
             player.addCoins(coins);
-            return new Result(true, number + " of " + name + " deleted from your inventory. " + coins + " coins returned.");
         }
-        return new Result(false, "This item doesn't exist in your inventory");
+        return new Result(true, amount + " of " + name + " deleted from your inventory. ");
     }
 
     public Result helpReadingMap(){
@@ -1063,5 +1084,82 @@ public class GameMenuController extends Controller{
             }
         }
         return new Result(false, "Nothing happened.");
+    }
+
+    private Result upgrade(String name) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (name.equalsIgnoreCase("TrashCan")) {
+            TrashCan newTrashCan = player.getTrashCan().upgrade();
+            int sum = 0;
+            for (InventoryItem item : player.getInventory().getInventoryItems().keySet()) {
+                if (item.getName().equalsIgnoreCase(newTrashCan.getBar())) {
+                    sum += player.getInventory().getInventoryItems().get(item);
+                }
+            }
+            if (newTrashCan.getCoinForUpgrade() > player.getCoins() || newTrashCan.getBarForUpgrade() > sum) {
+                return new Result(false, "You don't have enough coins or bars.");
+            }
+            player.setTrashCan(newTrashCan);
+            useResources(player, newTrashCan.getCoinForUpgrade(), newTrashCan.getBarForUpgrade(), newTrashCan.getBar());
+            return new Result(true, "Trash Can is upgraded successfully.");
+        }
+        for (InventoryItem inventoryItem : player.getInventory().getInventoryItems().keySet()) {
+            if (inventoryItem instanceof UpgradableTool tool) {
+                ToolType newType = tool.getType().upgrade();
+                int sum = 0;
+                for (InventoryItem item : player.getInventory().getInventoryItems().keySet()) {
+                    if (item.getName().equalsIgnoreCase(newType.getBar())) {
+                        sum += player.getInventory().getInventoryItems().get(item);
+                    }
+                }
+                if (newType.getCoinForUpgrade() > player.getCoins() || newType.getBarForUpgrade() > sum) {
+                    return new Result(false, "You don't have enough coins or bars.");
+                }
+                tool.setType(newType);
+                useResources(player, newType.getCoinForUpgrade(), newType.getBarForUpgrade(), newType.getBar());
+                return new Result(true, "Tool is upgraded successfully.");
+            }
+        }
+        return new Result(false, "You can't upgrade " + name);
+    }
+
+    private static void useResources(Player player, int coins, int bars, String bar) {
+        player.addCoins((-1) * coins);
+        ArrayList<InventoryItem> toBeRemoved = new ArrayList<>();
+        InventoryItem item = null;
+        int number = bars;
+        for (InventoryItem item2 : player.getInventory().getInventoryItems().keySet()) {
+            if (item2.getName().equalsIgnoreCase(bar)) {
+                if (number >= player.getInventory().getInventoryItems().get(item2)) {
+                    toBeRemoved.add(item2);
+                    number -= player.getInventory().getInventoryItems().get(item2);
+                }
+                else {
+                    item = item2;
+                }
+                if (number == 0 || item != null) break;
+
+            }
+        }
+        for (InventoryItem item2 : toBeRemoved) {
+            player.getInventory().getInventoryItems().remove(item2);
+        }
+        if (item != null) {
+            player.getInventory().getInventoryItems().put(item, player.getInventory().getInventoryItems().get(item) - number);
+        }
+    }
+
+    public Result toolsUpgrade(String name) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
+            if (objectt instanceof BlackSmithStore){
+                for (Tile tile : objectt.getTiles()) {
+                    if (player.getX() == tile.getX() && player.getY() == tile.getY()) {
+                        return upgrade(name.replaceAll("\\s+", ""));
+                    }
+                }
+            }
+        }
+        return new Result(false, "You must be in Black Smith Store");
     }
 }

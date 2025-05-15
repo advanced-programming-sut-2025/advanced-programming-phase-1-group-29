@@ -2,20 +2,12 @@ package org.example.models;
 
 import org.example.models.enums.ToolType;
 
-public class Axe extends Tool{
-    private ToolType type = ToolType.PRIMARY;
+public class Axe extends UpgradableTool{
 
     public Axe(String name, int price) {
         super(name, price);
     }
 
-    public ToolType getType() {
-        return type;
-    }
-
-    public void setType(ToolType type) {
-        this.type = type;
-    }
     @Override
     public int getEnergyConsumption() {
         int ability = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getForagingLevel();

@@ -2,20 +2,11 @@ package org.example.models;
 
 import org.example.models.enums.ToolType;
 
-public class WateringCan extends Tool {
-    private ToolType type = ToolType.PRIMARY;
+public class WateringCan extends UpgradableTool {
     private int water = 0;
 
     public WateringCan(String name, int price) {
         super(name, price);
-    }
-
-    public ToolType getType() {
-        return type;
-    }
-
-    public void setType(ToolType type) {
-        this.type = type;
     }
 
     @Override
