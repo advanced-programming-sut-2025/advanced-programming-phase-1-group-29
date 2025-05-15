@@ -104,6 +104,9 @@ public class DateTime {
                 ((NPCHouse) objectt).setGiftNPCToday(false);
             }
         }
+        for (Player player : App.getCurrentGame().getPlayers()){
+            player.addRejectedDays();
+        }
         thunder();
         removePlantsOutOfSeason();
         plantGrowth();

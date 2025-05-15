@@ -263,14 +263,14 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.Flower.getMatcher(input)) != null) {
             System.out.println(controller.flower(matcher.group("username").trim()));
         }
-//        else if ((matcher = GameMenuCommands.AskMarriage.getMatcher(input)) != null) {
-//            System.out.println(controller.askMarriage(
-//                    matcher.group("username").trim(),
-//                    matcher.group("ring").trim()));
-//        }
-//        else if ((matcher = GameMenuCommands.Respond.getMatcher(input)) != null) {
-//            System.out.println(controller.respond(matcher.group("result").trim(), matcher.group("username").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.AskMarriage.getMatcher(input)) != null) {
+            System.out.println(controller.askMarriage(
+                    matcher.group("username").trim(),
+                    matcher.group("ring").trim()));
+        }
+        else if ((matcher = GameMenuCommands.Respond.getMatcher(input)) != null) {
+            System.out.println(controller.respond(matcher.group("result").trim(), matcher.group("username").trim()));
+        }
 //        else if (GameMenuCommands.StartTrade.getMatcher(input) != null) {
 //            System.out.println(controller.startTrade());
 //        }
