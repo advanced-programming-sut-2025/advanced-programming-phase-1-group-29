@@ -15,6 +15,8 @@ public abstract class Plant extends Objectt{
     protected boolean isFertilizedByRetainingSoil = false;
     protected boolean isReadyForHarvest = false;
     protected boolean isForaging = false;
+    protected boolean isInHarvestCycle = false;
+    protected int remainingHarvestCycle = 0;
 
     public Plant(Seed seed) {
         this.seed = seed;
@@ -96,6 +98,10 @@ public abstract class Plant extends Objectt{
 
     public abstract void grow();
 
+    public void growInCycle() {
+        this.decrementRemainingHarvestCycle();
+    }
+
     public void fertilize(String fertilizer) {
         if (fertilizer.equalsIgnoreCase("Speed-Gro")) {
             isFertilizedBySpeedGro = true;
@@ -130,6 +136,31 @@ public abstract class Plant extends Objectt{
 
     public void setFertilizedByRetainingSoil(boolean fertilizedByRetainingSoil) {
         isFertilizedByRetainingSoil = fertilizedByRetainingSoil;
+    }
+
+    public boolean isInHarvestCycle() {
+        return isInHarvestCycle;
+    }
+
+    public void setInHarvestCycle(boolean inHarvestCycle) {
+        isInHarvestCycle = inHarvestCycle;
+    }
+
+    public int getRemainingHarvestCycle() {
+        return remainingHarvestCycle;
+    }
+
+    public void setRemainingHarvestCycle(int remainingHarvestCycle) {
+        this.remainingHarvestCycle = remainingHarvestCycle;
+    }
+
+    public void incrementRemainingHarvestCycle() {
+        remainingHarvestCycle++;
+    }
+
+    public void decrementRemainingHarvestCycle() {
+        remainingHarvestCycle--;
+        if (remainingHarvestCycle == 0) isReadyForHarvest = true;
     }
 
     @Override

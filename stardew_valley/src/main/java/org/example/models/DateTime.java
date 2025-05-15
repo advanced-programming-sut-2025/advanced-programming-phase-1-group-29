@@ -163,8 +163,10 @@ public class DateTime {
                     else {
                         plant.setWateredYesterday(plant.isWateredToday());
                         plant.setWateredToday(false);
-                        if (!plant.isReadyForHarvest() && (plant.isWateredToday() || plant.isWateredEveryDay()))
-                            plant.grow();
+                        if (!plant.isReadyForHarvest() && (plant.isWateredToday() || plant.isWateredEveryDay())) {
+                            if (!plant.isInHarvestCycle()) plant.grow();
+                            else plant.growInCycle();
+                        }
                     }
                 }
             }
