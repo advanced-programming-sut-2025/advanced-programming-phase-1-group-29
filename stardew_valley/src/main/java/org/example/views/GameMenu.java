@@ -232,12 +232,12 @@ public class GameMenu implements AppMenu{
 //        else if (GameMenuCommands.Friendships.getMatcher(input) != null) {
 //            System.out.println(controller.friendships());
 //        }
-//        else if ((matcher = GameMenuCommands.Talk.getMatcher(input)) != null) {
-//            System.out.println(controller.talk(matcher.group("username").trim(), matcher.group("message").trim()));
-//        }
-//        else if ((matcher = GameMenuCommands.TalkHistory.getMatcher(input)) != null) {
-//            System.out.println(controller.talkHistory(matcher.group("username").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.Talk.getMatcher(input)) != null) {
+            System.out.println(controller.talk(matcher.group("username").trim(), matcher.group("message").trim()));
+        }
+        else if ((matcher = GameMenuCommands.TalkHistory.getMatcher(input)) != null) {
+            System.out.println(controller.talkHistory(matcher.group("username").trim()));
+        }
         else if ((matcher = GameMenuCommands.Gift.getMatcher(input)) != null) {
             System.out.println(controller.gift(
             matcher.group("username").trim(),

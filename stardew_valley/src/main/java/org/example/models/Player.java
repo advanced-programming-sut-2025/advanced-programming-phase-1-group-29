@@ -5,6 +5,7 @@ import org.example.models.enums.FoodRecipe;
 import org.example.models.enums.TrashCan;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     private int energy = 200;
@@ -16,7 +17,7 @@ public class Player {
     private int foragingUnit = 0;
     private int fishingLevel = 0;
     private int fishingUnit = 0;
-    int coins = 0;
+    private int coins = 0;
     private Inventory inventory = new Inventory();
     private final ArrayList<FoodRecipe> foodRecipeList = new ArrayList<>();
     private boolean isEnergyUnlimited = false;
@@ -32,18 +33,22 @@ public class Player {
     private int robinFriendship = 0;
     private NPCMissionList npcMissionList = new NPCMissionList();
     private int[] friendship = new int[5];
-    private ArrayList<String>[] talkHistory = new ArrayList[5];
+    private ArrayList<ArrayList<String>> talkHistory = new ArrayList<>();
     private boolean isCollapsed = false;
     private ArrayList<String> giftItems = new ArrayList<>();
     private ArrayList<Integer> giftNumbers = new ArrayList<>();
     private ArrayList<Integer> giftPlayersIndex = new ArrayList<>();
 
-
+    public Player() {
+        for (int i = 0; i < 5; i++) {
+            talkHistory.add(new ArrayList<>());
+        }
+    }
     public void addTalk(String message, int index){
-        talkHistory[index].add(message);
+        talkHistory.get(index).add(message);
     }
     public ArrayList<String> getTalkHistory(int ind){
-        return talkHistory[ind];
+        return talkHistory.get(ind);
     }
     public void addGift(String name, int amount, int index){
         giftItems.add(name);
