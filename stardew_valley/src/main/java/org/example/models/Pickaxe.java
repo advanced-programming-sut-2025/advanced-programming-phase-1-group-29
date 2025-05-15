@@ -34,6 +34,8 @@ public class Pickaxe extends Tool{
 
     @Override
     public Result useTool(int x, int y) {
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         return null;
     }
 }

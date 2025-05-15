@@ -35,6 +35,7 @@ public class Player {
     private ArrayList<String>[] talkHistory = new ArrayList[5];
     private ArrayList<String>[] giftItems = new ArrayList[5];
     private ArrayList<Integer>[] giftNumbers = new ArrayList[5];
+    private boolean isCollapsed = false;
 
 
     public void addTalk(String message, int index){
@@ -113,6 +114,7 @@ public class Player {
 
     public void setEnergy(int energy) {
         this.energy = energy;
+        if (energy == 0 && !isEnergyUnlimited) isCollapsed = true;
     }
 
     public void addEnergy(int amount) {
@@ -215,6 +217,13 @@ public class Player {
         return robinFriendship;
     }
 
+    public boolean isCollapsed() {
+        return isCollapsed;
+    }
+
+    public void setCollapsed(boolean collapsed) {
+        isCollapsed = collapsed;
+    }
 
     public void addSebastianFriendship(int amount) {
         sebastianFriendship += amount;

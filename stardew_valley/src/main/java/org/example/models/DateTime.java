@@ -105,6 +105,17 @@ public class DateTime {
         plantGrowth();
         putForaging();
         putForagingMineral();
+        setEnergy();
+    }
+
+    private void setEnergy() {
+        for (Player player : App.getCurrentGame().players) {
+            player.setEnergy(200);
+            if (player.isCollapsed()) {
+                player.setEnergy(150);
+                player.setCollapsed(false);
+            }
+        }
     }
 
     private void putForagingMineral() {

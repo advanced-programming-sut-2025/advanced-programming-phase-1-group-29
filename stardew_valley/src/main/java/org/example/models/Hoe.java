@@ -23,7 +23,7 @@ public class Hoe extends Tool{
     @Override
     public Result useTool(int x, int y) {
         Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
-        if (player.getCurrentTool().getEnergyConsumption() > player.getEnergy())
+        if ((!player.isEnergyUnlimited()) && player.getCurrentTool().getEnergyConsumption() > player.getEnergy())
             return new Result(false, "You don't have enough energy");
         player.setEnergy(player.getEnergy() - player.getCurrentTool().getEnergyConsumption());
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
