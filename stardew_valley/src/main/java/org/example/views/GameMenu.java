@@ -1,9 +1,6 @@
 package org.example.views;
 
-import org.example.controllers.Controller;
-import org.example.controllers.GameMenuController;
-import org.example.controllers.NPCHouseMenuController;
-import org.example.controllers.StoreMenuController;
+import org.example.controllers.*;
 import org.example.models.Result;
 import org.example.models.enums.GameMenuCommands;
 
@@ -14,6 +11,7 @@ public class GameMenu implements AppMenu{
     private final GameMenuController controller = new GameMenuController();
     private final StoreMenuController storeController = new StoreMenuController();
     private final NPCHouseMenuController npcController = new NPCHouseMenuController();
+    private final TradeMenuController tradeController = new TradeMenuController();
     //TODO
     //remove all the spaces from the inputs
     @Override

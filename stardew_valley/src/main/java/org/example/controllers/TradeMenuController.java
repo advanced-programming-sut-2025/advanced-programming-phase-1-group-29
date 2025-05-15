@@ -1,5 +1,5 @@
 package org.example.controllers;
 
-public class TradeMenuController {
+public class TradeMenuController extends Controller {
 
 }
