@@ -1,6 +1,5 @@
 package org.example.models;
 
-import org.example.models.VillagePackage.Store;
 import org.example.models.enums.ForagingMineral;
 import org.example.models.enums.ToolType;
 
