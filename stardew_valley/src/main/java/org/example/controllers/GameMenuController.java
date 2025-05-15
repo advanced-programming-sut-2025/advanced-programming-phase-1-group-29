@@ -12,6 +12,7 @@ import org.example.models.enums.*;
 import java.util.*;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.log;
 
 public class GameMenuController extends Controller{
 
@@ -443,6 +444,39 @@ public class GameMenuController extends Controller{
         }
         App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), 1, 0);
         player.reduceEnergy(2);
+        return new Result(true, "");
+    }
+
+    public Boolean isOccupied(int x, int y){
+        for (Objectt object : App.getCurrentGame().getMap().getObjects()) {
+            for (Tile tile : object.getTiles()) {
+                if(tile.getX() == x && tile.getY() == y){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public Result placeItem(String itemName, String direction) {
+        ArrayList<Integer> directionConst = getDirection(direction);
+        if(directionConst == null){
+            return new Result(false, "Invalid direction");
+        }
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int x = player.getX() + directionConst.get(0);
+        int y = player.getY() + directionConst.get(1);
+        if(isOccupied(x, y)){
+            return new Result(false, "You can't place an item in this direction");
+        }
+        InventoryItem inventoryItem = player.getInventory().findInventoryItem(itemName);
+        if(inventoryItem == null){
+            return new Result(false, "You don't have this item");
+        }
+        Item item = new Item(itemName);
+        item.setTiles(new ArrayList<>());
+        item.getTiles().add(new Tile('i', x, y));
+        App.getCurrentGame().getCurrentFarm().getObjects().add(item);
         return new Result(true, "");
     }
 
@@ -978,7 +1012,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "Incorrect username");
         }
         StringBuilder result = new StringBuilder();
-        result.append("recieved gifts: \n");
+        result.append("received gifts: \n");
         ArrayList<String> items = player.getGiftItems();
         ArrayList<Integer> giftNumbers = player.getGiftNumbers();
         ArrayList<Integer> giftPlayersIndex = player.getGiftPlayersIndex();
