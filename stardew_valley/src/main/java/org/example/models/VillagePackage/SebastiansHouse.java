@@ -92,7 +92,7 @@ public class SebastiansHouse extends NPCHouse{
     @Override
     public Result meetNPC() {
         Player player = App.getCurrentGame().getCurrentPlayer();
-        if (abs(super.getNPCPlaceX() - player.getX()) > 1 || abs(super.getNPCPlaceY() - player.getY()) > 1) {
+        if (abs(super.getNPCPlaceX() - player.getX()) + abs(super.getNPCPlaceY() - player.getY()) > 1) {
             return new Result(false, "You are too far from Sebastian to talk.");
         }
 
