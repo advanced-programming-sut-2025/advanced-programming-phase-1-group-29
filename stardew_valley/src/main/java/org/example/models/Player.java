@@ -44,6 +44,8 @@ public class Player {
     private boolean[] askMarriage = new boolean[5];
     private boolean[] married = new boolean[5];
     private ArrayList<String> ring = new ArrayList<>();
+    private boolean rejected = false;
+    private int rejectedDays = 0;
 
 
 
@@ -68,6 +70,21 @@ public class Player {
         return flower[index];
     }
 
+    public void addRejectedDays() {
+        if (rejected) rejectedDays++;
+        if (rejectedDays > 7){
+            rejected = false;
+            rejectedDays = 0;
+        }
+    }
+
+    public void setRejected(){
+        rejected = true;
+    }
+    public boolean getRejected(){
+        return rejected;
+    }
+
     public Player() {
         for (int i = 0; i < 5; i++) {
             talkHistory.add(new ArrayList<>());
@@ -76,6 +93,7 @@ public class Player {
         for (int i = 0; i < 5; i++) {
             ring.add(null);
         }
+        rejected = false;
     }
     public void addTalk(String message, int index){
         talkHistory.get(index).add(message);

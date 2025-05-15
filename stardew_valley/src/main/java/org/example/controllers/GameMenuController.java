@@ -1035,9 +1035,6 @@ public class GameMenuController extends Controller{
         return new Result(true, player.getUser().getUsername() + " proposed to " + username);
     }
     public Result respond(String respond, String username){
-        if (respond.equalsIgnoreCase("reject") || respond.equalsIgnoreCase("-reject")) {
-            return new Result(true, "You have rejected the proposal");
-        }
         Player player = App.getCurrentGame().getCurrentPlayer();
         int ind = -1;
         Player player2 = null;
@@ -1052,6 +1049,10 @@ public class GameMenuController extends Controller{
         }
         if (!player.getAskMarriage(ind)){
             return new Result(false, username + " has not proposed!");
+        }
+        if (respond.equalsIgnoreCase("reject") || respond.equalsIgnoreCase("-reject")) {
+            player2.setRejected();
+            return new Result(true, "You have rejected the proposal");
         }
         player.setMarried(ind);
         player2.setMarried(App.getCurrentGame().getTurn());
