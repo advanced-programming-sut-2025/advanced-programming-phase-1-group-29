@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class Animal {
 
-    private AnimalEnum animalType;
-    private String name;
-    private int price;
+    private final AnimalEnum animalType;
+    private final String name;
+    private final int price;
     private int friendshipPoint = 0;
     private boolean isPetted = false;
     private boolean isFed = false;
@@ -67,7 +67,7 @@ public class Animal {
     }
 
     public void addProduct(){
-        AnimalProductEnum productType = null;
+        AnimalProductEnum productType;
         Random random = new Random();
         if(this.animalType.getProducts().size() == 2 && this.friendshipPoint >= 100){
             double chance = ((double) this.friendshipPoint + ((double) 150 * (0.5 + random.nextDouble(1)))) / 1500;

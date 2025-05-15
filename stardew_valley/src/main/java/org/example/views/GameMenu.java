@@ -199,12 +199,12 @@ public class GameMenu implements AppMenu{
             System.out.println(controller.fishing(matcher.group("fishingPole").trim()));
         }
 //        else if ((matcher = GameMenuCommands.ArtisanUse.getMatcher(input)) != null) {
-//            System.out.println(controller.ArtisanUse(
+//            System.out.println(controller.artisanUse(
 //                    matcher.group("artisanName").trim(),
 //                    matcher.group("item1Name").trim()));
 //        }
 //        else if ((matcher = GameMenuCommands.ArtisanGet.getMatcher(input)) != null) {
-//            System.out.println(controller.ArtisanGet(matcher.group("artisanName").trim()));
+//            System.out.println(controller.artisanGet(matcher.group("artisanName").trim()));
 //        }
 //        else if (GameMenuCommands.ShowAllProducts.getMatcher(input) != null) {
 //            System.out.println(controller.showAllProducts());
