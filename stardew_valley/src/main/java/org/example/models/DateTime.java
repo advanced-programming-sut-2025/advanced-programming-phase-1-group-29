@@ -24,8 +24,8 @@ public class DateTime {
 
     public void incrementTime() {
         time++;
-        if (time == 24) {
-            time = 0;
+        if (time == 22) {
+            time = 9;
             incrementDay();
         }
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
@@ -86,6 +86,9 @@ public class DateTime {
     }
 
     public void incrementDay() {
+        for (Player player : App.getCurrentGame().players) {
+            //TODO walk to home
+        }
         day++;
         if (day == 29) {
             day = 1;
