@@ -766,12 +766,29 @@ public class GameMenuController extends Controller{
             if (App.getCurrentGame().getPlayers().get(i).getUser().getUsername().equals(username)) {
                 ind = i;
                 player2 = App.getCurrentGame().getPlayers().get(i);
+                if (abs(player.getX() - player2.getX()) + abs(player.getY() - player2.getY()) > 1) {
+                    return new Result(false, "You are not next to " + username);
+                }
             }
         }
         if (ind == -1) {
             return new Result(false, "Incorrect username");
         }
-
+        player2.getInventory().addInventoryItem(itemName, amount, 0);
+        player2.addGift(itemName, amount, App.getCurrentGame().getTurn());
+        return new Result(true, player2.getUser().getUsername() + " recieved " + amount + " of " + itemName + "\n");
+    }
+    public Result rateGift(String giftNumberString, String rateString){
+        int giftNumber = Integer.parseInt(giftNumberString);
+        int rate = Integer.parseInt(rateString);
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (giftNumber < 0 || giftNumber >= player.getGiftPlayersIndex().size()) {
+            return new Result(false, "Gift number out of bounds");
+        }
+        Player player2 = App.getCurrentGame().getPlayers().get(player.getGiftPlayersIndex().get(giftNumber));
+        player.addFriendship(player.getGiftPlayersIndex().get(giftNumber), (rate - 3) * 30 + 15);
+        player2.addFriendship(App.getCurrentGame().getTurn(), (rate - 3) * 30 + 15);
+        return new Result(true, "your rate has been received");
     }
 
     private int getFriendshipLevel(int points){

@@ -34,8 +34,9 @@ public class Player {
     private NPCMissionList npcMissionList = new NPCMissionList();
     private int[] friendship = new int[5];
     private ArrayList<String>[] talkHistory = new ArrayList[5];
-    private ArrayList<String>[] giftItems = new ArrayList[5];
-    private ArrayList<Integer>[] giftNumbers = new ArrayList[5];
+    private ArrayList<String> giftItems = new ArrayList<>();
+    private ArrayList<Integer> giftNumbers = new ArrayList<>();
+    private ArrayList<Integer> giftPlayersIndex = new ArrayList<>();
 
 
     public void addTalk(String message, int index){
@@ -45,16 +46,21 @@ public class Player {
         return talkHistory[ind];
     }
     public void addGift(String name, int amount, int index){
-        giftItems[index].add(name);
-        giftNumbers[index].add(amount);
+        giftItems.add(name);
+        giftNumbers.add(amount);
+        giftPlayersIndex.add(index);
     }
 
-    public ArrayList<String>[] getGiftItems() {
+    public ArrayList<String> getGiftItems() {
         return giftItems;
     }
 
-    public ArrayList<Integer>[] getGiftNumbers() {
+    public ArrayList<Integer> getGiftNumbers() {
         return giftNumbers;
+    }
+
+    public ArrayList<Integer> getGiftPlayersIndex() {
+        return giftPlayersIndex;
     }
 
     public int[] getFriendship() {
