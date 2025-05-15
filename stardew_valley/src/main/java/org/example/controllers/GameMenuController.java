@@ -361,12 +361,60 @@ public class GameMenuController extends Controller{
 
     public Result craftingShowRecipes(){
         Player player = App.getCurrentGame().getCurrentPlayer();
+        if(!inCottage()){
+            return new Result(false, "You are not in your cottage");
+        }
         StringJoiner joiner = new StringJoiner("\n");
         joiner.add("Your crafting recipes are: ");
         for (CraftingItemEnum item : player.getCraftingRecipeList()) {
             joiner.add(item.getName());
         }
         return new Result(true, joiner.toString());
+    }
+
+    public Result craftingCraft(String itemName) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if(!inCottage()){
+            return new Result(false, "You are not in your cottage");
+        }
+        CraftingItemEnum craftingItem = CraftingItemEnum.getCraftingItemByName(itemName);
+        if(craftingItem == null){
+            return new Result(false, "Invalid crafting item name");
+        }
+        if(!player.getCraftingRecipeList().contains(craftingItem)) {
+            return new Result(false, "You don't have this crafting Item's recipe");
+        }
+        for (String ingredient: craftingItem.getIngredients().keySet()){
+            if(player.getInventory().getNumberOfInventoryItem(ingredient) < craftingItem.getIngredients().get(ingredient)){
+                return new Result(false, "You don't have this crafting Item's ingredients");
+            }
+        }
+        if(player.getInventory().getCapacity() == 0){
+            return new Result(false, "Your inventory is full");
+        }
+        for (String ingredient: craftingItem.getIngredients().keySet()){
+            player.getInventory().removeInventoryItem(ingredient, craftingItem.getIngredients().get(ingredient));
+        }
+        App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), 1, 0);
+        player.reduceEnergy(2);
+        return new Result(true, "");
+    }
+
+    public Result cheatAddItem(String itemName, String countString) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int count = Integer.parseInt(countString);
+        if(!inCottage()){
+            return new Result(false, "You are not in your cottage");
+        }
+        CraftingItemEnum craftingItem = CraftingItemEnum.getCraftingItemByName(itemName);
+        if(craftingItem == null){
+            return new Result(false, "Invalid crafting item name");
+        }
+        if(player.getInventory().getCapacity() == 0){
+            return new Result(false, "Your inventory is full");
+        }
+        App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), count, 0);
+        return new Result(true, "");
     }
 
     private boolean inCottage() {
