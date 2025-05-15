@@ -20,6 +20,7 @@ public class FruitTree extends Plant{
 
     @Override
     public void grow() {
+        if (!tree.getSeasons().contains(App.getCurrentGame().getCurrentTime().getSeason().toString())) return;
         this.decrementRemainingTime();
         int sum = 0;
         for (int i = 0; i < tree.getStages().size() - 1; i++) {
@@ -27,6 +28,15 @@ public class FruitTree extends Plant{
             if (sum == tree.getTotalHarvestTime() - this.getRemainingTime())
                 this.incrementStage();
         }
+    }
+
+    @Override
+    public void growInCycle() {
+        if (!tree.getSeasons().contains(App.getCurrentGame().getCurrentTime().getSeason().toString())) {
+            this.remainingHarvestCycle = tree.getFruitHarvestCycle();
+            return;
+        }
+        super.growInCycle();
     }
 
     public TreeEnum getTree() {

@@ -1101,4 +1101,24 @@ public class GameMenuController extends Controller{
         plant.fertilize(fertilizer);
         return new Result(true, "The plant is fertilized");
     }
+
+    public Result cheatThor(String xInString, String yInString) {
+        int x = Integer.parseInt(xInString);
+        int y = Integer.parseInt(yInString);
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof Plant plant) {
+                    farm.getObjects().remove(plant);
+                    if (plant instanceof FruitTree) {
+                        BurnedTree burnedTree = new BurnedTree();
+                        burnedTree.setTiles(plant.getTiles());
+                        burnedTree.getTiles().getFirst().setDisplay('b');
+                        farm.getObjects().add(new BurnedTree());
+                        return new Result(true, "Done!");
+                    }
+                }
+            }
+        }
+        return new Result(false, "Nothing happened.");
+    }
 }
