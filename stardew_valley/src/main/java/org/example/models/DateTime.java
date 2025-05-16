@@ -341,6 +341,7 @@ public class DateTime {
                     if (crop.isForaging()) {
                         if (!crop.getForagingCrop().getSeasons().contains(season.toString())) {
                             toBeRemoved.add(crop);
+                            farm.decrementNumOfForaging();
                         }
                     }
                     else {

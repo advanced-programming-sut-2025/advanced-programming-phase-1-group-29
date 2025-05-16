@@ -36,6 +36,7 @@ public class Seythe extends Tool {
             ForagingCrop foragingCrop = crop.getForagingCrop();
             item = new InventoryItem(foragingCrop.getName().replaceAll("\\s+", ""), foragingCrop.getBaseSellPrice());
             farm.getObjects().remove(crop);
+            farm.decrementNumOfForaging();
         }
         player.getInventory().addInventoryItem(item, 1);
         //TODO item.setQuality();
