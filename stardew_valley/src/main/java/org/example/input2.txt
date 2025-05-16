@@ -68,3 +68,18 @@
    walk -l 50, 60
    print map -l 0, 0 -s 200
    energy show
+   energy set -v 200
+   energy show
+   next turn
+   walk -l 99, 99
+   print map -l 0, 0 -s 200
+   walk -l 10, 10
+   datetime
+   cheat advance time 10h
+   walk -l 98, 98
+   next turn
+   next turn
+   next turn
+   datetime
+   energy set -v 0
+   walk -l 100, 100
