@@ -149,8 +149,8 @@ public class GameMenuController extends Controller{
     public Result inventoryShow() {
         Inventory inventory = App.getCurrentGame().getCurrentPlayer().getInventory();
         StringBuilder result = new StringBuilder("Your inventory includes:\n");
-        for (InventoryItem inventoryItem : inventory.getInventoryItems().keySet()) {
-            result.append(inventoryItem.getName());
+        for (String item : inventory.getUniqueInventoryItems()) {
+            result.append(item);
             result.append("\n");
         }
         return new Result(true, result.toString());

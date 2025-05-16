@@ -5,6 +5,7 @@ import org.example.models.enums.InventoryType;
 import org.example.models.enums.CropSeedEnum;
 import org.example.models.enums.TreeSeedEnum;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Inventory {
@@ -17,6 +18,21 @@ public class Inventory {
         inventoryItems.put(new Pickaxe("Pickaxe", 0), 1);
         inventoryItems.put(new Axe("Axe", 0), 1);
         inventoryItems.put(new Seythe("Seythe", 0), 1);
+    }
+
+    public ArrayList<String> getUniqueInventoryItems() {
+        ArrayList<String> items = new ArrayList<>();
+        for (InventoryItem inventoryItem : inventoryItems.keySet()) {
+            boolean isRepeated = false;
+            for (String item : items) {
+                if (item.equalsIgnoreCase(inventoryItem.getName().replaceAll("\\s+", ""))) {
+                    isRepeated = true;
+                    break;
+                }
+            }
+            if (!isRepeated) items.add(inventoryItem.getName().replaceAll("\\s+", ""));
+        }
+        return items;
     }
 
     public InventoryType getType() {
@@ -32,11 +48,7 @@ public class Inventory {
     }
 
     public int getCapacity() {
-        int items = 0;
-        for (InventoryItem inventoryItem : inventoryItems.keySet()) {
-            items += inventoryItems.get(inventoryItem);
-        }
-        return type.getCapacity() - items;
+        return type.getCapacity() - getUniqueInventoryItems().size();
     }
 
     public InventoryItem findInventoryItem(String name) {
