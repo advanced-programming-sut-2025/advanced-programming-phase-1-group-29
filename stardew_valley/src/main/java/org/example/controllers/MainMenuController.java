@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import org.example.models.App;
+import org.example.models.AppSaver;
 import org.example.models.Result;
 import org.example.models.enums.Menu;
 
@@ -28,6 +29,7 @@ public class MainMenuController extends Controller{
         if (!App.getstayLoggedIn()){
             App.setLoggedInUser(null);
         }
+        AppSaver.saveAppState(App.exportState(), "save.dat");
         App.setCurrentMenu(Menu.ExitMenu);
     }
 }

@@ -1,9 +1,6 @@
 package org.example.controllers;
 
-import org.example.models.App;
-import org.example.models.RegistrationModel;
-import org.example.models.Result;
-import org.example.models.User;
+import org.example.models.*;
 import org.example.models.enums.Gender;
 import org.example.models.enums.Menu;
 import org.example.models.enums.RegisterMenuCommands;
@@ -204,6 +201,7 @@ public class RegisterMenuController extends Controller{
     }
 
     public void menuExit() {
+        AppSaver.saveAppState(App.exportState(), "save.dat");
         App.setCurrentMenu(Menu.ExitMenu);
     }
 }

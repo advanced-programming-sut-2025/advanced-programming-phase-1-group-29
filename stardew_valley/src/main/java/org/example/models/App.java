@@ -79,4 +79,27 @@ public class App {
     public static void addGame(Game game) {
         games.add(game);
     }
+
+    public static AppState exportState() {
+        return new AppState(
+                currentMenu,
+                users,
+                loggedInUser,
+                stayLoggedIn,
+                currentGame,
+                games,
+                maps
+        );
+    }
+
+    public static void importState(AppState state) {
+        currentMenu = state.getCurrentMenu();
+        users.clear(); users.addAll(state.getUsers());
+        loggedInUser = state.getLoggedInUser();
+        stayLoggedIn = state.isStayLoggedIn();
+        currentGame = state.getCurrentGame();
+        games.clear(); games.addAll(state.getGames());
+        maps = state.getMaps();
+    }
+
 }

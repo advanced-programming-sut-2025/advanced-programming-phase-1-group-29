@@ -1,0 +1,13 @@
+show current menu
+register -u setayesh... -p heL1?llo heL1?llo -n sety -e setayesh@gmail.c -g female
+register -u setayesh -p heL1?llo heL1?llo -n sety -e setaye*>sh@gmail.com -g female
+register -u setayesh -p hello hello -n sety -e setayesh@gmail.com -g female
+register -u setayesh1 -p random -n sety -e setayesh@gmail.com -g female
+Yes
+pick question -q 1 -a
+register -u setayesh -p Setayesh@123 Setayesh@123 -n sety -e setayesh@gmailcom -g female
+register -u parnia -p Parnia@123 Parnia@123 -n parnia -e parnia@gmail.com -g male
+register -u sogol -p Sogol@123 Sogol@123 -n sogol -e sogol@gmail.com -g female
+register -u TAazizOgerami -p TaTa@123 TaTa@123 -e ta@gmail.com -g male
+register -u TAkhafan -p Kasra@123 Kasra@123 -e kasra@gmail.com -g female
+

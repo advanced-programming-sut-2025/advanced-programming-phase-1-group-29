@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import org.example.models.App;
+import org.example.models.AppSaver;
 import org.example.models.Result;
 import org.example.models.User;
 import org.example.models.enums.Menu;
@@ -50,6 +51,7 @@ public class LoginMenuController extends Controller{
         return new Result(true, "Password changed successfully");
     }
     public void menuExit(){
+        AppSaver.saveAppState(App.exportState(), "save.dat");
         App.setCurrentMenu(Menu.ExitMenu);
     }
 }
