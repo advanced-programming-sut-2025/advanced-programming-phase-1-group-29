@@ -6,6 +6,7 @@ import org.example.models.enums.FoodRecipe;
 import org.example.models.enums.TrashCan;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Player {
@@ -46,9 +47,25 @@ public class Player {
     private ArrayList<String> ring = new ArrayList<>();
     private boolean rejected = false;
     private int rejectedDays = 0;
+    private final ArrayList<String> tradeHistory = new ArrayList<>();
+    private final HashSet<Integer> seenTradeRequests = new HashSet<>();
 
 
+    public void markTradeRequestSeen(int id) {
+        seenTradeRequests.add(id);
+    }
 
+    public boolean hasSeenTradeRequest(int id) {
+        return seenTradeRequests.contains(id);
+    }
+
+    public void addToTradeHistory(String record) {
+        tradeHistory.add(record);
+    }
+
+    public ArrayList<String> getTradeHistory() {
+        return tradeHistory;
+    }
     public void setAskMarriage(int index) {
         askMarriage[index] = true;
     }

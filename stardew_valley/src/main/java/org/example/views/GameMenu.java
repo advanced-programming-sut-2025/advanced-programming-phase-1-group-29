@@ -285,12 +285,12 @@ public class GameMenu implements AppMenu{
         else if (GameMenuCommands.TradeList.getMatcher(input) != null) {
             System.out.println(tradeController.tradeList());
         }
-//        else if ((matcher = GameMenuCommands.TradeResponse.getMatcher(input)) != null) {
-//            System.out.println(controller.TradeResponse(matcher.group("result").trim(), matcher.group("id").trim()));
-//        }
-//        else if (GameMenuCommands.TradeHistory.getMatcher(input) != null) {
-//            System.out.println(controller.tradeHistory());
-//        }
+        else if ((matcher = GameMenuCommands.TradeResponse.getMatcher(input)) != null) {
+            System.out.println(tradeController.respondToTrade(matcher.group("result").trim(), matcher.group("id").trim()));
+        }
+        else if (GameMenuCommands.TradeHistory.getMatcher(input) != null) {
+            System.out.println(tradeController.tradeHistory());
+        }
         else if ((matcher = GameMenuCommands.MeetNPC.getMatcher(input)) != null) {
             System.out.println(npcController.meetNPC(matcher.group("npcName").trim()));
         }
