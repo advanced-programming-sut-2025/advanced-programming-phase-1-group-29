@@ -130,6 +130,30 @@ public class DateTime {
         putForagingMineral();
         setEnergy();
         animalSettings();
+        clearShippingBins();
+    }
+
+    private void clearShippingBins() {
+        for (int i = 0; i < App.getCurrentGame().getMap().getFarms().size(); i++) {
+            for (Objectt object : App.getCurrentGame().getMap().getFarms().get(i).getObjects()) {
+                if (object instanceof ShippingBin) {
+                    clearBin((ShippingBin) object, i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void clearBin(ShippingBin bin, int playerNumber) {
+        for (InventoryItem item : bin.getItems()) {
+            int price = item.getPrice();
+            double quality = item.getQuality();
+            if (quality > 0.9) price *= 2;
+            else if (quality > 0.7) price = (int)(price * 1.5);
+            else if (quality > 0.5) price = (int)(price * 1.25);
+            App.getCurrentGame().players.get(playerNumber).addCoins(price);
+        }
+        bin.getItems().clear();
     }
 
     private void animalSettings() {
