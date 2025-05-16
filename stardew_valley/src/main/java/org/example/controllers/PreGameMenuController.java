@@ -235,7 +235,7 @@ public class PreGameMenuController extends Controller{
                 }
                 if (!objectExists) {
                     flag = true;
-                    SalesBucket bucket = new SalesBucket();
+                    ShippingBin bucket = new ShippingBin();
                     bucket.setTiles(new ArrayList<>(List.of(new Tile('k', randomX, randomY))));
                     farm.getObjects().add(bucket);
                 }
