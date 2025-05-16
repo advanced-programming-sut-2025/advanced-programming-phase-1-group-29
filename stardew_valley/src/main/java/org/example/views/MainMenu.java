@@ -19,6 +19,8 @@ public class MainMenu implements AppMenu{
             System.out.println(controller.avatarMenuEnter());
         } else if (MainMenuCommands.UserLogout.getMatcher(input) != null) {
             System.out.println(controller.userLogout());
+        } else if (MainMenuCommands.MenuExit.getMatcher(input) != null) {
+            controller.menuExit();
         } else {
             System.out.println("Invalid command");
         }

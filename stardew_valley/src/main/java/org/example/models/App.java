@@ -48,6 +48,10 @@ public class App {
         App.loggedInUser = loggedInUser;
     }
 
+    public static boolean getstayLoggedIn() {
+        return stayLoggedIn;
+    }
+
     public static ArrayList<String> getSecurityQuestions() {
         return securityQuestions;
     }

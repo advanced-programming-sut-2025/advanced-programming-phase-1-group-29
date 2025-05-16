@@ -24,4 +24,10 @@ public class MainMenuController extends Controller{
         App.setCurrentMenu(Menu.RegisterMenu);
         return new Result(true, "You logged out successfully.");
     }
+    public void menuExit() {
+        if (!App.getstayLoggedIn()){
+            App.setLoggedInUser(null);
+        }
+        App.setCurrentMenu(Menu.ExitMenu);
+    }
 }

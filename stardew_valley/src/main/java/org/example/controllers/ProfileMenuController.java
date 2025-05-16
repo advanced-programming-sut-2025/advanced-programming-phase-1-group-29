@@ -64,6 +64,9 @@ public class ProfileMenuController extends Controller{
     }
 
     public void menuExit() {
+        if (!App.getstayLoggedIn()){
+            App.setLoggedInUser(null);
+        }
         App.setCurrentMenu(Menu.ExitMenu);
     }
 }
