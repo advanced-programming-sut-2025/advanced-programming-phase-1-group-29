@@ -39,6 +39,10 @@ public class GameMenuController extends Controller{
         if(!App.getCurrentGame().isMainPlayerPlaying()){
             return new Result(false, "Sorry, you cannot exit the game.");
         }
+        for (Player player : App.getCurrentGame().getPlayers()) {
+            player.getUser().setNumberOfGames(player.getUser().getNumberOfGames() + 1);
+            if (player.getCoins() > player.getUser().getMaxCoins()) player.getUser().setMaxCoins(player.getCoins());
+        }
         App.addGame(App.getCurrentGame());
         App.setCurrentGame(null);
         App.setCurrentMenu(Menu.MainMenu);

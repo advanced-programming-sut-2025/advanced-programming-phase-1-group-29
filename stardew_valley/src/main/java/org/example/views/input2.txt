@@ -33,4 +33,7 @@
    menu enter Profile Menu
    show current menu
    change username -u TAazizOgeramiii
-
+   change nickname -u TaTa
+   change email -e e@gmail.com
+   change email -e e@gmail.c
+   user info
