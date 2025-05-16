@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import com.sun.source.tree.ReturnTree;
 import org.example.models.*;
+import org.example.models.AnimalHouse;
 import org.example.models.Map;
 import org.example.models.Objectt;
 import org.example.models.VillagePackage.BlackSmithStore;
@@ -214,6 +215,15 @@ public class GameMenuController extends Controller{
             for (Objectt objectt : farm.getObjects()) {
                 if (objectt instanceof Item item) {
                     for (Tile tile : item.getTiles()) {
+                        walkable[tile.getX()][tile.getY()] = false;
+                    }
+                }
+            }
+        }
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            for (Objectt objectt : farm.getObjects()) {
+                if (objectt instanceof Plant plant) {
+                    for (Tile tile : plant.getTiles()) {
                         walkable[tile.getX()][tile.getY()] = false;
                     }
                 }
@@ -581,7 +591,6 @@ public class GameMenuController extends Controller{
             return new Result(false, "You don't have this item");
         }
         Item item = new Item(itemName);
-        item.setTiles(new ArrayList<>());
         item.getTiles().add(new Tile('i', x, y));
         App.getCurrentGame().getCurrentFarm().getObjects().add(item);
         player.getInventory().removeInventoryItem(inventoryItem.getName(), 1);
@@ -870,13 +879,31 @@ public class GameMenuController extends Controller{
         Player player = App.getCurrentGame().getCurrentPlayer();
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
-        if(isOccupied(x, y)) {
-            return new Result(false, "You can't build this building in this place.");
+        AnimalHouseEnum animalHouseEnum = AnimalHouseEnum.getByName(buildingName);
+        if(animalHouseEnum == null) {
+            return new Result(false, "Invalid animal house type");
         }
-        //todo
-        //in proper store check
-        InventoryItem inventoryItem = player.getInventory().findInventoryItem(buildingName);
-        return new Result(true, "You build " + buildingName + " at " + x + " and " + y);
+        InventoryItem inventoryItem = player.getInventory().findInventoryItem(animalHouseEnum.getName());
+        if(inventoryItem == null) {
+            return new Result(false, "You can't build this building");
+        }
+        for (int i = 0; i < animalHouseEnum.getXRange(); i ++){
+            for (int j = 0; j < animalHouseEnum.getYRange(); j++){
+                if(isOccupied(x + i, y + j)) {
+                    return new Result(false, "You can't build this building in this place.");
+                }
+            }
+        }
+        AnimalHouse animalHouse = new AnimalHouse(animalHouseEnum);
+        for (int i = 0; i < animalHouseEnum.getXRange(); i ++){
+            for (int j = 0; j < animalHouseEnum.getYRange(); j++){
+                animalHouse.getTiles().add(new Tile('-', i, j));
+            }
+        }
+        Farm farm = App.getCurrentGame().getCurrentFarm();
+        farm.getObjects().add(animalHouse);
+        player.getInventory().removeInventoryItem(animalHouseEnum.getName(), 1);
+        return new Result(true, "You build " + buildingName);
     }
 
     public Result pet (String name){
