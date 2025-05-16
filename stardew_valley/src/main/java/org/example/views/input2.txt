@@ -26,3 +26,11 @@
    answer -a ali
    Setayesh:123
    login -u setayesh -p Setayesh:123 -stay-logged-in
+   user logout
+   menu enter Login Menu
+   login -u TAazizOgerami -p TaTa:123 -stay-logged-in
+   show current menu
+   menu enter Profile Menu
+   show current menu
+   change username -u TAazizOgeramiii
+

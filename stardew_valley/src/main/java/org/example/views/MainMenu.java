@@ -13,6 +13,8 @@ public class MainMenu implements AppMenu{
         String input = scanner.nextLine();
         if (MainMenuCommands.ProfileMenuEnter.getMatcher(input) != null) {
             System.out.println(controller.profileMenuEnter());
+        } else if (MainMenuCommands.ShowCurrentMenu.getMatcher(input) != null) {
+            System.out.println(controller.showCurrentMenu());
         } else if (MainMenuCommands.GameMenuEnter.getMatcher(input) != null) {
             System.out.println(controller.gameMenuEnter());
         } else if (MainMenuCommands.AvatarMenuEnter.getMatcher(input) != null) {
