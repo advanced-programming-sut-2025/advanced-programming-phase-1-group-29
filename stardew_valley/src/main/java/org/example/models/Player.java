@@ -1,5 +1,6 @@
 package org.example.models;
 
+import org.example.models.ToolsPackage.Tool;
 import org.example.models.VillagePackage.NPCMissionList;
 import org.example.models.enums.CraftingItemEnum;
 import org.example.models.enums.FoodRecipe;
@@ -7,7 +8,6 @@ import org.example.models.enums.TrashCan;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 public class Player {
     private int energy = 200;

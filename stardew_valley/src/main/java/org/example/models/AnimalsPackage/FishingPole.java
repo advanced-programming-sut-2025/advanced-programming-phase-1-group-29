@@ -1,14 +1,16 @@
-package org.example.models;
+package org.example.models.AnimalsPackage;
 
 
+import org.example.models.*;
 import org.example.models.FarmPackage.Farm;
 import org.example.models.FarmPackage.Lake;
+import org.example.models.ToolsPackage.Tool;
 import org.example.models.enums.FishEnum;
 import org.example.models.enums.FishingPoleType;
 
 import java.util.Random;
 
-public class FishingPole extends Tool{
+public class FishingPole extends Tool {
     private FishingPoleType type;
 
     public FishingPole(String name, int price, FishingPoleType type) {

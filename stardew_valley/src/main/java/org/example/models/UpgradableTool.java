@@ -1,8 +1,9 @@
 package org.example.models;
 
+import org.example.models.ToolsPackage.Tool;
 import org.example.models.enums.ToolType;
 
-public abstract class UpgradableTool extends Tool{
+public abstract class UpgradableTool extends Tool {
     protected ToolType type = ToolType.PRIMARY;
     public UpgradableTool(String name, int price) {
         super(name, price);

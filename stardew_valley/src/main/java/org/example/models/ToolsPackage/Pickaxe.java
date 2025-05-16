@@ -1,11 +1,12 @@
-package org.example.models;
+package org.example.models.ToolsPackage;
 
+import org.example.models.*;
 import org.example.models.FarmPackage.Farm;
 import org.example.models.FarmPackage.Quarry;
 import org.example.models.enums.ForagingMineral;
 import org.example.models.enums.ToolType;
 
-public class Pickaxe extends UpgradableTool{
+public class Pickaxe extends UpgradableTool {
 
     public Pickaxe(String name, int price) {
         super(name, price);

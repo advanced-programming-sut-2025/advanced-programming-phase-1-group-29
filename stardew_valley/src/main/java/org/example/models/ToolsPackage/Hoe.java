@@ -1,12 +1,13 @@
-package org.example.models;
+package org.example.models.ToolsPackage;
 
+import org.example.models.*;
 import org.example.models.FarmPackage.Farm;
 import org.example.models.enums.ToolType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hoe extends UpgradableTool{
+public class Hoe extends UpgradableTool {
 
     public Hoe(String name, int price) {
         super(name, price);

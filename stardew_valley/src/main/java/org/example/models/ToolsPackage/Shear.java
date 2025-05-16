@@ -1,14 +1,15 @@
-package org.example.models;
+package org.example.models.ToolsPackage;
 
+import org.example.models.*;
 import org.example.models.AnimalsPackage.Animal;
 import org.example.models.AnimalsPackage.AnimalHouse;
 import org.example.models.FarmPackage.Farm;
 
 import java.util.ArrayList;
 
-public class MilkPail extends Tool{
+public class Shear extends Tool {
 
-    public MilkPail(String name) {
+    public Shear(String name) {
         super(name, 1000);
     }
 
@@ -24,13 +25,10 @@ public class MilkPail extends Tool{
         for (Objectt object : farm.getObjects()) {
             if (object instanceof AnimalHouse animalHouse) {
                 for (Animal animal : animalHouse.getAnimals()) {
-                    if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
+                    if (animal.getTiles().getFirst().getX() == x && animal.getTiles().getFirst().getY() == y) {
                         ArrayList<InventoryItem> toBeRemoved = new ArrayList<>();
                         for (int i = 0; i < Math.min(animal.getProducts().size(), player.getInventory().getCapacity()); i++) {
-                            if (
-                                    animal.getProducts().get(i).getName().equalsIgnoreCase("Milk") ||
-                                            animal.getProducts().get(i).getName().equalsIgnoreCase("GoatMilk")
-                            ) {
+                            if (animal.getProducts().get(i).getName().equalsIgnoreCase("Wool")) {
                                 player.getInventory().addInventoryItem(animal.getProducts().get(i), 1);
                                 player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
                                 toBeRemoved.add(animal.getProducts().get(i));
@@ -39,13 +37,12 @@ public class MilkPail extends Tool{
                         for (InventoryItem inventoryItem : toBeRemoved) {
                             animal.getProducts().remove(inventoryItem);
                         }
-                        return new Result(true, "The milk pail is used successfully.");
+                        return new Result(true, "The shear is used successfully.");
                     }
                 }
-
             }
         }
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
-        return new Result(false, "The milk pail can't be used in this direction.");
+        return new Result(false, "The shear can't be used in this direction.");
     }
 }
