@@ -4,6 +4,7 @@ import org.example.models.enums.TreeEnum;
 
 public class FruitTree extends Plant{
     private TreeEnum tree;
+    private boolean isAttackedByCrows = false;
 
     public FruitTree(Seed seed) {
         super(seed);
@@ -43,4 +44,11 @@ public class FruitTree extends Plant{
         return tree;
     }
 
+    public boolean isAttackedByCrows() {
+        return isAttackedByCrows;
+    }
+
+    public void setAttackedByCrows(boolean attackedByCrows) {
+        isAttackedByCrows = attackedByCrows;
+    }
 }

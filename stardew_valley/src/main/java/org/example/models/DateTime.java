@@ -117,12 +117,41 @@ public class DateTime {
         for (Player player : App.getCurrentGame().getPlayers()){
             player.addRejectedDays();
         }
+        resetAttackByCrows();
+        attackOfCrows();
         thunder();
         removePlantsOutOfSeason();
         plantGrowth();
         putForaging();
         putForagingMineral();
         setEnergy();
+    }
+
+    private void resetAttackByCrows() {
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof FruitTree tree) tree.setAttackedByCrows(false);
+            }
+        }
+    }
+
+    private void attackOfCrows() {
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            ArrayList<Plant> plants = new ArrayList<>();
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof Plant) plants.add((Plant) object);
+            }
+            for (int i = 0; i < plants.size() / 16; i++) {
+                int random = (new Random()).nextInt(4);
+                if (random == 0) {
+                    random = (new Random()).nextInt(16);
+                    int index = i * 16 + random;
+                    Plant plant = plants.get(index);
+                    if (plant instanceof Crop) farm.getObjects().remove(plant);
+                    else if (plant instanceof FruitTree tree) tree.setAttackedByCrows(true);
+                }
+            }
+        }
     }
 
     private void changeWeather() {
@@ -210,8 +239,10 @@ public class DateTime {
                     }
                     else {
                         if (!plant.isReadyForHarvest() && (plant.isWateredToday() || plant.isWateredEveryDay())) {
-                            if (!plant.isInHarvestCycle()) plant.grow();
-                            else plant.growInCycle();
+                            if ((!(plant instanceof FruitTree)) || (!(((FruitTree) plant).isAttackedByCrows()))) {
+                                if (!plant.isInHarvestCycle()) plant.grow();
+                                else plant.growInCycle();
+                            }
                         }
                         plant.setWateredYesterday(plant.isWateredToday());
                         plant.setWateredToday(false);
