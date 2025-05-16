@@ -1358,11 +1358,11 @@ public class GameMenuController extends Controller{
         if (player.getFriendship()[ind] < 600) {
             return new Result(false, "You are not friends enough to send flower (you need to have 600 friendship xp)");
         }
-        if (player.getInventory().getNumberOfInventoryItem("fairyRose") < 1) {
+        if (player.getInventory().getNumberOfInventoryItem("bouquet") < 1) {
             return new Result(false, "You don't have any fairy rose to gift");
         }
-        player.getInventory().removeInventoryItem("fairyRose", 1);
-        player2.getInventory().addInventoryItem("fairyRose", 1, 0);
+        player.getInventory().removeInventoryItem("bouquet", 1);
+        player2.getInventory().addInventoryItem("bouquet", 1, 0);
         player.setFlower(ind);
         player2.setFlower(App.getCurrentGame().getTurn());
         return new Result(true, "sent successfully");
