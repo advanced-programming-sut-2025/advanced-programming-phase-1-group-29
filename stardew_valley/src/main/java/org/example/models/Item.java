@@ -1,9 +1,13 @@
 package org.example.models;
 
 public class Item extends Objectt {
-    String name;
+    private String name;
 
     public Item(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }

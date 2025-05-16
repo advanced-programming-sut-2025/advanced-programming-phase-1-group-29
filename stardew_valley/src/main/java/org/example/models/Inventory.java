@@ -65,6 +65,7 @@ public class Inventory {
             }
         }
         if (item == null) {
+            //TODO special types of inventory items
             try {
                 CropSeedEnum.valueOf(name.toUpperCase());
                 item = new CropSeed(name, price);

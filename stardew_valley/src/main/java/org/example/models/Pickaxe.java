@@ -93,6 +93,16 @@ public class Pickaxe extends UpgradableTool{
         return new Result(true, "The furrow is destroyed.");
     }
 
+    private Result destroyItem(Item item) {
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        farm.getObjects().remove(item);
+        player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
+        if (player.getInventory().getCapacity() > 0)
+            player.getInventory().addInventoryItem(item.getName().replaceAll("\\s+", ""), 1, 0);
+        return new Result(true, "The item is destroyed and collected.");
+    }
+
     @Override
     public Result useTool(int x, int y) {
         Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
@@ -120,7 +130,11 @@ public class Pickaxe extends UpgradableTool{
                     return destroyFurrow(((Furrow) object));
                 }
             }
-            //TODO destroy items that player has put on the tile
+            else if (object instanceof Item) {
+                if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
+                    return destroyItem(((Item) object));
+                }
+            }
         }
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(Math.max(0, this.getEnergyConsumption()-1)));
         return new Result(false, "The pickaxe can't be used in this direction.");
