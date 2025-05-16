@@ -990,24 +990,35 @@ public class GameMenuController extends Controller{
         if(isOccupied(x, y) || !(farm.getXStart() <= x && x <= farm.getXStart() + Farm.getXRange() && farm.getYStart() <= y && y <= farm.getYStart() + Farm.getYRange())){
             return new Result(false, "Invalid destination");
         }
-        AnimalHouse animalHouse = null;
-        for (Objectt objectt : farm.getObjects()) {
-            if (objectt instanceof AnimalHouse candidate) {
-                for (Tile tile : candidate.getTiles()) {
-                    if (tile.getX() == x && tile.getY() == y) {
-                        animalHouse = candidate;
+        //moving in
+        if(farm.getObjects().contains(animal)){
+            farm.getObjects().remove(animal);
+            for (Objectt objectt : farm.getObjects()) {
+                if (objectt instanceof AnimalHouse animalHouse) {
+                    for (Tile tile : animalHouse.getTiles()) {
+                        if(tile.getX() == x && tile.getY() == y){
+                            animalHouse.getAnimals().add(animal);
+                        }
                     }
                 }
             }
         }
-        if(animalHouse == null){
+        //moving out
+        else{
             if((game.getWeather() == Weather.SNOWY || game.getWeather() == Weather.RAINY || game.getWeather() == Weather.STORMY)) {
                 return new Result(false, "You can't take the animals out in this weather.");
             }
-
+            farm.getObjects().add(animal);
+            for (Objectt objectt : farm.getObjects()) {
+                if (objectt instanceof AnimalHouse animalHouse) {
+                    if(animalHouse.getAnimals().contains(animal)){
+                        animalHouse.getAnimals().remove(animal);
+                    }
+                }
+            }
         }
-        //TODO
-        // change animal's location
+        animal.getTiles().clear();
+        animal.getTiles().add(new Tile('^', x, y));
         return new Result(true, "");
     }
 
