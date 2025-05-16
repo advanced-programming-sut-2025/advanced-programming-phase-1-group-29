@@ -19,13 +19,13 @@ public class MilkPail extends Tool{
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         for (Objectt object : farm.getObjects()) {
             if (object instanceof Barn barn) {
-                if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
-                    for (Animal animal : barn.getAnimals()) {
+                for (Animal animal : barn.getAnimals()) {
+                    if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
                         ArrayList<InventoryItem> toBeRemoved = new ArrayList<>();
                         for (int i = 0; i < Math.min(animal.getProducts().size(), player.getInventory().getCapacity()); i++) {
                             if (
                                     animal.getProducts().get(i).getName().equalsIgnoreCase("Milk") ||
-                                    animal.getProducts().get(i).getName().equalsIgnoreCase("GoatMilk")
+                                            animal.getProducts().get(i).getName().equalsIgnoreCase("GoatMilk")
                             ) {
                                 player.getInventory().addInventoryItem(animal.getProducts().get(i), 1);
                                 player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
@@ -35,9 +35,10 @@ public class MilkPail extends Tool{
                         for (InventoryItem inventoryItem : toBeRemoved) {
                             animal.getProducts().remove(inventoryItem);
                         }
+                        return new Result(true, "The milk pail is used successfully.");
                     }
-                    return new Result(true, "The milk pail is used successfully.");
                 }
+
             }
         }
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));

@@ -19,8 +19,8 @@ public class Shear extends Tool{
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         for (Objectt object : farm.getObjects()) {
             if (object instanceof Barn barn) {
-                if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
-                    for (Animal animal : barn.getAnimals()) {
+                for (Animal animal : barn.getAnimals()) {
+                    if (animal.getTiles().getFirst().getX() == x && animal.getTiles().getFirst().getY() == y) {
                         ArrayList<InventoryItem> toBeRemoved = new ArrayList<>();
                         for (int i = 0; i < Math.min(animal.getProducts().size(), player.getInventory().getCapacity()); i++) {
                             if (animal.getProducts().get(i).getName().equalsIgnoreCase("Wool")) {
@@ -32,8 +32,8 @@ public class Shear extends Tool{
                         for (InventoryItem inventoryItem : toBeRemoved) {
                             animal.getProducts().remove(inventoryItem);
                         }
+                        return new Result(true, "The shear is used successfully.");
                     }
-                    return new Result(true, "The shear is used successfully.");
                 }
             }
         }
