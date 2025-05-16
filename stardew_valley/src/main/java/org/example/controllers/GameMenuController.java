@@ -200,25 +200,32 @@ public class GameMenuController extends Controller{
                 distance[i][j] = -1;
             }
         }
-        for (Objectt objectt : App.getCurrentGame().getMap().getObjects()) {
-            for (Tile tile : objectt.getTiles()) {
-                walkable[tile.getX()][tile.getY()] = false;
-            }
-        }
-        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i ++) {
-            if(i == App.getCurrentGame().getTurn() || player.getMarried(i)){
-                for (Objectt objectt : App.getCurrentGame().getMap().getFarms().get(i).getObjects()) {
-                    for (Tile tile : objectt.getTiles()) {
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            for (Objectt objectt : farm.getObjects()) {
+                if (objectt instanceof Lake lake) {
+                    for (Tile tile : lake.getTiles()) {
                         walkable[tile.getX()][tile.getY()] = false;
                     }
                 }
-                continue;
             }
-            for (int xx = 0; xx < Farm.getXRange(); xx ++){
-                for (int yy = 0; yy < Farm.getYRange(); yy ++){
-                    int x = App.getCurrentGame().getMap().getFarms().get(i).getXStart() + xx;
-                    int y = App.getCurrentGame().getMap().getFarms().get(i).getYStart() + yy;
-                    walkable[x][y] = false;
+        }
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            for (Objectt objectt : farm.getObjects()) {
+                if (objectt instanceof Item item) {
+                    for (Tile tile : item.getTiles()) {
+                        walkable[tile.getX()][tile.getY()] = false;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i ++) {
+            if(i != App.getCurrentGame().getTurn() && !player.getMarried(i)){
+                for (int xx = 0; xx < Farm.getXRange(); xx ++){
+                    for (int yy = 0; yy < Farm.getYRange(); yy ++){
+                        int x = App.getCurrentGame().getMap().getFarms().get(i).getXStart() + xx;
+                        int y = App.getCurrentGame().getMap().getFarms().get(i).getYStart() + yy;
+                        walkable[x][y] = false;
+                    }
                 }
             }
         }
