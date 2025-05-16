@@ -5,6 +5,7 @@ import org.example.models.*;
 import org.example.models.Map;
 import org.example.models.Objectt;
 import org.example.models.VillagePackage.BlackSmithStore;
+import org.example.models.VillagePackage.CarpentersShop;
 import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
 import org.example.models.enums.*;
@@ -553,6 +554,7 @@ public class GameMenuController extends Controller{
     }
 
     public Boolean isOccupied(int x, int y){
+        //Todo
         for (Objectt object : App.getCurrentGame().getMap().getObjects()) {
             for (Tile tile : object.getTiles()) {
                 if(tile.getX() == x && tile.getY() == y){
@@ -862,6 +864,23 @@ public class GameMenuController extends Controller{
             }
         }
         return new Result(false, "You have no watering cans.");
+    }
+
+    public Result build(String buildingName, String xString, String yString) {
+        int x = Integer.parseInt(xString);
+        int y = Integer.parseInt(yString);
+        if(isOccupied(x, y)) {
+            return new Result(false, "You can't build this building in this place.");
+        }
+        //todo
+        //in proper store check
+        CarpentersShop shop = new CarpentersShop();
+        Result result = shop.purchase(buildingName, 1);
+        if(!result.isSuccessful()) {
+            return result;
+        }
+        //Big TODO
+        return new Result(true, "You build " + buildingName + " at " + x + " and " + y);
     }
 
     public Result pet (String name){

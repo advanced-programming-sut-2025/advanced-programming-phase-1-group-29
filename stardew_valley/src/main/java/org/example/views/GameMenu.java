@@ -162,12 +162,12 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.Eat.getMatcher(input)) != null) {
             System.out.println(controller.eat(matcher.group("foodName").trim()));
         }
-//        else if ((matcher = GameMenuCommands.Build.getMatcher(input)) != null) {
-//            System.out.println(controller.build(
-//            matcher.group("buildingName").trim(),
-//            matcher.group("x").trim(),
-//            matcher.group("y").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.Build.getMatcher(input)) != null) {
+            System.out.println(controller.build(
+            matcher.group("buildingName").trim(),
+            matcher.group("x").trim(),
+            matcher.group("y").trim()));
+        }
 //        else if ((matcher = GameMenuCommands.BuyAnimal.getMatcher(input)) != null) {
 //            System.out.println(controller.buyAnimal(matcher.group("animal").trim(), matcher.group("name").trim()));
 //        }
