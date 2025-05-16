@@ -5,29 +5,46 @@ import java.util.List;
 
 public enum AnimalEnum {
     Chicken (800,
-            new ArrayList<>(List.of(AnimalProductEnum.Egg, AnimalProductEnum.BigEgg))),
+            new ArrayList<>(List.of(AnimalProductEnum.Egg, AnimalProductEnum.BigEgg)),
+            AnimalHouse.COOP
+    ),
     Duck (1200,
-            new ArrayList<>(List.of(AnimalProductEnum.DuckEgg, AnimalProductEnum.DuckFeather))),
+            new ArrayList<>(List.of(AnimalProductEnum.DuckEgg, AnimalProductEnum.DuckFeather)),
+            AnimalHouse.COOP
+    ),
     Rabbit (8000,
-            new ArrayList<>(List.of(AnimalProductEnum.Wool, AnimalProductEnum.RabbitPie))),
+            new ArrayList<>(List.of(AnimalProductEnum.Wool, AnimalProductEnum.RabbitPie)),
+            AnimalHouse.COOP
+    ),
     Dinosaur (14000,
-            new ArrayList<>(List.of(AnimalProductEnum.DinosaurEgg))),
+            new ArrayList<>(List.of(AnimalProductEnum.DinosaurEgg)),
+            AnimalHouse.COOP
+    ),
     Cow (1500,
-            new ArrayList<>(List.of(AnimalProductEnum.Milk, AnimalProductEnum.BigMilk))),
+            new ArrayList<>(List.of(AnimalProductEnum.Milk, AnimalProductEnum.BigMilk)),
+            AnimalHouse.BARN
+    ),
     Goat (4000,
-            new ArrayList<>(List.of(AnimalProductEnum.GoatMilk, AnimalProductEnum.BigGoatMilk))),
+            new ArrayList<>(List.of(AnimalProductEnum.GoatMilk, AnimalProductEnum.BigGoatMilk)),
+            AnimalHouse.BARN
+    ),
     sheep (8000,
-            new ArrayList<>(List.of(AnimalProductEnum.Wool))),
+            new ArrayList<>(List.of(AnimalProductEnum.Wool)),
+            AnimalHouse.BARN
+    ),
     Pig (16000,
-            new ArrayList<>(List.of(AnimalProductEnum.Truffle))),
-    ;
+            new ArrayList<>(List.of(AnimalProductEnum.Truffle)),
+            AnimalHouse.BARN
+    );
 
     private final int price;
     private final ArrayList<AnimalProductEnum> products;
+    private final AnimalHouse houseType;
 
-    private AnimalEnum(int price, ArrayList<AnimalProductEnum> products) {
+    AnimalEnum(int price, ArrayList<AnimalProductEnum> products, AnimalHouse houseType) {
         this.price = price;
         this.products = products;
+        this.houseType = houseType;
     }
 
     public int getPrice() {
@@ -36,5 +53,9 @@ public enum AnimalEnum {
 
     public ArrayList<AnimalProductEnum> getProducts() {
         return products;
+    }
+
+    public AnimalHouse getHouseType() {
+        return houseType;
     }
 }

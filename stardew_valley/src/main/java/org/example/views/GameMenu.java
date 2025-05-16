@@ -25,9 +25,6 @@ public class GameMenu implements AppMenu{
         else if (GameMenuCommands.MenuEnter.getMatcher(input) != null) {
             System.out.println(controller.menuEnter());
         }
-//        else if(GameMenuCommands.LoadGame.getMatcher(input) != null) {
-//            System.out.println(controller.loadGame());
-//        }
         else if (GameMenuCommands.ExitGame.getMatcher(input) != null) {
             System.out.println(controller.exitGame());
         }
@@ -228,9 +225,9 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.CheatAddDollars.getMatcher(input)) != null) {
             System.out.println(controller.cheatAddDollars(matcher.group("count").trim()));
         }
-//        else if ((matcher = GameMenuCommands.Sell.getMatcher(input)) != null) {
-//            System.out.println(controller.sell(matcher.group("productName").trim(), matcher.group("count").trim()));
-//        }
+        else if ((matcher = GameMenuCommands.Sell.getMatcher(input)) != null) {
+            System.out.println(controller.sell(matcher.group("productName").trim(), matcher.group("count").trim()));
+        }
         else if (GameMenuCommands.Friendships.getMatcher(input) != null) {
             System.out.println(controller.friendships());
         }

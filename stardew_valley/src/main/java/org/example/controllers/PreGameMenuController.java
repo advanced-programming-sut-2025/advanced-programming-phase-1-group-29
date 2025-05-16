@@ -7,6 +7,7 @@ import org.example.models.enums.Season;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class PreGameMenuController extends Controller{
 
@@ -196,7 +197,45 @@ public class PreGameMenuController extends Controller{
         farm4.setYStart(150);
         Map map = new Map();
         ArrayList<Farm> farms = new ArrayList<>(List.of(farm1, farm2, farm3, farm4));
+        for (Farm farm : farms) {
+            boolean flag = false;
+            while (!flag) {
+                int randomX = (new Random()).nextInt(Farm.getXRange()) + farm.getXStart();
+                int randomY = (new Random()).nextInt(Farm.getYRange()) + farm.getYStart();
+                boolean objectExists = false;
+                for (Objectt object : farm.getObjects()) {
+                    for (Tile tile : object.getTiles()) {
+                        if (tile.getX() == randomX && tile.getY() == randomY) {
+                            objectExists = true;
+                            break;
+                        }
+                    }
+                    if (objectExists) break;
+                }
+                if (!objectExists) {
+                    flag = true;
+                    SalesBucket bucket = new SalesBucket();
+                    bucket.setTiles(new ArrayList<>(List.of(new Tile('k', randomX, randomY))));
+                    farm.getObjects().add(bucket);
+                }
+            }
+        }
         map.setCreatedFarms(farms);
         App.getCurrentGame().setMap(map);
+    }
+
+    public Result loadGame() {
+        Game game = App.getLoggedInUser().getCurrentGame();
+        if (game == null)
+            return new Result(false, "You don't have an active game.");
+        App.setCurrentGame(game);
+        App.setCurrentMenu(Menu.GameMenu);
+        for (Player player : game.players) {
+            if (player.getUser().equals(App.getLoggedInUser()))
+                game.setMainPlayer(player);
+        }
+        Map map = App.getCurrentGame().getMap();
+        if (map.getFarms().size() < App.getCurrentGame().players.size()) App.setCurrentMenu(Menu.MapSelectionMenu);
+        return new Result(true, "The game is loaded successfully.");
     }
 }

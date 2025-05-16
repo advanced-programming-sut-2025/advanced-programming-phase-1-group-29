@@ -24,7 +24,9 @@ public class PreGameMenu implements AppMenu{
                     matcher.group("username2"),
                     matcher.group("username3")
             ));
-        } else {
+        } else if(GameMenuCommands.LoadGame.getMatcher(input) != null) {
+            System.out.println(controller.loadGame());
+        }else {
             System.out.println("Invalid command");
         }
     }

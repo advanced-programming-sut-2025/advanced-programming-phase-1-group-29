@@ -37,8 +37,10 @@ public class GameMenuController extends Controller{
         if(!App.getCurrentGame().isMainPlayerPlaying()){
             return new Result(false, "Sorry, you cannot exit the game.");
         }
-        App.setCurrentMenu(Menu.ExitMenu);
-        return new Result(true, "");
+        App.addGame(App.getCurrentGame());
+        App.setCurrentGame(null);
+        App.setCurrentMenu(Menu.MainMenu);
+        return new Result(true, "You are now in Main Menu.");
     }
 
     public Result time(){
@@ -1341,4 +1343,9 @@ public class GameMenuController extends Controller{
         return new Result(true, "greenhouse was built successfully!");
     }
 
+    public Result sell(String name, String count) {
+        int amount = Integer.parseInt(count);
+        //TODO
+        return null;
+    }
 }
