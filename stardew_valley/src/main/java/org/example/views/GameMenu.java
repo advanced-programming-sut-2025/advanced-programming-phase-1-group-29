@@ -17,6 +17,7 @@ public class GameMenu implements AppMenu{
     //remove all the spaces from the inputs
     @Override
     public void check(Scanner scanner) {
+        String setayesh = "[\\s_']";
         String input = scanner.nextLine();
         Matcher matcher;
         Result collapse = controller.isCollapsed(input);
@@ -97,11 +98,12 @@ public class GameMenu implements AppMenu{
         }
         else if ((matcher = GameMenuCommands.InventoryTrash.getMatcher(input)) != null) {
             System.out.println(controller.inventoryTrash(
-                    matcher.group("itemsName").trim(),
+                    (matcher.group("itemsName").trim()).replaceAll(setayesh, ""),
                     matcher.group("number").trim()));
         }
         else if ((matcher = GameMenuCommands.ToolsEquip.getMatcher(input)) != null) {
-            System.out.println(controller.toolsEquip(matcher.group("toolName").trim()));
+            System.out.println(controller.toolsEquip(
+                    (matcher.group("toolName").trim()).replaceAll(setayesh, "")));
         }
         else if (GameMenuCommands.ToolsShowCurrent.getMatcher(input) != null) {
             System.out.println(controller.toolsShowCurrent());
@@ -110,17 +112,19 @@ public class GameMenu implements AppMenu{
             System.out.println(controller.toolsShowAvailable());
         }
         else if ((matcher = GameMenuCommands.ToolsUpgrade.getMatcher(input)) != null) {
-            System.out.println(controller.toolsUpgrade(matcher.group("toolName").trim()));
+            System.out.println(controller.toolsUpgrade(
+                    (matcher.group("toolName").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.ToolsUse.getMatcher(input)) != null) {
             System.out.println(controller.toolsUse(matcher.group("direction").trim()));
         }
         else if ((matcher = GameMenuCommands.CraftInfo.getMatcher(input)) != null) {
-            System.out.println(controller.craftInfo(matcher.group("craftName").trim()));
+            System.out.println(controller.craftInfo(
+                    (matcher.group("craftName").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.Plant.getMatcher(input)) != null) {
             System.out.println(controller.plant(
-                    matcher.group("seed").trim(),
+                    (matcher.group("seed").trim()).replaceAll(setayesh, ""),
                     matcher.group("direction").trim()));
         }
         else if ((matcher = GameMenuCommands.ShowPlant.getMatcher(input)) != null) {
@@ -130,7 +134,7 @@ public class GameMenu implements AppMenu{
         }
         else if ((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
             System.out.println(controller.fertilize(
-                    matcher.group("fertilizer").trim(),
+                    (matcher.group("fertilizer").trim()).replaceAll(setayesh, ""),
                     matcher.group("direction").trim()));
         }
         else if (GameMenuCommands.HowMuchWater.getMatcher(input) != null) {
@@ -140,35 +144,38 @@ public class GameMenu implements AppMenu{
             System.out.println(controller.craftingShowRecipes());
         }
         else if ((matcher = GameMenuCommands.CraftingCraft.getMatcher(input)) != null) {
-            System.out.println(controller.craftingCraft(matcher.group("itemName").trim()));
+            System.out.println(controller.craftingCraft(
+                    (matcher.group("itemName").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.PlaceItem.getMatcher(input)) != null) {
             System.out.println(controller.placeItem(
-                    matcher.group("itemName").trim(),
+                    (matcher.group("itemName").trim()).replaceAll(setayesh, ""),
                     matcher.group("direction").trim()));
         }
         else if ((matcher = GameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
             System.out.println(controller.cheatAddItem(
-                    matcher.group("itemName").trim(),
+                    (matcher.group("itemName").trim()).replaceAll(setayesh, ""),
                     matcher.group("count").trim()));
         }
         else if ((matcher = GameMenuCommands.CookingRefrigerator.getMatcher(input)) != null) {
             System.out.println(controller.cookingRefrigerator(
                     matcher.group("action").trim(),
-                    matcher.group("item").trim()));
+                    (matcher.group("item").trim()).replaceAll(setayesh, "")));
         }
         else if (GameMenuCommands.CookingShowRecipes.getMatcher(input) != null) {
             System.out.println(controller.cookingShowRecipes());
         }
         else if ((matcher = GameMenuCommands.CookingPrepare.getMatcher(input)) != null) {
-            System.out.println(controller.cookingPrepare(matcher.group("recipeName").trim()));
+            System.out.println(controller.cookingPrepare(
+                    (matcher.group("recipeName").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.Eat.getMatcher(input)) != null) {
-            System.out.println(controller.eat(matcher.group("foodName").trim()));
+            System.out.println(controller.eat(
+                    (matcher.group("foodName").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.Build.getMatcher(input)) != null) {
             System.out.println(controller.build(
-            matcher.group("buildingName").trim(),
+            (matcher.group("buildingName").trim()).replaceAll(setayesh, ""),
             matcher.group("x").trim(),
             matcher.group("y").trim()));
         }
@@ -176,11 +183,12 @@ public class GameMenu implements AppMenu{
 //            System.out.println(controller.buyAnimal(matcher.group("animal").trim(), matcher.group("name").trim()));
 //        }
         else if ((matcher = GameMenuCommands.Pet.getMatcher(input)) != null) {
-            System.out.println(controller.pet(matcher.group("name").trim()));
+            System.out.println(controller.pet(
+                    (matcher.group("name").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.CheatSetFriendship.getMatcher(input)) != null) {
             System.out.println(controller.cheatSetFriendship(
-                    matcher.group("animalName").trim(),
+                    (matcher.group("animalName").trim()).replaceAll(setayesh, ""),
                     matcher.group("amount").trim()));
         }
         else if (GameMenuCommands.Animals.getMatcher(input) != null) {
@@ -188,32 +196,37 @@ public class GameMenu implements AppMenu{
         }
         else if ((matcher = GameMenuCommands.ShepherdAnimals.getMatcher(input)) != null) {
             System.out.println(controller.shepherdAnimals(
-            matcher.group("animalName").trim(),
+            (matcher.group("animalName").trim()).replaceAll(setayesh, ""),
             matcher.group("x").trim(),
             matcher.group("y").trim()));
         }
         else if ((matcher = GameMenuCommands.FeedHay.getMatcher(input)) != null) {
-            System.out.println(controller.feedHay(matcher.group("animalName").trim()));
+            System.out.println(controller.feedHay(
+                    (matcher.group("animalName").trim()).replaceAll(setayesh, "")));
         }
         else if (GameMenuCommands.Produces.getMatcher(input) != null) {
             System.out.println(controller.produces());
         }
         else if ((matcher = GameMenuCommands.CollectProduce.getMatcher(input)) != null) {
-            System.out.println(controller.collectProduce(matcher.group("name").trim()));
+            System.out.println(controller.collectProduce(
+                    (matcher.group("name").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.SellAnimal.getMatcher(input)) != null) {
-            System.out.println(controller.sellAnimal(matcher.group("name").trim()));
+            System.out.println(controller.sellAnimal(
+                    (matcher.group("name").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.Fishing.getMatcher(input)) != null) {
-            System.out.println(controller.fishing(matcher.group("fishingPole").trim()));
+            System.out.println(controller.fishing(
+                    (matcher.group("fishingPole").trim()).replaceAll(setayesh, "")));
         }
 //        else if ((matcher = GameMenuCommands.ArtisanUse.getMatcher(input)) != null) {
 //            System.out.println(controller.artisanUse(
-//                    matcher.group("artisanName").trim(),
-//                    matcher.group("item1Name").trim()));
+//                    (matcher.group("artisanName").trim()).replaceAll(setayesh, ""),
+//                    (matcher.group("item1Name").trim()).replaceAll(setayesh, "")));
 //        }
 //        else if ((matcher = GameMenuCommands.ArtisanGet.getMatcher(input)) != null) {
-//            System.out.println(controller.artisanGet(matcher.group("artisanName").trim()));
+//            System.out.println(controller.artisanGet(
+//                    (matcher.group("artisanName").trim()).replaceAll(setayesh, "")));
 //        }
         else if (GameMenuCommands.ShowAllProducts.getMatcher(input) != null) {
             System.out.println(storeController.showAllProducts());
@@ -223,20 +236,24 @@ public class GameMenu implements AppMenu{
         }
         else if ((matcher = GameMenuCommands.Purchase.getMatcher(input)) != null) {
             System.out.println(storeController.purchase(
-                    matcher.group("productName").trim(),
+                    (matcher.group("productName").trim()).replaceAll(setayesh, ""),
                     matcher.group("count").trim()));
         }
         else if ((matcher = GameMenuCommands.CheatAddDollars.getMatcher(input)) != null) {
             System.out.println(controller.cheatAddDollars(matcher.group("count").trim()));
         }
         else if ((matcher = GameMenuCommands.Sell.getMatcher(input)) != null) {
-            System.out.println(controller.sell(matcher.group("productName").trim(), matcher.group("count").trim()));
+            System.out.println(controller.sell(
+                    (matcher.group("productName").trim()).replaceAll(setayesh, ""),
+                    matcher.group("count").trim()));
         }
         else if (GameMenuCommands.Friendships.getMatcher(input) != null) {
             System.out.println(controller.friendships());
         }
         else if ((matcher = GameMenuCommands.Talk.getMatcher(input)) != null) {
-            System.out.println(controller.talk(matcher.group("username").trim(), matcher.group("message").trim()));
+            System.out.println(controller.talk(
+                    matcher.group("username").trim(),
+                    matcher.group("message").trim()));
         }
         else if ((matcher = GameMenuCommands.TalkHistory.getMatcher(input)) != null) {
             System.out.println(controller.talkHistory(matcher.group("username").trim()));
@@ -244,14 +261,16 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.Gift.getMatcher(input)) != null) {
             System.out.println(controller.gift(
             matcher.group("username").trim(),
-            matcher.group("item").trim(),
+            (matcher.group("item").trim()).replaceAll(setayesh, ""),
             matcher.group("amount").trim()));
         }
         else if (GameMenuCommands.GiftList.getMatcher(input) != null) {
             System.out.println(controller.giftList());
         }
         else if ((matcher = GameMenuCommands.GiftRate.getMatcher(input)) != null) {
-            System.out.println(controller.rateGift(matcher.group("giftNumber").trim(), matcher.group("rate").trim()));
+            System.out.println(controller.rateGift(
+                    matcher.group("giftNumber").trim(),
+                    matcher.group("rate").trim()));
         }
         else if ((matcher = GameMenuCommands.GiftHistory.getMatcher(input)) != null) {
             System.out.println(controller.giftHistory(matcher.group("username").trim()));
@@ -265,10 +284,12 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.AskMarriage.getMatcher(input)) != null) {
             System.out.println(controller.askMarriage(
                     matcher.group("username").trim(),
-                    matcher.group("ring").trim()));
+                    (matcher.group("ring").trim()).replaceAll(setayesh, "")));
         }
         else if ((matcher = GameMenuCommands.Respond.getMatcher(input)) != null) {
-            System.out.println(controller.respond(matcher.group("result").trim(), matcher.group("username").trim()));
+            System.out.println(controller.respond(
+                    matcher.group("result").trim(),
+                    matcher.group("username").trim()));
         }
         else if (GameMenuCommands.StartTrade.getMatcher(input) != null) {
             System.out.println(tradeController.startTrade());
@@ -277,17 +298,19 @@ public class GameMenu implements AppMenu{
             System.out.println(tradeController.trade(
             matcher.group("username").trim(),
             matcher.group("type").trim(),
-            matcher.group("item").trim(),
+            (matcher.group("item").trim()).replaceAll(setayesh, ""),
             matcher.group("amount").trim(),
             matcher.group("price").trim(),
-            matcher.group("targetItem").trim(),
+            (matcher.group("targetItem").trim()).replaceAll(setayesh, ""),
             matcher.group("targetAmount").trim()));
         }
         else if (GameMenuCommands.TradeList.getMatcher(input) != null) {
             System.out.println(tradeController.tradeList());
         }
         else if ((matcher = GameMenuCommands.TradeResponse.getMatcher(input)) != null) {
-            System.out.println(tradeController.respondToTrade(matcher.group("result").trim(), matcher.group("id").trim()));
+            System.out.println(tradeController.respondToTrade(
+                    matcher.group("result").trim(),
+                    matcher.group("id").trim()));
         }
         else if (GameMenuCommands.TradeHistory.getMatcher(input) != null) {
             System.out.println(tradeController.tradeHistory());
@@ -296,7 +319,9 @@ public class GameMenu implements AppMenu{
             System.out.println(npcController.meetNPC(matcher.group("npcName").trim()));
         }
         else if ((matcher = GameMenuCommands.GiftNPC.getMatcher(input)) != null) {
-            System.out.println(controller.giftNPC(matcher.group("npcName").trim(), matcher.group("item").trim()));
+            System.out.println(controller.giftNPC(
+                    matcher.group("npcName").trim(),
+                    (matcher.group("item").trim()).replaceAll(setayesh, "")));
         }
         else if (GameMenuCommands.FriendshipNPCList.getMatcher(input) != null) {
             System.out.println(controller.friendshipNPCList());
