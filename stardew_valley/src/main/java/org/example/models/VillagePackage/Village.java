@@ -19,7 +19,7 @@ public class Village{
         ArrayList<Tile> blackSmithTiles = new ArrayList<>();
         for (int i = 20; i < 30; i++){
             for (int j = 20; j < 30; j++){
-                blackSmithTiles.add(new Tile('B', i, j));
+                blackSmithTiles.add(new Tile('b', i, j));
             }
         }
         blackSmithStore.setTiles(blackSmithTiles);
@@ -64,7 +64,7 @@ public class Village{
         ArrayList<Tile> pierresGeneralTiles = new ArrayList<>();
         for (int i = 30; i < 50; i++){
             for (int j = 40; j < 45; j++){
-                pierresGeneralTiles.add(new Tile('P', i, j));
+                pierresGeneralTiles.add(new Tile('p', i, j));
             }
         }
         pierresGeneralStore.setTiles(pierresGeneralTiles);

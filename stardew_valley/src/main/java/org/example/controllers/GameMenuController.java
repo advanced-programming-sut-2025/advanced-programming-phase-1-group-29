@@ -290,8 +290,6 @@ public class GameMenuController extends Controller{
 
 
     public void printMap(String xString, String yString, String sizeString) {
-        //TODO
-        //print NPCs
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
         int size = Integer.parseInt(sizeString);
@@ -306,18 +304,69 @@ public class GameMenuController extends Controller{
                 for (Tile tile : object.getTiles()) {
                     mapToPrint[tile.getX()][tile.getY()] = tile.getDisplay();
                 }
+                if (object instanceof Quarry){
+                    for (Objectt mineral : ((Quarry) object).getMinerals()) {
+                        Tile mineralTile = mineral.getTiles().get(0);
+                        mapToPrint[mineralTile.getX()][mineralTile.getY()] = mineralTile.getDisplay();
+                    }
+                }
             }
         }
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (int xx = x; xx <= x + size; xx++) {
-            StringBuilder line = new StringBuilder();
-            for (int yy = y; yy <= y + size; yy++) {
-                line.append(mapToPrint[xx][yy]);
+        for (Objectt objectt : map.getVillage().getObjects()) {
+            for (Tile tile : objectt.getTiles()) {
+                mapToPrint[tile.getX()][tile.getY()] = tile.getDisplay();
             }
-            stringJoiner.add(line.toString());
+            if (objectt instanceof NPCHouse){
+                mapToPrint[((NPCHouse) objectt).getNPCPlaceX()][((NPCHouse) objectt).getNPCPlaceY()] = '*';
+            }
+        }
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                char tileChar = mapToPrint[x + i][y + j];
+                String color = getColorForTile(tileChar);
+                System.out.print(color + tileChar + AnsiColor.RESET + " ");
+            }
+            System.out.println();
         }
         return;
     }
+    public String getColorForTile(char tile) {
+        switch (tile) {
+            // Buildings
+            case 'C': return AnsiColor.YELLOW;         // Cottage
+            case 'G': case 'g': return AnsiColor.GREEN; // Greenhouse (unbuilt/built)
+            case 'Q': return AnsiColor.WHITE;          // Quarry
+            case 'L': return AnsiColor.CYAN;           // Lake
+            case 'F': return AnsiColor.YELLOW;         // Furrow
+            case 'P': return AnsiColor.GREEN;          // Plant (Crop or Tree)
+            case 'm': return AnsiColor.PURPLE;         // Foraging Mineral
+            case 'B': return AnsiColor.RED;            // Burned Tree
+            case 'k': return AnsiColor.BLUE;           // Sales bucket
+            case '*': return AnsiColor.WHITE;          // NPC
+
+            // 🟡 Houses (all yellow)
+            case 's': // Sebastian’s house
+            case 'a': // Abigail’s house
+            case 'h': // Harvey’s house
+            case 'l': // Lia’s house
+            case 'r': // Robin’s house
+            case 'p': // Pierre’s general store
+                return AnsiColor.YELLOW;
+
+            // 🔵 Shops (all cyan)
+            case 'c': // Carpenter
+            case 'f': // Fish shop
+            case 'J': // JojaMart
+            case 'M': // Marnie’s Ranch
+            case 'S': // Stardrop Saloon
+            case 'b': // Blacksmith (also used for Burned Tree — consider separating in logic)
+                return AnsiColor.CYAN;
+
+            default:
+                return AnsiColor.BLACK; // Unknown or empty
+        }
+    }
+
 
 
     public void nextTurn() {
@@ -368,14 +417,42 @@ public class GameMenuController extends Controller{
         return new Result(true, amount + " of " + name + " deleted from your inventory. ");
     }
 
-    public Result helpReadingMap(){
+    public Result helpReadingMap() {
         StringBuilder result = new StringBuilder();
-        result.append("Cottage: C\n");
-        result.append("Greenhouse: G\n");
-        result.append("Quarry : Q\n");
-        result.append("Lake : L\n");
+        result.append("🏡 Buildings:\n");
+        result.append("  Cottage: C\n");
+        result.append("  Greenhouse (unbuilt): G\n");
+        result.append("  Greenhouse (built): g\n");
+        result.append("  Quarry: Q\n");
+        result.append("  Lake: L\n");
+        result.append("  Furrow: F\n");
+        result.append("  Plant (Crop or Tree): P\n");
+        result.append("  Foraging Mineral: m\n");
+        result.append("  Burned Tree: B\n");
+        result.append("  Sales Bucket: k\n");
+
+        result.append("\n🏪 Shops:\n");
+        result.append("  Blacksmith: b\n");
+        result.append("  Carpenter's Shop: c\n");
+        result.append("  Fish Shop: f\n");
+        result.append("  JojaMart: J\n");
+        result.append("  Marnie’s Ranch: M\n");
+        result.append("  Pierre’s General Store: p\n");
+        result.append("  Stardrop Saloon: S\n");
+
+        result.append("\n🏠 NPC Houses:\n");
+        result.append("  Sebastian’s House: s\n");
+        result.append("  Abigail’s House: a\n");
+        result.append("  Harvey’s House: h\n");
+        result.append("  Lia’s House: l\n");
+        result.append("  Robin’s House: r\n");
+
+        result.append("\n👤 NPC:\n");
+        result.append("  NPC Character: *\n");
+
         return new Result(true, result.toString());
     }
+
 
     public Result cheatAdvanceTime(String timeString) {
         int h = Integer.parseInt(timeString);
