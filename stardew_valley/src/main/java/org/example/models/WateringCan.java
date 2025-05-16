@@ -1,5 +1,7 @@
 package org.example.models;
 
+import org.example.models.FarmPackage.Farm;
+import org.example.models.FarmPackage.Lake;
 import org.example.models.enums.ToolType;
 
 public class WateringCan extends UpgradableTool {

@@ -1,9 +1,9 @@
 package org.example.models;
 
+import org.example.models.FarmPackage.Farm;
+import org.example.models.FarmPackage.Quarry;
 import org.example.models.enums.ForagingMineral;
 import org.example.models.enums.ToolType;
-
-import java.util.ArrayList;
 
 public class Pickaxe extends UpgradableTool{
 

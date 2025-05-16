@@ -1,12 +1,14 @@
-package org.example.models;
+package org.example.models.AnimalsPackage;
 
+import org.example.models.InventoryItem;
+import org.example.models.Objectt;
 import org.example.models.enums.AnimalEnum;
 import org.example.models.enums.AnimalProductEnum;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Animal extends Objectt{
+public class Animal extends Objectt {
 
     private final AnimalEnum animalType;
     private final String name;

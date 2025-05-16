@@ -1,5 +1,6 @@
 package org.example.models;
 
+import org.example.models.FarmPackage.Farm;
 import org.example.models.enums.CropEnum;
 import org.example.models.enums.ForagingCrop;
 import org.example.models.enums.FruitEnum;

@@ -1,10 +1,11 @@
-package org.example.models;
+package org.example.models.AnimalsPackage;
 
+import org.example.models.Objectt;
 import org.example.models.enums.AnimalHouseEnum;
 
 import java.util.ArrayList;
 
-public class AnimalHouse extends Objectt{
+public class AnimalHouse extends Objectt {
     private final AnimalHouseEnum animalHouseEnum;
     private ArrayList<Animal> animals = new ArrayList<>();
 

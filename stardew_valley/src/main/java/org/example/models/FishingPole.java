@@ -1,6 +1,8 @@
 package org.example.models;
 
 
+import org.example.models.FarmPackage.Farm;
+import org.example.models.FarmPackage.Lake;
 import org.example.models.enums.FishEnum;
 import org.example.models.enums.FishingPoleType;
 

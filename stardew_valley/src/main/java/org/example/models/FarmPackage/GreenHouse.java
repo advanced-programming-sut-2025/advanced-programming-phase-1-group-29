@@ -1,4 +1,6 @@
-package org.example.models;
+package org.example.models.FarmPackage;
+
+import org.example.models.Objectt;
 
 public class GreenHouse extends Objectt {
     private boolean hasBeenBuilt = false;

@@ -1,8 +1,9 @@
 package org.example.controllers;
 
-import com.sun.source.tree.ReturnTree;
 import org.example.models.*;
-import org.example.models.AnimalHouse;
+import org.example.models.AnimalsPackage.AnimalHouse;
+import org.example.models.AnimalsPackage.Animal;
+import org.example.models.FarmPackage.*;
 import org.example.models.Map;
 import org.example.models.Objectt;
 import org.example.models.VillagePackage.*;

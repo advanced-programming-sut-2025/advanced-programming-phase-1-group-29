@@ -1,5 +1,9 @@
 package org.example.models;
 
+import org.example.models.AnimalsPackage.Animal;
+import org.example.models.AnimalsPackage.AnimalHouse;
+import org.example.models.FarmPackage.Farm;
+import org.example.models.FarmPackage.Quarry;
 import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
 import org.example.models.enums.*;

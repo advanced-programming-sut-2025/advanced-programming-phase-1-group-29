@@ -1,6 +1,7 @@
-package org.example.models;
+package org.example.models.FarmPackage;
 
-import java.util.HashMap;
+import org.example.models.Objectt;
+import org.example.models.Refrigerator;
 
 public class Cottage extends Objectt {
 

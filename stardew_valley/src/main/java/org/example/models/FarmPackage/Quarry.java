@@ -1,4 +1,7 @@
-package org.example.models;
+package org.example.models.FarmPackage;
+
+import org.example.models.Foraging;
+import org.example.models.Objectt;
 
 import java.util.ArrayList;
 

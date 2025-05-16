@@ -1,8 +1,5 @@
 package org.example.models.enums;
 
-import org.example.models.Animal;
-import org.example.models.AnimalHouse;
-
 public enum AnimalHouseEnum {
     Barn ("Barn", 4, 7, 4),
     BigBarn ("Big Barn", 8, 7, 4),

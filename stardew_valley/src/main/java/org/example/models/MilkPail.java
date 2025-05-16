@@ -1,5 +1,9 @@
 package org.example.models;
 
+import org.example.models.AnimalsPackage.Animal;
+import org.example.models.AnimalsPackage.AnimalHouse;
+import org.example.models.FarmPackage.Farm;
+
 import java.util.ArrayList;
 
 public class MilkPail extends Tool{

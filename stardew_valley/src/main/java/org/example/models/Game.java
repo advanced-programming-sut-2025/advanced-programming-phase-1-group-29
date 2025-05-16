@@ -1,5 +1,6 @@
 package org.example.models;
 
+import org.example.models.FarmPackage.Farm;
 import org.example.models.enums.Weather;
 
 import java.util.ArrayList;

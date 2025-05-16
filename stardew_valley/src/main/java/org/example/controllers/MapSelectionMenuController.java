@@ -1,7 +1,7 @@
 package org.example.controllers;
 
 import org.example.models.App;
-import org.example.models.Farm;
+import org.example.models.FarmPackage.Farm;
 import org.example.models.Map;
 import org.example.models.Result;
 import org.example.models.enums.Menu;
