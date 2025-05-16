@@ -19,7 +19,10 @@ import static java.lang.Math.*;
 public class GameMenuController extends Controller{
 
     public Result isCollapsed(String input) {
-        if (App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).isCollapsed()) {
+        if(App.getCurrentGame().getCurrentPlayer().isEnergyUnlimited()){
+            return new Result(true, "You are enforcing energy unlimited");
+        }
+        if (App.getCurrentGame().getCurrentPlayer().isCollapsed()) {
             if (GameMenuCommands.NextTurn.getMatcher(input) != null) {
                 this.nextTurn();
                 return new Result(false, "");
