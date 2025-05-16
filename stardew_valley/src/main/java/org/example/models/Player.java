@@ -36,7 +36,7 @@ public class Player {
     private int robinFriendship = 0;
     private NPCMissionList npcMissionList = new NPCMissionList();
     private int[] friendship = new int[5];
-    private ArrayList<ArrayList<String>> talkHistory = new ArrayList<>();
+    private final ArrayList<ArrayList<String>> talkHistory = new ArrayList<>();
     private boolean isCollapsed = false;
     private ArrayList<String> giftItems = new ArrayList<>();
     private ArrayList<Integer> giftNumbers = new ArrayList<>();

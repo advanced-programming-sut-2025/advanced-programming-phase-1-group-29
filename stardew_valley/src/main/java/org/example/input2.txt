@@ -88,4 +88,60 @@
    walk -l 100, 100
    print map -l 0, 0 -s 200
    inventory show
-    walk -l 100, 100
+   cheat advance time 5h
+   walk -l 105, 113
+   show all products
+   purchase WeddingRing -n 3
+   purchase WeddingRing -n 1
+   cheat add 10000000 dollars
+   purchase WeddingRing -n 1
+   purchase Bouquet -n 1
+   inventory show
+   friendships
+   walk -l 100, 100
+   next turn
+   walk -l 101, 100
+   print map -l 0, 0 -s 200
+   talk -u parnia -m Hiiiiiiiiiii
+   talk -u parnia -m How are youuuuuuuuuuuuuu
+   walk -l 102, 100
+   talk -u parnia -m booooooooooooooooooooooo
+   walk -l 101, 100
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
+   friendships
+   talk history -u parnia
+   next turn
+   next turn
+   next turn
+   flower -u sogol
+   friendships
+   ask marriage -u sogol -r WeddingRing
+   next turn
+   respond -accept -u setayesh
+   respond -accept -u parnia

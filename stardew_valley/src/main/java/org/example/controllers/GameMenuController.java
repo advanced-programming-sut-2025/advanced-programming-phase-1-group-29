@@ -1157,6 +1157,7 @@ public class GameMenuController extends Controller{
         result.append("Robin: " + player.getRobinFriendship() + " level " + player.getRobinFriendship() / 200);
         return new Result(true, result.toString());
     }
+
     public Result giftNPC(String NPCName, String itemName){
         if (App.getCurrentGame().getCurrentPlayer().getInventory().getNumberOfInventoryItem(itemName) < 1) {
             return new Result(false, "You don't have this item.");
@@ -1172,6 +1173,7 @@ public class GameMenuController extends Controller{
         }
         return new Result(false, "Wrong NPC name");
     }
+
     public Result friendships(){
         StringBuilder result = new StringBuilder();
         Player player = App.getCurrentGame().getCurrentPlayer();
@@ -1179,12 +1181,13 @@ public class GameMenuController extends Controller{
             result.append(App.getCurrentGame().getPlayers().get(i).getUser().getUsername());
             result.append(": ");
             result.append("xp " +  player.getFriendship()[i]);
-            result.append("level " + getFriendshipLevel(player.getFriendship()[i]));
+            result.append(" level " + getFriendshipLevel(player.getFriendship()[i]));
             result.append("\n");
         }
         return new Result(true, result.toString());
     }
-    public Result talk(String username, String message){
+
+    public Result talk (String username, String message){
         Player player = App.getCurrentGame().getCurrentPlayer();
         int ind = -1;
         for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
@@ -1193,11 +1196,11 @@ public class GameMenuController extends Controller{
                 if (abs(player.getX() - player2.getX()) + abs(player.getY() - player2.getY()) > 1) {
                     return new Result(false, "You are not next to " + username);
                 }
+                ind = i;
                 player.addFriendship(ind, 20);
                 player2.addFriendship(App.getCurrentGame().getTurn(), 20);
                 player.addTalk(message, ind);
                 player2.addTalk(message, App.getCurrentGame().getTurn());
-                ind = i;
                 break;
             }
         }
@@ -1206,6 +1209,7 @@ public class GameMenuController extends Controller{
         }
         return new Result(true, "added 20 xp to your friendship with " + username);
     }
+
     public Result talkHistory(String username){
         Player player = App.getCurrentGame().getCurrentPlayer();
         int ind = -1;
@@ -1224,6 +1228,7 @@ public class GameMenuController extends Controller{
         }
         return new Result(true, result.toString());
     }
+
     public Result gift(String username, String itemName, String amountString){
         int amount = Integer.parseInt(amountString);
         Player player = App.getCurrentGame().getCurrentPlayer();
@@ -1251,6 +1256,7 @@ public class GameMenuController extends Controller{
         player2.addGift(itemName, amount, App.getCurrentGame().getTurn());
         return new Result(true, player2.getUser().getUsername() + " recieved " + amount + " of " + itemName + "\n");
     }
+
     public Result rateGift(String giftNumberString, String rateString){
         int giftNumber = Integer.parseInt(giftNumberString);
         int rate = Integer.parseInt(rateString);
@@ -1263,6 +1269,7 @@ public class GameMenuController extends Controller{
         player2.addFriendship(App.getCurrentGame().getTurn(), (rate - 3) * 30 + 15);
         return new Result(true, "your rate has been received");
     }
+
     public Result giftList(){
         Player player = App.getCurrentGame().getCurrentPlayer();
         ArrayList<String> items = player.getGiftItems();
@@ -1274,6 +1281,7 @@ public class GameMenuController extends Controller{
         }
         return new Result(true, result.toString());
     }
+
     public Result giftHistory(String username){
         Player player = App.getCurrentGame().getCurrentPlayer();
         Player player2 = null;

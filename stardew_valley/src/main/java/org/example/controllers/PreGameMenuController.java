@@ -210,14 +210,7 @@ public class PreGameMenuController extends Controller{
                 }
             }
         }
-        App.getCurrentGame().getPlayers().get(0).setX(tilesCottage1.get(5).getX());
-        App.getCurrentGame().getPlayers().get(0).setY(tilesCottage1.get(5).getY());
-        App.getCurrentGame().getPlayers().get(1).setX(tilesCottage2.get(4).getX());
-        App.getCurrentGame().getPlayers().get(1).setY(tilesCottage2.get(4).getY());
-        App.getCurrentGame().getPlayers().get(2).setX(tilesCottage3.get(3).getX());
-        App.getCurrentGame().getPlayers().get(2).setY(tilesCottage3.get(3).getY());
-        App.getCurrentGame().getPlayers().get(3).setX(tilesCottage4.get(2).getX());
-        App.getCurrentGame().getPlayers().get(3).setY(tilesCottage4.get(2).getY());
+
         for (Farm farm : farms) {
             boolean flag = false;
             while (!flag) {
