@@ -1319,4 +1319,26 @@ public class GameMenuController extends Controller{
         }
         return new Result(false, "You must be in Black Smith Store");
     }
+
+    public Result greenhouseBuild(){
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof GreenHouse) {
+                if (((GreenHouse) objectt).getHasBeenBuilt()){
+                    return new Result(true, "Greenhouse has already been built!");
+                }
+                if (player.getInventory().getNumberOfInventoryItem("wood") < 500 || player.getCoins() < 1000){
+                    return new Result(false, "You don't have enough coins or wood.");
+                }
+                player.getInventory().removeInventoryItem("wood", 500);
+                player.addCoins(-1000);
+                ((GreenHouse) objectt).setHasBeenBuilt(true);
+                for (Tile tile : objectt.getTiles()) {
+                    tile.setDisplay('g');
+                }
+            }
+        }
+        return new Result(true, "greenhouse was built successfully!");
+    }
 }
