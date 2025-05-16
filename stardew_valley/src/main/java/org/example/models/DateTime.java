@@ -194,6 +194,7 @@ public class DateTime {
             int random = (new Random()).nextInt(3);
             HashSet<Plant> thundered = new HashSet<>();
             for (int i = 0; i < random; i++) {
+                if (plants.isEmpty()) continue;
                 int index = (new Random()).nextInt(plants.size());
                 thundered.add(plants.get(index));
             }
@@ -202,12 +203,11 @@ public class DateTime {
                 if (plant instanceof FruitTree) {
                     BurnedTree burnedTree = new BurnedTree();
                     burnedTree.setTiles(plant.getTiles());
-                    burnedTree.getTiles().getFirst().setDisplay('b');
+                    burnedTree.getTiles().get(0).setDisplay('b');
                     farm.getObjects().add(new BurnedTree());
                 }
             }
         }
-
     }
 
     private void setEnergy() {

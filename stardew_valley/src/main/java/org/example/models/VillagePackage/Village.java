@@ -15,6 +15,8 @@ public class Village{
     private ArrayList<Objectt> objects = new ArrayList<>();
 
     public Village(){
+        xStart = 70;
+        yStart = 70;
         BlackSmithStore blackSmithStore = new BlackSmithStore();
         ArrayList<Tile> blackSmithTiles = new ArrayList<>();
         for (int i = 20; i < 30; i++){
@@ -64,7 +66,7 @@ public class Village{
         ArrayList<Tile> pierresGeneralTiles = new ArrayList<>();
         for (int i = 30; i < 50; i++){
             for (int j = 40; j < 45; j++){
-                pierresGeneralTiles.add(new Tile('p', i, j));
+                pierresGeneralTiles.add(new Tile('P', i, j));
             }
         }
         pierresGeneralStore.setTiles(pierresGeneralTiles);
@@ -86,19 +88,19 @@ public class Village{
             }
         }
         sebastiansHouse.setTiles(sebastiansHouseTiles);
-        sebastiansHouse.setNPCPlaceX(6);
-        sebastiansHouse.setNPCPlaceY(16);
+        sebastiansHouse.setNPCPlaceX(6 + xStart);
+        sebastiansHouse.setNPCPlaceY(16 + yStart);
         objects.add(sebastiansHouse);
         AbigailsHouse abigailsHouse = new AbigailsHouse();
         ArrayList<Tile> abigailsHouseTiles = new ArrayList<>();
         for (int i = 35; i < 40; i++){
-            for (int j = 25; j < 30; i++){
+            for (int j = 25; j < 30; j++){
                 abigailsHouseTiles.add(new Tile('a', i, j));
             }
         }
         abigailsHouse.setTiles(abigailsHouseTiles);
-        abigailsHouse.setNPCPlaceX(36);
-        abigailsHouse.setNPCPlaceY(26);
+        abigailsHouse.setNPCPlaceX(36 + xStart);
+        abigailsHouse.setNPCPlaceY(26 + yStart);
         objects.add(abigailsHouse);
         HarveysHouse harveysHouse = new HarveysHouse();
         ArrayList<Tile> harveysHouseTiles = new ArrayList<>();
@@ -108,8 +110,8 @@ public class Village{
             }
         }
         harveysHouse.setTiles(harveysHouseTiles);
-        harveysHouse.setNPCPlaceX(26);
-        harveysHouse.setNPCPlaceY(11);
+        harveysHouse.setNPCPlaceX(26 + xStart);
+        harveysHouse.setNPCPlaceY(11 + yStart);
         objects.add(harveysHouse);
         LiasHouse liasHouse = new LiasHouse();
         ArrayList<Tile> liasHouseTiles = new ArrayList<>();
@@ -119,8 +121,8 @@ public class Village{
             }
         }
         liasHouse.setTiles(liasHouseTiles);
-        liasHouse.setNPCPlaceX(16);
-        liasHouse.setNPCPlaceY(36);
+        liasHouse.setNPCPlaceX(16 + xStart);
+        liasHouse.setNPCPlaceY(36 + yStart);
         objects.add(liasHouse);
         RobinsHouse robinsHouse = new RobinsHouse();
         ArrayList<Tile> robinsHouseTiles = new ArrayList<>();
@@ -130,9 +132,15 @@ public class Village{
             }
         }
         robinsHouse.setTiles(robinsHouseTiles);
-        robinsHouse.setNPCPlaceX(41);
-        robinsHouse.setNPCPlaceY(51);
+        robinsHouse.setNPCPlaceX(41 + xStart);
+        robinsHouse.setNPCPlaceY(51 + yStart);
         objects.add(robinsHouse);
+        for (Objectt object : objects) {
+            for (Tile tile : object.getTiles()) {
+                tile.setX(tile.getX() + xStart);
+                tile.setY(tile.getY() + yStart);
+            }
+        }
     }
 
     public static int getXRange() {

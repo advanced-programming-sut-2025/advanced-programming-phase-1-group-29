@@ -18,6 +18,7 @@ public class PreGameMenuController extends Controller{
 
     public Result gameNew(String username1, String username2, String username3) {
         Game game = new Game();
+        App.setCurrentGame(game);
         User user1 = App.findUserByUsername(username1);
         User user2 = App.findUserByUsername(username2);
         User user3 = App.findUserByUsername(username3);
@@ -57,7 +58,6 @@ public class PreGameMenuController extends Controller{
         }
         game.setMainPlayer(player1);
         game.setCurrentTime(new DateTime(Season.Spring, 1, 8, 0));
-        App.setCurrentGame(game);
         createDefaultFarms();
         App.setCurrentMenu(Menu.MapSelectionMenu);
         game.getCurrentTime().incrementTime();
@@ -65,6 +65,8 @@ public class PreGameMenuController extends Controller{
     }
 
     private void createDefaultFarms(){
+        Map map = new Map();
+        App.getCurrentGame().setMap(map);
         Farm farm1 = new Farm(1);
         Farm farm2 = new Farm(2);
         Farm farm3 = new Farm(3);
@@ -106,8 +108,6 @@ public class PreGameMenuController extends Controller{
         ArrayList<Tile> tilesQuarry3 = new ArrayList<>();
         ArrayList<Tile> tilesQuarry4 = new ArrayList<>();
         Village village = new Village();
-        village.setXStart(70);
-        village.setYStart(70);
         App.getCurrentGame().getMap().setVillage(village);
         for (int i = 40; i <= 45; i++){
             for (int j = 5; j <= 10; j++) {
@@ -195,7 +195,12 @@ public class PreGameMenuController extends Controller{
         farm3.setYStart(150);
         farm4.setXStart(150);
         farm4.setYStart(150);
-        Map map = new Map();
+        for (Farm farm : map.getFarms()) {
+            for (Tile tile : farm.getTiles()) {
+                tile.setX(tile.getX() + farm.getXStart());
+                tile.setY(tile.getY() + farm.getYStart());
+            }
+        }
         ArrayList<Farm> farms = new ArrayList<>(List.of(farm1, farm2, farm3, farm4));
         for (Farm farm : farms) {
             boolean flag = false;
@@ -221,7 +226,6 @@ public class PreGameMenuController extends Controller{
             }
         }
         map.setCreatedFarms(farms);
-        App.getCurrentGame().setMap(map);
     }
 
     public Result loadGame() {

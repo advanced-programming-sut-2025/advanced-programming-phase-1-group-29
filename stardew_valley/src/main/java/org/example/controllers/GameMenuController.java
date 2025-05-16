@@ -440,7 +440,7 @@ public class GameMenuController extends Controller{
         result.append("  Quarry: Q\n");
         result.append("  Lake: L\n");
         result.append("  Furrow: F\n");
-        result.append("  Plant (Crop or Tree): P\n");
+        result.append("  Plant (Crop or Tree): p\n");
         result.append("  Foraging Mineral: m\n");
         result.append("  Burned Tree: B\n");
         result.append("  Sales Bucket: k\n");
@@ -451,7 +451,7 @@ public class GameMenuController extends Controller{
         result.append("  Fish Shop: f\n");
         result.append("  JojaMart: J\n");
         result.append("  Marnie’s Ranch: M\n");
-        result.append("  Pierre’s General Store: p\n");
+        result.append("  Pierre’s General Store: P\n");
         result.append("  Stardrop Saloon: S\n");
 
         result.append("\n🏠 NPC Houses:\n");
@@ -470,7 +470,7 @@ public class GameMenuController extends Controller{
 
     public Result cheatAdvanceTime(String timeString) {
         int h = Integer.parseInt(timeString);
-        for (int i = 0; i < h; i++){
+        for (int i = 0; i < h * App.getCurrentGame().getPlayers().size(); i++){
             nextTurn();
         }
         return dateTime();
@@ -478,7 +478,7 @@ public class GameMenuController extends Controller{
 
     public Result cheatAdvanceDate(String dateString) {
         int h = Integer.parseInt(dateString);
-        for (int i = 0; i < 24 * h; i++){
+        for (int i = 0; i < (22 - 9) * h * App.getCurrentGame().getPlayers().size(); i++){
             nextTurn();
         }
         return dateTime();

@@ -9,7 +9,7 @@ import org.example.models.enums.Menu;
 public class MapSelectionMenuController {
     public Result gameMap(String mapNumber) {
         int number = Integer.parseInt(mapNumber);
-        if (number > 4)
+        if (number > 4 || number <= 0)
             return new Result(false, "Invalid farm number");
         Map map = App.getCurrentGame().getMap();
         for (Farm farm : map.getFarms()) {

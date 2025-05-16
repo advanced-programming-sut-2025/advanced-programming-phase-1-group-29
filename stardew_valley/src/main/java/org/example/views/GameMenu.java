@@ -307,5 +307,8 @@ public class GameMenu implements AppMenu{
         else if ((matcher = GameMenuCommands.QuestsFinish.getMatcher(input)) != null) {
             System.out.println(npcController.questFinish(matcher.group("index").trim()));
         }
+        else{
+            System.out.println("invalid command");
+        }
     }
 }

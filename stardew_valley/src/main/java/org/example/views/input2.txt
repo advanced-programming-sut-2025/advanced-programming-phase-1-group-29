@@ -37,3 +37,30 @@
    change email -e e@gmail.com
    change email -e e@gmail.c
    user info
+   menu enter Main Menu
+   user logout
+   menu enter Login Menu
+   login -u setayesh -p Setayesh:123 -stay-logged-in
+   menu enter Game Menu
+   game new -u parnia sogol takhafan
+   game new -u parnia sogol TAkhafan
+   show current menu
+   game map 1
+   game map 0
+   game map 2
+   game map 2
+   game map 4
+   game map 3
+   time
+   date
+   datetime
+   day of the week
+   cheat advance time 1h
+   cheat advance date 1d
+   season
+   weather
+   weather forecast
+   cheat weather set Rainy
+   greenhouse build
+   print map -l 0, 0 -s 202
+   print map -l 0, 0 -s 70
