@@ -1,11 +1,12 @@
-package org.example.models;
+package org.example.models.ToolsPackage;
 
+import org.example.models.*;
 import org.example.models.FarmPackage.Farm;
 import org.example.models.enums.CropEnum;
 import org.example.models.enums.ForagingCrop;
 import org.example.models.enums.FruitEnum;
 
-public class Seythe extends Tool{
+public class Seythe extends Tool {
     public Seythe(String name, int price) {
         super(name, price);
     }

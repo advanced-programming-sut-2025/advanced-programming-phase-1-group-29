@@ -1,6 +1,10 @@
-package org.example.models;
+package org.example.models.ToolsPackage;
 
-public abstract class Tool extends InventoryItem{
+import org.example.models.App;
+import org.example.models.InventoryItem;
+import org.example.models.Result;
+
+public abstract class Tool extends InventoryItem {
     public Tool(String name, int price) {
         super(name, price);
     }

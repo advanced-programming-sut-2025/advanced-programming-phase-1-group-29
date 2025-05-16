@@ -32,7 +32,7 @@ public enum FoodRecipe {
 
     public static FoodRecipe getRecipeByName(String recipeName) {
         for (FoodRecipe recipe : FoodRecipe.values()) {
-            if(recipe.name.equals(recipeName)){
+            if(recipe.toString().equals(recipeName)){
                 return recipe;
             }
         }

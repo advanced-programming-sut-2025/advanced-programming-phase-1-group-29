@@ -1,5 +1,6 @@
-package org.example.models;
+package org.example.models.ToolsPackage;
 
+import org.example.models.*;
 import org.example.models.FarmPackage.Farm;
 import org.example.models.FarmPackage.Lake;
 import org.example.models.enums.ToolType;
