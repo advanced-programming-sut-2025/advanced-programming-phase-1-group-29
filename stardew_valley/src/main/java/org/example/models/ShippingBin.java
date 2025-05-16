@@ -2,7 +2,7 @@ package org.example.models;
 
 import java.util.ArrayList;
 
-public class SalesBucket extends Objectt{
+public class ShippingBin extends Objectt{
     private final ArrayList<InventoryItem> items = new ArrayList<>();
 
     public ArrayList<InventoryItem> getItems() {
