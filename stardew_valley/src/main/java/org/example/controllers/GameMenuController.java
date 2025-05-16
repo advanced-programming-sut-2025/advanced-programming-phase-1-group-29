@@ -1472,12 +1472,14 @@ public class GameMenuController extends Controller{
         for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
             for (Objectt object : farm.getObjects()) {
                 if (object instanceof Plant plant) {
-                    farm.getObjects().remove(plant);
-                    if (plant instanceof FruitTree) {
-                        BurnedTree burnedTree = new BurnedTree();
-                        burnedTree.setTiles(plant.getTiles());
-                        burnedTree.getTiles().getFirst().setDisplay('b');
-                        farm.getObjects().add(new BurnedTree());
+                    if (plant.getTiles().getFirst().getX() == x && plant.getTiles().getFirst().getY() == y) {
+                        farm.getObjects().remove(plant);
+                        if (plant instanceof FruitTree) {
+                            BurnedTree burnedTree = new BurnedTree();
+                            burnedTree.setTiles(plant.getTiles());
+                            burnedTree.getTiles().getFirst().setDisplay('b');
+                            farm.getObjects().add(new BurnedTree());
+                        }
                         return new Result(true, "Done!");
                     }
                 }
@@ -1585,8 +1587,49 @@ public class GameMenuController extends Controller{
     }
 
     public Result sell(String name, String count) {
-        int amount = Integer.parseInt(count);
-        //TODO
-        return null;
+        Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        ArrayList<String> directions = new ArrayList<>(List.of("u","l","r","l","ur","ul","dr","dl"));
+        ShippingBin bin = null;
+        for (String direction : directions) {
+            ArrayList<Integer> directionConst = getDirection(direction);
+            int x = player.getX() + directionConst.get(0);
+            int y = player.getY() + directionConst.get(1);
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof ShippingBin) {
+                    if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
+                        bin = (ShippingBin) object;
+                        break;
+                    }
+                }
+            }
+            if (bin != null) break;
+        }
+        if (bin == null) return new Result(false, "No shipping bins near you.");
+        int sum = 0;
+        for (InventoryItem inventoryItem : player.getInventory().getInventoryItems().keySet()) {
+            if (inventoryItem.getName().equalsIgnoreCase(name.replaceAll("\\s+", ""))) {
+                sum += player.getInventory().getInventoryItems().get(inventoryItem);
+            }
+        }
+        if (sum == 0) return new Result(false, "You don't have this item i your inventory");
+        int amount;
+        if (count == null || count.isEmpty()) {
+            amount = sum;
+        }
+        else {
+            amount = Integer.parseInt(count);
+        }
+        if (amount > sum) return new Result(false, "Not enough items in your inventory.");
+        for (int i = 0; i < amount; i++) {
+            for (InventoryItem inventoryItem : player.getInventory().getInventoryItems().keySet()) {
+                if (inventoryItem.getName().equalsIgnoreCase(name.replaceAll("\\s+", ""))) {
+                    bin.addItem(inventoryItem);
+                    player.getInventory().getInventoryItems().remove(inventoryItem);
+                    break;
+                }
+            }
+        }
+        return new Result(true, "You put items in the shipping bin successfully.");
     }
 }

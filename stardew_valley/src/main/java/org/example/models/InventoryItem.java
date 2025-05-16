@@ -3,7 +3,7 @@ package org.example.models;
 public class InventoryItem {
     protected String name;
     protected int price;
-    protected double quality = 1;
+    protected double quality = 0;
 
     public InventoryItem(String name, int price) {
         this.name = name;
