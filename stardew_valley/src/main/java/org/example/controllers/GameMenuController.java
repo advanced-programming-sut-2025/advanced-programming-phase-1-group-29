@@ -1321,4 +1321,10 @@ public class GameMenuController extends Controller{
         }
         return new Result(false, "You must be in Black Smith Store");
     }
+
+    public Result sell(String name, String count) {
+        int amount = Integer.parseInt(count);
+        //TODO
+        return null;
+    }
 }
