@@ -5,10 +5,7 @@ import org.example.models.*;
 import org.example.models.AnimalHouse;
 import org.example.models.Map;
 import org.example.models.Objectt;
-import org.example.models.VillagePackage.BlackSmithStore;
-import org.example.models.VillagePackage.CarpentersShop;
-import org.example.models.VillagePackage.NPCHouse;
-import org.example.models.VillagePackage.Store;
+import org.example.models.VillagePackage.*;
 import org.example.models.enums.*;
 
 import java.util.*;
@@ -273,12 +270,25 @@ public class GameMenuController extends Controller{
             player.setEnergy(0);
             return new Result(true, "You are unconscious!");
         }
+        Village village = App.getCurrentGame().getMap().getVillage();
+        for (Objectt objectt : village.getObjects()) {
+            if (objectt instanceof Store){
+                boolean check = false;
+                for (Tile tile : objectt.getTiles()) {
+                    if (tile.getX() == x2 && tile.getY() == y2) {
+                        check = true;
+                    }
+                }
+                if (check) {
+                    if (!((Store) objectt).isOpen()){
+                        return new Result(true, "The store is closed and you can't enter it now");
+                    }
+                }
+            }
+        }
         player.reduceEnergy(energyNeeded);
         player.setX(x2);
         player.setY(y2);
-        //TODO
-        // check if the store is open before entering it (each instance of Store has a isOpen() function that returns a boolean
-        // check not to be in the same place an npc is
         StringBuilder result = new StringBuilder();
         result.append("You are at " + x2 + ", " + y2 + ".");
         // in tike check mikone age vase avalin bar varede ye store shode bashe mige welcome
@@ -341,7 +351,7 @@ public class GameMenuController extends Controller{
         }
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                char tileChar = mapToPrint[x + i][y + j];
+                char tileChar = mapToPrint[y + j][x + i];
                 String color = getColorForTile(tileChar);
                 System.out.print(color + tileChar + AnsiColor.RESET + " ");
             }
