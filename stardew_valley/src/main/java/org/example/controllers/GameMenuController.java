@@ -906,27 +906,46 @@ public class GameMenuController extends Controller{
         return new Result(true, "You build " + buildingName);
     }
 
+    public Animal getAnimal(String name) {
+        Farm farm = App.getCurrentGame().getCurrentFarm();
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof AnimalHouse animalHouse) {
+                for (Animal candidate : animalHouse.getAnimals()) {
+                    if (candidate.getName().equalsIgnoreCase(name)) {
+                        return candidate;
+                    }
+                }
+            }
+        }
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof Animal animal) {
+                if (animal.getName().equalsIgnoreCase(name)) {
+                    return animal;
+                }
+            }
+        }
+        return null;
+    }
+
     public Result pet (String name){
         Player player = App.getCurrentGame().getCurrentPlayer();
-        //TODO
-        Animal animal = null;
+        Animal animal = getAnimal(name);
         if(animal == null){
             return new Result(false, "You don't have this animal.");
         }
-        //TODO
-//        if(!close){
-//            return new Result(false, "You can't pet this animal.");
-//        }
+        int animalX = animal.getTiles().get(0).getX();
+        int animalY = animal.getTiles().get(0).getY();
+        if(!(Math.abs(player.getX() - animalX) <= 1 && Math.abs(player.getY() - animalY) <= 1)){
+            return new Result(false, "You can't pet this animal. You are not close enough.");
+        }
         animal.addFriendshipPoint(15);
         animal.setIsPetted(true);
         return new Result(true, "");
     }
 
     public Result cheatSetFriendship(String animalName, String amountString) {
-        Player player = App.getCurrentGame().getCurrentPlayer();
         int amount = Integer.parseInt(amountString);
-        //TODO
-        Animal animal = null;
+        Animal animal = getAnimal(animalName);
         if(animal == null){
             return new Result(false, "You don't have this animal.");
         }
@@ -935,46 +954,65 @@ public class GameMenuController extends Controller{
     }
 
     public Result animals (){
-        Player player = App.getCurrentGame().getCurrentPlayer();
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         StringJoiner stringJoiner = new StringJoiner("\n");
-        //TODO
-//        for (Animal animal){
-//            stringJoiner.add("Animal: " + animal.getName());
-//            stringJoiner.add("   FriendshipPoint: " + animal.getFriendshipPoint());
-//            stringJoiner.add("   IsFed? " + (animal.isFed() ? "Yes" : "No"));
-//            stringJoiner.add("   IsPetted? " + (animal.isPetted() ? "Yes" : "No");
-//        }
-
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof AnimalHouse animalHouse) {
+                for (Animal animal : animalHouse.getAnimals()) {
+                    stringJoiner.add("Animal: " + animal.getName());
+                    stringJoiner.add("   FriendshipPoint: " + animal.getFriendshipPoint());
+                    stringJoiner.add("   IsFed? " + (animal.isFed() ? "Yes" : "No"));
+                    stringJoiner.add("   IsPetted? " + (animal.isPetted() ? "Yes" : "No"));
+                }
+            }
+        }
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof Animal animal) {
+                stringJoiner.add("Animal: " + animal.getName());
+                stringJoiner.add("   FriendshipPoint: " + animal.getFriendshipPoint());
+                stringJoiner.add("   IsFed? " + (animal.isFed() ? "Yes" : "No"));
+                stringJoiner.add("   IsPetted? " + (animal.isPetted() ? "Yes" : "No"));
+            }
+        }
         return new Result(true, stringJoiner.toString());
     }
 
     public Result shepherdAnimals(String animalName, String xString, String yString) {
         Player player = App.getCurrentGame().getCurrentPlayer();
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         Game game = App.getCurrentGame();
-        //TODO
-        Animal animal = null;
+        Animal animal = getAnimal(animalName);
         if(animal == null){
             return new Result(false, "You don't have this animal.");
         }
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
-        //TODO
-//        if(invalid destination){
-//            return new Result(false, "Invalid destination");
-//        }
-        //TODO
-//        if(movingOut && (game.getWeather() == Weather.SNOWY || game.getWeather() == Weather.RAINY || game.getWeather() == Weather.STORMY)){
-//            return new Result(false, "You can't take the animals out in this weather.");
-//        }
+        if(isOccupied(x, y) || !(farm.getXStart() <= x && x <= farm.getXStart() + Farm.getXRange() && farm.getYStart() <= y && y <= farm.getYStart() + Farm.getYRange())){
+            return new Result(false, "Invalid destination");
+        }
+        AnimalHouse animalHouse = null;
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof AnimalHouse candidate) {
+                for (Tile tile : candidate.getTiles()) {
+                    if (tile.getX() == x && tile.getY() == y) {
+                        animalHouse = candidate;
+                    }
+                }
+            }
+        }
+        if(animalHouse == null){
+            if((game.getWeather() == Weather.SNOWY || game.getWeather() == Weather.RAINY || game.getWeather() == Weather.STORMY)) {
+                return new Result(false, "You can't take the animals out in this weather.");
+            }
+
+        }
         //TODO
         // change animal's location
         return new Result(true, "");
     }
 
     public Result feedHay (String animalName){
-        Player player = App.getCurrentGame().getCurrentPlayer();
-        //TODO
-        Animal animal = null;
+        Animal animal = getAnimal(animalName);
         if(animal == null){
             return new Result(false, "You don't have this animal.");
         }
@@ -983,23 +1021,34 @@ public class GameMenuController extends Controller{
     }
 
     public Result produces(){
-        Player player = App.getCurrentGame().getCurrentPlayer();
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         StringJoiner stringJoiner = new StringJoiner("\n");
-        //TODO
-//        for (Animal animal){
-//            if(animal.getProducts().isEmpty()) continue;
-//            stringJoiner.add(animal.getName() + ":");
-//            for (InventoryItem product : animal.getProducts()) {
-//                stringJoiner.add("    " + product.getName() + " " + product.getQuality());
-//            }
-//        }
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof AnimalHouse animalHouse) {
+                for (Animal animal : animalHouse.getAnimals()) {
+                    if (animal.getProducts().isEmpty()) continue;
+                    stringJoiner.add(animal.getName() + ":");
+                    for (InventoryItem product : animal.getProducts()) {
+                        stringJoiner.add("    " + product.getName() + " " + product.getQuality());
+                    }
+                }
+            }
+        }
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof Animal animal) {
+                if (animal.getProducts().isEmpty()) continue;
+                stringJoiner.add(animal.getName() + ":");
+                for (InventoryItem product : animal.getProducts()) {
+                    stringJoiner.add("    " + product.getName() + " " + product.getQuality());
+                }
+            }
+        }
         return new Result(true, stringJoiner.toString());
     }
 
     public Result collectProduce(String animalName){
         Player player = App.getCurrentGame().getCurrentPlayer();
-        //TODO
-        Animal animal = null;
+        Animal animal = getAnimal(animalName);
         if(animal == null){
             return new Result(false, "You don't have this animal.");
         }
@@ -1014,15 +1063,29 @@ public class GameMenuController extends Controller{
 
     public Result sellAnimal(String animalName){
         Player player = App.getCurrentGame().getCurrentPlayer();
-        //TODO
-        Animal animal = null;
+        Farm farm = App.getCurrentGame().getCurrentFarm();
+        Animal animal = getAnimal(animalName);
         if(animal == null){
             return new Result(false, "You don't have this animal.");
         }
         int price = (int)(animal.getAnimalType().getPrice() * (((double) animal.getFriendshipPoint() / 1000) + 0.3));
         player.addCoins(price);
-        //TODO
-        // removeAnimal
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof AnimalHouse animalHouse) {
+                for (Animal candidate : animalHouse.getAnimals()) {
+                    if(candidate == animal){
+                        animalHouse.getAnimals().remove(candidate);
+                    }
+                }
+            }
+        }
+        for (Objectt objectt : farm.getObjects()) {
+            if (objectt instanceof Animal candidate) {
+                if(candidate == animal){
+                    farm.getObjects().remove(candidate);
+                }
+            }
+        }
         return new Result(true, animal.getName() + "is sold.");
     }
     
