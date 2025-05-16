@@ -12,6 +12,11 @@ public class Game {
     private Map map;
     private Weather weather = Weather.RAINY;
     private Weather cheatWeather = null;
+    private TradeMenu tradeMenu = new TradeMenu();
+
+    public TradeMenu getTradeMenu() {
+        return tradeMenu;
+    }
 
     public Player getMainPlayer() {
         return mainPlayer;
