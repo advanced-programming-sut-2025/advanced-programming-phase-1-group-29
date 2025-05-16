@@ -403,11 +403,11 @@ public class GameMenuController extends Controller{
             case '^':
                 return AnsiColor.WHITE;
 
-            //Items
+            // Items
             case '-' :
                 return AnsiColor.CYAN;
 
-
+            // Players
             case '1':
             case '2':
             case '3':

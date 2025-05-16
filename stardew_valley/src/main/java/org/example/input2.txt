@@ -83,3 +83,9 @@
    datetime
    energy set -v 0
    walk -l 100, 100
+   next turn
+   energy unlimited
+   walk -l 100, 100
+   print map -l 0, 0 -s 200
+   inventory show
+    walk -l 100, 100
