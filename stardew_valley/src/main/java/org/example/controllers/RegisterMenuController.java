@@ -185,7 +185,7 @@ public class RegisterMenuController extends Controller{
         if (!registrationModel.getRegisterState().equals(RegisterState.REGISTERED_INFO_VALID))
             return new Result(false, "Invalid command");
         int questionNumber = Integer.parseInt(questionNumberInString);
-        if (questionNumber > App.getSecurityQuestions().size())
+        if (questionNumber > App.getSecurityQuestions().size() || questionNumber <= 0)
             return new Result(false, "Invalid Question Number.\n" + printSecurityQuestions());
         if (!answer.equals(answerConfirm))
             return new Result(
