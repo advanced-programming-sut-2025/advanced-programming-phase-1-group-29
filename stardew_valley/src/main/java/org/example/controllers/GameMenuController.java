@@ -11,7 +11,7 @@ import org.example.models.enums.*;
 
 import java.util.*;
 
-import static java.lang.Math.abs;
+import static java.lang.Math.*;
 
 public class GameMenuController extends Controller{
 
@@ -191,13 +191,33 @@ public class GameMenuController extends Controller{
         int[] dx = {0, 0, 1, -1};
         int[] dy = {1, -1, 0, 0};
         boolean[][] walkable = new boolean[Map.getXRange()][Map.getYRange()];
-        //TODO
-        // fill walkable
         int[][] distance = new int[Map.getXRange()][Map.getYRange()];
         for (int i = 0; i < Map.getXRange(); i++) {
             for (int j = 0; j < Map.getYRange(); j++) {
                 walkable[i][j] = true;
                 distance[i][j] = -1;
+            }
+        }
+        for (Objectt objectt : App.getCurrentGame().getMap().getObjects()) {
+            for (Tile tile : objectt.getTiles()) {
+                walkable[tile.getX()][tile.getY()] = false;
+            }
+        }
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i ++) {
+            if(i == App.getCurrentGame().getTurn() || player.getMarried(i)){
+                for (Objectt objectt : App.getCurrentGame().getMap().getFarms().get(i).getObjects()) {
+                    for (Tile tile : objectt.getTiles()) {
+                        walkable[tile.getX()][tile.getY()] = false;
+                    }
+                }
+                continue;
+            }
+            for (int xx = 0; xx < Farm.getXRange(); xx ++){
+                for (int yy = 0; yy < Farm.getYRange(); yy ++){
+                    int x = App.getCurrentGame().getMap().getFarms().get(i).getXStart() + xx;
+                    int y = App.getCurrentGame().getMap().getFarms().get(i).getYStart() + yy;
+                    walkable[x][y] = false;
+                }
             }
         }
         distance[x1][y1] = 0;
@@ -446,9 +466,46 @@ public class GameMenuController extends Controller{
         return new Result(true, "");
     }
 
+    public Boolean isOccupied(int x, int y){
+        for (Objectt object : App.getCurrentGame().getMap().getObjects()) {
+            for (Tile tile : object.getTiles()) {
+                if(tile.getX() == x && tile.getY() == y){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public Result placeItem(String itemName, String direction) {
+        ArrayList<Integer> directionConst = getDirection(direction);
+        if(directionConst == null){
+            return new Result(false, "Invalid direction");
+        }
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        int x = player.getX() + directionConst.get(0);
+        int y = player.getY() + directionConst.get(1);
+        if(isOccupied(x, y)){
+            return new Result(false, "You can't place an item in this direction");
+        }
+        InventoryItem inventoryItem = player.getInventory().findInventoryItem(itemName);
+        if(inventoryItem == null){
+            return new Result(false, "You don't have this item");
+        }
+        Item item = new Item(itemName);
+        item.setTiles(new ArrayList<>());
+        item.getTiles().add(new Tile('i', x, y));
+        App.getCurrentGame().getCurrentFarm().getObjects().add(item);
+        player.getInventory().removeInventoryItem(inventoryItem.getName(), 1);
+        return new Result(true, "");
+    }
+
     public Result cheatAddItem(String itemName, String countString) {
         Player player = App.getCurrentGame().getCurrentPlayer();
         int count = Integer.parseInt(countString);
+        if(count == 0){
+            return new Result(false, "zero ? are you ok?");
+        }
         if(!inCottage()){
             return new Result(false, "You are not in your cottage");
         }
@@ -456,7 +513,7 @@ public class GameMenuController extends Controller{
         if(craftingItem == null){
             return new Result(false, "Invalid crafting item name");
         }
-        if(player.getInventory().getCapacity() == 0){
+        if(player.getInventory().getCapacity() < count){
             return new Result(false, "Your inventory is full");
         }
         App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), count, 0);
@@ -513,6 +570,9 @@ public class GameMenuController extends Controller{
                 return new Result(false, "You don't have this item in your refrigerator");
             }
             InventoryItem inventoryItem = refrigerator.findItem(item);
+            if(inventory.getCapacity() < refrigerator.getQuantity(item)){
+                return new Result(false, "There is not enough space in inventory");
+            }
             inventory.addInventoryItem(item, refrigerator.getQuantity(item), inventoryItem.getPrice());
             refrigerator.removeItem(item, refrigerator.getQuantity(item));
         }
@@ -979,7 +1039,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "Incorrect username");
         }
         StringBuilder result = new StringBuilder();
-        result.append("recieved gifts: \n");
+        result.append("received gifts: \n");
         ArrayList<String> items = player.getGiftItems();
         ArrayList<Integer> giftNumbers = player.getGiftNumbers();
         ArrayList<Integer> giftPlayersIndex = player.getGiftPlayersIndex();
