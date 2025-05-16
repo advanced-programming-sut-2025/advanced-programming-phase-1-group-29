@@ -195,13 +195,28 @@ public class PreGameMenuController extends Controller{
         farm3.setYStart(150);
         farm4.setXStart(150);
         farm4.setYStart(150);
-        for (Farm farm : map.getFarms()) {
+        ArrayList<Farm> farms = new ArrayList<>(List.of(farm1, farm2, farm3, farm4));
+        map.setCreatedFarms(farms);
+        for (Farm farm : map.getCreatedFarms()) {
             for (Tile tile : farm.getTiles()) {
                 tile.setX(tile.getX() + farm.getXStart());
                 tile.setY(tile.getY() + farm.getYStart());
             }
+            for (Objectt object : farm.getObjects()) {
+                for (Tile tile : object.getTiles()) {
+                    tile.setX(tile.getX() + farm.getXStart());
+                    tile.setY(tile.getY() + farm.getYStart());
+                }
+            }
         }
-        ArrayList<Farm> farms = new ArrayList<>(List.of(farm1, farm2, farm3, farm4));
+        App.getCurrentGame().getPlayers().get(0).setX(tilesCottage1.get(5).getX());
+        App.getCurrentGame().getPlayers().get(0).setY(tilesCottage1.get(5).getY());
+        App.getCurrentGame().getPlayers().get(1).setX(tilesCottage2.get(4).getX());
+        App.getCurrentGame().getPlayers().get(1).setY(tilesCottage2.get(4).getY());
+        App.getCurrentGame().getPlayers().get(2).setX(tilesCottage3.get(3).getX());
+        App.getCurrentGame().getPlayers().get(2).setY(tilesCottage3.get(3).getY());
+        App.getCurrentGame().getPlayers().get(3).setX(tilesCottage4.get(2).getX());
+        App.getCurrentGame().getPlayers().get(3).setY(tilesCottage4.get(2).getY());
         for (Farm farm : farms) {
             boolean flag = false;
             while (!flag) {
@@ -225,7 +240,6 @@ public class PreGameMenuController extends Controller{
                 }
             }
         }
-        map.setCreatedFarms(farms);
     }
 
     public Result loadGame() {

@@ -63,4 +63,7 @@
    cheat weather set Rainy
    greenhouse build
    print map -l 0, 0 -s 202
-   print map -l 0, 0 -s 70
+   print map -l 0, 0 -s 200
+   help reading map
+   walk -l 50, 50
+   print map -l 0, 0 -s 200

@@ -257,7 +257,7 @@ public class GameMenuController extends Controller{
                 if(xx < 0 || xx >= Map.getXRange() || yy < 0 || yy >= Map.getYRange()) {
                     continue;
                 }
-                if(walkable[xx][yy] && (distance[xx][yy] == -1 || distance[xx][yy] < distance[x][y] + 1)) {
+                if(walkable[xx][yy] && (distance[xx][yy] == -1 || distance[xx][yy] > distance[x][y] + 1)) {
                     distance[xx][yy] = distance[x][y] + 1;
                     queue.add(xx * Map.getYRange() + yy);
                 }
@@ -307,7 +307,7 @@ public class GameMenuController extends Controller{
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
         int size = Integer.parseInt(sizeString);
-        if (x < 0 || y < 0 || x + size >= Map.getXRange() || y + size >= Map.getYRange()) {
+        if (x < 0 || y < 0 || x + size > Map.getXRange() || y + size > Map.getYRange()) {
             System.out.println("Invalid Size");
             return;
         }
@@ -333,6 +333,11 @@ public class GameMenuController extends Controller{
             if (objectt instanceof NPCHouse){
                 mapToPrint[((NPCHouse) objectt).getNPCPlaceX()][((NPCHouse) objectt).getNPCPlaceY()] = '*';
             }
+        }
+        int playerCnt = 1;
+        for (Player player : App.getCurrentGame().getPlayers()) {
+            mapToPrint[player.getX()][player.getY()] = (char)('0' + playerCnt);
+            playerCnt ++;
         }
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -375,6 +380,22 @@ public class GameMenuController extends Controller{
             case 'S': // Stardrop Saloon
             case 'b': // Blacksmith (also used for Burned Tree — consider separating in logic)
                 return AnsiColor.CYAN;
+
+            // Animals
+            case '#':
+            case '^':
+                return AnsiColor.WHITE;
+
+            //Items
+            case '-' :
+                return AnsiColor.CYAN;
+
+
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+                return AnsiColor.RED;
 
             default:
                 return AnsiColor.BLACK; // Unknown or empty
@@ -463,6 +484,10 @@ public class GameMenuController extends Controller{
 
         result.append("\n👤 NPC:\n");
         result.append("  NPC Character: *\n");
+
+        result.append("\n\uD83E\uDD99 Animals:\n");
+        result.append("  Animal House: #\n");
+        result.append("  Animal: ^\n");
 
         return new Result(true, result.toString());
     }
@@ -595,7 +620,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "You don't have this item");
         }
         Item item = new Item(itemName);
-        item.getTiles().add(new Tile('i', x, y));
+        item.getTiles().add(new Tile('-', x, y));
         App.getCurrentGame().getCurrentFarm().getObjects().add(item);
         player.getInventory().removeInventoryItem(inventoryItem.getName(), 1);
         return new Result(true, "");
@@ -901,7 +926,7 @@ public class GameMenuController extends Controller{
         AnimalHouse animalHouse = new AnimalHouse(animalHouseEnum);
         for (int i = 0; i < animalHouseEnum.getXRange(); i ++){
             for (int j = 0; j < animalHouseEnum.getYRange(); j++){
-                animalHouse.getTiles().add(new Tile('-', i, j));
+                animalHouse.getTiles().add(new Tile('#', i, j));
             }
         }
         Farm farm = App.getCurrentGame().getCurrentFarm();
