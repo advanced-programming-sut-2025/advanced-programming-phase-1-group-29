@@ -129,14 +129,28 @@ public class DateTime {
     }
 
     private void animalSettings() {
-        //Todo
-//        for (Animal animal : animals){
-//            if(animal.isFed()) {
-//                animal.addProduct();
-//            }
-//            animal.setIsFed(false);
-//            animal.setIsPetted(false);
-//        }
+        ArrayList<Animal> animals = new ArrayList<>();
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()){
+            for (Objectt object : farm.getObjects()) {
+                if (object instanceof Animal animal){
+                    animals.add(animal);
+                }
+            }
+            for (Objectt objectt : farm.getObjects()) {
+                if (objectt instanceof AnimalHouse animalHouse){
+                    for (Animal animal : animalHouse.getAnimals()) {
+                        animals.add(animal);
+                    }
+                }
+            }
+        }
+        for (Animal animal : animals){
+            if(animal.isFed()) {
+                animal.addProduct();
+            }
+            animal.setIsFed(false);
+            animal.setIsPetted(false);
+        }
     }
 
     private void resetAttackByCrows() {

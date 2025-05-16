@@ -982,7 +982,6 @@ public class GameMenuController extends Controller{
     }
 
     public Result shepherdAnimals(String animalName, String xString, String yString) {
-        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getCurrentFarm();
         Game game = App.getCurrentGame();
         Animal animal = getAnimal(animalName);
@@ -999,10 +998,12 @@ public class GameMenuController extends Controller{
             farm.getObjects().remove(animal);
             for (Objectt objectt : farm.getObjects()) {
                 if (objectt instanceof AnimalHouse animalHouse) {
-                    for (Tile tile : animalHouse.getTiles()) {
-                        if(tile.getX() == x && tile.getY() == y){
-                            animalHouse.getAnimals().add(animal);
+                    if(animalHouse.hasTile(x,y)){
+                        if(animalHouse.getAnimals().size() == animalHouse.getAnimalHouseEnum().getCapacity()){
+                            return new Result(false, "This place is full");
                         }
+                        animalHouse.getAnimals().add(animal);
+                        break;
                     }
                 }
             }
