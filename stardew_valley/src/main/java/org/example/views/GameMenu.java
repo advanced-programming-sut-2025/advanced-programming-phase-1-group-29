@@ -3,6 +3,7 @@ package org.example.views;
 import org.example.controllers.*;
 import org.example.models.Result;
 import org.example.models.enums.GameMenuCommands;
+import org.example.models.enums.MainMenuCommands;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -24,6 +25,9 @@ public class GameMenu implements AppMenu{
         }
         else if (GameMenuCommands.MenuEnter.getMatcher(input) != null) {
             System.out.println(controller.menuEnter());
+        }
+        else if (MainMenuCommands.ShowCurrentMenu.getMatcher(input) != null) {
+            System.out.println(controller.showCurrentMenu());
         }
         else if (GameMenuCommands.ExitGame.getMatcher(input) != null) {
             System.out.println(controller.exitGame());

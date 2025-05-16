@@ -21,12 +21,12 @@ public class ProfileMenuController extends Controller{
             return new Result(false, "The new username must be different from the current username.");
         }
         App.getLoggedInUser().setUsername(username);
-        return new Result(true, "");
+        return new Result(true, "username has been changed.");
     }
 
     public Result changeNickname(String nickname) {
         App.getLoggedInUser().setNickname(nickname);
-        return new Result(true, "");
+        return new Result(true, "nickname has been changed.");
     }
 
     public Result changeEmail(String email) {
@@ -34,7 +34,7 @@ public class ProfileMenuController extends Controller{
             return new Result(false, "Invalid Email Format");
         }
         App.getLoggedInUser().setEmail(email);
-        return new Result(true, "");
+        return new Result(true, "email has been changed.");
     }
 
     public Result changePassword(String oldPassword, String newPassword) {
@@ -51,15 +51,15 @@ public class ProfileMenuController extends Controller{
             return new Result(false, "The password is too weak");
         }
         App.getLoggedInUser().setPassword(newPassword);
-        return new Result(true, "");
+        return new Result(true, "password has been changed.");
     }
 
     public Result userInfo(){
         StringJoiner joiner = new StringJoiner("\n");
         joiner.add("Username: " + App.getLoggedInUser().getUsername());
         joiner.add("Nickname: " + App.getLoggedInUser().getNickname());
-        joiner.add("Best Score: ");
-        joiner.add("Games Played: ");
+        joiner.add("Best Score: " + App.getLoggedInUser().getMaxCoins());
+        joiner.add("Games Played: " + App.getLoggedInUser().getNumberOfGames());
         return new Result(true, joiner.toString());
     }
 

@@ -46,6 +46,8 @@ public class LoginMenuController extends Controller{
         if (RegisterMenuCommands.Password.getMatcher(password) == null){
             return new Result(false, "Wrong password format; try again");
         }
+        if (RegisterMenuCommands.StrongPassword.getMatcher(password) == null || password.length() < 8)
+            return new Result(false, "The password is too weak");
         forgetPasswordUser.setPassword(password);
         return new Result(true, "Password changed successfully");
     }

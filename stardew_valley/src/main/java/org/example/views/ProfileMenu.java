@@ -2,6 +2,7 @@ package org.example.views;
 
 import org.example.controllers.Controller;
 import org.example.controllers.ProfileMenuController;
+import org.example.models.enums.MainMenuCommands;
 import org.example.models.enums.ProfileMenuCommands;
 
 import java.util.Collection;
@@ -16,6 +17,9 @@ public class ProfileMenu implements AppMenu{
         Matcher matcher;
         if (ProfileMenuCommands.MenuEnter.getMatcher(input) != null) {
             System.out.println(controller.menuEnter());
+        }
+        else if (MainMenuCommands.ShowCurrentMenu.getMatcher(input) != null) {
+            System.out.println(controller.showCurrentMenu());
         }
         else if ((matcher = ProfileMenuCommands.ChangeUsername.getMatcher(input)) != null) {
             System.out.println(controller.changeUsername(matcher.group("username").trim()));

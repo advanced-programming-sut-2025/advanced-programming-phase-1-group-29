@@ -1,6 +1,7 @@
 package org.example.models.enums;
 
 public enum MainMenuCommands implements Command{
+    ShowCurrentMenu("\\s*show\\s+current\\s+menu\\s*"),
     ProfileMenuEnter("\\s*menu\\s+enter\\s+Profile\\s+Menu\\s*"),
     GameMenuEnter("\\s*menu\\s+enter\\s+Game\\s+Menu\\s*"),
     AvatarMenuEnter("\\s*menu\\s+enter\\s+Avatar\\s+Menu\\s*"),
