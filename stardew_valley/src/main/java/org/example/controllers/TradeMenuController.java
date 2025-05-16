@@ -7,6 +7,7 @@ import org.example.models.TradeMenu;
 
 import java.util.ArrayList;
 
+
 public class TradeMenuController extends Controller {
     public Result startTrade() {
         StringBuilder result = new StringBuilder();
@@ -191,6 +192,7 @@ public class TradeMenuController extends Controller {
 
         if (action.equals("--reject")) {
             removeTrade(menu, id);
+            decreseFriendship(receiver, sender);
             return new Result(true, "Trade request rejected.");
         } else if (action.equals("--accept")) {
             if (type.equalsIgnoreCase("offer")) {
@@ -259,6 +261,7 @@ public class TradeMenuController extends Controller {
 
         sender.addToTradeHistory(historyRecord);
         receiver.addToTradeHistory(historyRecord);
+        addFriendship(receiver, sender);
         return new Result(false, "Invalid action. Use --accept or --reject.");
     }
     public Result tradeHistory() {
@@ -289,5 +292,32 @@ public class TradeMenuController extends Controller {
         menu.getTargetItems().remove(id);
         menu.getTargetAmounts().remove(id);
     }
-
+    private void addFriendship(Player sender, Player receiver) {
+        int id1 = -1, id2 = -1;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            Player p = App.getCurrentGame().getPlayers().get(i);
+            if (p.getUser().getUsername().equals(sender.getUser().getUsername())) {
+                id1 = i;
+            }
+            if (p.getUser().getUsername().equals(receiver.getUser().getUsername())) {
+                id2 = i;
+            }
+        }
+        sender.addFriendship(id2, 50);
+        receiver.addFriendship(id1, 50);
+    }
+    private void decreseFriendship(Player sender, Player receiver) {
+        int id1 = -1, id2 = -1;
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            Player p = App.getCurrentGame().getPlayers().get(i);
+            if (p.getUser().getUsername().equals(sender.getUser().getUsername())) {
+                id1 = i;
+            }
+            if (p.getUser().getUsername().equals(receiver.getUser().getUsername())) {
+                id2 = i;
+            }
+        }
+        sender.addFriendship(id2, -30);
+        receiver.addFriendship(id1, -30);
+    }
 }
