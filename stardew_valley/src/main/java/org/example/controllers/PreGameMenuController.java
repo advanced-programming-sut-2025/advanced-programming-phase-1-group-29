@@ -199,4 +199,19 @@ public class PreGameMenuController extends Controller{
         map.setCreatedFarms(farms);
         App.getCurrentGame().setMap(map);
     }
+
+    public Result loadGame() {
+        Game game = App.getLoggedInUser().getCurrentGame();
+        if (game == null)
+            return new Result(false, "You don't have an active game.");
+        App.setCurrentGame(game);
+        App.setCurrentMenu(Menu.GameMenu);
+        for (Player player : game.players) {
+            if (player.getUser().equals(App.getLoggedInUser()))
+                game.setMainPlayer(player);
+        }
+        Map map = App.getCurrentGame().getMap();
+        if (map.getFarms().size() < App.getCurrentGame().players.size()) App.setCurrentMenu(Menu.MapSelectionMenu);
+        return new Result(true, "The game is loaded successfully.");
+    }
 }

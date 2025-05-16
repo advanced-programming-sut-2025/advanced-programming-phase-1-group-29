@@ -12,6 +12,7 @@ public class App {
     private static User loggedInUser = null;
     private static boolean stayLoggedIn = false;
     private static Game currentGame;
+    private static final ArrayList<Game> games = new ArrayList<>();
     private static ArrayList<Map> maps = new ArrayList<>();
     private final static ArrayList<String> securityQuestions = new ArrayList<>(List.of(
             "WHAT IS THE GIVEN NAME OF YOUR MOTHER'S MOTHER?",
@@ -65,5 +66,13 @@ public class App {
 
     public static void setCurrentGame(Game currentGame) {
         App.currentGame = currentGame;
+    }
+
+    public static ArrayList<Game> getGames() {
+        return games;
+    }
+
+    public static void addGame(Game game) {
+        games.add(game);
     }
 }

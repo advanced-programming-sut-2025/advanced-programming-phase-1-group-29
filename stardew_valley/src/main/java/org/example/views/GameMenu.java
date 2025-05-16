@@ -25,9 +25,6 @@ public class GameMenu implements AppMenu{
         else if (GameMenuCommands.MenuEnter.getMatcher(input) != null) {
             System.out.println(controller.menuEnter());
         }
-//        else if(GameMenuCommands.LoadGame.getMatcher(input) != null) {
-//            System.out.println(controller.loadGame());
-//        }
         else if (GameMenuCommands.ExitGame.getMatcher(input) != null) {
             System.out.println(controller.exitGame());
         }
