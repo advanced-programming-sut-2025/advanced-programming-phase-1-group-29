@@ -125,6 +125,18 @@ public class DateTime {
         putForaging();
         putForagingMineral();
         setEnergy();
+        animalSettings();
+    }
+
+    private void animalSettings() {
+        //Todo
+//        for (Animal animal : animals){
+//            if(animal.isFed()) {
+//                animal.addProduct();
+//            }
+//            animal.setIsFed(false);
+//            animal.setIsPetted(false);
+//        }
     }
 
     private void resetAttackByCrows() {
