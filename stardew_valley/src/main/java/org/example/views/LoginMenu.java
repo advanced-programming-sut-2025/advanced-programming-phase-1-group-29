@@ -30,8 +30,14 @@ public class LoginMenu implements AppMenu{
             Result result = controller.answer(matcher.group("answer").trim());
             System.out.println(result);
             if (result.isSuccessful()){
-                input = scanner.nextLine();
-                System.out.println(controller.setPassword(input));
+                input = scanner.nextLine().trim();
+                Result result1 = controller.setPassword(input);
+                while(!result1.isSuccessful()){
+                    System.out.println(result1);
+                    input = scanner.nextLine().trim();
+                    result1 = controller.setPassword(input);
+                }
+                System.out.println(result1);
             }
         }
         else if ((matcher = LoginMenuCommands.MenuExit.getMatcher(input)) != null){

@@ -8,7 +8,21 @@
    pick question -q 1 -a parisa -c parisa
    register -u setayesh -p Setayesh:123 Setayesh:123 -n sety -e setayesh@gmailcom -g female
    pick question -q 0 -a ali -c ali
+   pick question -q 2 -a ali -c alii
+   pick question -q 2 -a ali -c ali
+   khjhg
+   show current menu
    register -u parnia -p Parnia:123 Parnia:123 -n parnia -e parnia@gmail.com -g male
+   pick question -q 3 -a abasabad -c abasabad
    register -u sogol -p Sogol:123 Sogol:123 -n sogol -e sogol@gmail.com -g female
-   register -u TAazizOgerami -p TaTa:123 TaTa:123 -e ta@gmail.com -g male
-   register -u TAkhafan -p Kasra:123 Kasra:123 -e kasra@gmail.com -g female
+   pick question -q 4 -a setayesh -c setayesh
+   register -u TAazizOgerami -p TaTa:123 TaTa:123 -n Ta -e ta@gmail.com -g male
+   pick question -q 3 -a ooo -c ooo
+   register -u TAkhafan -p Kasra:123 Kasra:123 -n kasra -e kasra@gmail.com -g female
+   pick question -q 3 -a ooo -c ooo
+   menu enter Login Menu
+   forget password -u setayesh
+   answer -a alii
+   answer -a ali
+   Setayesh:123
+   login -u setayesh -p Setayesh:123 -stay-logged-in
