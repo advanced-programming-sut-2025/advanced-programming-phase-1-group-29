@@ -18,9 +18,9 @@ public class Shear extends Tool{
         Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         for (Objectt object : farm.getObjects()) {
-            if (object instanceof Barn barn) {
+            if (object instanceof AnimalHouse animalHouse) {
                 if (object.getTiles().getFirst().getX() == x && object.getTiles().getFirst().getY() == y) {
-                    for (Animal animal : barn.getAnimals()) {
+                    for (Animal animal : animalHouse.getAnimals()) {
                         ArrayList<InventoryItem> toBeRemoved = new ArrayList<>();
                         for (int i = 0; i < Math.min(animal.getProducts().size(), player.getInventory().getCapacity()); i++) {
                             if (animal.getProducts().get(i).getName().equalsIgnoreCase("Wool")) {

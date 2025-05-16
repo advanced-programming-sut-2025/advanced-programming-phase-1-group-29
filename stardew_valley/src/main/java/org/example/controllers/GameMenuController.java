@@ -867,6 +867,7 @@ public class GameMenuController extends Controller{
     }
 
     public Result build(String buildingName, String xString, String yString) {
+        Player player = App.getCurrentGame().getCurrentPlayer();
         int x = Integer.parseInt(xString);
         int y = Integer.parseInt(yString);
         if(isOccupied(x, y)) {
@@ -874,12 +875,7 @@ public class GameMenuController extends Controller{
         }
         //todo
         //in proper store check
-        CarpentersShop shop = new CarpentersShop();
-        Result result = shop.purchase(buildingName, 1);
-        if(!result.isSuccessful()) {
-            return result;
-        }
-        //Big TODO
+        InventoryItem inventoryItem = player.getInventory().findInventoryItem(buildingName);
         return new Result(true, "You build " + buildingName + " at " + x + " and " + y);
     }
 
