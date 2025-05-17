@@ -257,7 +257,16 @@
    print map -l 0, 0 -s 200
    trade -u sogol -t offer -i wood -a 1 -p 100
    trade -u TAkhafan -t offer -i wood -a 1 -ti wedding ring -ta 1
-
-
-
-
+   trade -u TAkhafan -t request -i wood -a 1 -p 100
+   trade -u TAkhafan -t request -i wood -a 1 -ti wedding ring -ta 1
+   trade list
+   next turn
+   next turn
+   next turn
+   trade list
+   trade response -accept -i 2
+   trade list
+   trade response -reject -i 3
+   trade response -reject -i 2
+   trade list
+   trade history

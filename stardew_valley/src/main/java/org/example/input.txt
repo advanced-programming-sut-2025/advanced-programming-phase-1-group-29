@@ -1,16 +1,15 @@
-register -u parnia -p Nirvan1236! Nirvan1236! -n parnia -e parnia@gmail.com -g female
-pick question -q 1 -a zahra -c zahra
-register -u parniadabbagh -p Nirvan1236! Nirvan1236! -n parnia -e parnia@gmail.com -g female
-pick question -q 1 -a zahra -c zahra
-register -u setayesh -p Nirvan1236! Nirvan1236! -n parnia -e parnia@gmail.com -g female
-pick question -q 1 -a zahra -c zahra
-register -u sogol -p Nirvan1236! Nirvan1236! -n parnia -e parnia@gmail.com -g female
-pick question -q 1 -a zahra -c zahra
-menu enter Login Menu
-login -u parnia -p Nirvan1236!
-menu enter Game Menu
-game new -u parniadabbagh setayesh sogol
-game map 1
-game map 2
-game map 3
-game map 4
+tools equip hoe
+   tools show current
+   tools show available
+   tools upgrade hoe
+   cheat advance time 5h
+   walk -l 96, 96
+   tools upgrade hoe
+   
+   
+   bar
+   
+   walk -l 16, 16
+   print map -l 0, 0 -s 200
+   tools use -d u
+   print map -l 0, 0 -s 200

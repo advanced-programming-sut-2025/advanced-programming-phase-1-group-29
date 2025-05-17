@@ -100,12 +100,22 @@ public class TradeMenuController extends Controller {
         if (priceString != null && !priceString.isEmpty()) {
             if (!priceString.matches("\\d+")) return new Result(false, "invalid price");
             price = Integer.parseInt(priceString);
+            if (type.equalsIgnoreCase("request")) {
+                if (sender.getCoins() < price) {
+                    return new Result(false, "you don't have enough money.");
+                }
+            }
         }
 
         Integer targetAmount = null;
         if (targetAmountString != null && !targetAmountString.isEmpty()) {
             if (!targetAmountString.matches("\\d+")) return new Result(false, "invalid target amount");
             targetAmount = Integer.parseInt(targetAmountString);
+            if (type.equalsIgnoreCase("request")) {
+                if (sender.getInventory().getNumberOfInventoryItem(targetItem) < targetAmount) {
+                    return new Result(false, "you don't have enough " + targetItem);
+                }
+            }
         }
 
         if (type.equalsIgnoreCase("offer")) {
@@ -137,6 +147,8 @@ public class TradeMenuController extends Controller {
         result.append("Trade Requests:\n");
 
         for (int i = 0; i < menu.getUsernames().size(); i++) {
+            if (!menu.getTargetUsernames().get(i).equals(App.getCurrentGame().getCurrentPlayer().getUser().getUsername()))
+                continue;
             String username = menu.getUsernames().get(i);
             String type = menu.getTypes().get(i);
             String item = menu.getItems().get(i);
@@ -194,11 +206,11 @@ public class TradeMenuController extends Controller {
         String targetItem = menu.getTargetItems().get(id);
         int targetAmount = menu.getTargetAmounts().get(id);
 
-        if (action.equals("--reject")) {
+        if (action.equals("-reject")) {
             removeTrade(menu, id);
             decreseFriendship(receiver, sender);
             return new Result(true, "Trade request rejected.");
-        } else if (action.equals("--accept")) {
+        } else if (action.equals("-accept")) {
             if (type.equalsIgnoreCase("offer")) {
                 if (price > 0) {
                     if (receiver.getCoins() < price)
@@ -255,18 +267,17 @@ public class TradeMenuController extends Controller {
                 sender.getInventory().addInventoryItem(item, amount, 0);
             }
             removeTrade(menu, id);
+            String historyRecord = "Accepted trade: " + sender.getUser().getUsername() +
+                    " ↔ " + receiver.getUser().getUsername() + " | Type: " + type +
+                    " | " + amount + " x " + item +
+                    (price > 0 ? " for " + price + " coins" :
+                            (!targetItem.isEmpty() ? " for " + targetAmount + " x " + targetItem : ""));
+            sender.addToTradeHistory(historyRecord);
+            receiver.addToTradeHistory(historyRecord);
+            addFriendship(receiver, sender);
             return new Result(true, "Trade completed successfully.");
         }
-        String historyRecord = "Accepted trade: " + sender.getUser().getUsername() +
-                " ↔ " + receiver.getUser().getUsername() + " | Type: " + type +
-                " | " + amount + " x " + item +
-                (price > 0 ? " for " + price + " coins" :
-                        (!targetItem.isEmpty() ? " for " + targetAmount + " x " + targetItem : ""));
-
-        sender.addToTradeHistory(historyRecord);
-        receiver.addToTradeHistory(historyRecord);
-        addFriendship(receiver, sender);
-        return new Result(false, "Invalid action. Use --accept or --reject.");
+        return new Result(false, "Invalid command");
     }
     public Result tradeHistory() {
         Player current = App.getCurrentGame().getCurrentPlayer();
