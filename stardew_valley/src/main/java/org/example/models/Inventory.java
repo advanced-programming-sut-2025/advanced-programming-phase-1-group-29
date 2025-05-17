@@ -113,6 +113,7 @@ public class Inventory {
             }
             else {
                 inventoryItems.put(item, inventoryItems.get(item) - amount);
+                amount = 0;
             }
         }
     }

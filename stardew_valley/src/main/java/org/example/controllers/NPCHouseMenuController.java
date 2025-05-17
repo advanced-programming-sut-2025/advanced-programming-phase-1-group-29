@@ -13,10 +13,10 @@ public class NPCHouseMenuController extends Controller {
         Player currentPlayer = App.getCurrentGame().getCurrentPlayer();
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof NPCHouse){
-                if (abs(((NPCHouse) objectt).getNPCPlaceX() - currentPlayer.getX()) + abs(((NPCHouse) objectt).getNPCPlaceY() - currentPlayer.getY()) > 1){
-                    return new Result(false, "You are too far away");
-                }
                 if (((NPCHouse) objectt).getName().equalsIgnoreCase(name)){
+                    if (abs(((NPCHouse) objectt).getNPCPlaceX() - currentPlayer.getX()) + abs(((NPCHouse) objectt).getNPCPlaceY() - currentPlayer.getY()) > 1){
+                        return new Result(false, "You are too far away");
+                    }
                     return ((NPCHouse) objectt).meetNPC();
                 }
             }

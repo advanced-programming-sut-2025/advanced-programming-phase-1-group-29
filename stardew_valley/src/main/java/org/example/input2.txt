@@ -227,3 +227,29 @@
    ask marriage -u setayesh -r wedding ring
    next turn
    respond -reject -u TAkhafan
+   walk -l 76, 86
+   print map -l 0, 0 -s 200
+   meet NPC lia
+   meet NPC sebastian
+   weather
+   gift NPC sebastian -i sugar
+   friendship NPC list
+   gift NPC sebastian -i sugar
+   friendship NPC list
+   gift NPC sebastian -i sugar
+   friendship NPC list
+   gift NPC sebastian -i sugar
+   friendship NPC list
+   quests list
+   walk -l 106, 97
+   print map -l 0, 0 -s 200
+   meet NPC abigail
+   quests list
+   walk -l 76, 106
+   show all available products
+   purchase wood -n 300
+   walk -l 86, 106
+   meet NPC lia
+   quests list
+   quests finish -i 0
+   quests finish -i 1
