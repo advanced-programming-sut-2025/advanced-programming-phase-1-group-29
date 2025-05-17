@@ -158,3 +158,18 @@
    walk -l 106, 76
    show all products
    purchase Sugar -n 10
+   walk -l 105, 113
+   show all products
+   purchase DeluxePack -n 1
+   cheat advance date 1d
+   next turn
+   walk -l 106, 113
+   show all products
+   cheat add 10000000 dollars
+   purchase DeluxePack -n 1
+   cheat advance date 1d
+   next turn
+   walk -l 107, 113
+   show all products
+   cheat add 10000 dollars
+   purchase DeluxePack -n 1

@@ -240,6 +240,9 @@ public class GameMenuController extends Controller{
                 }
             }
         }
+        for (Player player1 : App.getCurrentGame().players) {
+            walkable[player1.getX()][player1.getY()] = false;
+        }
         for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i ++) {
             if(i != App.getCurrentGame().getTurn() && !player.getMarried(i)){
                 for (int xx = 0; xx < Farm.getXRange(); xx ++){

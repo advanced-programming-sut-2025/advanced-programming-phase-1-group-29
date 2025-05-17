@@ -269,7 +269,7 @@ public class Player {
     }
 
     public void addCoins(int amount) {
-        this.coins += amount;
+        this.coins = Math.min(this.coins + amount, 100000000);
     }
 
     public TrashCan getTrashCan() {
