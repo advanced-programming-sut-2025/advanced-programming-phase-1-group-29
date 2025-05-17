@@ -1,6 +1,5 @@
-package org.example.models;
+package org.example.models.ToolsPackage;
 
-import org.example.models.ToolsPackage.Tool;
 import org.example.models.enums.ToolType;
 
 public abstract class UpgradableTool extends Tool {

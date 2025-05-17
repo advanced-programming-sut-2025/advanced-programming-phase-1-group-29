@@ -8,6 +8,7 @@ import org.example.models.FarmPackage.*;
 import org.example.models.Map;
 import org.example.models.Objectt;
 import org.example.models.ToolsPackage.Tool;
+import org.example.models.ToolsPackage.UpgradableTool;
 import org.example.models.ToolsPackage.WateringCan;
 import org.example.models.VillagePackage.*;
 import org.example.models.enums.*;

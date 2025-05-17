@@ -254,3 +254,5 @@
    quests finish -i 0
    quests finish -i 1
    start trade
+   print map -l 0, 0 -s 200
+   trade -u sogol -t offer -i sugar -a 1
