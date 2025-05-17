@@ -294,15 +294,26 @@ public class GameMenu implements AppMenu{
         else if (GameMenuCommands.StartTrade.getMatcher(input) != null) {
             System.out.println(tradeController.startTrade());
         }
-        else if ((matcher = GameMenuCommands.Trade.getMatcher(input)) != null) {
+        else if ((matcher = GameMenuCommands.TradePrice.getMatcher(input)) != null) {
             System.out.println(tradeController.trade(
             matcher.group("username").trim(),
             matcher.group("type").trim(),
             (matcher.group("item").trim()).replaceAll(setayesh, ""),
             matcher.group("amount").trim(),
             matcher.group("price").trim(),
-            (matcher.group("targetItem").trim()).replaceAll(setayesh, ""),
-            matcher.group("targetAmount").trim()));
+            null,
+            null
+            ));
+        }
+        else if ((matcher = GameMenuCommands.TradeItem.getMatcher(input)) != null) {
+            System.out.println(tradeController.trade(
+                    matcher.group("username").trim(),
+                    matcher.group("type").trim(),
+                    (matcher.group("item").trim()).replaceAll(setayesh, ""),
+                    matcher.group("amount").trim(),
+                    null,
+                    (matcher.group("targetItem").trim()).replaceAll(setayesh, ""),
+                    matcher.group("targetAmount").trim()));
         }
         else if (GameMenuCommands.TradeList.getMatcher(input) != null) {
             System.out.println(tradeController.tradeList());
