@@ -30,7 +30,7 @@ public enum FoodRecipe {
         return food;
     }
 
-    public static FoodRecipe getRecipeByName(String recipeName) {
+    public static FoodRecipe getByName(String recipeName) {
         for (FoodRecipe recipe : FoodRecipe.values()) {
             if(recipe.toString().equalsIgnoreCase(recipeName)){
                 return recipe;

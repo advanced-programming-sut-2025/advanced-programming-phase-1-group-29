@@ -608,7 +608,7 @@ public class GameMenuController extends Controller{
         if(!inCottage()){
             return new Result(false, "You are not in your cottage");
         }
-        CraftingItemEnum craftingItem = CraftingItemEnum.getCraftingItemByName(itemName);
+        CraftingItemEnum craftingItem = CraftingItemEnum.getByName(itemName);
         if(craftingItem == null){
             return new Result(false, "Invalid crafting item name");
         }
@@ -674,7 +674,7 @@ public class GameMenuController extends Controller{
         if(!inCottage()){
             return new Result(false, "You are not in your cottage");
         }
-        CraftingItemEnum craftingItem = CraftingItemEnum.getCraftingItemByName(itemName);
+        CraftingItemEnum craftingItem = CraftingItemEnum.getByName(itemName);
         if(craftingItem == null){
             return new Result(false, "Invalid crafting item name");
         }
@@ -764,7 +764,7 @@ public class GameMenuController extends Controller{
         Refrigerator refrigerator = cottage.getRefrigerator();
         Inventory inventory = player.getInventory();
 
-        FoodRecipe recipe = FoodRecipe.getRecipeByName(recipeName);
+        FoodRecipe recipe = FoodRecipe.getByName(recipeName);
 
         if(recipe == null){
             return new Result(false, "This recipe doesn't exist");

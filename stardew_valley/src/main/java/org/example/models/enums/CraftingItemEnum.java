@@ -119,7 +119,7 @@ public enum CraftingItemEnum {
         return ingredients;
     }
 
-    public static CraftingItemEnum getCraftingItemByName(String craftingItemName) {
+    public static CraftingItemEnum getByName(String craftingItemName) {
         for (CraftingItemEnum item : CraftingItemEnum.values()) {
             if (item.toString().equalsIgnoreCase(craftingItemName)) {
                 return item;

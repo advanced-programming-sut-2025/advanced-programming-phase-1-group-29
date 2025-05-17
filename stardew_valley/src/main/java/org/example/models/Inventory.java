@@ -1,9 +1,7 @@
 package org.example.models;
 
 import org.example.models.ToolsPackage.*;
-import org.example.models.enums.InventoryType;
-import org.example.models.enums.CropSeedEnum;
-import org.example.models.enums.TreeSeedEnum;
+import org.example.models.enums.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,6 +77,14 @@ public class Inventory {
         }
         if (item == null) {
             //TODO special types of inventory items
+            if(FoodRecipe.getByName(name) != null) {
+                App.getCurrentGame().getCurrentPlayer().getFoodRecipeList().add(FoodRecipe.getByName(name));
+                return;
+            }
+            if(CraftingItemEnum.getByName(name) != null) {
+                App.getCurrentGame().getCurrentPlayer().getCraftingRecipeList().add(CraftingItemEnum.getByName(name));
+                return;
+            }
             try {
                 CropSeedEnum.valueOf(name.toUpperCase());
                 item = new CropSeed(name, price);
