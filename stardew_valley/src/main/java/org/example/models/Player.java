@@ -9,6 +9,8 @@ import org.example.models.enums.TrashCan;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import static java.lang.System.exit;
+
 public class Player {
     private int energy = 200;
     private int farmingLevel = 0;
@@ -109,6 +111,9 @@ public class Player {
         }
         for (int i = 0; i < 5; i++) {
             ring.add(null);
+        }
+        for (int i = 0; i < 5; i++) {
+            married[i] = false;
         }
         rejected = false;
     }
@@ -261,7 +266,10 @@ public class Player {
             }
         }
         if (ind == -1) return coins;
-        else return coins + App.getCurrentGame().getPlayers().get(ind).getCoins();
+        else return coins + App.getCurrentGame().getPlayers().get(ind).getCoinsWithoutLoop();
+    }
+    public int getCoinsWithoutLoop(){
+        return coins;
     }
 
     public void setCoins(int coins) {
