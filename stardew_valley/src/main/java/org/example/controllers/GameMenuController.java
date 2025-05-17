@@ -206,11 +206,13 @@ public class GameMenuController extends Controller{
         int[] dx = {0, 0, 1, -1};
         int[] dy = {1, -1, 0, 0};
         boolean[][] walkable = new boolean[Map.getXRange()][Map.getYRange()];
+        int[][] parent = new int[Map.getXRange()][Map.getYRange()];
         int[][] distance = new int[Map.getXRange()][Map.getYRange()];
         for (int i = 0; i < Map.getXRange(); i++) {
             for (int j = 0; j < Map.getYRange(); j++) {
                 walkable[i][j] = true;
                 distance[i][j] = -1;
+                parent[i][j] = -1;
             }
         }
         for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
@@ -235,6 +237,15 @@ public class GameMenuController extends Controller{
             for (Objectt objectt : farm.getObjects()) {
                 if (objectt instanceof Plant plant) {
                     for (Tile tile : plant.getTiles()) {
+                        walkable[tile.getX()][tile.getY()] = false;
+                    }
+                }
+            }
+        }
+        for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
+            for (Objectt objectt : farm.getObjects()) {
+                if (objectt instanceof Animal animal) {
+                    for (Tile tile : animal.getTiles()) {
                         walkable[tile.getX()][tile.getY()] = false;
                     }
                 }
@@ -269,6 +280,7 @@ public class GameMenuController extends Controller{
                 }
                 if(walkable[xx][yy] && (distance[xx][yy] == -1 || distance[xx][yy] > distance[x][y] + 1)) {
                     distance[xx][yy] = distance[x][y] + 1;
+                    parent[xx][yy] = top;
                     queue.add(xx * Map.getYRange() + yy);
                 }
             }
@@ -280,8 +292,11 @@ public class GameMenuController extends Controller{
         //TODO
         // ask user
         if(energyNeeded > player.getEnergy()) {
-            player.setEnergy(0);
-            return new Result(true, "You are unconscious!");
+            for (int i = 0; i < energyNeeded - player.getEnergy(); i++) {
+                int dest = parent[x2][y2];
+                x2 = dest / Map.getYRange();
+                y2 = dest % Map.getYRange();
+            }
         }
         Village village = App.getCurrentGame().getMap().getVillage();
         for (Objectt objectt : village.getObjects()) {
