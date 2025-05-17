@@ -6,6 +6,11 @@ import org.example.models.enums.CropEnum;
 import org.example.models.enums.ForagingCrop;
 import org.example.models.enums.FruitEnum;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Random;
+
 public class Seythe extends Tool {
     public Seythe(String name, int price) {
         super(name, price);
@@ -39,7 +44,7 @@ public class Seythe extends Tool {
             farm.decrementNumOfForaging();
         }
         player.getInventory().addInventoryItem(item, 1);
-        //TODO item.setQuality();
+        setQualityByFarmingLevel(item);
         return new Result(true, "The crop is harvested.");
     }
 
@@ -48,11 +53,48 @@ public class Seythe extends Tool {
         FruitEnum fruit = tree.getTree().getFruit();
         InventoryItem item = new InventoryItem(fruit.getName().replaceAll("\\s+",""), fruit.getBaseSellPrice());
         player.getInventory().addInventoryItem(item, 1);
-        //TODO item.setQuality();
+        setQualityByFarmingLevel(item);
         tree.setReadyForHarvest(false);
         tree.setInHarvestCycle(true);
         tree.setRemainingHarvestCycle(tree.getTree().getFruitHarvestCycle());
         return new Result(true, "The tree is harvested.");
+    }
+
+    private void setQualityByFarmingLevel(InventoryItem item) {
+        int level = App.getCurrentGame().getCurrentPlayer().getFarmingLevel();
+        int random = (new Random()).nextInt(10);
+        double quality = 0;
+        if (level == 0) {
+            if (random < 4) quality = 0;
+            else if (random < 7) quality = 0.7;
+            else if (random < 9) quality = 0.9;
+            else quality = 1;
+        }
+        else if (level == 1) {
+            if (random < 4) quality = 0.7;
+            else if (random < 7) quality = 0;
+            else if (random < 9) quality = 0.9;
+            else quality = 1;
+        }
+        else if (level == 2) {
+            if (random < 4) quality = 0.7;
+            else if (random < 7) quality = 0.9;
+            else if (random < 9) quality = 0;
+            else quality = 1;
+        }
+        else if (level == 3) {
+            if (random < 4) quality = 0.9;
+            else if (random < 7) quality = 0.7;
+            else if (random < 9) quality = 0;
+            else quality = 0.5;
+        }
+        else if (level == 4) {
+            if (random < 4) quality = 1;
+            else if (random < 7) quality = 0.7;
+            else if (random < 9) quality = 0.5;
+            else quality = 0;
+        }
+        item.setQuality(quality);
     }
 
     @Override

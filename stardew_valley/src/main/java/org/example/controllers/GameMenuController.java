@@ -823,7 +823,7 @@ public class GameMenuController extends Controller{
         }
         FishingPole fishingPole = null;
         for(InventoryItem inventoryItem : inventory.getInventoryItems().keySet()){
-            if(inventoryItem.getName().equals(fishingPoleType.getName())){
+            if(inventoryItem.getName().equalsIgnoreCase(fishingPoleType.getName())){
                 fishingPole = (FishingPole) inventoryItem;
             }
         }
