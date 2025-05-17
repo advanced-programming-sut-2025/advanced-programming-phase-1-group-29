@@ -551,14 +551,14 @@ public class GameMenuController extends Controller{
 
     private ArrayList<Integer> getDirection(String direction) {
         HashMap<String, ArrayList<Integer>> directions = new HashMap<>() {{
-            put("u", new ArrayList<>(List.of(0, 1)));
-            put("d", new ArrayList<>(List.of(0, -1)));
+            put("u", new ArrayList<>(List.of(0, -1)));
+            put("d", new ArrayList<>(List.of(0, 1)));
             put("r", new ArrayList<>(List.of(1, 0)));
             put("l", new ArrayList<>(List.of(-1, 0)));
-            put("ur", new ArrayList<>(List.of(1, 1)));
-            put("ul", new ArrayList<>(List.of(-1, 1)));
-            put("dr", new ArrayList<>(List.of(1, -1)));
-            put("dl", new ArrayList<>(List.of(-1, -1)));
+            put("ur", new ArrayList<>(List.of(1, -1)));
+            put("ul", new ArrayList<>(List.of(-1, -1)));
+            put("dr", new ArrayList<>(List.of(1, 1)));
+            put("dl", new ArrayList<>(List.of(-1, 1)));
         }};
         if (!directions.containsKey(direction)) return null;
         return directions.get(direction);
@@ -1549,7 +1549,7 @@ public class GameMenuController extends Controller{
             return new Result(true, "Trash Can is upgraded successfully.");
         }
         for (InventoryItem inventoryItem : player.getInventory().getInventoryItems().keySet()) {
-            if (inventoryItem instanceof UpgradableTool tool) {
+            if (inventoryItem instanceof UpgradableTool tool && inventoryItem.getName().equalsIgnoreCase(name)) {
                 ToolType newType = tool.getType().upgrade();
                 int sum = 0;
                 for (InventoryItem item : player.getInventory().getInventoryItems().keySet()) {

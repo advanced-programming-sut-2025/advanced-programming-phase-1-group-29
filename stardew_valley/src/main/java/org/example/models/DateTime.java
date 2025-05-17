@@ -3,11 +3,9 @@ package org.example.models;
 import org.example.models.AnimalsPackage.Animal;
 import org.example.models.AnimalsPackage.AnimalHouse;
 import org.example.models.FarmPackage.Farm;
-import org.example.models.FarmPackage.Lake;
 import org.example.models.FarmPackage.Quarry;
 import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
-import org.example.models.VillagePackage.Village;
 import org.example.models.enums.*;
 
 import java.util.*;
@@ -50,7 +48,7 @@ public class DateTime {
                     CropSeedEnum seedEnum = CropSeedEnum.values()[seedNumber];
                     if (seedEnum.getSeasons().contains(season.toString())) {
                         remove = object;
-                        if (seedEnum.equals(CropSeedEnum.MIXEDSEED)) {
+                        if (seedEnum.equals(CropSeedEnum.MIXEDSEEDS)) {
                             seedNumber = (new Random()).nextInt(
                                     season.getMixedSeedPossibleCrops().size()
                             );
@@ -225,6 +223,8 @@ public class DateTime {
     }
 
     private void thunder() {
+        int probability = (new Random()).nextInt(1000);
+        if (probability != 0) return;
         for (Farm farm : App.getCurrentGame().getMap().getFarms()) {
             ArrayList<Plant> plants = new ArrayList<>();
             for (Objectt object : farm.getObjects()) {

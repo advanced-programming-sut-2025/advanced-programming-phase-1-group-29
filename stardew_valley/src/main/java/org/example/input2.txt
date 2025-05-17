@@ -62,17 +62,17 @@
    weather forecast
    cheat weather set Rainy
    greenhouse build
-   print map -l 0, 0 -s 202
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 202
+   //print map -l 0, 0 -s 200
    help reading map
    walk -l 50, 60
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 200
    energy show
    energy set -v 200
    energy show
    next turn
    walk -l 99, 99
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 200
    walk -l 10, 10
    datetime
    cheat advance time 10h
@@ -86,7 +86,7 @@
    next turn
    energy unlimited
    walk -l 100, 100
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 200
    inventory show
    cheat advance time 5h
    walk -l 105, 113
@@ -101,7 +101,7 @@
    walk -l 100, 100
    next turn
    walk -l 101, 100
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 200
    talk -u parnia -m Hiiiiiiiiiii
    talk -u parnia -m How are youuuuuuuuuuuuuu
    walk -l 102, 100
@@ -228,7 +228,7 @@
    next turn
    respond -reject -u TAkhafan
    walk -l 76, 86
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 200
    meet NPC lia
    meet NPC sebastian
    weather
@@ -242,7 +242,7 @@
    friendship NPC list
    quests list
    walk -l 106, 97
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 200
    meet NPC abigail
    quests list
    walk -l 76, 106
@@ -254,7 +254,7 @@
    quests finish -i 0
    quests finish -i 1
    start trade
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 200
    trade -u sogol -t offer -i wood -a 1 -p 100
    trade -u TAkhafan -t offer -i wood -a 1 -ti wedding ring -ta 1
    trade -u TAkhafan -t request -i wood -a 1 -p 100
@@ -279,7 +279,75 @@
    walk -l 96, 96
    tools upgrade hoe
    walk -l 16, 16
-   print map -l 0, 0 -s 200
+   //print map -l 0, 0 -s 200
    energy show
-
-
+   weather
+   tools use -d u
+   energy show
+   //print map -l 0, 0 -s 200
+   walk -l 96, 96
+   cheat add item -n copper bar -c 10
+   tools upgrade hoe
+   walk -l 16, 16
+   energy show
+   tools use -d u
+   energy show
+   tools use -d d
+   energy show
+   //print map -l 0, 0 -s 200
+   tools equip pickaxe
+   tools use -d r
+   tools use -d u
+   //print map -l 0, 0 -s 200
+   walk -l 10, 35
+   //print map -l 0, 0 -s 200
+   tools show current
+   tools use -d r
+   walk -l 96, 96
+   cheat add item -n copper bar -c 10
+   cheat add item -n iron bar -c 10
+   cheat add item -n gold bar -c 10
+   cheat add item -n iridium bar -c 10
+   tools upgrade pickaxe
+   tools upgrade pickaxe
+   tools upgrade pickaxe
+   tools upgrade pickaxe
+   craftinfo -n bluejazz
+   walk -l 16, 16
+   //print map -l 0, 0 -s 200
+   plant -s strawberry seeds -d u
+   plant -s strawberry seeds -d d
+   cheat add item -n strawberry seeds -c 3
+   plant -s strawberry seeds -d d
+   //print map -l 0, 0 -s 200
+   tools equip hoe
+   tools use -d u
+   plant -s strawberry seeds -d u
+   //print map -l 0, 0 -s 200
+   showplant -l 16, 15
+   tools equip wateringCan
+   tools use -d u
+   walk -l 20, 20
+   walk -l 19, 20
+   tools use -d r
+   howmuch water
+   walk -l 16, 16
+   tools use -d u
+   showplant -l 16, 15
+   cheat advance date 1d
+   showplant -l 16, 15
+   tools equip hoe
+   walk -l 16, 16
+   tools use -d r
+   cheat add item -n deluxe retaining soil -c 1
+   fertilize -f deluxe retaining soil -d r
+   plant -s strawberry seeds -d r
+   showplant -l 17, 16
+   cheat advance date 1d
+   showplant -l 17, 16
+   cheat advance date 7d
+   walk -l 16, 16
+   tools equip seythe
+   tools use -d u
+   tools use -d r
+   inventory show
