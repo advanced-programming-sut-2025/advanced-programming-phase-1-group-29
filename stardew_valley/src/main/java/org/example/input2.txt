@@ -253,3 +253,4 @@
    quests list
    quests finish -i 0
    quests finish -i 1
+   start trade
