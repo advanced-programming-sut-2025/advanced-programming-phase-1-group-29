@@ -22,7 +22,7 @@ public class HarveysHouse extends NPCHouse {
                 return new Result(true, "quest completed. you received 750 coins");
             }
         }
-        else if (ind == 2 && !super.quest2 && App.getCurrentGame().getCurrentPlayer().getSebastianFriendship() >= 200){
+        else if (ind == 2 && !super.quest2 && App.getCurrentGame().getCurrentPlayer().getHarveyFriendship() >= 200){
             if (player.getInventory().getNumberOfInventoryItem("salmon") < 1){
                 return new Result(false, "You don't have enough salmon in your inventory.");
             }
