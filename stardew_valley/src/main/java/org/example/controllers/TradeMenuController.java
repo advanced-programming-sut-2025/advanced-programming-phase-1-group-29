@@ -65,7 +65,11 @@ public class TradeMenuController extends Controller {
 
     public Result trade(String username, String type, String item, String amountString,
                         String priceString, String targetItem, String targetAmountString) {
-
+        if (priceString == null || priceString.isEmpty()){
+            if (targetItem == null || targetItem.isEmpty() || targetAmountString == null || targetAmountString.isEmpty()) {
+                return new Result(false, "invalid parameters");
+            }
+        }
         Player sender = App.getCurrentGame().getCurrentPlayer();
         Player receiver = null;
 
