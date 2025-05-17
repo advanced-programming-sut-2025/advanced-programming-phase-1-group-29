@@ -437,7 +437,7 @@ public class GameMenuController extends Controller{
         }
         if (sum == 0)
             return new Result(false, "This item doesn't exist in your inventory");
-        if (amount.isEmpty()) number = sum;
+        if (amount == null || amount.isEmpty()) number = sum;
         else number = Integer.parseInt(amount);
         if (number > sum)
             return new Result(false, "You don't have this amount of " + name);
