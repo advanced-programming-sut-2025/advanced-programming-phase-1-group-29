@@ -12,7 +12,7 @@
    pick question -q 2 -a ali -c ali
    khjhg
    show current menu
-   register -u parnia -p Parnia:123 Parnia:123 -n parnia -e parnia@gmail.com -g female
+   register -u parnia -p Parnia:123 Parnia:123 -n parnia -e parnia@gmail.com -g male
    pick question -q 3 -a abasabad -c abasabad
    register -u sogol -p Sogol:123 Sogol:123 -n sogol -e sogol@gmail.com -g female
    pick question -q 4 -a setayesh -c setayesh
@@ -107,6 +107,7 @@
    walk -l 102, 100
    talk -u parnia -m booooooooooooooooooooooo
    walk -l 101, 100
+   talk -u parnia -m How are vaaaaaaaaaaaaaaa
    talk -u parnia -m How are vaaaaaaaaaaaaaaa
    talk -u parnia -m How are vaaaaaaaaaaaaaaa
    talk -u parnia -m How are vaaaaaaaaaaaaaaa

@@ -1405,7 +1405,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "You are too far away");
         }
         if (!player.getFlower(ind)) {
-            return new Result(false, "You are not friends enough to gift");
+            return new Result(false, "You are not friends enough to propose");
         }
         player2.setAskMarriage(App.getCurrentGame().getTurn());
         player2.setRing(App.getCurrentGame().getTurn(), ring);
