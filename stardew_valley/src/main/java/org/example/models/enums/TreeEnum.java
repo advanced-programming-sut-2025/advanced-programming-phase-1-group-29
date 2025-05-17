@@ -41,7 +41,7 @@ public enum TreeEnum {
             7, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
     MAPLETREE(
-            "Maple Tree", TreeSeedEnum.MAPLESEED, FruitEnum.MAPLESYRUP,
+            "Maple Tree", TreeSeedEnum.MAPLESEEDS, FruitEnum.MAPLESYRUP,
             9, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
     PINETREE(
@@ -49,15 +49,15 @@ public enum TreeEnum {
             5, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
     MAHOGANYTREE(
-            "Mahogany Tree", TreeSeedEnum.MAHOGANYSEED, FruitEnum.SAP,
+            "Mahogany Tree", TreeSeedEnum.MAHOGANYSEEDS, FruitEnum.SAP,
             1, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
     MUSHROOMTREE(
-            "Mushroom Tree", TreeSeedEnum.MUSHROOMTREESEED, FruitEnum.COMMONMUSHROOM,
+            "Mushroom Tree", TreeSeedEnum.MUSHROOMTREESEEDS, FruitEnum.COMMONMUSHROOM,
             1, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     ),
     MYSTICTREE(
-            "Mystic Tree", TreeSeedEnum.MYSTICTREESEED, FruitEnum.MYSTICSYRUP,
+            "Mystic Tree", TreeSeedEnum.MYSTICTREESEEDS, FruitEnum.MYSTICSYRUP,
             7, new ArrayList<>(List.of("Spring", "Summer", "Fall", "Winter"))
     );
     private final String name;

@@ -168,7 +168,7 @@ public abstract class Plant extends Objectt{
         String water = "It isn't watered today.";
         String fertilize = "It isn't fertilized.";
         String foraging = "";
-        if (isWateredToday) water = "It is watered today.";
+        if (isWateredToday || isWateredEveryDay) water = "It is watered today.";
         if (isFertilizedBySpeedGro || isFertilizedByRetainingSoil) fertilize = "It is fertilized.";
         if (isForaging) foraging = "\nThis is a foraging plant.";
         return

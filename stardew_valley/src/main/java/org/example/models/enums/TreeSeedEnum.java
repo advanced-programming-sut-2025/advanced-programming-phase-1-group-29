@@ -3,10 +3,10 @@ package org.example.models.enums;
 
 public enum TreeSeedEnum {
     ACORN("Acorns", true),
-    MAPLESEED("Maple Seeds", true),
+    MAPLESEEDS("Maple Seeds", true),
     PINECONE("Pine Cones", true),
-    MAHOGANYSEED("Mahogany Seeds", true),
-    MUSHROOMTREESEED("Mushroom Tree Seeds", true),
+    MAHOGANYSEEDS("Mahogany Seeds", true),
+    MUSHROOMTREESEEDS("Mushroom Tree Seeds", true),
     APRICOTSAPLING("Apricot Sapling", false),
     CHERRYSAPLING("Cherry Sapling", false),
     BANANASAPLING("Banana Sapling", false),
@@ -15,7 +15,7 @@ public enum TreeSeedEnum {
     PEACHSAPLING("Peach Sapling", false),
     APPLESAPLING("Apple Sapling", false),
     POMEGRANATESAPLING("Pomegranate Sapling", false),
-    MYSTICTREESEED("Mystic Tree Seeds", false);
+    MYSTICTREESEEDS("Mystic Tree Seeds", false);
 
 
     private final String name;

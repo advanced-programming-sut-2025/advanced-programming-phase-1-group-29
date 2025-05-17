@@ -3,6 +3,7 @@ package org.example.controllers;
 import org.example.models.*;
 import org.example.models.FarmPackage.*;
 import org.example.models.VillagePackage.Village;
+import org.example.models.enums.ForagingMineral;
 import org.example.models.enums.Menu;
 import org.example.models.enums.Season;
 
@@ -234,6 +235,10 @@ public class PreGameMenuController extends Controller{
                 }
             }
         }
+        Foraging mineral = new Foraging(ForagingMineral.AMETHYST);
+        mineral.setTiles(new ArrayList<>(List.of(new Tile('m', 11, 35))));
+        quarry1.addMineral(mineral);
+        farm1.incrementNumOfForagingMineral();
     }
 
     public Result loadGame() {

@@ -5,17 +5,17 @@ import java.util.List;
 
 public enum CropEnum {
     BLUEJAZZ(
-            "Blue Jazz", CropSeedEnum.JAZZSEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
+            "Blue Jazz", CropSeedEnum.JAZZSEEDS, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
             true, null, 50, true,
             45, new ArrayList<>(List.of("Spring")), false
     ),
     CARROT(
-            "Carrot", CropSeedEnum.CARROTSEED, new ArrayList<>(List.of(1, 1, 1)), 3,
+            "Carrot", CropSeedEnum.CARROTSEEDS, new ArrayList<>(List.of(1, 1, 1)), 3,
             true, null, 35, true,
             75, new ArrayList<>(List.of("Spring")), false
     ),
     CAULIFLOWER(
-            "Cauliflower", CropSeedEnum.CAULIFLOWERSEED, new ArrayList<>(List.of(1, 2, 4, 4, 1)), 12,
+            "Cauliflower", CropSeedEnum.CAULIFLOWERSEEDS, new ArrayList<>(List.of(1, 2, 4, 4, 1)), 12,
             true, null, 175, true,
             75, new ArrayList<>(List.of("Spring")), true
     ),
@@ -25,37 +25,37 @@ public enum CropEnum {
             null, new ArrayList<>(List.of("Spring", "Summer")), false
     ),
     GARLIC(
-            "Garlic", CropSeedEnum.GARLICSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Garlic", CropSeedEnum.GARLICSEEDS, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             true, null, 60, true,
             20, new ArrayList<>(List.of("Spring")), false
     ),
     GREENBEAN(
-            "Green Bean", CropSeedEnum.BEANSTARTER, new ArrayList<>(List.of(1, 1, 1, 3, 4)), 10,
+            "Green Bean", CropSeedEnum.BEANSTARTERS, new ArrayList<>(List.of(1, 1, 1, 3, 4)), 10,
             false, 3, 40, true,
             25, new ArrayList<>(List.of("Spring")), false
     ),
     KALE(
-            "Kale", CropSeedEnum.KALESEED, new ArrayList<>(List.of(1, 2, 2, 1)), 6,
+            "Kale", CropSeedEnum.KALESEEDS, new ArrayList<>(List.of(1, 2, 2, 1)), 6,
             true, null, 110, true,
             50, new ArrayList<>(List.of("Spring")), false
     ),
     PARSNIP(
-            "Parsnip", CropSeedEnum.PARSNIPSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Parsnip", CropSeedEnum.PARSNIPSEEDS, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             true, null, 35, true,
             25, new ArrayList<>(List.of("Spring")), false
     ),
     POTATO(
-            "Potato", CropSeedEnum.POTATOSEED, new ArrayList<>(List.of(1, 1, 1, 2, 1)), 6,
+            "Potato", CropSeedEnum.POTATOSEEDS, new ArrayList<>(List.of(1, 1, 1, 2, 1)), 6,
             true, null, 80, true,
             25, new ArrayList<>(List.of("Spring")), false
     ),
     RHUBARB(
-            "Rhubarb", CropSeedEnum.RHUBARBSEED, new ArrayList<>(List.of(2, 2, 2, 3, 4)), 13,
+            "Rhubarb", CropSeedEnum.RHUBARBSEEDS, new ArrayList<>(List.of(2, 2, 2, 3, 4)), 13,
             true, null, 220, false,
             null, new ArrayList<>(List.of("Spring")), false
     ),
     STRAWBERRY(
-            "Strawberry", CropSeedEnum.STRAWBERRYSEED, new ArrayList<>(List.of(1, 1, 2, 2, 2)), 8,
+            "Strawberry", CropSeedEnum.STRAWBERRYSEEDS, new ArrayList<>(List.of(1, 1, 2, 2, 2)), 8,
             false, 4, 120, true,
             50, new ArrayList<>(List.of("Spring")), false
     ),
@@ -70,12 +70,12 @@ public enum CropEnum {
             3, new ArrayList<>(List.of("Spring")), false
     ),
     BLUEBERRY(
-            "Blueberry", CropSeedEnum.BLUEBERRYSEED, new ArrayList<>(List.of(1, 3, 3, 4, 2)), 13,
+            "Blueberry", CropSeedEnum.BLUEBERRYSEEDS, new ArrayList<>(List.of(1, 3, 3, 4, 2)), 13,
             false, 4, 50, true,
             25, new ArrayList<>(List.of("Summer")), false
     ),
     CORN(
-            "Corn", CropSeedEnum.CORNSEED, new ArrayList<>(List.of(2, 3, 3, 3, 3)), 14,
+            "Corn", CropSeedEnum.CORNSEEDS, new ArrayList<>(List.of(2, 3, 3, 3, 3)), 14,
             false, 4, 50, true,
             25, new ArrayList<>(List.of("Summer", "Fall")), false
     ),
@@ -85,97 +85,97 @@ public enum CropEnum {
             45, new ArrayList<>(List.of("Summer")), false
     ),
     HOTPEPPER(
-            "Hot Pepper", CropSeedEnum.PEPPERSEED, new ArrayList<>(List.of(1, 1, 1, 1, 1)), 5,
+            "Hot Pepper", CropSeedEnum.PEPPERSEEDS, new ArrayList<>(List.of(1, 1, 1, 1, 1)), 5,
             false, 3, 40, true,
             13, new ArrayList<>(List.of("Summer")), false
     ),
     MELON(
-            "Melon", CropSeedEnum.MELONSEED, new ArrayList<>(List.of(1, 2, 3, 3, 3)), 12,
+            "Melon", CropSeedEnum.MELONSEEDS, new ArrayList<>(List.of(1, 2, 3, 3, 3)), 12,
             true, null, 250, true,
             113, new ArrayList<>(List.of("Summer")), true
     ),
     POPPY(
-            "Poppy", CropSeedEnum.POPPYSEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
+            "Poppy", CropSeedEnum.POPPYSEEDS, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
             true, null, 140, true,
             45, new ArrayList<>(List.of("Summer")), false
     ),
     RADISH(
-            "Radish", CropSeedEnum.RADISHSEED, new ArrayList<>(List.of(2, 1, 2, 1)), 6,
+            "Radish", CropSeedEnum.RADISHSEEDS, new ArrayList<>(List.of(2, 1, 2, 1)), 6,
             true, null, 90, true,
             45, new ArrayList<>(List.of("Summer")), false
     ),
     REDCABBAGE(
-            "Red Cabbage", CropSeedEnum.REDCABBAGESEED, new ArrayList<>(List.of(2, 1, 2, 2, 2)), 9,
+            "Red Cabbage", CropSeedEnum.REDCABBAGESEEDS, new ArrayList<>(List.of(2, 1, 2, 2, 2)), 9,
             true, null, 260, true,
             75, new ArrayList<>(List.of("Summer")), false
     ),
     STARFRUIT(
-            "Starfruit", CropSeedEnum.STARFRUITSEED, new ArrayList<>(List.of(2, 3, 2, 3, 3)), 13,
+            "Starfruit", CropSeedEnum.STARFRUITSEEDS, new ArrayList<>(List.of(2, 3, 2, 3, 3)), 13,
             true, null, 750, true,
             125, new ArrayList<>(List.of("Summer")), false
     ),
     SUMMERSPANGLE(
-            "Summer Spangle", CropSeedEnum.SPANGLESEED, new ArrayList<>(List.of(1, 2, 3, 1)), 7,
+            "Summer Spangle", CropSeedEnum.SPANGLESEEDS, new ArrayList<>(List.of(1, 2, 3, 1)), 7,
             true, null, 90, true,
             45, new ArrayList<>(List.of("Summer")), false
     ),
     SUMMERSQUASH(
-            "Summer Squash", CropSeedEnum.SUMMERSQUASHSEED, new ArrayList<>(List.of(1, 1, 1, 2, 1)), 6,
+            "Summer Squash", CropSeedEnum.SUMMERSQUASHSEEDS, new ArrayList<>(List.of(1, 1, 1, 2, 1)), 6,
             false, 3, 45, true,
             63, new ArrayList<>(List.of("Summer")), false
     ),
     SUNFLOWER(
-            "Sunflower", CropSeedEnum.SUNFLOWERSEED, new ArrayList<>(List.of(1, 2, 3, 2)), 8,
+            "Sunflower", CropSeedEnum.SUNFLOWERSEEDS, new ArrayList<>(List.of(1, 2, 3, 2)), 8,
             true, null, 80, true,
             45, new ArrayList<>(List.of("Summer", "Fall")), false
     ),
     TOMATO(
-            "Tomato", CropSeedEnum.TOMATOSEED, new ArrayList<>(List.of(2, 2, 2, 2, 3)), 11,
+            "Tomato", CropSeedEnum.TOMATOSEEDS, new ArrayList<>(List.of(2, 2, 2, 2, 3)), 11,
             false, 4, 60, true,
             20, new ArrayList<>(List.of("Summer")), false
     ),
     WHEAT(
-            "Wheat", CropSeedEnum.WHEATSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Wheat", CropSeedEnum.WHEATSEEDS, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             true, null, 25, false,
             null, new ArrayList<>(List.of("Summer", "Fall")), false
     ),
     AMARANTH(
-            "Amaranth", CropSeedEnum.AMARANTHSEED, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
+            "Amaranth", CropSeedEnum.AMARANTHSEEDS, new ArrayList<>(List.of(1, 2, 2, 2)), 7,
             true, null, 150, true,
             50, new ArrayList<>(List.of("Fall")), false
     ),
     ARTICHOKE(
-            "Artichoke", CropSeedEnum.ARTICHOKESEED, new ArrayList<>(List.of(2, 2, 1, 2, 1)), 8,
+            "Artichoke", CropSeedEnum.ARTICHOKESEEDS, new ArrayList<>(List.of(2, 2, 1, 2, 1)), 8,
             true, null, 160, true,
             30, new ArrayList<>(List.of("Fall")), false
     ),
     BEET(
-            "Beet", CropSeedEnum.BEETSEED, new ArrayList<>(List.of(1, 1, 2, 2)), 6,
+            "Beet", CropSeedEnum.BEETSEEDS, new ArrayList<>(List.of(1, 1, 2, 2)), 6,
             true, null, 100, true,
             30, new ArrayList<>(List.of("Fall")), false
     ),
     BOKCHOY(
-            "Bok Choy", CropSeedEnum.BOKCHOYSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Bok Choy", CropSeedEnum.BOKCHOYSEEDS, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             true, null, 80, true,
             25, new ArrayList<>(List.of("Fall")), false
     ),
     BROCCOLI(
-            "Broccoli", CropSeedEnum.BROCCOLISEED, new ArrayList<>(List.of(2, 2, 2, 2)), 8,
+            "Broccoli", CropSeedEnum.BROCCOLISEEDS, new ArrayList<>(List.of(2, 2, 2, 2)), 8,
             false, 4, 70, true,
             63, new ArrayList<>(List.of("Fall")), false
     ),
    CRANBERRY(
-            "Cranberry", CropSeedEnum.CRANBERRYSEED, new ArrayList<>(List.of(1, 2, 1, 1, 2)), 7,
+            "Cranberry", CropSeedEnum.CRANBERRYSEEDS, new ArrayList<>(List.of(1, 2, 1, 1, 2)), 7,
             false, 5, 75, true,
             38, new ArrayList<>(List.of("Fall")), false
     ),
     EGGPLANT(
-            "Eggplant", CropSeedEnum.EGGPLANTSEED, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
+            "Eggplant", CropSeedEnum.EGGPLANTSEEDS, new ArrayList<>(List.of(1, 1, 1, 1)), 4,
             false, 5, 60, true,
             20, new ArrayList<>(List.of("Fall")), false
     ),
     FAIRYROSE(
-            "Fairy Rose", CropSeedEnum.FAIRYSEED, new ArrayList<>(List.of(1, 4, 4, 3)), 12,
+            "Fairy Rose", CropSeedEnum.FAIRYSEEDS, new ArrayList<>(List.of(1, 4, 4, 3)), 12,
             true, null, 290, true,
             45, new ArrayList<>(List.of("Fall")), false
     ),
@@ -185,27 +185,27 @@ public enum CropEnum {
             38, new ArrayList<>(List.of("Fall")), false
     ),
     PUMPKIN(
-            "Pumpkin", CropSeedEnum.PUMPKINSEED, new ArrayList<>(List.of(1, 2, 3, 4, 3)), 13,
+            "Pumpkin", CropSeedEnum.PUMPKINSEEDS, new ArrayList<>(List.of(1, 2, 3, 4, 3)), 13,
             true, null, 320, false,
             null, new ArrayList<>(List.of("Fall")), true
     ),
     YAM(
-            "Yam", CropSeedEnum.YAMSEED, new ArrayList<>(List.of(1, 3, 3, 3)), 10,
+            "Yam", CropSeedEnum.YAMSEEDS, new ArrayList<>(List.of(1, 3, 3, 3)), 10,
             true, null, 160, true,
             45, new ArrayList<>(List.of("Fall")), false
     ),
     SWEETGEMBERRY(
-            "Sweet Gem Berry", CropSeedEnum.RARESEED, new ArrayList<>(List.of(2, 4, 6, 6, 6)), 24,
+            "Sweet Gem Berry", CropSeedEnum.RARESEEDS, new ArrayList<>(List.of(2, 4, 6, 6, 6)), 24,
             true, null, 3000, false,
             null, new ArrayList<>(List.of("Fall")), false
     ),
     POWDERMELON(
-            "Powder Melon", CropSeedEnum.POWDERMELONSEED, new ArrayList<>(List.of(1, 2, 1, 2, 1)), 7,
+            "Powder Melon", CropSeedEnum.POWDERMELONSEEDS, new ArrayList<>(List.of(1, 2, 1, 2, 1)), 7,
             true, null, 60, true,
             63, new ArrayList<>(List.of("Winter")), true
     ),
     ANCIENTFRUIT(
-            "Ancient Fruit", CropSeedEnum.ANCIENTSEED, new ArrayList<>(List.of(2, 7, 7, 7, 5)), 28,
+            "Ancient Fruit", CropSeedEnum.ANCIENTSEEDS, new ArrayList<>(List.of(2, 7, 7, 7, 5)), 28,
             false, 7, 550, false,
             null, new ArrayList<>(List.of("Spring", "Summer", "Fall")), false
     );
@@ -298,9 +298,10 @@ public enum CropEnum {
             seasonsString.append(", ");
         }
         seasonsString.deleteCharAt(seasonsString.length()-1);
-        String regrowthTimeString = "";
+        seasonsString.deleteCharAt(seasonsString.length()-1);
+        String regrowthTimeString = "-";
         if (!oneTimeHarvest) regrowthTimeString = regrowthTime.toString();
-        String energyString = "";
+        String energyString = "-";
         if (isEdible) energyString = energy.toString();
         return
                 "Name: " + name +
@@ -313,6 +314,6 @@ public enum CropEnum {
                 "\nIs Edible: " + Boolean.toString(isEdible).toUpperCase() +
                 "\nBase Energy: " + energyString +
                 "\nSeasons: " + seasonsString +
-                "\nCan Become Giant" + Boolean.toString(canBecomeGiant).toUpperCase();
+                "\nCan Become Giant: " + Boolean.toString(canBecomeGiant).toUpperCase();
     }
 }
