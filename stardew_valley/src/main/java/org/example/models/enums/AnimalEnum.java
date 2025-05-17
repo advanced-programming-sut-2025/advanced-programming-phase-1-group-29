@@ -10,31 +10,31 @@ public enum AnimalEnum {
     ),
     Duck (1200,
             new ArrayList<>(List.of(AnimalProductEnum.DuckEgg, AnimalProductEnum.DuckFeather)),
-            new ArrayList<>(List.of(AnimalHouseEnum.Coop, AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
+            new ArrayList<>(List.of(AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
     ),
     Rabbit (8000,
             new ArrayList<>(List.of(AnimalProductEnum.Wool, AnimalProductEnum.RabbitPie)),
-            new ArrayList<>(List.of(AnimalHouseEnum.Coop, AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
+            new ArrayList<>(List.of(AnimalHouseEnum.DeluxeCoop))
     ),
     Dinosaur (14000,
             new ArrayList<>(List.of(AnimalProductEnum.DinosaurEgg)),
-            new ArrayList<>(List.of(AnimalHouseEnum.Coop, AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
+            new ArrayList<>(List.of(AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
     ),
     Cow (1500,
             new ArrayList<>(List.of(AnimalProductEnum.Milk, AnimalProductEnum.BigMilk)),
-            new ArrayList<>(List.of(AnimalHouseEnum.Coop, AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
+            new ArrayList<>(List.of(AnimalHouseEnum.Barn, AnimalHouseEnum.BigBarn, AnimalHouseEnum.DeluxeBarn))
     ),
     Goat (4000,
             new ArrayList<>(List.of(AnimalProductEnum.GoatMilk, AnimalProductEnum.BigGoatMilk)),
-            new ArrayList<>(List.of(AnimalHouseEnum.Coop, AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
+            new ArrayList<>(List.of(AnimalHouseEnum.BigBarn, AnimalHouseEnum.DeluxeBarn))
     ),
     sheep (8000,
             new ArrayList<>(List.of(AnimalProductEnum.Wool)),
-            new ArrayList<>(List.of(AnimalHouseEnum.Coop, AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
+            new ArrayList<>(List.of(AnimalHouseEnum.DeluxeBarn))
     ),
     Pig (16000,
             new ArrayList<>(List.of(AnimalProductEnum.Truffle)),
-            new ArrayList<>(List.of(AnimalHouseEnum.Coop, AnimalHouseEnum.BigCoop, AnimalHouseEnum.DeluxeCoop))
+            new ArrayList<>(List.of(AnimalHouseEnum.DeluxeBarn))
     );
 
     private final int price;
