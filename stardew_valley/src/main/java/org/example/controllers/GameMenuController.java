@@ -311,12 +311,11 @@ public class GameMenuController extends Controller{
                     }
                 }
                 if (check) {
-                    result.append(((Store) objectt).welcomeMessage());
-                    if (!((Store) objectt).isWelcome()){
+                    if (!((Store) objectt).isWelcome(App.getCurrentGame().getTurn())){
                         result.append("\n");
                         result.append(((Store) objectt).welcomeMessage());
                     }
-                    ((Store) objectt).setWelcome(true);
+                    ((Store) objectt).setWelcome(true, App.getCurrentGame().getTurn());
                 }
             }
         }

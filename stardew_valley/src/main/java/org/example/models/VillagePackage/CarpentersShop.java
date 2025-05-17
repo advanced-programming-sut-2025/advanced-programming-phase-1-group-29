@@ -9,10 +9,13 @@ public class CarpentersShop extends Store {
     private final static int startWorkingHours = 9;
     private final static int endWorkingHours = 20;
     private boolean open = false;
-    private boolean welcome = false;
+    private boolean[] welcome = new boolean[5];
     public CarpentersShop() {
         super();
         addProducts();
+        for (int i = 0; i < 5; i++) {
+            welcome[i] = false;
+        }
     }
     @Override
     public Result welcomeMessage() {
@@ -36,12 +39,12 @@ public class CarpentersShop extends Store {
         super.addProduct(new InventoryItem("shippingBin", 250), 100000000);
     }
     @Override
-    public boolean isWelcome() {
-        return welcome;
+    public boolean isWelcome(int index) {
+        return welcome[index];
     }
     @Override
-    public void setWelcome(boolean welcome) {
-        this.welcome = welcome;
+    public void setWelcome(boolean welcome, int index) {
+        this.welcome[index] = welcome;
     }
     @Override
     public boolean isOpen() {

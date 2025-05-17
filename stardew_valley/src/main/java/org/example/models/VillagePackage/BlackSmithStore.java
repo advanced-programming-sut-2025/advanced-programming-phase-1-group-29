@@ -9,7 +9,7 @@ public class BlackSmithStore extends Store {
     private final static int startWorkingHours = 9;
     private final static int endWorkingHours = 16;
     private boolean open = false;
-    private boolean welcome = false;
+    private boolean[] welcome = new boolean[5];
 
     public BlackSmithStore() {
         super();
@@ -17,14 +17,17 @@ public class BlackSmithStore extends Store {
         super.addProduct(new InventoryItem("ironOre", 150), 100000000);
         super.addProduct(new InventoryItem("coal", 150), 100000000);
         super.addProduct(new InventoryItem("goldOre", 400), 100000000);
+        for (int i = 0; i < 5; i++) {
+            welcome[i] = false;
+        }
     }
     @Override
-    public boolean isWelcome() {
-        return welcome;
+    public boolean isWelcome(int index) {
+        return welcome[index];
     }
     @Override
-    public void setWelcome(boolean welcome) {
-        this.welcome = welcome;
+    public void setWelcome(boolean welcome, int index) {
+        this.welcome[index] = welcome;
     }
     @Override
     public Result welcomeMessage(){

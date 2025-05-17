@@ -9,7 +9,7 @@ public class JojaMartStore extends Store {
     private final static int startWorkingHours = 9;
     private final static int endWorkingHours = 23;
     private boolean open = false;
-    private boolean welcome = false;
+    private boolean[] welcome = new boolean[5];
     @Override
     public Result welcomeMessage() {
         return new Result(true, "Welcome to Joja Mart!");
@@ -17,14 +17,17 @@ public class JojaMartStore extends Store {
     public JojaMartStore() {
         super();
         addProducts();
+        for (int i = 0; i < 5; i++) {
+            welcome[i] = false;
+        }
     }
     @Override
-    public boolean isWelcome() {
-        return welcome;
+    public boolean isWelcome(int index) {
+        return welcome[index];
     }
     @Override
-    public void setWelcome(boolean welcome) {
-        this.welcome = welcome;
+    public void setWelcome(boolean welcome, int index) {
+        this.welcome[index] = welcome;
     }
     @Override
     public void resetCapacity(){
