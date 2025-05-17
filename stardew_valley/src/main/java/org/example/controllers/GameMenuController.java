@@ -298,6 +298,7 @@ public class GameMenuController extends Controller{
                 x2 = dest / Map.getYRange();
                 y2 = dest % Map.getYRange();
             }
+            energyNeeded = player.getEnergy();
         }
         Village village = App.getCurrentGame().getMap().getVillage();
         for (Objectt objectt : village.getObjects()) {
