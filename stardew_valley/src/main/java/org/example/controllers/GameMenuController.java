@@ -629,7 +629,7 @@ public class GameMenuController extends Controller{
         }
         App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), 1, 0);
         player.reduceEnergy(2);
-        return new Result(true, "");
+        return new Result(true, "Craft was crafted successfully");
     }
 
     public Boolean isOccupied(int x, int y){
@@ -663,7 +663,7 @@ public class GameMenuController extends Controller{
         item.getTiles().add(new Tile('-', x, y));
         App.getCurrentGame().getCurrentFarm().getObjects().add(item);
         player.getInventory().removeInventoryItem(inventoryItem.getName(), 1);
-        return new Result(true, itemName + " placed succesfully.");
+        return new Result(true, itemName + " placed successfully.");
     }
 
     public Result cheatAddItem(String itemName, String countString) {
@@ -1002,7 +1002,7 @@ public class GameMenuController extends Controller{
         }
         animal.addFriendshipPoint(15);
         animal.setIsPetted(true);
-        return new Result(true, "");
+        return new Result(true, "You pet this animal.");
     }
 
     public Result cheatSetFriendship(String animalName, String amountString) {
@@ -1012,7 +1012,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "You don't have this animal.");
         }
         animal.setFriendshipPoint(amount);
-        return new Result(true, "");
+        return new Result(true, "Friendship point set to " + animal.getFriendshipPoint());
     }
 
     public Result animals (){
@@ -1072,6 +1072,7 @@ public class GameMenuController extends Controller{
                 return new Result(false, "You can't take the animals out in this weather.");
             }
             farm.getObjects().add(animal);
+            animal.addFriendshipPoint(8);
             for (Objectt objectt : farm.getObjects()) {
                 if (objectt instanceof AnimalHouse animalHouse) {
                     if(animalHouse.getAnimals().contains(animal)){
@@ -1082,7 +1083,7 @@ public class GameMenuController extends Controller{
         }
         animal.getTiles().clear();
         animal.getTiles().add(new Tile('^', x, y));
-        return new Result(true, "");
+        return new Result(true, "Animal was shepherd successfully.");
     }
 
     public Result feedHay (String animalName){
@@ -1091,7 +1092,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "You don't have this animal.");
         }
         animal.setIsFed(true);
-        return new Result(true, "");
+        return new Result(true, animalName + "was fed successfully.");
     }
 
     public Result produces(){
@@ -1122,9 +1123,23 @@ public class GameMenuController extends Controller{
 
     public Result collectProduce(String animalName){
         Player player = App.getCurrentGame().getCurrentPlayer();
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         Animal animal = getAnimal(animalName);
         if(animal == null){
             return new Result(false, "You don't have this animal.");
+        }
+        if(animal.getAnimalType().equals(AnimalEnum.Pig) && !farm.getObjects().contains(animal)){
+            return new Result(false, "This PIG is not outdoors");
+        }
+        if(animal.getAnimalType().equals(AnimalEnum.Cow) || animal.getAnimalType().equals(AnimalEnum.Goat)){
+            if(player.getInventory().findInventoryItem("MilkPail") == null){
+                return new Result(false, "You don't have Milk Pail");
+            }
+        }
+        if(animal.getAnimalType().equals(AnimalEnum.sheep)) {
+            if (player.getInventory().findInventoryItem("Shear") == null) {
+                return new Result(false, "You don't have Shear");
+            }
         }
         //TODO
         // proper tools?
@@ -1132,7 +1147,7 @@ public class GameMenuController extends Controller{
             player.getInventory().addInventoryItem(product, 1);
         }
         animal.getProducts().clear();
-        return new Result(true, "");
+        return new Result(true, "Products was collected.");
     }
 
     public Result sellAnimal(String animalName){
@@ -1436,6 +1451,7 @@ public class GameMenuController extends Controller{
         player2.setRing(App.getCurrentGame().getTurn(), ring);
         return new Result(true, player.getUser().getUsername() + " proposed to " + username);
     }
+
     public Result respond(String respond, String username){
         Player player = App.getCurrentGame().getCurrentPlayer();
         int ind = -1;
@@ -1607,6 +1623,7 @@ public class GameMenuController extends Controller{
         }
         return new Result(false, "You must be in Black Smith Store");
     }
+
     public Result greenhouseBuild(){
         Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
@@ -1674,5 +1691,28 @@ public class GameMenuController extends Controller{
             }
         }
         return new Result(true, "You put items in the shipping bin successfully.");
+    }
+    public Result buyAnimal(String animalName, String name){
+        StoreMenuController controller = new StoreMenuController();
+        Result result = controller.purchase(animalName, "1");
+        if (!result.isSuccessful()) return result;
+        App.getCurrentGame().getCurrentPlayer().getInventory().removeInventoryItem(animalName, 1);
+        AnimalEnum animalEnum = AnimalEnum.getByName(animalName);
+        if (animalEnum == null) {
+            return new Result(false, "invalid animal name");
+        }
+        for (Objectt objectt : App.getCurrentGame().getCurrentFarm().getObjects()) {
+            if (objectt instanceof AnimalHouse animalHouse){
+                for (AnimalHouseEnum animalHouseEnum : animalEnum.getHouseTypes()){
+                    if (animalHouseEnum.equals(animalHouse.getAnimalHouseEnum())){
+                        if (animalHouse.getAnimals().size() < animalHouseEnum.getCapacity()) {
+                                animalHouse.addAnimal(new Animal(animalEnum, name, 0));
+                                return new Result(true, "animal added successfully");
+                        }
+                    }
+                }
+            }
+        }
+        return new Result(false, "unsuccessful");
     }
 }

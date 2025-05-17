@@ -1,6 +1,8 @@
 package org.example.models.AnimalsPackage;
 
 import org.example.models.Objectt;
+import org.example.models.Tile;
+import org.example.models.enums.AnimalEnum;
 import org.example.models.enums.AnimalHouseEnum;
 
 import java.util.ArrayList;
@@ -21,11 +23,23 @@ public class AnimalHouse extends Objectt {
         this.animals = animals;
     }
 
-    public void addAnimal(Animal animal) {
-        animals.add(animal);
-    }
-
     public AnimalHouseEnum getAnimalHouseEnum() {
         return animalHouseEnum;
+    }
+
+    public void  addAnimal(Animal animal) {
+        for (Tile tile : animal.getTiles()) {
+            boolean empty = true;
+            for (Animal anAnimal : animals) {
+                if(animal.getTiles().get(0).getX() == tile.getX() && animal.getTiles().get(0).getY() == tile.getY()) {
+                    empty = false;
+                }
+            }
+            if(empty) {
+                animal.getTiles().add(new Tile('^', tile.getX(), tile.getY()));
+                break;
+            }
+        }
+        animals.add(animal);
     }
 }

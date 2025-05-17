@@ -1,8 +1,12 @@
 package org.example.models.VillagePackage;
 
+import org.example.models.AnimalsPackage.AnimalHouse;
 import org.example.models.App;
 import org.example.models.InventoryItem;
+import org.example.models.Objectt;
 import org.example.models.Result;
+import org.example.models.enums.AnimalEnum;
+import org.example.models.enums.AnimalHouseEnum;
 
 public class MarniesRanch extends Store {
     private final static int startWorkingHours = 9;
@@ -45,8 +49,6 @@ public class MarniesRanch extends Store {
         super.addProduct(new InventoryItem("Rabbit", 8000), 2);
         super.addProduct(new InventoryItem("Dinosaur", 14000), 2);
         super.addProduct(new InventoryItem("Pig", 16000), 2);
-        //TODO
-        //check barns
     }
     @Override
     public boolean isOpen() {
@@ -57,8 +59,24 @@ public class MarniesRanch extends Store {
         open = App.getCurrentGame().getCurrentTime().getTime() >= startWorkingHours && App.getCurrentGame().getCurrentTime().getTime() <= endWorkingHours;
     }
 
-//    @Override
-//    public Result purchase(String productName, int quantity) {
-//
-//    }
+    @Override
+    public Result purchase(String productName, int quantity) {
+        AnimalEnum animalEnum = AnimalEnum.getByName(productName);
+        if (animalEnum != null) {
+            boolean check = false;
+            for (Objectt objectt : App.getCurrentGame().getCurrentFarm().getObjects()) {
+                if (objectt instanceof AnimalHouse animalHouse){
+                    for (AnimalHouseEnum animalHouseEnum : animalEnum.getHouseTypes()){
+                        if (animalHouseEnum.equals(animalHouse.getAnimalHouseEnum())){
+                            if (animalHouse.getAnimals().size() < animalHouseEnum.getCapacity()) check = true;
+                        }
+                    }
+                }
+            }
+            if (!check) {
+                return new Result(false, "You don't have the necessary barn");
+            }
+        }
+        return super.purchase(productName, quantity);
+    }
 }

@@ -48,6 +48,10 @@ public class Animal extends Objectt {
         this.friendshipPoint += point;
     }
 
+    public  void reduceFriendshipPoint(int point) {
+        this.friendshipPoint -= point;
+    }
+
     public boolean isPetted() {
         return isPetted;
     }
