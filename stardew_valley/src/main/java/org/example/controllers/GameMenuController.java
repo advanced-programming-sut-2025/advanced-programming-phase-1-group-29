@@ -1072,6 +1072,7 @@ public class GameMenuController extends Controller{
                 return new Result(false, "You can't take the animals out in this weather.");
             }
             farm.getObjects().add(animal);
+            animal.addFriendshipPoint(8);
             for (Objectt objectt : farm.getObjects()) {
                 if (objectt instanceof AnimalHouse animalHouse) {
                     if(animalHouse.getAnimals().contains(animal)){
@@ -1122,9 +1123,23 @@ public class GameMenuController extends Controller{
 
     public Result collectProduce(String animalName){
         Player player = App.getCurrentGame().getCurrentPlayer();
+        Farm farm = App.getCurrentGame().getCurrentFarm();
         Animal animal = getAnimal(animalName);
         if(animal == null){
             return new Result(false, "You don't have this animal.");
+        }
+        if(animal.getAnimalType().equals(AnimalEnum.Pig) && !farm.getObjects().contains(animal)){
+            return new Result(false, "This PIG is not outdoors");
+        }
+        if(animal.getAnimalType().equals(AnimalEnum.Cow) || animal.getAnimalType().equals(AnimalEnum.Goat)){
+            if(player.getInventory().findInventoryItem("MilkPail") == null){
+                return new Result(false, "You don't have Milk Pail");
+            }
+        }
+        if(animal.getAnimalType().equals(AnimalEnum.sheep)) {
+            if (player.getInventory().findInventoryItem("Shear") == null) {
+                return new Result(false, "You don't have Shear");
+            }
         }
         //TODO
         // proper tools?
@@ -1436,6 +1451,7 @@ public class GameMenuController extends Controller{
         player2.setRing(App.getCurrentGame().getTurn(), ring);
         return new Result(true, player.getUser().getUsername() + " proposed to " + username);
     }
+
     public Result respond(String respond, String username){
         Player player = App.getCurrentGame().getCurrentPlayer();
         int ind = -1;

@@ -173,6 +173,7 @@ public class DateTime {
             for (Objectt object : farm.getObjects()) {
                 if (object instanceof Animal animal){
                     animals.add(animal);
+                    animal.reduceFriendshipPoint(20);
                 }
             }
             for (Objectt objectt : farm.getObjects()) {
@@ -186,6 +187,12 @@ public class DateTime {
         for (Animal animal : animals){
             if(animal.isFed()) {
                 animal.addProduct();
+            }
+            if(!animal.isPetted()) {
+                animal.reduceFriendshipPoint(10 - animal.getFriendshipPoint() / 200);
+            }
+            if(!animal.isFed()) {
+                animal.reduceFriendshipPoint(20);
             }
             animal.setIsFed(false);
             animal.setIsPetted(false);
