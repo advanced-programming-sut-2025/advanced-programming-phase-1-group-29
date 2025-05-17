@@ -73,7 +73,7 @@ public class FishingPole extends Tool {
 
     @Override
     public int getEnergyConsumption() {
-        int ability = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getFishingLevel();
+        int ability = App.getCurrentGame().getCurrentPlayer().getFishingLevel();
         if (ability == 4) {
             ability = 1;
         }

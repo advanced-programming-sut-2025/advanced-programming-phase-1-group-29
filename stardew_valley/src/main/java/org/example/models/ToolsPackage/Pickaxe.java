@@ -14,7 +14,7 @@ public class Pickaxe extends UpgradableTool {
 
     @Override
     public int getEnergyConsumption() {
-        int ability = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getMiningLevel();
+        int ability = App.getCurrentGame().getCurrentPlayer().getMiningLevel();
         if (ability == 4) {
             ability = 1;
         }
@@ -29,7 +29,7 @@ public class Pickaxe extends UpgradableTool {
     }
 
     private Result destroyStone(Stone stone) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         farm.getObjects().remove(stone);
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
@@ -42,7 +42,7 @@ public class Pickaxe extends UpgradableTool {
     }
 
     private Result destroyBurnedTree(BurnedTree tree) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         farm.getObjects().remove(tree);
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
@@ -56,7 +56,7 @@ public class Pickaxe extends UpgradableTool {
 
     private Result destroyMineral(Quarry quarry, Foraging mineral) {
         ForagingMineral foraging = mineral.getMineral();
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         boolean flag = false;
         if (type.equals(ToolType.PRIMARY)) {
             if (foraging.equals(ForagingMineral.COPPER)) flag = true;
@@ -87,7 +87,7 @@ public class Pickaxe extends UpgradableTool {
     }
 
     private Result destroyFurrow(Furrow furrow) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         farm.getObjects().remove(furrow);
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
@@ -95,7 +95,7 @@ public class Pickaxe extends UpgradableTool {
     }
 
     private Result destroyItem(Item item) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         farm.getObjects().remove(item);
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
@@ -106,7 +106,7 @@ public class Pickaxe extends UpgradableTool {
 
     @Override
     public Result useTool(int x, int y) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         for (Objectt object : farm.getObjects()) {
             if (object instanceof Stone) {

@@ -22,7 +22,7 @@ public class Seythe extends Tool {
     }
 
     private Result harvestCrop(Crop crop) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         InventoryItem item;
         if (!crop.isForaging()) {
@@ -49,7 +49,7 @@ public class Seythe extends Tool {
     }
 
     private Result harvestTree(FruitTree tree) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         FruitEnum fruit = tree.getTree().getFruit();
         InventoryItem item = new InventoryItem(fruit.getName().replaceAll("\\s+",""), fruit.getBaseSellPrice());
         player.getInventory().addInventoryItem(item, 1);
@@ -99,7 +99,7 @@ public class Seythe extends Tool {
 
     @Override
     public Result useTool(int x, int y) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
         for (Objectt object : farm.getObjects()) {

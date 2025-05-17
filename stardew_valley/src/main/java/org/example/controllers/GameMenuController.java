@@ -543,7 +543,7 @@ public class GameMenuController extends Controller{
 
     public Result toolsUse(String direction) {
         ArrayList<Integer> directionConst = getDirection(direction);
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         if (directionConst == null)
             return new Result(false, "Invalid direction");
         int x = player.getX() + directionConst.get(0);
@@ -846,7 +846,7 @@ public class GameMenuController extends Controller{
 
     public Result plant(String seed, String direction) {
         ArrayList<Integer> directionConst = getDirection(direction);
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         if (directionConst == null)
             return new Result(false, "Invalid direction");
         int x = player.getX() + directionConst.get(0);
@@ -1439,7 +1439,7 @@ public class GameMenuController extends Controller{
 
     public Result fertilize(String fertilizer, String direction) {
         ArrayList<Integer> directionConst = getDirection(direction);
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         if (directionConst == null)
             return new Result(false, "Invalid direction");
         int x = player.getX() + directionConst.get(0);
@@ -1602,7 +1602,7 @@ public class GameMenuController extends Controller{
 
     public Result sell(String name, String count) {
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         ArrayList<String> directions = new ArrayList<>(List.of("u","l","r","l","ur","ul","dr","dl"));
         ShippingBin bin = null;
         for (String direction : directions) {

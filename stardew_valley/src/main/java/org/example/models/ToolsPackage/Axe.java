@@ -12,7 +12,7 @@ public class Axe extends UpgradableTool {
 
     @Override
     public int getEnergyConsumption() {
-        int ability = App.getCurrentGame().players.get(App.getCurrentGame().getTurn()).getForagingLevel();
+        int ability = App.getCurrentGame().getCurrentPlayer().getForagingLevel();
         if (ability == 4) {
             ability = 1;
         }
@@ -29,7 +29,7 @@ public class Axe extends UpgradableTool {
     private void addSeed(Objectt object) {
         if (object instanceof FruitTree tree) {
             if (tree.getTree().getSource().isForaging()) {
-                Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+                Player player = App.getCurrentGame().getCurrentPlayer();
                 player.addForagingUnit(10);
                 if (player.getInventory().getCapacity() > 0)
                     player.getInventory().addInventoryItem(new TreeSeed(tree.getTree().getSource().getName().replaceAll("\\s+", ""),0), 1);
@@ -39,7 +39,7 @@ public class Axe extends UpgradableTool {
 
     @Override
     public Result useTool(int x, int y) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         for (Objectt object : farm.getObjects()) {
             if ((object instanceof Tree) || (object instanceof FruitTree)) {

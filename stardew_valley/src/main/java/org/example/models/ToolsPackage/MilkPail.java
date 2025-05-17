@@ -20,7 +20,7 @@ public class MilkPail extends Tool {
 
     @Override
     public Result useTool(int x, int y) {
-        Player player = App.getCurrentGame().players.get(App.getCurrentGame().getTurn());
+        Player player = App.getCurrentGame().getCurrentPlayer();
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         for (Objectt object : farm.getObjects()) {
             if (object instanceof AnimalHouse animalHouse) {
