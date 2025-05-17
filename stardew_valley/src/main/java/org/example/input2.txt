@@ -146,3 +146,15 @@
    next turn
    respond -accept -u setayesh
    respond -accept -u parnia
+   walk -l 155, 5
+   next turn
+   walk -l 105, 113
+   show all products
+   cheat add 10000000 dollars
+   purchase WeddingRing -n 1
+   show all products
+   show all available products
+   purchase Bouquet -n 1
+   walk -l 106, 76
+   show all products
+   purchase Sugar -n 10

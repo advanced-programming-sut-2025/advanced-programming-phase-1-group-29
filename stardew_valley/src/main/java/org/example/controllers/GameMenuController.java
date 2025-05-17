@@ -43,14 +43,17 @@ public class GameMenuController extends Controller{
         if(!App.getCurrentGame().isMainPlayerPlaying()){
             return new Result(false, "Sorry, you cannot exit the game.");
         }
-        for (Player player : App.getCurrentGame().getPlayers()) {
-            player.getUser().setNumberOfGames(player.getUser().getNumberOfGames() + 1);
-            if (player.getCoins() > player.getUser().getMaxCoins()) player.getUser().setMaxCoins(player.getCoins());
-        }
         App.addGame(App.getCurrentGame());
         App.setCurrentGame(null);
         App.setCurrentMenu(Menu.MainMenu);
         return new Result(true, "You are now in Main Menu.");
+    }
+
+    public void endGame() {
+        for (Player player : App.getCurrentGame().getPlayers()) {
+            player.getUser().setNumberOfGames(player.getUser().getNumberOfGames() + 1);
+            if (player.getCoins() > player.getUser().getMaxCoins()) player.getUser().setMaxCoins(player.getCoins());
+        }
     }
 
     public Result time(){
@@ -308,6 +311,7 @@ public class GameMenuController extends Controller{
                     }
                 }
                 if (check) {
+                    result.append(((Store) objectt).welcomeMessage());
                     if (!((Store) objectt).isWelcome()){
                         result.append("\n");
                         result.append(((Store) objectt).welcomeMessage());

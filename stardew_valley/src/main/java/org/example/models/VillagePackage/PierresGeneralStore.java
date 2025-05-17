@@ -13,6 +13,7 @@ public class PierresGeneralStore extends Store {
     private boolean welcome = false;
     @Override
     public Result welcomeMessage() {
+
         return new Result(true, "Welcome to Pierre's General!");
     }
     public PierresGeneralStore() {
@@ -25,6 +26,7 @@ public class PierresGeneralStore extends Store {
     }
     @Override
     public void setWelcome(boolean welcome) {
+
         this.welcome = welcome;
     }
     @Override
