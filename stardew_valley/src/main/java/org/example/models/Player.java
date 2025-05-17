@@ -354,4 +354,8 @@ public class Player {
         giftNumbers.remove(index);
         giftPlayersIndex.remove(index);
     }
+
+    public void removeFlower(int ind) {
+        flower[ind] = false;
+    }
 }

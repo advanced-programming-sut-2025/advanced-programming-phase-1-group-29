@@ -1445,6 +1445,9 @@ public class GameMenuController extends Controller{
         if (respond.equalsIgnoreCase("reject") || respond.equalsIgnoreCase("-reject")) {
             player2.setRejected();
             player.addFriendship(ind, player.getFriendship()[ind] * (-1));
+            player2.addFriendship(App.getCurrentGame().getTurn(), player2.getFriendship()[App.getCurrentGame().getTurn()] * (-1));
+            player.removeFlower(ind);
+            player2.removeFlower(App.getCurrentGame().getTurn());
             return new Result(true, "You have rejected the proposal");
         }
         player.setMarried(ind);
