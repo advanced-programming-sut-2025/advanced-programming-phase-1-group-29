@@ -1,10 +1,65 @@
- print map -l 0, 0 -s 200
-   walk -l 96, 96
-   cheat add item -n copper bar -c 10
-   tools upgrade hoe
-   walk -l 16, 16
-   print map -l 0, 0 -s 200
-   tools use -d u
-   energy show
-   tools use -d d
-   print map -l 0, 0 -s 200
+show current menu
+   register -u setayesh... -p heL1?llo heL1?llo -n sety -e setayesh@gmail.c -g female
+   register -u setayesh -p heL1?llo heL1?llo -n sety -e setaye*>sh@gmail.com -g female
+   register -u setayesh -p hello hello -n sety -e setayesh@gmail.com -g female
+   register -u setayesh1 -p random random -n sety -e setayesh@gmail.com -g female
+   Again
+   Yes
+   pick question -q 1 -a parisa -c parisa
+   register -u setayesh -p Setayesh:123 Setayesh:123 -n sety -e setayesh@gmailcom -g female
+   pick question -q 0 -a ali -c ali
+   pick question -q 2 -a ali -c alii
+   pick question -q 2 -a ali -c ali
+   khjhg
+   show current menu
+   register -u parnia -p Parnia:123 Parnia:123 -n parnia -e parnia@gmail.com -g male
+   pick question -q 3 -a abasabad -c abasabad
+   register -u sogol -p Sogol:123 Sogol:123 -n sogol -e sogol@gmail.com -g female
+   pick question -q 4 -a setayesh -c setayesh
+   register -u TAazizOgerami -p TaTa:123 TaTa:123 -n Ta -e ta@gmail.com -g male
+   pick question -q 3 -a ooo -c ooo
+   register -u TAkhafan -p Kasra:123 Kasra:123 -n kasra -e kasra@gmail.com -g male
+   pick question -q 3 -a ooo -c ooo
+   menu enter Login Menu
+   forget password -u setayesh
+   answer -a alii
+   answer -a ali
+   Setayesh:123
+   login -u setayesh -p Setayesh:123 -stay-logged-in
+   user logout
+   menu enter Login Menu
+   login -u TAazizOgerami -p TaTa:123 -stay-logged-in
+   show current menu
+   menu enter Profile Menu
+   show current menu
+   change username -u TAazizOgeramiii
+   change nickname -u TaTa
+   change email -e e@gmail.com
+   change email -e e@gmail.c
+   user info
+   menu enter Main Menu
+   user logout
+   menu enter Login Menu
+   login -u setayesh -p Setayesh:123 -stay-logged-in
+   menu enter Game Menu
+   game new -u parnia sogol takhafan
+   game new -u parnia sogol TAkhafan
+   show current menu
+   game map 1
+   game map 0
+   game map 2
+   game map 2
+   game map 4
+   game map 3
+   walk -l 106, 113
+      show all products
+      cheat add 10000000 dollars
+      purchase DeluxePack -n 1
+   cheat add item -n Potato -c 10
+      cheat add item -n Oil -c 10
+      cheat add item -n HashBrownsRecipe -c 10
+      cooking show recipes
+      walk -l 42, 7
+      cooking prepare HashBrownsRecipe
+      inventory show
+      cooking refrigerator put hashbrowns

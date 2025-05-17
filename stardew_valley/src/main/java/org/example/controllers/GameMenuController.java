@@ -723,6 +723,7 @@ public class GameMenuController extends Controller{
             }
             refrigerator.addItem(inventoryItem, inventory.getInventoryItems().get(inventoryItem));
             inventory.getInventoryItems().remove(inventoryItem);
+            return new Result(true, "moved to refrigerator successfully");
         }
         if(action.equals("pick")){
             if(refrigerator.getQuantity(item) == 0){
@@ -734,6 +735,7 @@ public class GameMenuController extends Controller{
             }
             inventory.addInventoryItem(item, refrigerator.getQuantity(item), inventoryItem.getPrice());
             refrigerator.removeItem(item, refrigerator.getQuantity(item));
+            return new Result(true, "moved to inventory successfully");
         }
         return new Result(true, "moved successfully");
     }
@@ -784,7 +786,7 @@ public class GameMenuController extends Controller{
                 refrigerator.removeItem(itemName, amount - inventoryStock);
             }
         }
-        inventory.addInventoryItem(foodEnum.getName(), 1, foodEnum.getSellPrice());
+        inventory.addInventoryItem(foodEnum.toString(), 1, foodEnum.getSellPrice());
         player.reduceEnergy(3);
         return new Result(true, foodEnum.getName() + " is prepared");
     }
@@ -799,7 +801,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "You can't eat this food");
         }
         Inventory inventory = player.getInventory();
-        InventoryItem foodItem = inventory.findInventoryItem(foodEnum.getName());
+        InventoryItem foodItem = inventory.findInventoryItem(foodName);
         if(foodItem == null){
             return new Result(false, "You don't have this food in your inventory");
         }

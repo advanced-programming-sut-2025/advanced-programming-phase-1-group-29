@@ -351,3 +351,14 @@
    tools use -d u
    tools use -d r
    inventory show
+   cheat add item -n Potato -c 10
+   cheat add item -n Oil -c 10
+   cheat add item -n HashBrownsRecipe -c 10
+   cooking show recipes
+   walk -l 42, 7
+   cooking prepare HashBrownsRecipe
+   inventory show
+   cooking refrigerator put hashbrowns
+   cooking refrigerator pick hashbrowns
+   eat hashbrowns
+      inventory show
