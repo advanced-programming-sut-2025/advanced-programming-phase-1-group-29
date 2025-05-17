@@ -14,8 +14,3 @@ game map 1
 game map 2
 game map 3
 game map 4
-
-
-
-
-trade -u sogol -t offer -i sugar -a 1

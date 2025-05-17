@@ -700,10 +700,10 @@ public class GameMenuController extends Controller{
         if(FoodEnum.getByName(itemName) != null){
             return true;
         }
-        if(FishEnum.getByName(itemName) == null){
+        if(FishEnum.getByName(itemName) != null){
             return true;
         }
-        if(FruitEnum.getByName(itemName) == null){
+        if(FruitEnum.getByName(itemName) != null){
             return true;
         }
         return false;
