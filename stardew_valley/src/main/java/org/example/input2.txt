@@ -270,3 +270,16 @@
    trade response -reject -i 2
    trade list
    trade history
+   next turn
+   tools equip hoe
+   tools show current
+   tools show available
+   tools upgrade hoe
+   cheat advance time 5h
+   walk -l 96, 96
+   tools upgrade hoe
+   walk -l 16, 16
+   print map -l 0, 0 -s 200
+   energy show
+
+

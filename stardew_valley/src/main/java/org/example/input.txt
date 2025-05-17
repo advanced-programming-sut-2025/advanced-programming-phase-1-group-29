@@ -1,15 +1,10 @@
-tools equip hoe
-   tools show current
-   tools show available
-   tools upgrade hoe
-   cheat advance time 5h
+ print map -l 0, 0 -s 200
    walk -l 96, 96
+   cheat add item -n copper bar -c 10
    tools upgrade hoe
-   
-   
-   bar
-   
    walk -l 16, 16
    print map -l 0, 0 -s 200
    tools use -d u
+   energy show
+   tools use -d d
    print map -l 0, 0 -s 200

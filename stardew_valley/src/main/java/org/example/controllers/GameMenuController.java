@@ -663,7 +663,7 @@ public class GameMenuController extends Controller{
         item.getTiles().add(new Tile('-', x, y));
         App.getCurrentGame().getCurrentFarm().getObjects().add(item);
         player.getInventory().removeInventoryItem(inventoryItem.getName(), 1);
-        return new Result(true, "");
+        return new Result(true, itemName + " placed succesfully.");
     }
 
     public Result cheatAddItem(String itemName, String countString) {
@@ -672,18 +672,11 @@ public class GameMenuController extends Controller{
         if(count == 0){
             return new Result(false, "zero ? are you ok?");
         }
-        if(!inCottage()){
-            return new Result(false, "You are not in your cottage");
-        }
-        CraftingItemEnum craftingItem = CraftingItemEnum.getByName(itemName);
-        if(craftingItem == null){
-            return new Result(false, "Invalid crafting item name");
-        }
         if(player.getInventory().getCapacity() < count){
             return new Result(false, "Your inventory is full");
         }
-        App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), count, 0);
-        return new Result(true, "");
+        App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(itemName, count, 0);
+        return new Result(true, itemName + " added sccuessfully.");
     }
 
     private boolean inCottage() {

@@ -16,6 +16,7 @@ public class Hoe extends UpgradableTool {
     @Override
     public Result useTool(int x, int y) {
         Player player = App.getCurrentGame().getCurrentPlayer();
+        System.out.println("hoeeeeee");
         player.setEnergy(player.getEnergy() - this.applyWeatherOnEnergyConsumption(this.getEnergyConsumption()));
         Farm farm = App.getCurrentGame().getMap().getFarms().get(App.getCurrentGame().getTurn());
         for (Objectt object : farm.getObjects()) {
