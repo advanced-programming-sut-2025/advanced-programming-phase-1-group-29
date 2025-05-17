@@ -1676,4 +1676,27 @@ public class GameMenuController extends Controller{
         }
         return new Result(true, "You put items in the shipping bin successfully.");
     }
+    public Result buyAnimal(String animalName, String name){
+        StoreMenuController controller = new StoreMenuController();
+        Result result = controller.purchase(animalName, "1");
+        if (!result.isSuccessful()) return result;
+        App.getCurrentGame().getCurrentPlayer().getInventory().removeInventoryItem(animalName, 1);
+        AnimalEnum animalEnum = AnimalEnum.getByName(animalName);
+        if (animalEnum == null) {
+            return new Result(false, "invalid animal name");
+        }
+        for (Objectt objectt : App.getCurrentGame().getCurrentFarm().getObjects()) {
+            if (objectt instanceof AnimalHouse animalHouse){
+                for (AnimalHouseEnum animalHouseEnum : animalEnum.getHouseTypes()){
+                    if (animalHouseEnum.equals(animalHouse.getAnimalHouseEnum())){
+                        if (animalHouse.getAnimals().size() < animalHouseEnum.getCapacity()) {
+                                animalHouse.addAnimal(new Animal(animalEnum, name, 0));
+                                return new Result(true, "animal added successfully");
+                        }
+                    }
+                }
+            }
+        }
+        return new Result(false, "unsuccessful");
+    }
 }
