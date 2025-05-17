@@ -841,7 +841,7 @@ public class GameMenuController extends Controller{
         }
         FishingPole fishingPole = null;
         for(InventoryItem inventoryItem : inventory.getInventoryItems().keySet()){
-            if(inventoryItem.getName().equalsIgnoreCase(fishingPoleType.getName())){
+            if(inventoryItem.getName().equalsIgnoreCase(fishingPoleName)){
                 fishingPole = (FishingPole) inventoryItem;
             }
         }
@@ -854,7 +854,7 @@ public class GameMenuController extends Controller{
         amount = Math.min(amount, inventory.getCapacity());
         for (int i = 0; i < amount; i++) {
             FishEnum fishEnum = FishEnum.getRandomFish(game.getCurrentTime().getSeason(), player.getFishingLevel() == 4);
-            InventoryItem fish = new InventoryItem(fishEnum.getName(), 0);
+            InventoryItem fish = new InventoryItem(fishEnum.toString(), 0);
             fish.setQuality(quality);
             inventory.addInventoryItem(fish, 1);
             //TODO energy consumption
@@ -947,7 +947,7 @@ public class GameMenuController extends Controller{
         if(animalHouseEnum == null) {
             return new Result(false, "Invalid animal house type");
         }
-        InventoryItem inventoryItem = player.getInventory().findInventoryItem(animalHouseEnum.getName());
+        InventoryItem inventoryItem = player.getInventory().findInventoryItem(buildingName);
         if(inventoryItem == null) {
             return new Result(false, "You can't build this building");
         }
@@ -966,7 +966,7 @@ public class GameMenuController extends Controller{
         }
         Farm farm = App.getCurrentGame().getCurrentFarm();
         farm.getObjects().add(animalHouse);
-        player.getInventory().removeInventoryItem(animalHouseEnum.getName(), 1);
+        player.getInventory().removeInventoryItem(buildingName, 1);
         return new Result(true, "You build " + buildingName);
     }
 
