@@ -1141,8 +1141,6 @@ public class GameMenuController extends Controller{
                 return new Result(false, "You don't have Shear");
             }
         }
-        //TODO
-        // proper tools?
         for (InventoryItem product : animal.getProducts()) {
             player.getInventory().addInventoryItem(product, 1);
         }
