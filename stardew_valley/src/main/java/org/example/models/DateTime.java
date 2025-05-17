@@ -3,15 +3,14 @@ package org.example.models;
 import org.example.models.AnimalsPackage.Animal;
 import org.example.models.AnimalsPackage.AnimalHouse;
 import org.example.models.FarmPackage.Farm;
+import org.example.models.FarmPackage.Lake;
 import org.example.models.FarmPackage.Quarry;
 import org.example.models.VillagePackage.NPCHouse;
 import org.example.models.VillagePackage.Store;
+import org.example.models.VillagePackage.Village;
 import org.example.models.enums.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class DateTime {
     private Season season;
@@ -89,10 +88,19 @@ public class DateTime {
         }
     }
 
-    public void incrementDay() {
-        for (Player player : App.getCurrentGame().players) {
-            //TODO walk to home
+    private void walkToHome() {
+        Game game = App.getCurrentGame();
+        for (int i = 0; i < game.players.size(); i++) {
+            int x = game.getMap().getFarms().get(i).getCottage().getTiles().get(5 - i).getX();
+            int y = game.getMap().getFarms().get(i).getCottage().getTiles().get(5 - i).getY();
+            Player player = game.players.get(i);
+            player.setX(x);
+            player.setY(y);
         }
+    }
+
+    public void incrementDay() {
+        walkToHome();
         day++;
         if (day == 29) {
             day = 1;
