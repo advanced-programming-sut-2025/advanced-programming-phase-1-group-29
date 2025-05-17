@@ -361,4 +361,11 @@
    cooking refrigerator put hashbrowns
    cooking refrigerator pick hashbrowns
    eat hashbrowns
-      inventory show
+   inventory show
+
+   exit game
+   menu enter Game Menu
+   load game
+   print map -l 0, 0 -s 200
+   next turn
+   friendships

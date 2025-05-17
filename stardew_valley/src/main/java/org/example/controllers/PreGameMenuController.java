@@ -40,6 +40,7 @@ public class PreGameMenuController extends Controller{
         if (user3 != null && user3.getCurrentGame() != null) {
             return new Result(true, "third user is already in a game");
         }
+        App.getLoggedInUser().setCurrentGame(game);
         if (user1 != null){
             Player player2 = new Player();
             player2.setUser(user1);
