@@ -39,7 +39,7 @@ public enum AnimalHouseEnum {
 
     public static AnimalHouseEnum getByName(String animalHouseName) {
         for (AnimalHouseEnum animalHouseEnum : AnimalHouseEnum.values()) {
-            if(animalHouseEnum.getName().equals(animalHouseName)) {
+            if(animalHouseEnum.toString().equalsIgnoreCase(animalHouseName)) {
                 return animalHouseEnum;
             }
         }

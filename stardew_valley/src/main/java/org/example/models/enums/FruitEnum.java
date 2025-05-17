@@ -45,7 +45,7 @@ public enum FruitEnum {
 
     public static FruitEnum getByName(String fruitName) {
         for (FruitEnum fruitEnum : FruitEnum.values()) {
-            if(fruitEnum.toString().equals(fruitName)){
+            if(fruitEnum.toString().equalsIgnoreCase(fruitName)){
                 return fruitEnum;
             }
         }

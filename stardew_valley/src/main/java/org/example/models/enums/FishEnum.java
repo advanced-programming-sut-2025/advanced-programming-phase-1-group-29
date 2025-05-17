@@ -73,7 +73,7 @@ public enum FishEnum {
 
     public static FishEnum getByName(String fishName) {
         for (FishEnum fishEnum : FishEnum.values()) {
-            if(fishEnum.toString().equals(fishName)){
+            if(fishEnum.toString().equalsIgnoreCase(fishName)){
                 return fishEnum;
             }
         }

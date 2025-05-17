@@ -41,9 +41,11 @@ public enum FishingPoleType {
         return null;
     }
 
-    public static FishingPoleType getFishingPoleByName(String name) {
+    public static FishingPoleType getFishingPoleByName(String fishingPoleName) {
         for(FishingPoleType type : FishingPoleType.values()) {
-            if(type.name.equals(name)) return type;
+            if(type.toString().equalsIgnoreCase(fishingPoleName)){
+                return type;
+            }
         }
         return null;
     }

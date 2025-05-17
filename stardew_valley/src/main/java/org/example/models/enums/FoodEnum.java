@@ -151,7 +151,7 @@ public enum FoodEnum {
 
     public static FoodEnum getByName(String foodName) {
         for (FoodEnum foodEnum : FoodEnum.values()) {
-            if(foodEnum.getName().equals(foodName)){
+            if(foodEnum.getName().equalsIgnoreCase(foodName)){
                 return foodEnum;
             }
         }
