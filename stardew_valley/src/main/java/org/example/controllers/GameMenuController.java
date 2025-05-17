@@ -1178,6 +1178,11 @@ public class GameMenuController extends Controller{
         StringBuilder result = new StringBuilder();
         Player player = App.getCurrentGame().getCurrentPlayer();
         for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (i == App.getCurrentGame().getTurn()) continue;
+            int level = getFriendshipLevel(player.getFriendship()[i]);
+            if (level > 2 && !player.getFlower(i)) level = 2;
+            if (level > 3 && !player.getMarried(i)) level = 3;
+            if (player.getMarried(i)) level = 4;
             result.append(App.getCurrentGame().getPlayers().get(i).getUser().getUsername());
             result.append(": ");
             result.append("xp " +  player.getFriendship()[i]);
@@ -1249,6 +1254,9 @@ public class GameMenuController extends Controller{
         if (ind == -1) {
             return new Result(false, "Incorrect username");
         }
+        if (ind == App.getCurrentGame().getTurn()) {
+            return new Result(false, "you can't gift yourself");
+        }
         if (getFriendshipLevel(player.getFriendship()[ind]) < 1) {
             return new Result(false, "You don't have enough friendship to gift.");
         }
@@ -1319,7 +1327,7 @@ public class GameMenuController extends Controller{
 
     private int getFriendshipLevel(int points){
         int level = 0;
-        while(points > 100 * (level + 1)){
+        while(points >= 100 * (level + 1)){
             points -= 100 * (level + 1);
             level++;
         }
