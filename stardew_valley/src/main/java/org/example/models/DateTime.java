@@ -293,7 +293,7 @@ public class DateTime {
                     }
                     else {
                         if (!plant.isReadyForHarvest() && (plant.isWateredToday() || plant.isWateredEveryDay())) {
-                            if ((!(plant instanceof FruitTree)) || (!(((FruitTree) plant).isAttackedByCrows()))) {
+                            if ((!(plant instanceof FruitTree)) || ((!(((FruitTree) plant).isAttackedByCrows())) && !(((FruitTree) plant).getTree().getSeasons().contains(season.toString())))) {
                                 if (!plant.isInHarvestCycle()) plant.grow();
                                 else plant.growInCycle();
                             }
@@ -350,8 +350,10 @@ public class DateTime {
                         }
                     }
                 }
-                else if (object instanceof FruitTree) {
-                    //TODO
+                else if (object instanceof FruitTree tree) {
+                    if (tree.isInHarvestCycle()) {
+                        tree.setRemainingHarvestCycle(tree.getTree().getFruitHarvestCycle());
+                    }
                 }
             }
             for (Objectt object : toBeRemoved) {
