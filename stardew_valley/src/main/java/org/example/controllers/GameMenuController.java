@@ -627,7 +627,7 @@ public class GameMenuController extends Controller{
         for (String ingredient: craftingItem.getIngredients().keySet()){
             player.getInventory().removeInventoryItem(ingredient, craftingItem.getIngredients().get(ingredient));
         }
-        App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(craftingItem.getName(), 1, 0);
+        App.getCurrentGame().getCurrentPlayer().getInventory().addInventoryItem(itemName, 1, 0);
         player.reduceEnergy(2);
         return new Result(true, "Craft was crafted successfully");
     }
@@ -781,7 +781,7 @@ public class GameMenuController extends Controller{
         for (String itemName : foodEnum.getIngredients().keySet()) {
             int amount = foodEnum.getIngredients().get(itemName);
             int inventoryStock = inventory.getNumberOfInventoryItem(itemName);
-            inventory.removeInventoryItem(foodEnum.getName(), Integer.min(inventoryStock, amount));
+            inventory.removeInventoryItem(itemName, Integer.min(inventoryStock, amount));
             if(amount > inventoryStock) {
                 refrigerator.removeItem(itemName, amount - inventoryStock);
             }
@@ -806,7 +806,7 @@ public class GameMenuController extends Controller{
             return new Result(false, "You don't have this food in your inventory");
         }
         player.addEnergy(foodEnum.getEnergy());
-        inventory.removeInventoryItem(foodEnum.getName(), 1);
+        inventory.removeInventoryItem(foodName, 1);
         //TODO
         /// /// buff??
         inventory.getInventoryItems().remove(foodItem);
