@@ -112,6 +112,9 @@ public class DateTime {
         for (Objectt objectt : App.getCurrentGame().getMap().getVillage().getObjects()) {
             if (objectt instanceof Store){
                 ((Store) objectt).resetCapacity();
+                for (int i = 0; i < 5; i++){
+                    ((Store) objectt).setWelcome(false, i);
+                }
             }
             else if (objectt instanceof NPCHouse){
                 ((NPCHouse) objectt).setMeetNPCToday(false);

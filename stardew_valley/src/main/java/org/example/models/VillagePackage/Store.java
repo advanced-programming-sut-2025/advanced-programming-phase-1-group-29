@@ -22,8 +22,8 @@ public abstract class Store extends Objectt {
         products.clear();
         productNumbers.clear();
     }
-    public abstract boolean isWelcome();
-    public abstract void setWelcome(boolean welcome);
+    public abstract boolean isWelcome(int index);
+    public abstract void setWelcome(boolean welcome, int index);
     public void addProduct(InventoryItem product, int quantity) {
         if (!productNumbers.containsKey(product)) {
             products.add(product);
