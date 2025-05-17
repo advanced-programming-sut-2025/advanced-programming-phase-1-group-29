@@ -18,7 +18,7 @@
    pick question -q 4 -a setayesh -c setayesh
    register -u TAazizOgerami -p TaTa:123 TaTa:123 -n Ta -e ta@gmail.com -g male
    pick question -q 3 -a ooo -c ooo
-   register -u TAkhafan -p Kasra:123 Kasra:123 -n kasra -e kasra@gmail.com -g female
+   register -u TAkhafan -p Kasra:123 Kasra:123 -n kasra -e kasra@gmail.com -g male
    pick question -q 3 -a ooo -c ooo
    menu enter Login Menu
    forget password -u setayesh
@@ -180,3 +180,50 @@
    purchase Sugar -n 10
    inventory show
    print map -l 0, 0 -s 200
+   gift -u parnia -i Sugar -a 1
+   gift -u setayesh -i Sugar -a 11
+   gift -u setayesh -i Sugar -a 2
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   talk -u setayesh -m 1
+   friendships
+   gift -u setayesh -i Sugar -a 2
+   gift -u setayesh -i Sugar -a 1
+   gift -u setayesh -i Sugar -a 1
+   gift -u setayesh -i Sugar -a 1
+   gift -u setayesh -i Sugar -a 1
+   next turn
+   gift list
+   gift rate -i 10 -r 5
+   gift rate -i 0 -r 5
+   friendships
+   gift history -u parnia
+   gift history -u TAkhafan
+   inventory show
+   hug -u TAkhafan
+   hug -u sogol
+   gift list
+   gift rate -i 0 -r 5
+   gift rate -i 0 -r 5
+   gift rate -i 0 -r 5
+   gift rate -i 0 -r 5
+   next turn
+   next turn
+   next turn
+   friendships
+   flower -u setayesh
+   ask marriage -u setayesh -r wedding ring
+   next turn
+   respond -reject -u TAkhafan

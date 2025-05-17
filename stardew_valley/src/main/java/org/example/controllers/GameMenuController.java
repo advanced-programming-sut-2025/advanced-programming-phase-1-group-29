@@ -1281,6 +1281,7 @@ public class GameMenuController extends Controller{
         Player player2 = App.getCurrentGame().getPlayers().get(player.getGiftPlayersIndex().get(giftNumber));
         player.addFriendship(player.getGiftPlayersIndex().get(giftNumber), (rate - 3) * 30 + 15);
         player2.addFriendship(App.getCurrentGame().getTurn(), (rate - 3) * 30 + 15);
+        player.removeGift(giftNumber);
         return new Result(true, "your rate has been received");
     }
 
@@ -1291,7 +1292,7 @@ public class GameMenuController extends Controller{
         ArrayList<Integer> giftPlayersIndex = player.getGiftPlayersIndex();
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < items.size(); i++) {
-            result.append(giftNumbers.get(i) + " " + items.get(i) + " from " + App.getCurrentGame().getPlayers().get(giftPlayersIndex.get(i)) + "\n");
+            result.append(giftNumbers.get(i) + " " + items.get(i) + " from " + App.getCurrentGame().getPlayers().get(giftPlayersIndex.get(i)).getUser().getUsername() + "\n");
         }
         return new Result(true, result.toString());
     }
@@ -1443,6 +1444,7 @@ public class GameMenuController extends Controller{
         }
         if (respond.equalsIgnoreCase("reject") || respond.equalsIgnoreCase("-reject")) {
             player2.setRejected();
+            player.addFriendship(ind, player.getFriendship()[ind] * (-1));
             return new Result(true, "You have rejected the proposal");
         }
         player.setMarried(ind);

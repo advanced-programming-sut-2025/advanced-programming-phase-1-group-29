@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import static java.lang.System.exit;
+import static java.lang.System.in;
 
 public class Player {
     private int energy = 200;
@@ -346,5 +347,11 @@ public class Player {
     }
     public void addRobinFriendship(int amount) {
         robinFriendship += amount;
+    }
+
+    public void removeGift(int index) {
+        giftItems.remove(index);
+        giftNumbers.remove(index);
+        giftPlayersIndex.remove(index);
     }
 }
